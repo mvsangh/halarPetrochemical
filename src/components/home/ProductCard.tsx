@@ -8,9 +8,10 @@ interface ProductCardProps {
   href: string;
   icon: React.ReactNode;
   index: number;
+  backgroundImage?: string;
 }
 
-const ProductCard = ({ name, description, href, icon, index }: ProductCardProps) => {
+const ProductCard = ({ name, description, href, icon, index, backgroundImage }: ProductCardProps) => {
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -20,12 +21,31 @@ const ProductCard = ({ name, description, href, icon, index }: ProductCardProps)
     >
       <Link 
         to={href}
-        className="group block h-full bg-card border border-border rounded-xl p-6 card-hover"
+        className="group block h-full bg-card border border-border rounded-xl overflow-hidden card-hover flex flex-col"
       >
-        <div className="flex flex-col h-full">
-          <div className="w-14 h-14 rounded-lg bg-secondary flex items-center justify-center text-primary mb-4 group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
-            {icon}
+        {/* Image Section - Top */}
+        <div className="relative h-48 overflow-hidden bg-secondary">
+          {backgroundImage && (
+            <div 
+              className="absolute inset-0 group-hover:scale-110 transition-transform duration-500"
+              style={{
+                backgroundImage: `url(${backgroundImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            />
+          )}
+          
+          {/* Icon - Overlaid on Image */}
+          <div className="absolute inset-0 flex items-end justify-start p-4">
+            <div className="w-16 h-16 rounded-lg bg-white/90 flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-colors shadow-lg">
+              {icon}
+            </div>
           </div>
+        </div>
+
+        {/* Content Section - Bottom */}
+        <div className="p-6 flex flex-col flex-1">
           <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
             {name}
           </h3>

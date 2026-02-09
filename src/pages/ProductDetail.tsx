@@ -33,33 +33,50 @@ const ProductDetail = () => {
       />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 hero-gradient">
-        <div className="container-custom">
-          <Breadcrumbs 
-            items={[
-              { label: 'Products', href: '/products' },
-              { label: product.name }
-            ]} 
-          />
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl"
-          >
-            <div className="w-16 h-16 rounded-xl bg-accent/20 flex items-center justify-center text-gold mb-6">
-              {product.icon}
-            </div>
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-              {product.name}
-            </h1>
-            <p className="text-lg text-white/90">
-              {product.description}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+ {/* Hero Section */}
+<section
+  className="relative flex items-center min-h-[70vh] md:min-h-[80vh] pt-28 pb-20"
+  style={{
+    backgroundImage: product.backgroundImage
+      ? `url(${product.backgroundImage})`
+      : 'none',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
+  }}
+>
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+
+  <div className="container-custom relative z-10">
+    <Breadcrumbs
+      items={[
+        { label: 'Products', href: '/products' },
+        { label: product.name },
+      ]}
+    />
+
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="max-w-3xl"
+    >
+      <div className="w-16 h-16 rounded-xl bg-white/90 flex items-center justify-center text-gold mb-6">
+        {product.icon}
+      </div>
+
+      <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+        {product.name}
+      </h1>
+
+      <p className="text-lg text-white/90">
+        {product.description}
+      </p>
+    </motion.div>
+  </div>
+</section>
+
 
       {/* Product Details */}
       <section className="section-padding bg-background">

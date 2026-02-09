@@ -6,12 +6,21 @@ import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import ProductCard from '@/components/home/ProductCard';
-
+import heroRefinery from "../assets/hero-refinery.jpg";
+import fuelOilImg from "../assets/products/fuel-oil.png";
+import gasOilImg from "../assets/products/gas-oil.png";
+import naphthaImg from "../assets/products/naphtha.png";
+import rubberOilImg from "../assets/products/fuelproduct.png";
+import whiteSpiritImg from "../assets/products/white-spirit.png";
+import glycolsImg from "../assets/products/glycols.png";
+import lubricantOilImg from "../assets/products/lubricant-oil.png";
+import paraffinOilImg from "../assets/products/Paraffin Oil.png";
+import usedCookingOilImg from "../assets/products/used-cooking-oil.png.png";
 export const products = [
   { 
     name: 'Fuel Oil', 
     description: 'High-quality fuel oils for industrial power generation, marine applications, and commercial heating systems.', 
-    href: '/products/fuel-oil', 
+    backgroundImage: fuelOilImg, 
     icon: <Flame className="w-6 h-6" />,
     slug: 'fuel-oil',
     fullDescription: 'Fuel oil is a fraction obtained from petroleum distillation, widely used as a fuel source in industrial and marine applications. Our fuel oils meet international quality standards and are available in various grades to suit different requirements.',
@@ -23,6 +32,7 @@ export const products = [
     href: '/products/gas-oil', 
     icon: <Fuel className="w-6 h-6" />,
     slug: 'gas-oil',
+    backgroundImage: gasOilImg,
     fullDescription: 'Gas oil, also known as diesel fuel, is a middle distillate petroleum product used primarily in diesel engines and industrial heating applications. We supply high-quality gas oil that meets stringent international specifications.',
     uses: ['Diesel engines and vehicles', 'Industrial machinery', 'Agricultural equipment', 'Construction machinery', 'Heating systems']
   },
@@ -32,6 +42,7 @@ export const products = [
     href: '/products/mix-hydrocarbon-oil', 
     icon: <Layers className="w-6 h-6" />,
     slug: 'mix-hydrocarbon-oil',
+    backgroundImage: rubberOilImg,
     fullDescription: 'Mix Hydrocarbon Oil is a versatile petroleum product consisting of various hydrocarbon compounds. It serves as a valuable feedstock for numerous industrial processes and can be further refined or used directly in specific applications.',
     uses: ['Petrochemical feedstock', 'Industrial processing', 'Fuel blending', 'Chemical manufacturing', 'Energy production']
   },
@@ -41,6 +52,7 @@ export const products = [
     href: '/products/naphtha', 
     icon: <Droplets className="w-6 h-6" />,
     slug: 'naphtha',
+    backgroundImage: naphthaImg,
     fullDescription: 'Naphtha is a highly versatile petroleum product that serves as a crucial feedstock in the petrochemical industry. It is essential for producing plastics, synthetic fibers, and various chemical compounds.',
     uses: ['Petrochemical production', 'Plastics manufacturing', 'Synthetic fiber production', 'Solvent applications', 'Gasoline blending']
   },
@@ -50,6 +62,7 @@ export const products = [
     href: '/products/rubber-process-oil', 
     icon: <Factory className="w-6 h-6" />,
     slug: 'rubber-process-oil',
+    backgroundImage: rubberOilImg,
     fullDescription: 'Rubber Process Oils are specialty petroleum products designed specifically for the rubber manufacturing industry. They improve the processing characteristics of rubber compounds and enhance the physical properties of finished products.',
     uses: ['Tire manufacturing', 'Rubber goods production', 'Industrial rubber products', 'Automotive components', 'Consumer rubber products']
   },
@@ -59,6 +72,7 @@ export const products = [
     href: '/products/white-spirit', 
     icon: <FlaskConical className="w-6 h-6" />,
     slug: 'white-spirit',
+    backgroundImage: whiteSpiritImg,
     fullDescription: 'White Spirit is a petroleum-derived clear liquid commonly used as a solvent in the paint and coatings industry. Our white spirit meets international purity standards and is ideal for thinning paints, cleaning brushes, and industrial degreasing.',
     uses: ['Paint thinning', 'Surface cleaning', 'Degreasing applications', 'Coating production', 'Industrial cleaning']
   },
@@ -68,6 +82,7 @@ export const products = [
     href: '/products/glycols', 
     icon: <Beaker className="w-6 h-6" />,
     slug: 'glycols',
+    backgroundImage: glycolsImg,
     fullDescription: 'Glycols are essential industrial chemicals with excellent thermal properties and versatility. We supply both Mono Ethylene Glycol (MEG) and Diethylene Glycol (DEG) for various industrial applications.',
     uses: ['Antifreeze production', 'Coolant manufacturing', 'Polyester fiber production', 'PET resin manufacturing', 'Industrial processes']
   },
@@ -77,6 +92,7 @@ export const products = [
     href: '/products/lubricant-oil', 
     icon: <Cylinder className="w-6 h-6" />,
     slug: 'lubricant-oil',
+    backgroundImage: lubricantOilImg,
     fullDescription: 'Lubricant oils are essential for the smooth operation and longevity of machinery and engines. Our range includes high-quality base oils and finished lubricants suitable for various industrial and automotive applications.',
     uses: ['Engine lubrication', 'Industrial machinery', 'Hydraulic systems', 'Gear systems', 'Automotive applications']
   },
@@ -86,6 +102,7 @@ export const products = [
     href: '/products/paraffin-oil', 
     icon: <Leaf className="w-6 h-6" />,
     slug: 'paraffin-oil',
+    backgroundImage: paraffinOilImg,
     fullDescription: 'Paraffin oil is a highly refined mineral oil with excellent purity and stability. It finds applications across various industries including pharmaceuticals, cosmetics, and industrial manufacturing.',
     uses: ['Pharmaceutical formulations', 'Cosmetic products', 'Candle manufacturing', 'Food processing', 'Industrial applications']
   },
@@ -95,6 +112,7 @@ export const products = [
     href: '/products/used-cooking-oil', 
     icon: <Utensils className="w-6 h-6" />,
     slug: 'used-cooking-oil',
+    backgroundImage: usedCookingOilImg,
     fullDescription: 'Used Cooking Oil (UCO) is collected and processed for recycling into biodiesel and other sustainable applications. This eco-friendly resource contributes to circular economy initiatives and renewable energy production.',
     uses: ['Biodiesel production', 'Renewable energy', 'Animal feed production', 'Industrial oleochemicals', 'Sustainable fuel alternatives']
   },
@@ -109,9 +127,21 @@ const Products = () => {
         keywords="petrochemical products, fuel oil, gas oil, naphtha, white spirit, glycols, lubricant oil, UAE petrochemicals"
       />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 hero-gradient">
-        <div className="container-custom">
+      {/* Hero Section with Background Image */}
+    <section
+  className="pt-32 pb-16 relative"
+  style={{
+    backgroundImage: `url(${heroRefinery})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+  }}
+>           
+      
+        {/* Dark Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50" />
+        
+        <div className="container-custom relative z-10">
           <Breadcrumbs items={[{ label: 'Products' }]} />
           
           <motion.div
@@ -154,7 +184,8 @@ const Products = () => {
                 description={product.description}
                 href={product.href}
                 icon={product.icon}
-                index={index} 
+                index={index}
+                backgroundImage={product.backgroundImage}
               />
             ))}
           </div>

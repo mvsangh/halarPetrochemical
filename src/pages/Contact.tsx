@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import heroRefinery from "../assets/hero-refinery.jpg";
 
 const contactSchema = z.object({
   name: z.string().trim().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
@@ -76,9 +77,18 @@ const Contact = () => {
         keywords="contact HALAR PETROCHEM, petrochemical supplier contact, UAE oil trading, petrochemical inquiry"
       />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 hero-gradient">
-        <div className="container-custom">
+     
+      {/* Hero Section with Background Image */}
+  <section
+  className="pt-32 pb-16 relative"
+  style={{
+    backgroundImage: `url(${heroRefinery})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+  }}
+>           
+    <div className="container-custom">
           <Breadcrumbs items={[{ label: 'Contact' }]} />
           
           <motion.div

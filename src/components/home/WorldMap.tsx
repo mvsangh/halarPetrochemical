@@ -1,4 +1,8 @@
+"use client"
+
 import { motion } from 'framer-motion';
+import { useEffect, useRef } from "react"
+import * as d3 from "d3"
 
 interface Connection {
     start: { lat: number; lng: number; label: string };
@@ -14,16 +18,142 @@ const defaultDots = [
     { id: 1, x: '20%', y: '30%', label: 'North America' },
     { id: 2, x: '25%', y: '35%', label: 'USA' },
     { id: 3, x: '48%', y: '25%', label: 'Europe' },
-    { id: 4, x: '52%', y: '35%', label: 'Middle East' }, // UAE approx
+    { id: 4, x: '52%', y: '35%', label: 'Middle East' },
     { id: 5, x: '75%', y: '30%', label: 'Asia' },
     { id: 6, x: '80%', y: '60%', label: 'Australia' },
     { id: 7, x: '50%', y: '50%', label: 'Africa' },
     { id: 8, x: '30%', y: '60%', label: 'South America' },
 ];
 
-const WorldMap: React.FC<WorldMapProps> = ({ dots: connections, lineColor = '#3b82f6' }) => {
-    // Use default dots for now (connections prop can be used for future enhancements)
+export default function WorldMap({ dots: connections, lineColor = '#3b82f6' }: WorldMapProps) {
     const dots = defaultDots;
+    const canvasRef = useRef<HTMLCanvasElement>(null)
+
+    useEffect(() => {
+        const canvas = canvasRef.current
+        if (!canvas) return
+
+        const ctx = canvas.getContext("2d")
+        if (!ctx) return
+
+        const width = canvas.offsetWidth
+        const height = 420
+        const radius = height / 2.1
+
+        const dpr = window.devicePixelRatio || 1
+        canvas.width = width * dpr
+        canvas.height = height * dpr
+        canvas.style.height = `${height}px`
+        ctx.scale(dpr, dpr)
+
+        const projection = d3
+            .geoOrthographic()
+            .scale(radius)
+            .translate([width / 2, height / 2])
+            .clipAngle(90)
+
+        const path = d3.geoPath(projection).context(ctx)
+
+        let land: any
+
+        // ✅ FIX: explicit tuple (3 values)
+        let rotation: [number, number, number] = [0, -15, 0]
+        
+        // ADDED: Auto-rotation flag
+        let isAutoRotating = true
+        let rotationSpeed = 0.1 // Speed of auto-rotation
+
+        const draw = () => {
+            ctx.clearRect(0, 0, width, height)
+
+            // 🌊 Ocean
+            ctx.beginPath()
+            ctx.arc(width / 2, height / 2, projection.scale(), 0, Math.PI * 2)
+            ctx.fillStyle = "#020617"
+            ctx.fill()
+
+            // 🌐 Border glow
+            ctx.strokeStyle = "#38bdf8"
+            ctx.lineWidth = 2
+            ctx.stroke()
+
+            if (!land) return
+
+            // 🌍 Grid
+            ctx.globalAlpha = 0.15
+            ctx.beginPath()
+            path(d3.geoGraticule10())
+            ctx.strokeStyle = "#ffffff"
+            ctx.stroke()
+            ctx.globalAlpha = 1
+
+            // 🌎 Land
+            ctx.beginPath()
+            land.features.forEach((f: any) => path(f))
+            ctx.strokeStyle = "#60a5fa"
+            ctx.lineWidth = 0.8
+            ctx.stroke()
+        }
+
+        fetch(
+            "https://raw.githubusercontent.com/martynafford/natural-earth-geojson/master/110m/physical/ne_110m_land.json"
+        )
+            .then(res => res.json())
+            .then(data => {
+                land = data
+                draw()
+            })
+
+        let lastX = 0
+        let lastY = 0
+        const sensitivity = 0.25 // adjust feel (0.2–0.4)
+        
+        // ADDED: Animation timer for auto-rotation
+        const timer = d3.timer(() => {
+            if (isAutoRotating) {
+                rotation[0] += rotationSpeed
+                projection.rotate(rotation)
+                draw()
+            }
+        })
+
+        d3.select(canvas)
+            .call(
+                d3.drag<HTMLCanvasElement, unknown>()
+                    .on("start", (event) => {
+                        // ADDED: Stop auto-rotation when dragging starts
+                        isAutoRotating = false
+                        lastX = event.x
+                        lastY = event.y
+                    })
+                    .on("drag", (event) => {
+                        const dx = event.x - lastX
+                        const dy = event.y - lastY
+
+                        rotation[0] += dx * sensitivity      // left ↔ right
+                        rotation[1] -= dy * sensitivity      // up ↕ down
+
+                        rotation[1] = Math.max(-90, Math.min(90, rotation[1]))
+
+                        projection.rotate(rotation)
+                        draw()
+
+                        lastX = event.x
+                        lastY = event.y
+                    })
+                    .on("end", () => {
+                        // ADDED: Resume auto-rotation after 3 seconds of no dragging
+                        setTimeout(() => {
+                            isAutoRotating = true
+                        }, 3000)
+                    })
+            )
+
+        return () => {
+            timer.stop()
+        }
+    }, [])
+
     return (
         <section className="py-20 bg-background overflow-hidden">
             <div className="container mx-auto px-4 md:px-8">
@@ -58,46 +188,14 @@ const WorldMap: React.FC<WorldMapProps> = ({ dots: connections, lineColor = '#3b
                     </motion.p>
                 </div>
 
-                {/* Map Container */}
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 1 }}
-                    className="relative max-w-5xl mx-auto aspect-[16/9] bg-secondary/30 rounded-3xl border border-secondary p-4 shadow-inner"
-                >
-                    {/* Abstract Map Background */}
-                    <div className="absolute inset-0 opacity-20 bg-[url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg')] bg-contain bg-center bg-no-repeat pointer-events-none" />
-                    {/* Fallback pattern if image fails or for extra style */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.primary.DEFAULT/.05),transparent_70%)]" />
-
-                    {/* Dots */}
-                    {dots.map((dot, index) => (
-                        <motion.div
-                            key={dot.id}
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                                type: "spring",
-                                stiffness: 260,
-                                damping: 20,
-                                delay: 0.5 + index * 0.1 // Staggered delay
-                            }}
-                            style={{ left: dot.x, top: dot.y }}
-                            className="absolute w-4 h-4"
-                        >
-                            <span className="relative flex h-4 w-4">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-4 w-4 bg-primary"></span>
-                            </span>
-                            {/* Tooltip/Label */}
-                            <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap opacity-0 hover:opacity-100 transition-opacity">
-                                {dot.label}
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
+                {/* Rotating Earth Canvas */}
+                <div className="relative w-full">
+                    <canvas
+                        ref={canvasRef}
+                        className="w-full rounded-2xl shadow-2xl  cursor-grab active:cursor-grabbing"
+                    />
+              
+                </div>
 
                 {/* Counters */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-4xl mx-auto">
@@ -123,6 +221,4 @@ const WorldMap: React.FC<WorldMapProps> = ({ dots: connections, lineColor = '#3b
             </div>
         </section>
     );
-};
-
-export default WorldMap;
+}
