@@ -725,19 +725,6 @@ export default function WorldMap({
                         <div className="text-xs sm:text-sm text-purple-300">Key distribution hubs</div>
                     </motion.div>
                 </div>
-
-                {/* Mobile Touch Tips */}
-                {windowSize.width < 768 && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="mt-6 text-center"
-                    >
-                        <p className="text-sm text-gray-400">
-                            💡 <span className="font-medium">Tip:</span> Tap on any point to see connections
-                        </p>
-                    </motion.div>
-                )}
             </div>
         </section>
     );

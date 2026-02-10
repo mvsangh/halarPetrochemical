@@ -28,6 +28,7 @@ const navigation = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -52,11 +53,11 @@ const Navbar = () => {
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, [lastScrollY]);
-
-  useEffect(() => {
-    setIsOpen(false);
-    setActiveDropdown(null);
-  }, [location]);
+useEffect(() => {
+  setIsOpen(false);
+  setActiveDropdown(null);
+  setMobileDropdown(null);
+}, [location]);
 
   return (
     <header
@@ -150,30 +151,63 @@ const Navbar = () => {
               exit={{ height: 0, opacity: 0 }}
               className="lg:hidden bg-card border-t border-border overflow-hidden"
             >
-              {navigation.map((item) => (
-                <div key={item.name}>
-                  <Link
-                    to={item.href}
-                    className="block px-4 py-3 font-medium text-foreground hover:bg-secondary"
-                  >
-                    {item.name}
-                  </Link>
+          {navigation.map((item) => (
+  <div key={item.name} className="border-b border-border last:border-none">
 
-                  {item.children && (
-                    <div className="pl-6">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.name}
-                          to={child.href}
-                          className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary"
-                        >
-                          {child.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
+    {/* MAIN ITEM */}
+    {item.children ? (
+      <button
+        onClick={() =>
+          setMobileDropdown(
+            mobileDropdown === item.name ? null : item.name
+          )
+        }
+        className="w-full flex items-center justify-between 
+                   px-4 py-3 font-medium text-foreground
+                   hover:bg-secondary"
+      >
+        <span>{item.name}</span>
+        <ChevronDown
+          className={`w-4 h-4 transition-transform duration-300
+            ${mobileDropdown === item.name ? 'rotate-180' : ''}
+          `}
+        />
+      </button>
+    ) : (
+      <Link
+        to={item.href}
+        className="block px-4 py-3 font-medium text-foreground hover:bg-secondary"
+      >
+        {item.name}
+      </Link>
+    )}
+
+    {/* DROPDOWN */}
+    <AnimatePresence>
+      {item.children && mobileDropdown === item.name && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="overflow-hidden bg-secondary/50"
+        >
+          {item.children.map((child) => (
+            <Link
+              key={child.name}
+              to={child.href}
+              className="block px-8 py-2.5 text-sm 
+                         text-muted-foreground hover:text-primary"
+            >
+              {child.name}
+            </Link>
+          ))}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+))}
+
 
               <div className="p-4">
                 <Link to="/contact" className="btn-accent block text-center">

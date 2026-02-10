@@ -124,7 +124,6 @@ const Index = () => {
 
     }
   ];
-
 const sliderSettings = {
   dots: false,
   infinite: true,
@@ -136,11 +135,10 @@ const sliderSettings = {
   pauseOnHover: true,
 
   slidesToScroll: 1,
-
-  // ✅ Desktop
   slidesToShow: 3,
-  centerMode: false,          // ❌ removed center mode
-  centerPadding: "0px",       // ❌ removed padding
+
+  centerMode: false,
+  centerPadding: "0px",
 
   beforeChange: (_: number, next: number) => setCurrentSlide(next),
 
@@ -149,21 +147,18 @@ const sliderSettings = {
       breakpoint: 1024,
       settings: {
         slidesToShow: 2,
-        centerMode: false,
-        centerPadding: "0px",
       },
     },
     {
       breakpoint: 768,
       settings: {
-        slidesToShow: 1,       // ✅ full-width single card
-        centerMode: false,
-        centerPadding: "0px",
+        slidesToShow: 1,
         swipeToSlide: true,
       },
     },
   ],
 };
+
 
 
   return (
@@ -441,9 +436,11 @@ const sliderSettings = {
 <div className="relative w-full overflow-hidden">
 
   {/* Progress Bar */}
-  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 
-                  flex items-center gap-3 z-10 
-                  w-full max-w-xs px-4">
+  <div
+    className="absolute bottom-3 left-1/2 -translate-x-1/2 
+               flex items-center gap-3 z-10 
+               w-full max-w-xs px-4"
+  >
     <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
       <motion.div
         className="h-full bg-primary"
@@ -451,21 +448,17 @@ const sliderSettings = {
         transition={{ duration: 0.3 }}
       />
     </div>
-    <span className="text-xs font-semibold text-gray-700">
+    <span className="text-xs font-semibold text-gray-700 whitespace-nowrap">
       {currentSlide + 1} / {products.length}
     </span>
   </div>
 
   {/* Slider */}
-  <Slider
-    ref={sliderRef}
-    {...sliderSettings}
-    className="pb-16"
-  >
+  <Slider ref={sliderRef} {...sliderSettings} className="pb-16">
     {products.map((product, index) => (
       <div
         key={product.name}
-        className="px-0 sm:px-2 md:px-3 lg:px-4 py-3"
+        className="w-full px-2 sm:px-3 md:px-4 py-3"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
@@ -478,13 +471,15 @@ const sliderSettings = {
         >
 
           {/* Card */}
-          <div className="bg-white rounded-2xl shadow-lg 
-                          hover:shadow-2xl transition-all duration-500
-                          border border-gray-100 overflow-hidden 
-                          h-full w-full flex flex-col">
+          <div
+            className="bg-white rounded-2xl shadow-lg 
+                       hover:shadow-2xl transition-all duration-500
+                       border border-gray-100 overflow-hidden 
+                       h-full w-full flex flex-col"
+          >
 
             {/* Image */}
-            <div className="relative h-44 sm:h-52 md:h-56 overflow-hidden">
+            <div className="relative h-40 sm:h-48 md:h-56 overflow-hidden">
               <img
                 src={product.image}
                 alt={product.name}
@@ -495,13 +490,15 @@ const sliderSettings = {
             {/* Content */}
             <div className="p-4 sm:p-5 flex flex-col flex-1">
 
-              <span className="inline-block px-3 py-1 mb-3 
-                               bg-primary/10 text-primary 
-                               text-xs font-medium rounded-full w-fit">
+              <span
+                className="inline-block px-3 py-1 mb-3 
+                           bg-primary/10 text-primary 
+                           text-xs font-medium rounded-full w-fit"
+              >
                 {product.category}
               </span>
 
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">
                 {product.name}
               </h3>
 
@@ -512,7 +509,10 @@ const sliderSettings = {
               {product.features && (
                 <ul className="space-y-2 mb-4">
                   {product.features.slice(0, 2).map((f, i) => (
-                    <li key={i} className="flex items-center gap-2 text-sm text-gray-500">
+                    <li
+                      key={i}
+                      className="flex items-center gap-2 text-sm text-gray-500"
+                    >
                       <CheckCircle className="w-4 h-4 text-green-500" />
                       {f}
                     </li>
@@ -520,11 +520,14 @@ const sliderSettings = {
                 </ul>
               )}
 
-              <div className="flex items-center justify-between 
-                              border-t pt-4 mt-auto">
+              <div
+                className="flex items-center justify-between 
+                           border-t pt-4 mt-auto"
+              >
                 <Link
                   to={product.href}
-                  className="text-primary font-semibold flex items-center gap-2"
+                  className="text-primary font-semibold 
+                             flex items-center gap-2"
                 >
                   View Details
                   <ArrowRight className="w-4 h-4" />
@@ -547,6 +550,7 @@ const sliderSettings = {
     ))}
   </Slider>
 </div>
+
 
 
     {/* View All */}
