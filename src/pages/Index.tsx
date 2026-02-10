@@ -427,120 +427,166 @@ const Index = () => {
       </p>
     </motion.div>
 
-    {/* Slider Wrapper */}
-    <div className="relative overflow-hidden">
+{/* Slider Wrapper */}
+<div className="relative overflow-hidden w-full">
 
-      {/* Progress */}
-      <div className="absolute -bottom-12 md:-bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10">
-        <div className="w-44 md:w-64 h-2 bg-gray-200 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full bg-primary"
-            animate={{ width: `${((currentSlide + 1) / products.length) * 100}%` }}
-            transition={{ duration: 0.3 }}
-          />
-        </div>
-        <span className="text-sm font-semibold text-gray-700">
-          {currentSlide + 1} / {products.length}
-        </span>
-      </div>
-
-      {/* Slider */}
-      <Slider ref={sliderRef} {...sliderSettings} className="pb-20">
-
-        {products.map((product, index) => (
-          <div key={product.name} className="px-2 sm:px-3 py-4">
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{
-                opacity: currentSlide === index ? 1 : 0.85,
-                scale: currentSlide === index ? 1 : 0.96,
-              }}
-              transition={{ duration: 0.3 }}
-              className="h-full"
-            >
-
-              {/* Card */}
-              <div className="relative bg-white rounded-2xl shadow-xl 
-                              hover:shadow-2xl transition-all duration-500 
-                              border border-gray-100 overflow-hidden 
-                              active:scale-[0.98] h-full">
-
-                {/* Image */}
-                <div className="relative h-44 sm:h-52 md:h-56 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 z-10" />
-
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover object-center 
-                               transition-transform duration-700 
-                               group-hover:scale-110"
-                  />
-
-                  {/* Icon */}
-                  {/* <div className="absolute top-4 right-4 w-12 h-12 md:w-14 md:h-14 
-                                  bg-white/90 backdrop-blur rounded-xl 
-                                  flex items-center justify-center text-primary shadow-lg z-20">
-                    {product.icon}
-                  </div> */}
-                </div>
-
-                {/* Content */}
-                <div className="p-4 sm:p-5 md:p-6 relative">
-
-                  <span className="inline-block px-3 py-1 bg-primary/10 
-                                   text-primary text-xs md:text-sm 
-                                   font-medium rounded-full mb-3">
-                    {product.category}
-                  </span>
-
-                  <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
-                    {product.name}
-                  </h3>
-
-                  <p className="text-sm text-gray-600 line-clamp-2 mb-4">
-                    {product.description}
-                  </p>
-
-                  {/* Features */}
-                  {product.features && (
-                    <ul className="space-y-2 mb-5">
-                      {product.features.slice(0, 2).map((feature, i) => (
-                        <li key={i} className="flex items-center gap-2 text-sm text-gray-500">
-                          <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {/* Actions */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <Link
-                      to={product.href}
-                      className="inline-flex items-center gap-2 text-primary font-semibold"
-                    >
-                      View Details
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-
-                    <Link
-                      to="/contact"
-                      className="w-10 h-10 rounded-full bg-gray-100 
-                                 hover:bg-primary hover:text-white 
-                                 flex items-center justify-center transition">
-                      <MessageSquare className="w-5 h-5" />
-                    </Link>
-                  </div>
-
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        ))}
-      </Slider>
+  {/* Progress Bar */}
+  <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 md:gap-3 z-10 w-full max-w-xs px-4">
+    <div className="flex-1 h-1.5 md:h-2 bg-gray-200 rounded-full overflow-hidden">
+      <motion.div
+        className="h-full bg-primary"
+        animate={{ width: `${((currentSlide + 1) / products.length) * 100}%` }}
+        transition={{ duration: 0.3 }}
+      />
     </div>
+    <span className="text-xs sm:text-sm font-semibold text-gray-700 whitespace-nowrap">
+      {currentSlide + 1} / {products.length}
+    </span>
+  </div>
+
+  {/* Slider */}
+  <Slider 
+    ref={sliderRef} 
+    {...sliderSettings} 
+    className="pb-12 md:pb-16 lg:pb-20"
+  >
+    {products.map((product, index) => (
+      <div 
+        key={product.name} 
+        className="px-1 sm:px-2 md:px-3 lg:px-4 py-2 md:py-4"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{
+            opacity: currentSlide === index ? 1 : 0.85,
+            scale: currentSlide === index ? 1 : 0.96,
+          }}
+          transition={{ duration: 0.3 }}
+          className="h-full"
+        >
+
+          {/* Card */}
+          <div className="relative bg-white rounded-xl sm:rounded-2xl shadow-lg 
+                        sm:shadow-xl hover:shadow-2xl transition-all duration-500 
+                        border border-gray-100 overflow-hidden 
+                        active:scale-[0.98] h-full flex flex-col
+                        min-h-[320px] sm:min-h-[400px] md:min-h-[450px]">
+
+            {/* Image Section */}
+            <div className="relative h-36 sm:h-44 md:h-52 lg:h-56 overflow-hidden flex-shrink-0">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30 z-10" />
+
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-full object-cover object-center 
+                         transition-transform duration-700 
+                         hover:scale-110"
+                loading="lazy"
+              />
+
+              {/* Optional Icon */}
+              {/* {product.icon && (
+                <div className="absolute top-3 right-3 w-10 h-10 sm:w-12 sm:h-12 
+                              md:w-14 md:h-14 bg-white/90 backdrop-blur 
+                              rounded-lg sm:rounded-xl flex items-center 
+                              justify-center text-primary shadow-lg z-20">
+                  {product.icon}
+                </div>
+              )} */}
+            </div>
+
+            {/* Content Section */}
+            <div className="p-3 sm:p-4 md:p-5 lg:p-6 flex flex-col flex-1">
+
+              {/* Category Badge */}
+              <span className="inline-block px-2 py-1 sm:px-3 sm:py-1 
+                             bg-primary/10 text-primary text-xs sm:text-sm 
+                             font-medium rounded-full mb-2 sm:mb-3 w-fit">
+                {product.category}
+              </span>
+
+              {/* Title */}
+              <h3 className="text-base sm:text-lg md:text-xl font-bold 
+                           text-gray-900 mb-1 sm:mb-2 line-clamp-1">
+                {product.name}
+              </h3>
+
+              {/* Description */}
+              <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 
+                          mb-3 sm:mb-4 flex-1">
+                {product.description}
+              </p>
+
+              {/* Features */}
+              {product.features && product.features.length > 0 && (
+                <ul className="space-y-1 sm:space-y-2 mb-4 sm:mb-5">
+                  {product.features.slice(0, 2).map((feature, i) => (
+                    <li 
+                      key={i} 
+                      className="flex items-start sm:items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-gray-500"
+                    >
+                      <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-500 flex-shrink-0 mt-0.5 sm:mt-0" />
+                      <span className="line-clamp-1">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {/* Actions */}
+              <div className="flex items-center justify-between pt-3 sm:pt-4 
+                            border-t border-gray-100 mt-auto">
+                <Link
+                  to={product.href}
+                  className="inline-flex items-center gap-1.5 sm:gap-2 
+                           text-primary font-semibold text-sm sm:text-base 
+                           hover:text-primary-dark transition-colors"
+                >
+                  View Details
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </Link>
+
+                <Link
+                  to="/contact"
+                  className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 
+                           rounded-full bg-gray-100 hover:bg-primary 
+                           hover:text-white flex items-center justify-center 
+                           transition-all duration-300 shadow-sm hover:shadow-md"
+                  aria-label="Contact about this product"
+                >
+                  <MessageSquare className="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5" />
+                </Link>
+              </div>
+
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    ))}
+  </Slider>
+
+  {/* Navigation Arrows (Optional - if you want to add them) */}
+  {/* <button
+    onClick={() => sliderRef?.current?.slickPrev()}
+    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 
+               w-8 h-8 sm:w-10 sm:h-10 bg-white/80 backdrop-blur-sm 
+               rounded-full flex items-center justify-center 
+               shadow-lg hover:bg-white transition-all"
+    aria-label="Previous slide"
+  >
+    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+  </button>
+  <button
+    onClick={() => sliderRef?.current?.slickNext()}
+    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 
+               w-8 h-8 sm:w-10 sm:h-10 bg-white/80 backdrop-blur-sm 
+               rounded-full flex items-center justify-center 
+               shadow-lg hover:bg-white transition-all"
+    aria-label="Next slide"
+  >
+    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+  </button> */}
+</div>
 
     {/* View All */}
     <motion.div
