@@ -26,18 +26,20 @@ const About = () => {
       />
 
       {/* Hero Section with Background Image */}
-  <section
-  className="pt-32 pb-16 relative"
-  style={{
-    backgroundImage: `url(${heroRefinery})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed",
-  }}
->
+      <section
+        className="relative flex items-center min-h-[60vh] md:min-h-[70vh] pt-28 pb-16"
+        style={{
+          backgroundImage: `url(${heroRefinery})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
 
         <div className="container-custom relative z-10">
-          <Breadcrumbs items={[{ label: 'About Us' }]} />
+          <Breadcrumbs items={[{ label: 'About Us' }]} dark={true} />
           
           <motion.div
             initial={{ opacity: 0, y: 30 }}

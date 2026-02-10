@@ -57,15 +57,15 @@ const Contact = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
     reset();
     toast.success('Message sent successfully! We will get back to you soon.');
-    
+
     setTimeout(() => setIsSubmitted(false), 5000);
   };
 
@@ -77,20 +77,23 @@ const Contact = () => {
         keywords="contact HALAR PETROCHEM, petrochemical supplier contact, UAE oil trading, petrochemical inquiry"
       />
 
-     
+
       {/* Hero Section with Background Image */}
-  <section
-  className="pt-32 pb-16 relative"
-  style={{
-    backgroundImage: `url(${heroRefinery})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed",
-  }}
->           
-    <div className="container-custom">
-          <Breadcrumbs items={[{ label: 'Contact' }]} />
-          
+      <section
+        className="relative flex items-center min-h-[60vh] md:min-h-[70vh] pt-28 pb-16"
+        style={{
+          backgroundImage: `url(${heroRefinery})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+
+        <div className="container-custom relative z-10">
+          <Breadcrumbs items={[{ label: 'Contact' }]} dark={true} />
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -101,7 +104,7 @@ const Contact = () => {
               Contact <span className="text-gold">HALAR PETROCHEM FZC</span>
             </h1>
             <p className="text-lg text-white/90">
-              Get in touch with our team for product inquiries, partnership opportunities, 
+              Get in touch with our team for product inquiries, partnership opportunities,
               or any questions about our services.
             </p>
           </motion.div>
@@ -119,7 +122,7 @@ const Contact = () => {
                   <h2 className="text-2xl font-display font-bold text-foreground mb-6">
                     Send Us a Message
                   </h2>
-                  
+
                   {isSubmitted ? (
                     <motion.div
                       initial={{ opacity: 0, scale: 0.95 }}
@@ -208,8 +211,8 @@ const Contact = () => {
                         )}
                       </div>
 
-                      <Button 
-                        type="submit" 
+                      <Button
+                        type="submit"
                         disabled={isSubmitting}
                         className="w-full md:w-auto btn-accent"
                       >
@@ -239,7 +242,7 @@ const Contact = () => {
               <ScrollReveal delay={0.2}>
                 <div className="space-y-6">
                   {contactInfo.map((item, index) => (
-                    <div 
+                    <div
                       key={item.title}
                       className="bg-card border border-border rounded-xl p-6"
                     >

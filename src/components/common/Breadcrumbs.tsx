@@ -8,16 +8,21 @@ interface BreadcrumbItem {
 
 interface BreadcrumbProps {
   items: BreadcrumbItem[];
+  dark?: boolean;
 }
 
-const Breadcrumb = ({ items }: BreadcrumbProps) => {
+const Breadcrumb = ({ items, dark = false }: BreadcrumbProps) => {
+  const textColor = dark ? "text-white/80 hover:text-white" : "text-muted-foreground hover:text-primary";
+  const chevronColor = dark ? "text-white/60" : "text-muted-foreground";
+  const spanColor = dark ? "text-white" : "text-foreground";
+  
   return (
     <nav aria-label="Breadcrumb" className="py-4">
       <ol className="flex items-center gap-2 text-sm">
         <li>
           <Link 
             to="/" 
-            className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
+            className={`flex items-center gap-1 ${textColor} transition-colors`}
           >
             <Home className="w-4 h-4" />
             <span className="sr-only">Home</span>
@@ -25,16 +30,16 @@ const Breadcrumb = ({ items }: BreadcrumbProps) => {
         </li>
         {items.map((item, index) => (
           <li key={index} className="flex items-center gap-2">
-            <ChevronRight className="w-4 h-4 text-muted-foreground" />
+            <ChevronRight className={`w-4 h-4 ${chevronColor}`} />
             {item.href ? (
               <Link 
                 to={item.href}
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className={`${textColor} transition-colors`}
               >
                 {item.label}
               </Link>
             ) : (
-              <span className="text-foreground font-medium">{item.label}</span>
+              <span className={`font-medium ${spanColor}`}>{item.label}</span>
             )}
           </li>
         ))}

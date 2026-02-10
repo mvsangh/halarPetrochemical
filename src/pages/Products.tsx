@@ -127,22 +127,22 @@ const Products = () => {
         keywords="petrochemical products, fuel oil, gas oil, naphtha, white spirit, glycols, lubricant oil, UAE petrochemicals"
       />
 
+
       {/* Hero Section with Background Image */}
-    <section
-  className="pt-32 pb-16 relative"
-  style={{
-    backgroundImage: `url(${heroRefinery})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed",
-  }}
->           
-      
+      <section
+        className="relative flex items-center min-h-[60vh] md:min-h-[70vh] pt-28 pb-16"
+        style={{
+          backgroundImage: `url(${heroRefinery})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
         {/* Dark Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         
         <div className="container-custom relative z-10">
-          <Breadcrumbs items={[{ label: 'Products' }]} />
+          <Breadcrumbs items={[{ label: 'Products' }]} dark={true} />
           
           <motion.div
             initial={{ opacity: 0, y: 30 }}
