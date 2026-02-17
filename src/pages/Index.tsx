@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import WorldMap from '@/components/home/WorldMap';
 import SEO from '@/components/SEO';
 import Layout from '@/components/layout/Layout';
@@ -11,30 +11,14 @@ import {
   ArrowRight,
   CheckCircle,
   MessageSquare,
-  ChevronLeft,
-  ChevronRight,
-  Flame,
-  Fuel,
-  Droplets,
-  FlaskConical,
-  Beaker,
-  Cylinder
 } from 'lucide-react';
 
 // Assets
 import heroVideo from '@/assets/herovideo (online-video-cutter.com).mp4';
 import Aboutimage from '@/assets/image.png';
 import heroRefinery from "../assets/hero-refinery.jpg";
+import { products } from '@/data/products';
 
-// Product Images
-import fuelOilImg from '@/assets/products/fuel-oil.png';
-import gasOilImg from '@/assets/products/gas-oil.png';
-import naphthaImg from '@/assets/products/naphtha.png';
-import whiteSpiritImg from '@/assets/products/white-spirit.png';
-import glycolsImg from '@/assets/products/glycols.png';
-import lubricantOilImg from '@/assets/products/lubricant-oil.png';
-import paraffinOilImg from '@/assets/products/Paraffin Oil.png';
-import usedCookingOilImg from '@/assets/products/used-cooking-oil.png.png';
 const features = [
   'Global Supply Chain Network',
   'Quality Certified Products',
@@ -48,122 +32,45 @@ const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef<Slider>(null);
 
-  const products = [
-    { 
-      name: 'Fuel Oil', 
-      description: 'High-quality fuel oils for industrial and commercial applications.', 
-      href: '/products/fuel-oil', 
-      icon: <Flame className="w-6 h-6" />, 
-      image: fuelOilImg,
-      category: 'Fuel Products',
-      features: ['High combustion efficiency', 'Low sulfur content', 'ISO certified']
-    },
-    { 
-      name: 'Gas Oil', 
-      description: 'Premium gas oil products meeting international specifications.', 
-      href: '/products/gas-oil', 
-      icon: <Fuel className="w-6 h-6" />, 
-      image: gasOilImg,
-      category: 'Fuel Products',
-      features: ['Euro 5 compliant', 'High cetane number', 'Clean burning']
-    },
-    { 
-      name: 'Naphtha', 
-      description: 'Versatile petrochemical feedstock for various industries.', 
-      href: '/products/naphtha', 
-      icon: <Droplets className="w-6 h-6" />, 
-      image: naphthaImg,
-      category: 'Petrochemicals',
-      features: ['High purity grade', 'Multi-industry use', 'Stable composition']
-    },
-    { 
-      name: 'White Spirit', 
-      description: 'Industrial-grade solvent for paints and coatings.', 
-      href: '/products/white-spirit', 
-      icon: <FlaskConical className="w-6 h-6" />, 
-      image: whiteSpiritImg,
-      category: 'Solvents',
-      features: ['Low odor', 'Fast evaporation', 'High solvency power']
-    },
-    { 
-      name: 'Glycols', 
-      description: 'Essential chemicals for antifreeze and industrial applications.', 
-      href: '/products/glycols', 
-      icon: <Beaker className="w-6 h-6" />, 
-      image: glycolsImg,
-      category: 'Chemicals',
-      features: ['Food grade available', 'High thermal stability', 'Non-toxic']
-    },
-    { 
-      name: 'Lubricant Oil', 
-      description: 'High-performance lubricants for machinery and engines.', 
-      href: '/products/lubricant-oil', 
-      icon: <Cylinder className="w-6 h-6" />, 
-      image: lubricantOilImg,
-      category: 'Lubricants',
-      features: ['Extended drain intervals', 'Temperature resistant', 'Anti-wear additives']
-    },
-    {
-      name: 'Paraffin Oil',
-      description: 'Highly refined mineral oil for pharmaceuticals and cosmetics.',
-      href: '/products/paraffin-oil',
-      icon: <Droplets className="w-6 h-6" />,
-      image: paraffinOilImg,
-      category: 'Chemicals',
-      features: ['Pharmaceutical grade', 'Cosmetic applications', 'Food processing use']
+  useEffect(() => {
+    setTimeout(() => {
+      sliderRef.current?.slickGoTo(0);
+      window.dispatchEvent(new Event("resize"));
+    }, 100);
+  }, []);
 
-    },
-    {
-      name: 'Used Cooking Oil',
-      description: 'Eco-friendly recycled oil for biodiesel and sustainable applications.',
-      href: '/products/used-cooking-oil',   
-      icon: <Beaker className="w-6 h-6" />,
-      image: usedCookingOilImg,
-      category: 'Sustainable Products',
-      features: ['Biodiesel feedstock', 'Renewable energy source', 'Circular economy solution']   
-
-    }
-  ];
-const sliderSettings = {
-  dots: false,
-  infinite: true,
-  speed: 500,
-  arrows: false,
-
-  autoplay: true,
-  autoplaySpeed: 3000,
-  pauseOnHover: true,
-
-  slidesToScroll: 1,
-  slidesToShow: 3,
-
-  centerMode: false,
-  centerPadding: "0px",
-
-  beforeChange: (_: number, next: number) => setCurrentSlide(next),
-
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 2,
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    cssEase: "ease-in-out",
+    beforeChange: (_: number, next: number) => setCurrentSlide(next),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 2 },
       },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 1,
-        swipeToSlide: true,
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          swipeToSlide: true,
+          adaptiveHeight: true,
+        },
       },
-    },
-  ],
-};
-
-
+    ],
+  };
 
   return (
     <Layout>
-      <SEO 
+      <SEO
         title="HALAR PETROCHEM FZC - Leading Petrochemical Supplier"
         description="Global supplier of premium petrochemical products including fuel oil, gas oil, naphtha, white spirit, glycols, and lubricant oils."
         keywords="petrochemicals, fuel oil, gas oil, naphtha, white spirit, glycols, lubricant oil, industrial chemicals"
@@ -346,9 +253,7 @@ const sliderSettings = {
               transition={{ duration: 1 }}
               className="relative"
             >
-              {/* Main Image Container */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                {/* Background Image */}
                 <div
                   className="aspect-[4/5] rounded-2xl"
                   style={{
@@ -358,8 +263,6 @@ const sliderSettings = {
                     backgroundRepeat: 'no-repeat'
                   }}
                 />
-
-                {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent" />
               </div>
             </motion.div>
@@ -405,175 +308,109 @@ const sliderSettings = {
       </section>
 
       {/* Products Section */}
-<section className="py-16 md:py-20 bg-gray-50 overflow-hidden">
-  <div className="container mx-auto px-4 md:px-8">
-
-    {/* Header */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="text-center mb-12 md:mb-16"
-    >
-      <div className="inline-flex items-center gap-2 text-primary font-semibold mb-4">
-        <div className="w-6 h-[2px] bg-primary" />
-        OUR PRODUCTS
-      </div>
-
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-        Premium Petrochemical
-        <span className="text-primary block">Products</span>
-      </h2>
-
-      <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
-        We supply a comprehensive range of high-quality petrochemical products
-        to meet diverse industrial needs across the globe.
-      </p>
-    </motion.div>
-
-{/* Slider Wrapper */}
-<div className="relative w-full overflow-hidden">
-
-  {/* Progress Bar */}
-  <div
-    className="absolute bottom-3 left-1/2 -translate-x-1/2 
-               flex items-center gap-3 z-10 
-               w-full max-w-xs px-4"
-  >
-    <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
-      <motion.div
-        className="h-full bg-primary"
-        animate={{ width: `${((currentSlide + 1) / products.length) * 100}%` }}
-        transition={{ duration: 0.3 }}
-      />
-    </div>
-    <span className="text-xs font-semibold text-gray-700 whitespace-nowrap">
-      {currentSlide + 1} / {products.length}
-    </span>
-  </div>
-
-  {/* Slider */}
-  <Slider ref={sliderRef} {...sliderSettings} className="pb-16">
-    {products.map((product, index) => (
-      <div
-        key={product.name}
-        className="w-full px-2 sm:px-3 md:px-4 py-3"
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{
-            opacity: currentSlide === index ? 1 : 0.9,
-            scale: currentSlide === index ? 1 : 0.97,
-          }}
-          transition={{ duration: 0.3 }}
-          className="h-full w-full"
-        >
-
-          {/* Card */}
-          <div
-            className="bg-white rounded-2xl shadow-lg 
-                       hover:shadow-2xl transition-all duration-500
-                       border border-gray-100 overflow-hidden 
-                       h-full w-full flex flex-col"
+      <section className="py-12 sm:py-16 lg:py-20 xl:py-24 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12 sm:mb-14 md:mb-16 lg:mb-20"
           >
-
-            {/* Image */}
-            <div className="relative h-40 sm:h-48 md:h-56 overflow-hidden">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
+            <div className="inline-flex items-center gap-2 text-primary font-semibold mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">
+              <div className="w-4 sm:w-5 md:w-6 h-[2px] bg-primary" />
+              OUR PRODUCTS
             </div>
+            <h2 className="text-2xl xs:text-2.5xl sm:text-3.5xl md:text-4xl lg:text-4.5xl xl:text-5xl 
+                     font-bold text-gray-900 mb-3 sm:mb-4 lg:mb-5 leading-tight tracking-tight">
+              Premium Petrochemical
+              <span className="text-primary block">Products</span>
+            </h2>
+            <p className="text-gray-600 text-sm xs:text-base sm:text-lg md:text-xl 
+                    max-w-xs xs:max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto px-2 sm:px-0">
+              We supply a comprehensive range of high-quality petrochemical products
+              to meet diverse industrial needs across the globe.
+            </p>
+          </motion.div>
 
-            {/* Content */}
-            <div className="p-4 sm:p-5 flex flex-col flex-1">
-
-              <span
-                className="inline-block px-3 py-1 mb-3 
-                           bg-primary/10 text-primary 
-                           text-xs font-medium rounded-full w-fit"
-              >
-                {product.category}
-              </span>
-
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">
-                {product.name}
-              </h3>
-
-              <p className="text-sm text-gray-600 mb-4 flex-1">
-                {product.description}
-              </p>
-
-              {product.features && (
-                <ul className="space-y-2 mb-4">
-                  {product.features.slice(0, 2).map((f, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-2 text-sm text-gray-500"
-                    >
-                      <CheckCircle className="w-4 h-4 text-green-500" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              )}
-
-              <div
-                className="flex items-center justify-between 
-                           border-t pt-4 mt-auto"
-              >
-                <Link
-                  to={product.href}
-                  className="text-primary font-semibold 
-                             flex items-center gap-2"
-                >
-                  View Details
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-
-                <Link
-                  to="/contact"
-                  className="w-10 h-10 rounded-full bg-gray-100 
-                             hover:bg-primary hover:text-white 
-                             flex items-center justify-center transition"
-                >
-                  <MessageSquare className="w-5 h-5" />
-                </Link>
+          {/* Slider Wrapper */}
+          <div className="relative w-full">
+            {/* Progress Bar */}
+            <div className="absolute -bottom-1 sm:bottom-0 md:bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10 w-full max-w-[280px] xs:max-w-xs sm:max-w-sm px-4">
+              <div className="flex-1 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-primary"
+                  animate={{
+                    width: `${((currentSlide + 1) / products.length) * 100}%`,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
               </div>
-
+              <span className="text-xs sm:text-sm font-semibold text-gray-700 whitespace-nowrap">
+                {currentSlide + 1} / {products.length}
+              </span>
             </div>
+
+            {/* Slider */}
+            <Slider ref={sliderRef} {...sliderSettings} className="pb-16 sm:pb-20 md:pb-24 lg:pb-28">
+              {products.map((product, index) => (
+                <div key={product.name} className="w-full px-1.5 xs:px-2 sm:px-2.5 md:px-3 lg:px-4 py-2 xs:py-2.5 sm:py-3">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{
+                      opacity: currentSlide === index ? 1 : 0.9,
+                      scale: currentSlide === index ? 1 : 0.97,
+                    }}
+                    transition={{ duration: 0.3 }}
+                    className="h-full w-full"
+                  >
+                    <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 overflow-hidden h-full flex flex-col">
+                      <div className="relative h-36 xs:h-40 sm:h-44 md:h-52 lg:h-56 xl:h-60 overflow-hidden">
+                        <img
+                          src={product.backgroundImage}
+                          alt={product.name}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                      </div>
+                      <div className="p-3 xs:p-4 sm:p-5 lg:p-6 flex flex-col flex-1">
+                        <span className="inline-block px-2.5 xs:px-3 py-1 mb-2 bg-primary/10 text-primary text-xs xs:text-sm font-medium rounded-full w-fit">
+                          {product.category}
+                        </span>
+                        <h3 className="text-base xs:text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5">
+                          {product.name}
+                        </h3>
+                        <p className="text-xs xs:text-sm sm:text-base lg:text-lg text-gray-600 mb-3 flex-1">
+                          {product.description}
+                        </p>
+                        <div className="flex items-center justify-between border-t pt-3 mt-auto">
+                          <Link to={product.href} className="text-primary font-semibold flex items-center gap-1.5 text-sm xs:text-base">
+                            View Details <ArrowRight className="w-3.5 h-3.5" />
+                          </Link>
+                          <Link to="/contact" className="w-8 h-8 rounded-full bg-gray-100 hover:bg-primary hover:text-white flex items-center justify-center transition-all duration-300">
+                            <MessageSquare className="w-4 h-4" />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
+            </Slider>
           </div>
-        </motion.div>
-      </div>
-    ))}
-  </Slider>
-</div>
 
-
-
-    {/* View All */}
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, delay: 0.4 }}
-      className="text-center mt-1 md:mt-0"
-    >
-      <Link
-        to="/products"
-        className="inline-flex items-center gap-3 bg-primary text-white 
-                   px-4 py-4 rounded-xl font-semibold text-lg 
-                   hover:scale-105 transition shadow-lg"
-      >
-        View All Products
-        <ArrowRight className="w-5 h-5" />
-      </Link>
-    </motion.div>
-
-  </div>
-</section>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-center mt-6"
+          >
+            <Link to="/products" className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 sm:px-8 sm:py-3.5 rounded-lg font-semibold text-sm sm:text-lg hover:scale-105 transition-all shadow-lg">
+              View All Products <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Footer CTA */}
       <section className="py-20 bg-background border-t border-border">
@@ -591,10 +428,7 @@ const sliderSettings = {
               <p className="text-lg text-white/90 mb-8 max-w-xl mx-auto">
                 Reach out to our expert team for quotes, product specifications, and logistics solutions.
               </p>
-              <Link
-                to="/contact"
-                className="bg-white text-primary hover:bg-gray-100 px-8 md:px-10 py-3 md:py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl inline-block"
-              >
+              <Link to="/contact" className="bg-white text-primary hover:bg-gray-100 px-8 md:px-10 py-3 md:py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-lg inline-block">
                 Contact Us Now
               </Link>
             </div>

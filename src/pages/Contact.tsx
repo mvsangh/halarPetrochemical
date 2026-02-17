@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { createContact } from '../../api';
 import heroRefinery from "../assets/hero-refinery.jpg";
 
 const contactSchema = z.object({
@@ -58,15 +59,24 @@ const Contact = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      await createContact({
+        fullName: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        message: data.message
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    reset();
-    toast.success('Message sent successfully! We will get back to you soon.');
-
-    setTimeout(() => setIsSubmitted(false), 5000);
+      setIsSubmitted(true);
+      reset();
+      toast.success('Message sent successfully! We will get back to you soon.');
+      setTimeout(() => setIsSubmitted(false), 5000);
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

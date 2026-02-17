@@ -13,7 +13,7 @@ import SEO from "@/components/SEO";
 import Layout from "@/components/layout/Layout";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
-import { products } from "./Products";
+import { products } from "@/data/products";
 
 /* -------------------------------- animations -------------------------------- */
 
