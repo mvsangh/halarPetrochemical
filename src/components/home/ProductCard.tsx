@@ -9,9 +9,10 @@ interface ProductCardProps {
   icon: React.ReactNode;
   index: number;
   backgroundImage?: string;
+  category?: string;
 }
 
-const ProductCard = ({ name, description, href, icon, index, backgroundImage }: ProductCardProps) => {
+const ProductCard = ({ name, description, href, icon, index, backgroundImage, category }: ProductCardProps) => {
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -19,14 +20,14 @@ const ProductCard = ({ name, description, href, icon, index, backgroundImage }: 
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Link 
+      <Link
         to={href}
         className="group block h-full bg-card border border-border rounded-xl overflow-hidden card-hover flex flex-col"
       >
         {/* Image Section - Top */}
         <div className="relative h-48 overflow-hidden bg-secondary">
           {backgroundImage && (
-            <div 
+            <div
               className="absolute inset-0 group-hover:scale-110 transition-transform duration-500"
               style={{
                 backgroundImage: `url(${backgroundImage})`,
@@ -35,7 +36,7 @@ const ProductCard = ({ name, description, href, icon, index, backgroundImage }: 
               }}
             />
           )}
-          
+
           {/* Icon - Overlaid on Image */}
           <div className="absolute inset-0 flex items-end justify-start p-4">
             <div className="w-16 h-16 rounded-lg bg-white/90 flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-colors shadow-lg">
@@ -46,6 +47,11 @@ const ProductCard = ({ name, description, href, icon, index, backgroundImage }: 
 
         {/* Content Section - Bottom */}
         <div className="p-6 flex flex-col flex-1">
+          {category && (
+            <span className="inline-block px-3 py-1 mb-2 bg-primary/10 text-primary text-xs font-medium rounded-full w-fit">
+              {category}
+            </span>
+          )}
           <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
             {name}
           </h3>

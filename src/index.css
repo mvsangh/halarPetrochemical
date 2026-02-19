@@ -108,12 +108,18 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display font-semibold tracking-tight;
   }
 }
 
 @layer components {
+
   /* Hero Section Styles */
   .hero-gradient {
     background: var(--gradient-hero);
@@ -123,7 +129,7 @@
   .gold-underline {
     @apply relative inline-block;
   }
-  
+
   .gold-underline::after {
     content: '';
     @apply absolute bottom-0 left-0 w-full h-1 bg-accent rounded-full;
@@ -133,7 +139,7 @@
   .card-hover {
     @apply transition-all duration-300 ease-out;
   }
-  
+
   .card-hover:hover {
     @apply -translate-y-1;
     box-shadow: var(--shadow-lg);
@@ -171,12 +177,12 @@
   .nav-link {
     @apply relative text-foreground/80 hover:text-foreground font-medium transition-colors duration-200;
   }
-  
+
   .nav-link::after {
     content: '';
     @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300;
   }
-  
+
   .nav-link:hover::after,
   .nav-link.active::after {
     @apply w-full;
@@ -199,9 +205,35 @@
       opacity: 0;
       transform: translateY(30px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Slick Dots Custom Styling */
+  .slick-dots {
+    @apply !flex !justify-center !gap-2 !mt-8;
+  }
+
+  .slick-dots li {
+    @apply !m-0 !w-auto !h-auto;
+  }
+
+  .slick-dots li button {
+    @apply !w-3 !h-1 !p-0 !bg-primary/30 !rounded-full !transition-all !duration-300 before: !content-none;
+  }
+
+  .slick-dots li.slick-active button {
+    @apply !w-8 !bg-primary;
+  }
+
+  .dark .slick-dots li button {
+    @apply !bg-white/20;
+  }
+
+  .dark .slick-dots li.slick-active button {
+    @apply !bg-primary;
   }
 }

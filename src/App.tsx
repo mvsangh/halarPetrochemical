@@ -13,11 +13,13 @@ import ProductDetail from "./pages/ProductDetail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/common/ScrollToTop";
+import LoadingScreen from "./components/ui/LoadingScreen";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <HelmetProvider>
+    <LoadingScreen />
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
