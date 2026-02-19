@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 import logo from '@/assets/logo.png';
 
 const products = [
@@ -99,6 +99,17 @@ const Footer = () => {
                 >
                   <Phone className="w-5 h-5 text-gold flex-shrink-0" />
                   +971 00 000 0000
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/971000000000"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-gold transition-colors"
+                >
+                  <MessageCircle className="w-5 h-5 text-gold flex-shrink-0" />
+                  WhatsApp
                 </a>
               </li>
             </ul>
