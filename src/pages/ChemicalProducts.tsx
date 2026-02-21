@@ -8,14 +8,26 @@ import heroRefinery from "../assets/hero-refinery.jpg";
 import { products } from '@/data/products';
 
 const ChemicalProducts = () => {
-    const filteredProducts = products.filter(p => p.category === 'Chemical');
+    const chemicalProducts = products.filter(p => p.category !== 'Petrochemicals');
+
+    // Group products by category
+    const groupedProducts = chemicalProducts.reduce((acc, product) => {
+        const category = product.category;
+        if (!acc[category]) {
+            acc[category] = [];
+        }
+        acc[category].push(product);
+        return acc;
+    }, {} as Record<string, typeof products>);
+
+    const categories = Object.keys(groupedProducts);
 
     return (
         <Layout>
             <SEO
                 title="Chemical Products - HALAR PETROCHEM"
-                description="Industrial-grade solvents, petrochemical feedstocks, and essential chemicals."
-                keywords="naphtha, white spirit, glycols, petrochemicals"
+                description="Industrial-grade solvents, detergent raw materials, food chemicals, and specialty industrial compounds."
+                keywords="solvents, water treatment chemicals, food chemicals, industrial raw materials, UAE chemicals"
             />
 
             <section
@@ -39,10 +51,10 @@ const ChemicalProducts = () => {
                         className="max-w-3xl"
                     >
                         <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-                            Chemical <span className="text-gold">Products</span>
+                            Chemical <span className="text-gold">Portfolio</span>
                         </h1>
                         <p className="text-lg text-white/90">
-                            High-purity chemical solutions for global industrial processing.
+                            Explore our comprehensive range of high-purity chemical solutions categorized by industry application.
                         </p>
                     </motion.div>
                 </div>
@@ -50,27 +62,32 @@ const ChemicalProducts = () => {
 
             <section className="section-padding bg-background">
                 <div className="container-custom">
-                    <ScrollReveal>
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-                                Our Chemical Portfolio
-                            </h2>
-                        </div>
-                    </ScrollReveal>
+                    {categories.map((category, catIndex) => (
+                        <div key={category} className={catIndex > 0 ? "mt-24" : ""}>
+                            <ScrollReveal>
+                                <div className="flex items-center gap-4 mb-10">
+                                    <div className="h-10 w-2 bg-primary rounded-full" />
+                                    <h2 className="text-2xl md:text-4xl font-display font-bold text-foreground">
+                                        {category}
+                                    </h2>
+                                </div>
+                            </ScrollReveal>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredProducts.map((product, index) => (
-                            <ProductCard
-                                key={product.name}
-                                name={product.name}
-                                description={product.description}
-                                href={product.href}
-                                icon={product.icon}
-                                index={index}
-                                backgroundImage={product.backgroundImage}
-                            />
-                        ))}
-                    </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {groupedProducts[category].map((product, index) => (
+                                    <ProductCard
+                                        key={product.name}
+                                        name={product.name}
+                                        description={product.description}
+                                        href={product.href}
+                                        icon={product.icon}
+                                        index={index}
+                                        backgroundImage={product.backgroundImage}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </section>
         </Layout>

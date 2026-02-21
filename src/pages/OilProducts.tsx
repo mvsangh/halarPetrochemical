@@ -8,7 +8,7 @@ import heroRefinery from "../assets/hero-refinery.jpg";
 import { products } from '@/data/products';
 
 const OilProducts = () => {
-    const filteredProducts = products.filter(p => p.category === 'Oil');
+    const oilProducts = products.filter(p => p.category === 'Petrochemicals');
 
     return (
         <Layout>
@@ -39,10 +39,10 @@ const OilProducts = () => {
                         className="max-w-3xl"
                     >
                         <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-                            Oil <span className="text-gold">Products</span>
+                            Oil <span className="text-gold">Portfolio</span>
                         </h1>
                         <p className="text-lg text-white/90">
-                            Discover our range of high-performance fuel and industrial oils.
+                            Discover our range of high-performance fuel and industrial oils designed for reliability and efficiency.
                         </p>
                     </motion.div>
                 </div>
@@ -51,15 +51,16 @@ const OilProducts = () => {
             <section className="section-padding bg-background">
                 <div className="container-custom">
                     <ScrollReveal>
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-                                Our Oil Portfolio
+                        <div className="flex items-center gap-4 mb-10">
+                            <div className="h-10 w-2 bg-primary rounded-full" />
+                            <h2 className="text-2xl md:text-4xl font-display font-bold text-foreground">
+                                Petrochemical Oils
                             </h2>
                         </div>
                     </ScrollReveal>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredProducts.map((product, index) => (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {oilProducts.map((product, index) => (
                             <ProductCard
                                 key={product.name}
                                 name={product.name}

@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/carousel";
 
 // Assets
-import heroVideo from '@/assets/herovideo (online-video-cutter.com).mp4';
+import heroVideo from '@/assets/herovidewe.mp4';
 import Aboutimage from '@/assets/image.png';
 import heroRefinery from "../assets/hero-refinery.jpg";
 import { products } from '@/data/products';
@@ -383,7 +383,7 @@ const Index = () => {
               }}
             >
               <CarouselContent className="-ml-2 md:-ml-4">
-                {products.map((product, index) => (
+                {products.slice(0, 12).map((product, index) => (
                   <CarouselItem
                     key={index}
                     className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3"
@@ -433,7 +433,7 @@ const Index = () => {
 
             {/* Pagination */}
             <div className="mt-8 flex justify-center gap-2">
-              {products.map((_, index) => (
+              {products.slice(0, 12).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => carouselApi?.scrollTo(index)}
@@ -444,6 +444,7 @@ const Index = () => {
                 />
               ))}
             </div>
+
           </div>
 
           {/* View All */}
