@@ -1,10 +1,12 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import SEO from '@/components/SEO';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import ProductCard from '@/components/home/ProductCard';
+import SplitText from '@/components/ui/SplitText';
 import heroRefinery from "../assets/hero-refinery.jpg";
 import { products } from '@/data/products';
 
@@ -31,7 +33,7 @@ const Products = () => {
 
       {/* Hero Section with Background Image */}
       <section
-        className="relative flex items-center min-h-[60vh] md:min-h-[70vh] pt-28 pb-16"
+        className="relative flex items-center min-h-[60vh] md:min-h-[70vh] pt-28 pb-16 overflow-hidden"
         style={{
           backgroundImage: `url(${heroRefinery})`,
           backgroundSize: "cover",
@@ -40,7 +42,7 @@ const Products = () => {
         }}
       >
         {/* Dark Overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
 
         <div className="container-custom relative z-10">
           <Breadcrumbs items={[{ label: title }]} dark={true} />
@@ -49,49 +51,48 @@ const Products = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl"
+            className="max-w-4xl pt-12"
           >
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 mb-6 uppercase tracking-tight">
               {categoryFilter ? (
-                <>
-                  {categoryFilter} <span className="text-gold">Products</span>
-                </>
+                <div className="flex flex-wrap gap-x-4">
+                  <SplitText text={categoryFilter} /> <span className="text-red-600"><SplitText text="Products" /></span>
+                </div>
               ) : (
-                <>
-                  Petrochemical <span className="text-gold">Products</span>
-                </>
+                <div className="flex flex-wrap gap-x-4">
+                  <SplitText text="Industrial" /> <span className="text-red-600"><SplitText text="Portfolio" /></span>
+                </div>
               )}
             </h1>
-            <p className="text-lg text-white/90">
-              Discover our comprehensive range of high-quality petrochemical products designed
-              to meet the diverse needs of industries worldwide.
+            <p className="text-xl text-white/80 leading-relaxed max-w-2xl">
+              Discover our comprehensive range of high-purity chemical solutions categorized by industry application.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Products Grid */}
-      <section className="section-padding bg-background">
+      <section className="py-24 bg-white">
         <div className="container-custom">
           {/* Category Filter */}
-          <div className="mb-12 overflow-x-auto pb-4 scrollbar-hide">
-            <div className="flex flex-nowrap md:flex-wrap gap-3 justify-start md:justify-center min-w-max md:min-w-0 px-4">
+          <div className="mb-20 overflow-x-auto pb-4 scrollbar-hide">
+            <div className="flex flex-nowrap md:flex-wrap gap-4 justify-start md:justify-center min-w-max md:min-w-0 px-4">
               <Link
                 to="/products"
-                className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all whitespace-nowrap ${!categoryFilter
-                  ? 'bg-primary text-white shadow-lg'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                className={`px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap ${!categoryFilter
+                  ? 'bg-red-600 text-white shadow-xl shadow-red-600/20'
+                  : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-primary'
                   }`}
               >
-                All Products
+                All Catalog
               </Link>
               {categories.map((category) => (
                 <Link
                   key={category}
                   to={`/products?category=${encodeURIComponent(category)}`}
-                  className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all whitespace-nowrap ${categoryFilter === category
-                    ? 'bg-primary text-white shadow-lg'
-                    : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                  className={`px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap ${categoryFilter === category
+                    ? 'bg-red-600 text-white shadow-xl shadow-red-600/20'
+                    : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-primary'
                     }`}
                 >
                   {category}
@@ -101,20 +102,16 @@ const Products = () => {
           </div>
 
           <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-                {categoryFilter ? `Our ${categoryFilter} Portfolio` : 'Global Product Portfolio'}
+            <div className="mb-16">
+              <div className="w-12 h-[2px] bg-red-600 mb-6" />
+              <h2 className="text-3xl md:text-5xl font-black text-primary uppercase tracking-tight">
+                {categoryFilter ? `Active Selection: ${categoryFilter}` : 'Complete Material Portfolio'}
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                {categoryFilter
-                  ? `Specialized solutions for the ${categoryFilter} industry meeting international standards.`
-                  : 'From refined petrochemicals to specialty industrial chemicals, explore our comprehensive range of high-quality solutions.'}
-              </p>
             </div>
           </ScrollReveal>
 
           {categoryFilter ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
               {filteredProducts.map((product, index) => (
                 <ProductCard
                   key={product.name}
@@ -128,22 +125,22 @@ const Products = () => {
               ))}
             </div>
           ) : (
-            <div className="space-y-20">
+            <div className="space-y-32">
               {categories.map((category, catIndex) => {
                 const catProducts = products.filter(p => p.category === category);
                 return (
                   <div key={category} className="relative">
                     <ScrollReveal>
-                      <div className="flex items-center gap-4 mb-8">
-                        <div className="h-8 w-1.5 bg-primary rounded-full" />
-                        <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground">
+                      <div className="flex items-center gap-6 mb-12">
+                        <div className="h-[1px] w-12 bg-red-600" />
+                        <h3 className="text-2xl md:text-4xl font-black text-primary uppercase tracking-tight">
                           {category}
                         </h3>
-                        <div className="flex-grow h-[1px] bg-border ml-4 hidden md:block" />
+                        <div className="flex-grow h-[1px] bg-gray-100 ml-4 hidden md:block" />
                       </div>
                     </ScrollReveal>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                       {catProducts.map((product, index) => (
                         <ProductCard
                           key={product.name}
@@ -163,10 +160,10 @@ const Products = () => {
           )}
 
           {filteredProducts.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-xl text-muted-foreground">No products found in this category.</p>
-              <Link to="/products" className="text-primary hover:underline mt-4 inline-block">
-                View all products
+            <div className="text-center py-24">
+              <p className="text-xl font-bold text-gray-400 uppercase tracking-widest mb-8">No matching materials found</p>
+              <Link to="/products" className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-full font-black uppercase tracking-widest text-xs">
+                Reset Selection
               </Link>
             </div>
           )}
@@ -175,19 +172,20 @@ const Products = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-secondary">
-        <div className="container-custom">
+      <section className="py-24 bg-primary relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-red-600 rounded-full -mr-48 -mt-48 opacity-10" />
+        <div className="container-custom relative z-10">
           <ScrollReveal>
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6">
-                Need a Custom Solution?
+            <div className="max-w-4xl">
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-8 uppercase tracking-tight">
+                Require Custom <span className="text-red-600">Formulations?</span>
               </h2>
-              <p className="text-muted-foreground text-lg mb-8">
-                Can't find exactly what you're looking for? Contact us to discuss your specific
-                requirements and discover how we can help.
+              <p className="text-white/60 text-xl mb-12 max-w-2xl leading-relaxed">
+                Our technical laboratory specialized in developing tailored chemical solutions based on your industrial parameters.
               </p>
-              <Link to="/contact" className="btn-primary">
-                Contact Our Team
+              <Link to="/contact" className="inline-flex items-center gap-4 bg-red-600 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm shadow-2xl transition-transform hover:scale-105">
+                Consult With Experts
+                <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </ScrollReveal>
@@ -198,3 +196,4 @@ const Products = () => {
 };
 
 export default Products;
+

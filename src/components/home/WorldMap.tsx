@@ -56,9 +56,9 @@ interface ConnectionPoint {
     connections: number;
 }
 
-export default function WorldMap({ 
-    connections = defaultConnections, 
-    lineColor = '#3b82f6' 
+export default function WorldMap({
+    connections = defaultConnections,
+    lineColor = '#3b82f6'
 }: WorldMapProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const animationRef = useRef<number>(0);
@@ -72,7 +72,7 @@ export default function WorldMap({
     // Responsive dimensions
     const getDimensions = () => {
         const { width } = windowSize;
-        
+
         if (width < 640) { // Mobile
             return {
                 canvasHeight: 320,
@@ -157,18 +157,18 @@ export default function WorldMap({
         const { lineWidth } = getDimensions();
         const startCoords = latLngToCoords(start.lat, start.lng, projection);
         const endCoords = latLngToCoords(end.lat, end.lng, projection);
-        
+
         if (!startCoords || !endCoords) return;
-        
+
         // Create a great circle interpolation
         const interpolate = d3.geoInterpolate(
             [start.lng, start.lat],
             [end.lng, end.lat]
         );
-        
+
         // Calculate animation offset
         const animOffset = (animationProgress * 2) % 1;
-        
+
         // Draw the base arc
         ctx.beginPath();
         const steps = Math.min(50, windowSize.width < 768 ? 30 : 50); // Reduce steps on mobile
@@ -181,17 +181,17 @@ export default function WorldMap({
                 else ctx.lineTo(point[0], point[1]);
             }
         }
-        
+
         // Draw base line
         ctx.strokeStyle = lineColor;
         ctx.lineWidth = lineWidth;
         ctx.globalAlpha = 0.4;
         ctx.stroke();
-        
+
         // Draw animated line segment
         const animStart = Math.max(0, animOffset - 0.2);
         const animEnd = animOffset;
-        
+
         if (animEnd > animStart) {
             ctx.beginPath();
             const animSteps = Math.floor((animEnd - animStart) * steps);
@@ -204,20 +204,20 @@ export default function WorldMap({
                     else ctx.lineTo(point[0], point[1]);
                 }
             }
-            
+
             // Animated line segment
             ctx.strokeStyle = '#ffffff';
             ctx.lineWidth = lineWidth + 1;
             ctx.globalAlpha = 1;
             ctx.stroke();
-            
+
             // Add glow to animated segment
             ctx.strokeStyle = lineColor;
             ctx.lineWidth = lineWidth + 2;
             ctx.globalAlpha = 0.8;
             ctx.stroke();
         }
-        
+
         ctx.globalAlpha = 1;
     };
 
@@ -229,61 +229,61 @@ export default function WorldMap({
     ) => {
         const { fontSize, pointRadius } = getDimensions();
         const points: ConnectionPoint[] = [];
-        
+
         // Collect all unique points with their connection counts
         const pointMap = new Map<string, { coords: { x: number; y: number }, label: string, connections: number }>();
-        
+
         connections.forEach(conn => {
             const startCoords = latLngToCoords(conn.start.lat, conn.start.lng, projection);
             const endCoords = latLngToCoords(conn.end.lat, conn.end.lng, projection);
-            
+
             if (startCoords) {
                 const key = `${conn.start.lat},${conn.start.lng}`;
-                const existing = pointMap.get(key) || { 
-                    coords: startCoords, 
-                    label: conn.start.label, 
-                    connections: 0 
+                const existing = pointMap.get(key) || {
+                    coords: startCoords,
+                    label: conn.start.label,
+                    connections: 0
                 };
                 existing.connections++;
                 pointMap.set(key, existing);
             }
-            
+
             if (endCoords) {
                 const key = `${conn.end.lat},${conn.end.lng}`;
-                const existing = pointMap.get(key) || { 
-                    coords: endCoords, 
-                    label: conn.end.label, 
-                    connections: 0 
+                const existing = pointMap.get(key) || {
+                    coords: endCoords,
+                    label: conn.end.label,
+                    connections: 0
                 };
                 existing.connections++;
                 pointMap.set(key, existing);
             }
         });
-        
+
         // Draw each point
         pointMap.forEach((point) => {
             const isHovered = hoveredPoint === point.label;
             const pulse = Math.sin(Date.now() * 0.005) * 0.5 + 0.5;
             const scaleFactor = windowSize.width < 768 ? 0.8 : 1;
-            
+
             // Draw connection lines from point
             ctx.beginPath();
             ctx.arc(point.coords.x, point.coords.y, (10 + point.connections * 2) * scaleFactor, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(59, 130, 246, ${0.1 + pulse * 0.1})`;
             ctx.fill();
-            
+
             // Outer ring
             ctx.beginPath();
             ctx.arc(point.coords.x, point.coords.y, (6 + point.connections) * scaleFactor, 0, Math.PI * 2);
-            ctx.fillStyle = isHovered ? '#ffffff' : lineColor;
+            ctx.fillStyle = isHovered ? '#1e40af' : lineColor;
             ctx.fill();
-            
+
             // Inner dot
             ctx.beginPath();
             ctx.arc(point.coords.x, point.coords.y, pointRadius * scaleFactor, 0, Math.PI * 2);
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = isHovered ? '#ffffff' : '#f8fafc';
             ctx.fill();
-            
+
             // Connection count badge
             if (point.connections > 1) {
                 const badgeSize = 6 * scaleFactor;
@@ -291,14 +291,14 @@ export default function WorldMap({
                 ctx.arc(point.coords.x + badgeSize, point.coords.y - badgeSize, badgeSize, 0, Math.PI * 2);
                 ctx.fillStyle = '#ef4444';
                 ctx.fill();
-                
+
                 ctx.fillStyle = '#ffffff';
                 ctx.font = `bold ${fontSize.connectionCount}px Arial`;
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText(point.connections.toString(), point.coords.x + badgeSize, point.coords.y - badgeSize);
             }
-            
+
             // Country label - only show on desktop or when hovered on mobile
             const shouldShowLabel = windowSize.width >= 768 || isHovered;
             if (shouldShowLabel) {
@@ -308,7 +308,7 @@ export default function WorldMap({
                 ctx.textBaseline = 'top';
                 ctx.fillText(point.label, point.coords.x, point.coords.y + 15 * scaleFactor);
             }
-            
+
             points.push({
                 x: point.coords.x,
                 y: point.coords.y,
@@ -316,7 +316,7 @@ export default function WorldMap({
                 connections: point.connections
             });
         });
-        
+
         setConnectionPoints(points);
         return points;
     };
@@ -377,7 +377,7 @@ export default function WorldMap({
             );
             gradient.addColorStop(0, '#0f172a');
             gradient.addColorStop(1, '#020617');
-            
+
             ctx.beginPath();
             ctx.arc(width / 2, height / 2, projection.scale(), 0, Math.PI * 2);
             ctx.fillStyle = gradient;
@@ -491,13 +491,13 @@ export default function WorldMap({
             }
             animationRef.current = requestAnimationFrame(animate);
         }
-        
+
         animate();
 
         let lastX = 0;
         let lastY = 0;
         const sensitivity = windowSize.width < 768 ? 0.5 : 0.3; // More sensitive on mobile
-        
+
         // Drag interaction
         const drag = d3.drag<HTMLCanvasElement, unknown>()
             .on("start", (event) => {
@@ -572,158 +572,113 @@ export default function WorldMap({
     const { fontSize } = getDimensions();
 
     return (
-        <section className="py-8 md:py-12 lg:py-20 bg-gradient-to-b from-background to-gray-900 overflow-hidden">
-            <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-                <div className="text-center mb-8 md:mb-12">
+        <section className="py-8 md:py-12 lg:py-20 bg-[#f7f7f7] overflow-hidden">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-12 md:mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-1 sm:gap-2 text-primary font-semibold mb-3 md:mb-4"
+                        className="inline-flex items-center gap-2 text-amber-500 font-bold mb-4"
                     >
-                        <div className="w-6 sm:w-8 h-[2px] bg-primary" />
-                        <span className="text-xs sm:text-sm tracking-widest">GLOBAL NETWORK MAP</span>
-                        <div className="w-6 sm:w-8 h-[2px] bg-primary" />
+                        <div className="w-8 h-[1px] bg-amber-500/30" />
+                        <span className="text-[10px] sm:text-xs tracking-[0.3em] uppercase">Global Network Map</span>
+                        <div className="w-8 h-[1px] bg-amber-500/30" />
                     </motion.div>
+
                     <motion.h2
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.8 }}
-                        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-4 md:mb-6 px-2"
+                        viewport={{ once: true }}
+                        className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight"
                     >
-                        Worldwide <span className="text-primary">Connections</span> Network
+                        Worldwide <span className="text-amber-500">Connections</span>
                     </motion.h2>
+
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl md:max-w-3xl mx-auto px-3"
+                        className="text-slate-500 text-sm md:text-lg max-w-3xl mx-auto font-medium leading-relaxed"
                     >
-                        Interactive visualization of our global supply chain network connecting 
-                        major markets and distribution hubs worldwide with real-time logistics tracking.
+                        Interactive visualization of our global supply chain network connecting
+                        major markets and distribution hubs worldwide.
                     </motion.p>
                 </div>
 
-                {/* Main Map Container */}
-                <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-xl sm:rounded-2xl lg:rounded-3xl p-3 sm:p-4 md:p-6 shadow-xl lg:shadow-2xl border border-gray-800">
-                    {/* Interactive Globe */}
-                    <div className="relative">
+                {/* Map Area - Clean, No Container Borders */}
+                <div className="relative mb-16">
+                    <div className="relative z-0">
                         <canvas
                             ref={canvasRef}
-                            className="w-full rounded-lg sm:rounded-xl lg:rounded-2xl shadow-lg cursor-grab active:cursor-grabbing touch-none"
+                            className="w-full cursor-grab active:cursor-grabbing touch-none"
                             style={{ minHeight: getDimensions().canvasHeight }}
                         />
-                        
-                        {/* Hover Info Panel */}
-                        {hoveredPoint && (
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className={`absolute ${
-                                    windowSize.width < 768 
-                                        ? 'inset-x-4 top-4 mx-auto max-w-[90%]' 
-                                        : 'top-4 right-4'
-                                } bg-black/90 backdrop-blur-lg rounded-lg sm:rounded-xl p-3 sm:p-4 border border-gray-700 shadow-2xl max-w-xs z-10`}
-                            >
-                                <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                                    <div className="w-2 h-2 sm:w-3 sm:h-3 bg-blue-500 rounded-full animate-pulse" />
-                                    <h3 className="text-white font-bold text-sm sm:text-base md:text-lg" style={{ fontSize: `${fontSize.hoverTitle}px` }}>
-                                        {hoveredPoint}
-                                    </h3>
-                                </div>
-                                <div className="space-y-1 sm:space-y-2 max-h-32 sm:max-h-40 overflow-y-auto pr-2">
-                                    {connections
-                                        .filter(conn => 
-                                            conn.start.label === hoveredPoint || 
-                                            conn.end.label === hoveredPoint
-                                        )
-                                        .map((conn, idx) => (
-                                            <div key={idx} className="flex items-center gap-2 sm:gap-3">
-                                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full flex-shrink-0" />
-                                                <span className="text-xs sm:text-sm text-gray-300 truncate" style={{ fontSize: `${fontSize.hoverText}px` }}>
-                                                    {conn.start.label === hoveredPoint ? '→' : '←'} 
-                                                    <span className="font-medium ml-1 sm:ml-2">
-                                                        {conn.start.label === hoveredPoint ? conn.end.label : conn.start.label}
-                                                    </span>
-                                                </span>
-                                            </div>
-                                        ))}
-                                </div>
-                            </motion.div>
-                        )}
+                    </div>
 
-                        {/* Mobile Instructions */}
-                        {windowSize.width < 768 && (
-                            <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2 border border-gray-700">
-                                <p className="text-xs text-gray-300 text-center">
-                                    👆 Tap points | 🤏 Pinch to zoom | 👆 Drag to rotate
-                                </p>
+                    {/* Hover Info Panel - Glassmorphism but White Based */}
+                    {hoveredPoint && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className={`absolute ${windowSize.width < 768
+                                ? 'inset-x-4 top-0 mx-auto'
+                                : 'top-10 right-10'
+                                } bg-white border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-2xl p-5 max-w-xs z-10`}
+                        >
+                            <div className="flex items-center gap-3 mb-4 border-b border-slate-50 pb-3">
+                                <div className="w-2.5 h-2.5 bg-amber-500 rounded-full animate-pulse" />
+                                <h3 className="text-slate-900 font-black text-sm uppercase tracking-wider">
+                                    {hoveredPoint}
+                                </h3>
                             </div>
-                        )}
-                    </div>
-
-                    {/* Legend - Responsive */}
-                    <div className="mt-4 sm:mt-6 md:mt-8 flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
-                        <div className="flex items-center gap-1 sm:gap-2">
-                            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-blue-500"></div>
-                            <span className="text-xs sm:text-sm text-gray-300">Connection Hub</span>
-                        </div>
-                        <div className="flex items-center gap-1 sm:gap-2">
-                            <div className="w-3 h-[1px] sm:w-4 sm:h-[2px] bg-blue-400"></div>
-                            <span className="text-xs sm:text-sm text-gray-300">Active Route</span>
-                        </div>
-                        <div className="flex items-center gap-1 sm:gap-2">
-                            <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
-                            <span className="text-xs sm:text-sm text-gray-300">Connection Count</span>
-                        </div>
-                    </div>
+                            <div className="space-y-3 max-h-40 overflow-y-auto pr-2 custom-scrollbar">
+                                {connections
+                                    .filter(conn => conn.start.label === hoveredPoint || conn.end.label === hoveredPoint)
+                                    .map((conn, idx) => (
+                                        <div key={idx} className="flex flex-col gap-0.5">
+                                            <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">
+                                                {conn.start.label === hoveredPoint ? 'Outbound' : 'Inbound'}
+                                            </span>
+                                            <span className="text-[11px] font-bold text-slate-700">
+                                                {conn.start.label === hoveredPoint ? conn.end.label : conn.start.label}
+                                            </span>
+                                        </div>
+                                    ))}
+                            </div>
+                        </motion.div>
+                    )}
                 </div>
 
-                {/* Network Statistics - Responsive Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12 max-w-6xl mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="bg-gradient-to-br from-blue-900/30 to-blue-950/30 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-blue-800/30"
-                    >
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-400 mb-1 md:mb-2">
-                            {connections.length * 2}+
-                        </div>
-                        <div className="text-base md:text-lg font-semibold text-white mb-1 md:mb-2">Active Routes</div>
-                        <div className="text-xs sm:text-sm text-blue-300">Real-time global connections</div>
-                    </motion.div>
+                {/* Stats Cards - Gradient Removed, Solid Professional Theme */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    {[
+                        { label: 'Active Routes', value: `${connections.length * 2}+`, sub: 'Direct global links', color: 'text-amber-500' },
+                        { label: 'Countries Covered', value: countries.length, sub: 'Global footprint', color: 'text-slate-900' },
+                        { label: 'Max Connections', value: Math.max(...connectionPoints.map(p => p.connections), 0), sub: 'Major hub capacity', color: 'text-slate-900' }
+                    ].map((stat, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1 }}
+                            className="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-amber-100 transition-all duration-500 group relative"
+                        >
+                            {/* Clean hover indicator bar */}
+                            <div className="absolute top-0 left-0 w-1 h-full bg-amber-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-l-2xl" />
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="bg-gradient-to-br from-emerald-900/30 to-emerald-950/30 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-emerald-800/30"
-                    >
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-emerald-400 mb-1 md:mb-2">
-                            {countries.length}
-                        </div>
-                        <div className="text-base md:text-lg font-semibold text-white mb-1 md:mb-2">Countries Covered</div>
-                        <div className="text-xs sm:text-sm text-emerald-300">Global network presence</div>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="bg-gradient-to-br from-purple-900/30 to-purple-950/30 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-purple-800/30 sm:col-span-2 lg:col-span-1"
-                    >
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-400 mb-1 md:mb-2">
-                            {Math.max(...connectionPoints.map(p => p.connections), 0)}
-                        </div>
-                        <div className="text-base md:text-lg font-semibold text-white mb-1 md:mb-2">Max Connections</div>
-                        <div className="text-xs sm:text-sm text-purple-300">Key distribution hubs</div>
-                    </motion.div>
+                            <div className={`text-4xl md:text-5xl font-black ${stat.color} mb-3 tracking-tighter`}>
+                                {stat.value}
+                            </div>
+                            <div className="text-xs font-black text-slate-900 uppercase tracking-[0.15em] mb-1">
+                                {stat.label}
+                            </div>
+                            <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-tight">
+                                {stat.sub}
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>

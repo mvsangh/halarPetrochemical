@@ -16,9 +16,12 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import HeroSearch from '@/components/home/HeroSearch';
+import IndustriesSection from '@/components/home/IndustriesSection';
+import CategoryProducts from '@/components/home/CategoryProducts';
 
 // Assets
-import heroVideo from '@/assets/herovidewe.mp4';
+import heroVideo from '@/assets/mainvideo.mp4';
 import Aboutimage from '@/assets/image.png';
 import heroRefinery from "../assets/hero-refinery.jpg";
 import { products } from '@/data/products';
@@ -135,6 +138,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Hero Search */}
+      <HeroSearch />
 
       {/* About Section */}
       <section className="py-20 sm:py-24 lg:py-32 bg-white overflow-hidden">
@@ -257,6 +263,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Industries We Serve Section */}
+      <IndustriesSection />
+
       {/* World Map Section */}
       <WorldMap />
 
@@ -295,170 +304,8 @@ const Index = () => {
       </section>
 
       {/* Products Slider Section - UPDATED with new slider design */}
-      <section className="relative py-20 lg:py-32 bg-white overflow-hidden text-gray-900">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between md:mb-14 lg:mb-16">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="flex flex-col gap-4"
-            >
-              <span className="text-primary font-mono tracking-[0.3em] text-sm uppercase mb-2 block">
-                Industrial Catalog // 2026
-              </span>
-
-              <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-none text-gray-900">
-                Premium{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">
-                  Petrochemical
-                </span>{" "}
-                Solutions
-              </h2>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                className="max-w-lg text-gray-600 text-lg"
-              >
-                Powering global industries with high-purity chemical components and refined solutions.
-              </motion.p>
-            </motion.div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden shrink-0 gap-2 md:flex">
-              <button
-                onClick={() => carouselApi?.scrollPrev()}
-                disabled={!canScrollPrev}
-                className="p-3 rounded-full border border-gray-300 text-gray-700 hover:bg-primary hover:text-white transition-colors disabled:opacity-40"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => carouselApi?.scrollNext()}
-                disabled={!canScrollNext}
-                className="p-3 rounded-full border border-gray-300 text-gray-700 hover:bg-primary hover:text-white transition-colors disabled:opacity-40"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          <div className="flex justify-between items-center mb-6 sm:hidden">
-            <h3 className="text-xl font-bold text-gray-900">Our Products</h3>
-            <div className="flex gap-2">
-              <button
-                onClick={() => carouselApi?.scrollPrev()}
-                disabled={!canScrollPrev}
-                className="p-2 rounded-full border border-gray-300 text-gray-700 hover:bg-primary hover:text-white transition-colors disabled:opacity-40"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => carouselApi?.scrollNext()}
-                disabled={!canScrollNext}
-                className="p-2 rounded-full border border-gray-300 text-gray-700 hover:bg-primary hover:text-white transition-colors disabled:opacity-40"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-
-
-          {/* Slider (NO CHANGE) */}
-          <div className="w-full">
-            <Carousel
-              setApi={setCarouselApi}
-              opts={{
-                align: "start",
-                loop: true,
-                breakpoints: {
-                  "(max-width: 640px)": { dragFree: true },
-                },
-              }}
-            >
-              <CarouselContent className="-ml-2 md:-ml-4">
-                {products.slice(0, 12).map((product, index) => (
-                  <CarouselItem
-                    key={index}
-                    className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3"
-                  >
-                    <motion.div
-                      whileHover={{ y: -10 }}
-                      className="relative group h-[300px] sm:h-[400px] md:h-[450px] overflow-hidden rounded-2xl bg-gray-900 border border-black/10 shadow-2xl"
-                    >
-                      <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                        style={{ backgroundImage: `url(${product.backgroundImage})` }}
-                      />
-
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
-                      <div className="absolute inset-0 bg-[linear-gradient(hsl(var(--primary)/0),hsl(var(--primary)/0.2),hsl(var(--primary)/0.4)_100%)] mix-blend-multiply" />
-
-                      <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                        <div className="mb-4 h-10 w-10 rounded-full bg-primary/20 backdrop-blur flex items-center justify-center border border-primary/40">
-                          <span className="text-white">{product.icon}</span>
-                        </div>
-
-                        <span className="text-xs font-bold tracking-widest uppercase text-primary mb-2">
-                          {product.category}
-                        </span>
-
-                        <h3 className="text-xl font-bold mb-2 text-white">
-                          {product.name}
-                        </h3>
-
-                        <p className="text-sm text-gray-300 mb-5 line-clamp-3">
-                          {product.description}
-                        </p>
-
-                        <Link
-                          to={product.href}
-                          className="inline-flex items-center gap-2 text-sm font-bold text-white"
-                        >
-                          Explore Details
-                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </Link>
-                      </div>
-                    </motion.div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-
-            {/* Pagination */}
-            <div className="mt-8 flex justify-center gap-2">
-              {products.slice(0, 12).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => carouselApi?.scrollTo(index)}
-                  className={`h-2 rounded-full transition-all ${currentSlide === index
-                    ? "w-6 bg-primary"
-                    : "w-2 bg-gray-300 hover:bg-gray-400"
-                    }`}
-                />
-              ))}
-            </div>
-
-          </div>
-
-          {/* View All */}
-          <div className="mt-12 flex justify-center">
-            <Link
-              to="/products"
-              className="group relative overflow-hidden bg-black text-white px-10 py-4 rounded-full font-bold"
-            >
-              <span className="relative z-10">VIEW ALL COLLECTIONS</span>
-              <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* Products by Category Section - Replaces the old slider */}
+      <CategoryProducts />
 
 
       {/* Footer CTA */}

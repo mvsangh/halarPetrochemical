@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Navbar from './Navbar';
+import ModernNavbar from './ModernNavbar';
 import Footer from './Footer';
 import WhatsAppButton from '../common/WhatsAppButton';
 
@@ -10,7 +10,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <ModernNavbar />
       <main className="flex-1">
         {children}
       </main>

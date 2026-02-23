@@ -29,9 +29,9 @@
     --muted: 210 20% 96%;
     --muted-foreground: 215 16% 47%;
 
-    /* Accent - Golden Amber */
-    --accent: 40 65% 55%;
-    --accent-foreground: 222 47% 15%;
+    /* Accent - Vibrant Red (Petrocheme Style) */
+    --accent: 0 72% 51%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -46,9 +46,9 @@
     --navy: 213 52% 24%;
     --navy-dark: 213 60% 15%;
     --navy-light: 213 40% 35%;
-    --gold: 40 65% 55%;
-    --gold-light: 40 70% 70%;
-    --gold-dark: 40 60% 45%;
+    --red: 0 72% 51%;
+    --red-light: 0 72% 70%;
+    --red-dark: 0 72% 40%;
 
     /* Gradients */
     --gradient-navy: linear-gradient(135deg, hsl(213 52% 24%) 0%, hsl(213 60% 15%) 100%);
@@ -236,4 +236,17 @@
   .dark .slick-dots li.slick-active button {
     @apply !bg-primary;
   }
+}
+
+/* ── Scrollbar hide utility ── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE / Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome / Safari / Opera */
 }
