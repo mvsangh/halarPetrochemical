@@ -111,7 +111,7 @@ const Contact = () => {
             className="max-w-3xl"
           >
             <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-              Contact <span className="text-gold">HALAR PETROCHEM FZC</span>
+              Contact
             </h1>
             <p className="text-lg text-white/90">
               Get in touch with our team for product inquiries, partnership opportunities,
@@ -139,7 +139,7 @@ const Contact = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       className="flex flex-col items-center justify-center py-12 text-center"
                     >
-                      <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-600 mb-4">
+                      <div className="w-16 h-16 rounded-full bg-secondary/20 flex items-center justify-center text-primary mb-4">
                         <CheckCircle className="w-8 h-8" />
                       </div>
                       <h3 className="text-xl font-semibold text-foreground mb-2">Message Sent!</h3>

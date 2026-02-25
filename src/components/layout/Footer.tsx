@@ -26,27 +26,27 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <Link to="/" className="inline-block">
-              <img 
-                src={logo} 
-                alt="HALAR PETROCHEM FZC" 
+              <img
+                src={logo}
+                alt="HALAR PETROCHEM FZC"
                 className="h-14 w-auto brightness-0 invert"
               />
             </Link>
             <p className="text-primary-foreground/80 leading-relaxed">
-              Leading supplier and exporter of premium petrochemical products, 
+              Leading supplier and exporter of premium petrochemical products,
               serving industries worldwide with excellence and reliability.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-gold">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-6 text-accent">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-primary-foreground/80 hover:text-gold transition-colors"
+                    className="text-primary-foreground/80 hover:text-accent transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -57,13 +57,13 @@ const Footer = () => {
 
           {/* Products */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-gold">Our Products</h3>
+            <h3 className="text-lg font-semibold mb-6 text-accent">Our Products</h3>
             <ul className="space-y-3">
               {products.map((product) => (
                 <li key={product.name}>
                   <Link
                     to={product.href}
-                    className="text-primary-foreground/80 hover:text-gold transition-colors"
+                    className="text-primary-foreground/80 hover:text-accent transition-colors"
                   >
                     {product.name}
                   </Link>
@@ -74,10 +74,10 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-gold">Contact Us</h3>
+            <h3 className="text-lg font-semibold mb-6 text-accent">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gold mt-1 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-accent mt-1 flex-shrink-0" />
                 <span className="text-primary-foreground/80">
                   Ras Al Khaimah Free Trade Zone,<br />
                   United Arab Emirates
@@ -86,18 +86,18 @@ const Footer = () => {
               <li>
                 <a
                   href="mailto:info@halarpetrochem.com"
-                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-gold transition-colors"
+                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-accent transition-colors"
                 >
-                  <Mail className="w-5 h-5 text-gold flex-shrink-0" />
+                  <Mail className="w-5 h-5 text-accent flex-shrink-0" />
                   info@halarpetrochem.com
                 </a>
               </li>
               <li>
                 <a
                   href="tel:+971000000000"
-                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-gold transition-colors"
+                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-accent transition-colors"
                 >
-                  <Phone className="w-5 h-5 text-gold flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-accent flex-shrink-0" />
                   +971 00 000 0000
                 </a>
               </li>
@@ -106,9 +106,9 @@ const Footer = () => {
                   href="https://wa.me/971000000000"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-gold transition-colors"
+                  className="flex items-center gap-3 text-primary-foreground/80 hover:text-accent transition-colors"
                 >
-                  <MessageCircle className="w-5 h-5 text-gold flex-shrink-0" />
+                  <MessageCircle className="w-5 h-5 text-accent flex-shrink-0" />
                   WhatsApp
                 </a>
               </li>
@@ -123,10 +123,10 @@ const Footer = () => {
               © {currentYear} HALAR PETROCHEM FZC. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
-              <Link to="/about" className="text-primary-foreground/60 hover:text-gold transition-colors">
+              <Link to="/about" className="text-primary-foreground/60 hover:text-accent transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/about" className="text-primary-foreground/60 hover:text-gold transition-colors">
+              <Link to="/about" className="text-primary-foreground/60 hover:text-accent transition-colors">
                 Terms of Service
               </Link>
             </div>

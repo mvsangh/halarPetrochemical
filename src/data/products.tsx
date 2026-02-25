@@ -23,35 +23,47 @@ import {
 } from 'lucide-react';
 
 // Category Images
-import Acetone from "@/assets/products/categories/Acetone.png";
+import Acetone from "@/assets/products/categories/AcetoneSolvents.jpg";
+import LABSA96 from "@/assets/products/categories/LABSA96.png";
+import SLES70 from "@/assets/products/categories/SLES70.png"
+import Casusticsoda from "@/assets/products/categories/CausticSodaFlakes.png"
+import sodaashlight from "@/assets/products/categories/SodaAshLight.png"
 import Xylene from "@/assets/products/categories/Xylene.png";
 import Toluene from "@/assets/products/categories/Toluene.png";
 import MethylEthylKetone from "@/assets/products/categories/MethylEthylKetone.png";
-import ButylAcetate from "@/assets/products/categories/ButylAcetate.png";
+import ButylAcetate from "@/assets/products/categories/ButylAcetate.jpg";
 import distillateMarineOil from "@/assets/products/categories/image copy.png";
-import whiteoilimge from "@/assets/products/categories/whiteoil.png";
-import rubberOilImg from "@/assets/products/categories/rubberprocess.png";
-import baseoilImg from "@/assets/products/categories/baseoil.png";
+import whiteoilimge from "@/assets/products/categories/WhiteOilPetrochemicals.jpg";
+import rubberOilImg from "@/assets/products/categories/RubberProcessOil.jpg";
+import baseoilImg from "@/assets/products/categories/baseoil.jpg";
 import petrochemicalsImg from "@/assets/products/categories/petrochemicals.png";
 import solventsImg from "@/assets/products/categories/solvents.png";
-import Ethylacetate from "@/assets/products/categories/Ethylacetate.png";
+import Ethylacetate from "@/assets/products/categories/Ethylacetate.jpg";
 import rawMaterialsImg from "@/assets/products/categories/raw_materials.png";
+import AluminumSulphate from "@/assets/products/categories/AluminumSulphate.png"
 import waterTreatmentImg from "@/assets/products/categories/water_treatment.png";
 import foodIndustryImg from "@/assets/products/categories/food_industry.png";
 import cosmeticsImg from "@/assets/products/categories/cosmetics.png";
+import Glycerine from "@/assets/products/categories/Glycerine.jpg"
 import paintCoatingsImg from "@/assets/products/categories/paint_coatings.png";
 import miningImg from "@/assets/products/categories/mining.png";
 import textileImg from "@/assets/products/categories/textile.png";
 import foamIndustryImg from "@/assets/products/categories/foam_industry.png";
 import printingInkImg from "@/assets/products/categories/printing_ink.png";
-
+import CitricAcid from "@/assets/products/categories/CitricAcidFoodIndustryChemicals.jpg";
+import TitaniumDioxide from "@/assets/products/categories/TitaniumDioxide.png"
+import SodiumCyanide from "@/assets/products/categories/SodiumCyanide.png"
+import HydrogenPeroxide from "@/assets/products/categories/HydrogenPeroxide.png"
+import TDI from "@/assets/products/categories/TDI.jpg"
+import IsopropylAlcohol from "@/assets/products/categories/IsopropylAlcohol.png"
 // Specific Product Images (Existing)
-import fuelOilImg from "@/assets/products/categories/fuleolil.png";
-import gasOilImg from "@/assets/products/gas-oil.png";
-import naphthaImg from "@/assets/products/naphtha.png";
+import fuelOilImg from "@/assets/products/categories/Fule.jpg";
+import gasOilImg from "@/assets/products/categories/gasoli.jpg";
+import naphthaImg from "@/assets/products/categories/naphtha.jpg";
 // import rubberOilImg from "@/assets/products/fuelproduct.png";
 import whiteSpiritImg from "@/assets/products/white-spirit.png";
 import glycolsImg from "@/assets/products/glycols.png";
+
 import lubricantOilImg from "@/assets/products/lubricant-oil.png";
 import paraffinOilImg from "@/assets/products/Paraffin Oil.png";
 
@@ -910,7 +922,7 @@ export const products: Product[] = [
         name: 'LABSA 96%',
         description: 'Linear Alkyl Benzene Sulphonic Acid used as a primary surfactant in detergent formulations.',
         href: '/products/labsa',
-        backgroundImage: rawMaterialsImg,
+        backgroundImage: LABSA96,
         icon: <Droplets className="w-6 h-6" />,
         slug: 'labsa',
         category: 'Detergent & Chemical Raw Materials',
@@ -959,7 +971,7 @@ export const products: Product[] = [
         name: 'SLES 70%',
         description: 'Sodium Lauryl Ether Sulfate widely used as a primary surfactant in personal care and cleaning formulations.',
         href: '/products/sles',
-        backgroundImage: rawMaterialsImg,
+        backgroundImage: SLES70,
         icon: <Beaker className="w-6 h-6" />,
         slug: 'sles',
         category: 'Detergent & Chemical Raw Materials',
@@ -1009,7 +1021,7 @@ export const products: Product[] = [
         name: 'Caustic Soda Flakes',
         description: 'Highly corrosive alkali used widely in soap, paper, textile, and chemical industries.',
         href: '/products/caustic-soda',
-        backgroundImage: rawMaterialsImg,
+        backgroundImage: Casusticsoda,
         icon: <Box className="w-6 h-6" />,
         slug: 'caustic-soda',
         category: 'Detergent & Chemical Raw Materials',
@@ -1059,7 +1071,7 @@ export const products: Product[] = [
         name: 'Soda Ash Light',
         description: 'Light-density sodium carbonate used in glass, detergents, and chemical processing.',
         href: '/products/soda-ash-light',
-        backgroundImage: rawMaterialsImg,
+        backgroundImage: sodaashlight,
         icon: <Layers className="w-6 h-6" />,
         slug: 'soda-ash-light',
         category: 'Detergent & Chemical Raw Materials',
@@ -1111,7 +1123,7 @@ export const products: Product[] = [
         name: 'Aluminum Sulphate',
         description: 'Widely used inorganic coagulant for water and wastewater treatment.',
         href: '/products/aluminum-sulphate',
-        backgroundImage: waterTreatmentImg,
+        backgroundImage: AluminumSulphate,
         icon: <Waves className="w-6 h-6" />,
         slug: 'aluminum-sulphate',
         category: 'Water Treatment Chemicals',
@@ -1213,7 +1225,7 @@ export const products: Product[] = [
         name: 'Citric Acid',
         description: 'Food-grade organic acid used for acidity regulation, preservation, and flavor enhancement.',
         href: '/products/citric-acid',
-        backgroundImage: foodIndustryImg,
+        backgroundImage: CitricAcid,
         icon: <Grape className="w-6 h-6" />,
         slug: 'citric-acid',
         category: 'Food Industry Chemicals',
@@ -1317,7 +1329,7 @@ export const products: Product[] = [
         name: 'Glycerine (USP Grade)',
         description: 'High-purity USP grade glycerine suitable for cosmetic, pharmaceutical, and personal care formulations.',
         href: '/products/glycerine',
-        backgroundImage: cosmeticsImg,
+        backgroundImage: Glycerine,
         icon: <Droplets className="w-6 h-6" />,
         slug: 'glycerine',
         category: 'Cosmetics & Personal Care Chemicals',
@@ -1407,7 +1419,7 @@ export const products: Product[] = [
         name: 'Titanium Dioxide',
         description: 'High-performance white pigment (TiO2) widely used for opacity, brightness, and UV resistance in paints, coatings, plastics, and specialty applications.',
         href: '/products/titanium-dioxide',
-        backgroundImage: paintCoatingsImg,
+        backgroundImage: TitaniumDioxide,
         icon: <Paintbrush className="w-6 h-6" />,
         slug: 'titanium-dioxide',
         category: 'Paint & Coatings Chemicals',
@@ -1476,7 +1488,7 @@ export const products: Product[] = [
         name: 'Sodium Cyanide',
         description: 'Highly toxic inorganic compound primarily used in gold and silver extraction through cyanidation processes in the mining industry.',
         href: '/products/sodium-cyanide',
-        backgroundImage: miningImg,
+        backgroundImage: SodiumCyanide,
         icon: <Hammer className="w-6 h-6" />,
         slug: 'sodium-cyanide',
         category: 'Mining Industry Chemicals',
@@ -1543,7 +1555,7 @@ export const products: Product[] = [
         name: 'Hydrogen Peroxide',
         description: 'Strong oxidizing agent widely used for textile bleaching, pulp processing, water treatment, and disinfection applications.',
         href: '/products/hydrogen-peroxide',
-        backgroundImage: textileImg,
+        backgroundImage: HydrogenPeroxide,
         icon: <Droplets className="w-6 h-6" />,
         slug: 'hydrogen-peroxide',
         category: 'Textile Industry Chemicals',
@@ -1611,7 +1623,7 @@ export const products: Product[] = [
         name: 'TDI (Toluene Diisocyanate)',
         description: 'Aromatic diisocyanate primarily used in the production of flexible polyurethane foams for furniture, bedding, and automotive applications.',
         href: '/products/tdi',
-        backgroundImage: foamIndustryImg,
+        backgroundImage: TDI,
         icon: <Microwave className="w-6 h-6" />,
         slug: 'tdi',
         category: 'Foam Industry Chemicals',
@@ -1679,7 +1691,7 @@ export const products: Product[] = [
         name: 'Isopropyl Alcohol (IPA)',
         description: 'High-purity, fast-evaporating solvent widely used in printing inks, surface cleaning, pharmaceuticals, and electronic applications.',
         href: '/products/ipa',
-        backgroundImage: printingInkImg,
+        backgroundImage: IsopropylAlcohol,
         icon: <Printer className="w-6 h-6" />,
         slug: 'ipa',
         category: 'Printing Ink Chemicals',

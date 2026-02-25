@@ -125,13 +125,13 @@ const ProductDetail = () => {
             className="max-w-4xl pt-12"
           >
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white">
+              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-white">
                 {product.icon}
               </div>
-              <div className="h-[1px] w-24 bg-red-600/50" />
+              <div className="h-[1px] w-24 bg-primary/50" />
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 uppercase tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-8 uppercase tracking-tight leading-[0.9]">
               <SplitText text={product.name} />
             </h1>
 
@@ -142,18 +142,18 @@ const ProductDetail = () => {
 
       {/* ============================= MAIN CONTENT ============================ */}
 
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-background">
         <div className="container-custom grid lg:grid-cols-3 gap-16">
           {/* ============================= LEFT ============================= */}
           <div className="lg:col-span-2 space-y-16">
             {/* Overview */}
             <ScrollReveal>
               <div className="relative">
-                <div className="w-16 h-[3px] bg-red-600 mb-8" />
+                <div className="w-16 h-[3px] bg-primary mb-8" />
                 <h2 className="text-4xl font-black text-primary uppercase tracking-tight mb-8">
                   Product Overview
                 </h2>
-                <p className="text-gray-500 leading-relaxed text-lg">
+                <p className="text-foreground/70 leading-relaxed text-lg">
                   {product.fullDescription}
                 </p>
               </div>
@@ -162,9 +162,9 @@ const ProductDetail = () => {
             {/* Key Features */}
             {product.features && product.features.length > 0 && (
               <ScrollReveal>
-                <div className="p-10 bg-gray-50 rounded-3xl border border-gray-100">
+                <div className="p-10 bg-secondary/10 rounded-3xl border border-secondary/20">
                   <h3 className="text-2xl font-black text-primary uppercase tracking-widest mb-10 flex items-center gap-4">
-                    <Zap className="w-6 h-6 text-red-600" />
+                    <Zap className="w-6 h-6 text-primary" />
                     Key Features
                   </h3>
 
@@ -179,10 +179,10 @@ const ProductDetail = () => {
                       <motion.div
                         key={i}
                         variants={fadeIn}
-                        className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-gray-100 group hover:border-red-600/30 transition-colors"
+                        className="flex items-start gap-4 p-5 rounded-2xl bg-background border border-secondary/20 group hover:border-primary/30 transition-colors"
                       >
-                        <CheckCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm font-medium text-gray-700">{feature}</span>
+                        <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-sm font-medium text-foreground/80">{feature}</span>
                       </motion.div>
                     ))}
                   </motion.div>
@@ -195,14 +195,14 @@ const ProductDetail = () => {
               <ScrollReveal>
                 <div className="space-y-10">
                   <h3 className="text-2xl font-black text-primary uppercase tracking-widest flex items-center gap-4">
-                    <Scale className="w-6 h-6 text-red-600" />
+                    <Scale className="w-6 h-6 text-primary" />
                     Technical Specifications
                   </h3>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {renderSpecifications()?.map((spec, i) => (
-                      <div key={i} className="p-6 border border-gray-100 rounded-2xl group hover:border-red-600/50 transition-all duration-300">
-                        <div className="flex items-center gap-3 text-gray-400 mb-3 group-hover:text-red-600 transition-colors">
+                      <div key={i} className="p-6 border border-secondary/20 rounded-2xl group hover:border-primary/50 transition-all duration-300">
+                        <div className="flex items-center gap-3 text-foreground/50 mb-3 group-hover:text-primary transition-colors">
                           {spec.icon}
                           <span className="text-xs font-black uppercase tracking-widest">{spec.label}</span>
                         </div>
@@ -225,10 +225,10 @@ const ProductDetail = () => {
                   {product.uses.map((use, i) => (
                     <motion.div
                       key={i}
-                      className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 transition-all duration-500 hover:shadow-xl"
+                      className="group relative overflow-hidden rounded-2xl border border-secondary/20 bg-background p-6 transition-all duration-500 hover:shadow-xl"
                     >
-                      <div className="absolute top-0 left-0 w-0 h-[2px] bg-red-600 group-hover:w-full transition-all duration-700" />
-                      <CheckCircle className="w-6 h-6 text-red-600 mb-4" />
+                      <div className="absolute top-0 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-700" />
+                      <CheckCircle className="w-6 h-6 text-primary mb-4" />
                       <p className="font-bold text-primary text-lg">{use}</p>
                     </motion.div>
                   ))}
@@ -239,12 +239,12 @@ const ProductDetail = () => {
             {/* Handling & Safety */}
             {product.handling && (
               <ScrollReveal>
-                <div className="p-8 bg-red-50 border border-red-100 rounded-3xl">
+                <div className="p-8 bg-primary/10 border border-primary/20 rounded-3xl">
                   <div className="flex gap-6">
-                    <AlertTriangle className="w-8 h-8 text-red-600 flex-shrink-0" />
+                    <AlertTriangle className="w-8 h-8 text-primary flex-shrink-0" />
                     <div>
-                      <h4 className="text-red-600 font-black uppercase text-xs tracking-widest mb-2">Safety Protocol</h4>
-                      <p className="text-sm text-red-900/70 leading-relaxed font-medium">{product.handling}</p>
+                      <h4 className="text-primary font-black uppercase text-xs tracking-widest mb-2">Safety Protocol</h4>
+                      <p className="text-sm text-primary/80 leading-relaxed font-medium">{product.handling}</p>
                     </div>
                   </div>
                 </div>
@@ -252,13 +252,13 @@ const ProductDetail = () => {
             )}
 
             {/* Prev / Next */}
-            <div className="flex justify-between border-t border-gray-100 pt-12">
+            <div className="flex justify-between border-t border-secondary/20 pt-12">
               {prevProduct ? (
                 <Link
                   to={prevProduct.href}
                   className="flex flex-col gap-2 group"
                 >
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 group-hover:text-red-600 transition-colors">Previous Product</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/50 group-hover:text-primary transition-colors">Previous Product</span>
                   <div className="flex items-center gap-3 text-primary font-black uppercase tracking-tight text-xl">
                     <ArrowLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
                     {prevProduct.name}
@@ -273,7 +273,7 @@ const ProductDetail = () => {
                   to={nextProduct.href}
                   className="flex flex-col gap-2 items-end group text-right"
                 >
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 group-hover:text-red-600 transition-colors">Next Product</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-foreground/50 group-hover:text-primary transition-colors">Next Product</span>
                   <div className="flex items-center gap-3 text-primary font-black uppercase tracking-tight text-xl">
                     {nextProduct.name}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
@@ -281,35 +281,56 @@ const ProductDetail = () => {
                 </Link>
               )}
             </div>
+
+            {/* Related Portfolio - Added to mobile as well */}
+            <div className="lg:hidden mt-8">
+              <h4 className="text-xs font-black uppercase tracking-[0.3em] text-foreground/50 mb-6">Related Portfolio</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {relatedProducts.map((p) => (
+                  <Link
+                    key={p.slug}
+                    to={p.href}
+                    className="p-5 border border-secondary/20 rounded-2xl bg-background hover:border-primary/50 transition-all group"
+                  >
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-black text-primary uppercase tracking-tight">
+                        {p.name}
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-primary group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* ============================= SIDEBAR ============================= */}
           <aside className="hidden lg:block">
             <div className="sticky top-28 space-y-8">
               {/* Quick Info Card */}
-              <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
-                <h4 className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 mb-8 flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-red-600" />
+              <div className="bg-background border border-secondary/20 rounded-3xl p-8 shadow-sm">
+                <h4 className="text-xs font-black uppercase tracking-[0.3em] text-foreground/50 mb-8 flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-primary" />
                   Technical Brief
                 </h4>
 
                 <div className="space-y-6">
                   {product.specifications?.purity && (
                     <div className="flex flex-col gap-1">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Purity</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-foreground/50">Purity</span>
                       <span className="text-lg font-black text-primary">{product.specifications.purity}</span>
                     </div>
                   )}
 
                   {product.specifications?.casNumber && (
                     <div className="flex flex-col gap-1">
-                      <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">CAS Reference</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-foreground/50">CAS Reference</span>
                       <span className="text-lg font-black text-primary">{product.specifications.casNumber}</span>
                     </div>
                   )}
 
                   <div className="flex flex-col gap-1">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Classification</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-foreground/50">Classification</span>
                     <span className="text-lg font-black text-primary uppercase">{product.category}</span>
                   </div>
                 </div>
@@ -317,7 +338,7 @@ const ProductDetail = () => {
 
               {/* CTA */}
               <div className="rounded-3xl p-10 text-white bg-primary relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-red-600 rounded-full -mr-16 -mt-16 opacity-20 group-hover:scale-150 transition-transform duration-700" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary rounded-full -mr-16 -mt-16 opacity-20 group-hover:scale-150 transition-transform duration-700" />
                 <h3 className="text-2xl font-black mb-4 uppercase tracking-tight relative z-10">Procurement Inquiry</h3>
                 <p className="text-sm text-white/70 mb-8 relative z-10 leading-relaxed">
                   Connect with our technical sales division for comprehensive quotations and logistics support.
@@ -325,34 +346,34 @@ const ProductDetail = () => {
 
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-3 bg-red-600 text-white font-black uppercase tracking-widest text-xs px-8 py-5 rounded-full hover:bg-white hover:text-primary transition-all relative z-10 shadow-xl"
+                  className="inline-flex items-center gap-3 bg-primary text-white font-black uppercase tracking-widest text-xs px-8 py-5 rounded-full hover:bg-white hover:text-primary transition-all relative z-10 shadow-xl"
                 >
                   Request Quotation
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
 
-              {/* Related Products */}
-              <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm">
-                <h4 className="text-xs font-black uppercase tracking-[0.3em] text-gray-400 mb-6">Related Portfolio</h4>
+              {/* Related Portfolio */}
+              <div className="bg-background border border-secondary/20 rounded-3xl p-8 shadow-sm">
+                <h4 className="text-xs font-black uppercase tracking-[0.3em] text-foreground/50 mb-6">Related Portfolio</h4>
                 <div className="space-y-4">
                   {relatedProducts.length > 0 ? (
                     relatedProducts.map((p) => (
                       <Link
                         key={p.slug}
                         to={p.href}
-                        className="group flex flex-col gap-1 border-b border-gray-50 pb-4 last:border-0"
+                        className="group flex flex-col gap-1 border-b border-secondary/10 pb-4 last:border-0"
                       >
                         <div className="flex justify-between items-center">
-                          <span className="text-sm font-black text-primary uppercase tracking-tight group-hover:text-red-600 transition-colors">
+                          <span className="text-sm font-black text-primary uppercase tracking-tight group-hover:text-primary transition-colors">
                             <SplitText text={p.name} />
                           </span>
-                          <ArrowRight className="w-4 h-4 text-red-600 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
+                          <ArrowRight className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
                         </div>
                       </Link>
                     ))
                   ) : (
-                    <p className="text-sm text-gray-400">No related products found</p>
+                    <p className="text-sm text-foreground/50">No related products found</p>
                   )}
                 </div>
               </div>
@@ -362,21 +383,9 @@ const ProductDetail = () => {
       </section>
 
       {/* Floating CTA */}
-      <motion.div
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="fixed bottom-10 right-10 hidden lg:block z-50"
-      >
-        <Link
-          to="/contact"
-          className="bg-red-600 text-white px-10 py-5 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-3 group"
-        >
-          <span className="font-black uppercase tracking-[0.2em] text-xs">Request Quote</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </Link>
-      </motion.div>
+
     </Layout>
   );
 };
+
 export default ProductDetail;

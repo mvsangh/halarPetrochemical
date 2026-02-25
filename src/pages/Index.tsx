@@ -107,10 +107,10 @@ const Index = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight"
+                className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] xl:text-[11rem] font-black leading-[0.9] tracking-tighter uppercase"
               >
                 <span className="block">HALAR</span>
-                <span className="block text-accent">PETROCHEM FZC</span>
+                <span className="block text-accent">PETROCHEM</span>
               </motion.h1>
 
               {/* CTA Buttons */}
@@ -142,8 +142,10 @@ const Index = () => {
       {/* Hero Search */}
       <HeroSearch />
 
+      {/* Industries We Serve Section */}
+      <IndustriesSection />
       {/* About Section */}
-      <section className="py-20 sm:py-24 lg:py-32 bg-white overflow-hidden">
+      <section className="py-20 sm:py-24 lg:py-32 bg-background overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Left Content */}
@@ -171,7 +173,7 @@ const Index = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.1 }}
-                  className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight"
+                  className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
                 >
                   Global Petrochemical
                   <span className="text-primary block mt-2">Supply Experts</span>
@@ -184,7 +186,7 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl"
+                className="text-base sm:text-lg md:text-xl text-foreground/70 leading-relaxed max-w-2xl"
               >
                 HALAR PETROCHEM FZC is a premier petrochemical trading company based in
                 Ras Al Khaimah Free Trade Zone, UAE. With strategic global partnerships
@@ -212,7 +214,7 @@ const Index = () => {
                     <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-4 h-4 text-primary" />
                     </div>
-                    <span className="text-gray-700 font-semibold text-sm sm:text-base">{feature}</span>
+                    <span className="text-foreground/80 font-semibold text-sm sm:text-base">{feature}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -263,8 +265,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Industries We Serve Section */}
-      <IndustriesSection />
+
 
       {/* World Map Section */}
       <WorldMap />
@@ -309,7 +310,7 @@ const Index = () => {
 
 
       {/* Footer CTA */}
-      <section className="py-20 sm:py-28 lg:py-32 bg-white">
+      <section className="py-20 sm:py-28 lg:py-32 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}

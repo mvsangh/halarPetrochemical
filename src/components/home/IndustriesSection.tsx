@@ -3,8 +3,6 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 // Local asset imports
-import imgPetrochemicals from "@/assets/products/categories/petrochemicals.png";
-import imgFood from "@/assets/products/categories/food_industry.png";
 import imgSolvents from "@/assets/products/categories/solvents.png";
 import imgMining from "@/assets/products/categories/mining.png";
 import imgWater from "@/assets/products/categories/water_treatment.png";
@@ -14,19 +12,32 @@ import imgTextile from "@/assets/products/categories/textile.png";
 import imgPrintingInk from "@/assets/products/categories/printing_ink.png";
 import imgFoam from "@/assets/products/categories/foam_industry.png";
 import imgPaint from "@/assets/products/categories/paint_coatings.png";
-
+import videoPetrochemicals from "@/assets/products/generated/pertollium.mp4";
+import videoFood from "@/assets/products/generated/foodindustry.mp4";
+import solventsvideo from "@/assets/products/generated/Solvents.mp4";
+import waterchem from "@/assets/products/generated/watermark.mp4";
+import miningchem from "@/assets/products/generated/minigind.mp4";
+import beautifyvideo from "@/assets/products/generated/beautifyproduct.mp4"
+import texttali from "@/assets/products/generated/texttali.mp4"
+import printingink from "@/assets/products/generated/printingink.mp4"
+import foamvideo from "@/assets/products/generated/formind.mp4"
+import paintcaminacal from "@/assets/products/generated/paintcoating.mp4"
+import rowchical from "@/assets/products/generated/chemicalraw.mp4"
 const slides = [
-    { name: "Petrochemicals", image: imgPetrochemicals },
-    { name: "Food Industry Chemicals", image: imgFood },
-    { name: "Solvents", image: imgSolvents },
-    { name: "Mining Industry Chemicals", image: imgMining },
-    { name: "Water Treatment Chemicals", image: imgWater },
-    { name: "Detergent & Chemical Raw Materials", image: imgRawMaterials },
-    { name: "Cosmetics & Personal Care Chemicals", image: imgCosmetics },
-    { name: "Textile Industry Chemicals", image: imgTextile },
-    { name: "Printing Ink Chemicals", image: imgPrintingInk },
-    { name: "Foam Industry Chemicals", image: imgFoam },
-    { name: "Paint & Coatings Chemicals", image: imgPaint },
+    {
+        name: "Petrochemicals",
+        video: videoPetrochemicals, // 👈 video instead of image
+    },
+    { name: "Food Industry Chemicals", video: videoFood },
+    { name: "Solvents", video: solventsvideo },
+    { name: "Mining Industry Chemicals", video: miningchem },
+    { name: "Water Treatment Chemicals", video: waterchem },
+    { name: "Detergent & Chemical Raw Materials", video: rowchical },
+    { name: "Cosmetics & Personal Care Chemicals", video: beautifyvideo },
+    { name: "Textile Industry Chemicals", video: texttali },
+    { name: "Printing Ink Chemicals", video: printingink },
+    { name: "Foam Industry Chemicals", video: foamvideo },
+    { name: "Paint & Coatings Chemicals", video: paintcaminacal },
 ];
 
 const CARD_GAP = 20;
@@ -34,12 +45,12 @@ const CARD_GAP = 20;
 /** Compute responsive card width + height based on viewport */
 function getCardDimensions(vw: number) {
     if (vw < 640) {
-        // Mobile: show 1 card + peek at next (~85vw wide)
-        return { w: Math.round(vw * 0.82), h: Math.min(Math.round(vw * 1.05), 420) };
+        // Mobile: show 1 card + peek at next (~80vw wide)
+        return { w: Math.round(vw * 0.8), h: Math.min(Math.round(vw * 1.1), 400) };
     }
     if (vw < 1024) {
-        // Tablet: ~45vw so ~2 cards visible
-        return { w: Math.round(vw * 0.44), h: 480 };
+        // Tablet: ~42vw so ~2 cards visible
+        return { w: Math.round(vw * 0.42), h: 460 };
     }
     // Desktop: fixed 400–450px
     return { w: 420, h: 520 };
@@ -90,11 +101,11 @@ const IndustriesSection = () => {
 
     // Section height: give each card enough scroll room (slightly less on mobile)
     const sectionVh = dims.w < 640
-        ? slides.length * 40   // 40vh per card on mobile
-        : slides.length * 55;  // 55vh per card on desktop
+        ? slides.length * 45   // 45vh per card on mobile
+        : slides.length * 60;  // 60vh per card on desktop
 
     return (
-        <section className="bg-gray-50">
+        <section className="bg-background">
 
             {/* ── Header ── */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
@@ -103,9 +114,9 @@ const IndustriesSection = () => {
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 text-gray-400 font-bold mb-3 tracking-[0.2em] uppercase text-xs"
+                        className="inline-flex items-center gap-2 text-foreground/50 font-bold mb-3 tracking-[0.2em] uppercase text-xs"
                     >
-                        <div className="w-8 h-[2px] bg-red-600" />
+                        <div className="w-8 h-[2px] bg-primary" />
                         GLOBAL IMPACT
                     </motion.div>
 
@@ -114,10 +125,10 @@ const IndustriesSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-3xl sm:text-5xl lg:text-7xl font-black text-slate-900 mb-5 tracking-tight"
+                        className="text-3xl sm:text-5xl lg:text-7xl font-black text-foreground mb-5 tracking-tight"
                     >
                         Industries We{" "}
-                        <span className="text-red-600">Serve</span>
+                        <span className="text-primary\">Serve</span>
                     </motion.h2>
 
                     <motion.p
@@ -125,7 +136,7 @@ const IndustriesSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="text-base sm:text-lg text-gray-500 leading-relaxed font-medium"
+                        className="text-base sm:text-lg text-foreground/70 leading-relaxed font-medium"
                     >
                         Our premium petrochemical products power critical sectors worldwide,
                         driving innovation and operational excellence.
@@ -143,19 +154,19 @@ const IndustriesSection = () => {
 
                     {/* Progress bar */}
                     <div className="absolute top-4 sm:top-6 left-0 right-0 px-5 sm:px-10 lg:px-16 flex items-center gap-3 z-20">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-300 hidden sm:block">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-foreground/30 hidden sm:block">
                             START
                         </span>
-                        <div className="flex-1 h-[2px] bg-gray-200 rounded-full overflow-hidden">
+                        <div className="flex-1 h-[2px] bg-secondary/20 rounded-full overflow-hidden">
                             <motion.div
-                                className="h-full bg-red-600 rounded-full"
+                                className="h-full bg-primary rounded-full"
                                 style={{ scaleX, transformOrigin: "left" }}
                             />
                         </div>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-300 hidden sm:block">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-foreground/30 hidden sm:block">
                             END
                         </span>
-                        <span className="text-[10px] font-medium text-gray-400 sm:hidden">
+                        <span className="text-[10px] font-medium text-foreground/50 sm:hidden">
                             SCROLL ↓
                         </span>
                     </div>
@@ -175,13 +186,16 @@ const IndustriesSection = () => {
                                 whileTap={{ scale: 0.97 }}
                                 transition={{ type: "spring", stiffness: 280, damping: 22 }}
                             >
-                                {/* Image */}
-                                <img
-                                    src={slide.image}
-                                    alt={slide.name}
-                                    draggable={false}
+                                <video
+                                    src={slide.video}
+                                    autoPlay
+                                    muted
+                                    loop
+                                    playsInline
+                                    preload="metadata"
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
                                 />
+
 
                                 {/* Gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
@@ -194,7 +208,7 @@ const IndustriesSection = () => {
                                 </div>
 
                                 {/* Hover arrow */}
-                                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-red-600 flex items-center justify-center
+                                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center
                                     opacity-0 group-hover/card:opacity-100 -translate-y-1 group-hover/card:translate-y-0
                                     transition-all duration-300 shadow-xl z-10">
                                     <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -203,7 +217,7 @@ const IndustriesSection = () => {
                                 </div>
 
                                 {/* Red label bar */}
-                                <div className="absolute bottom-0 inset-x-0 bg-red-600 py-3 sm:py-4 px-4 sm:px-5">
+                                <div className="absolute bottom-0 inset-x-0 bg-primary py-3 sm:py-4 px-4 sm:px-5">
                                     <p className="text-xs sm:text-sm font-black text-white uppercase tracking-wider sm:tracking-widest leading-snug line-clamp-1">
                                         {slide.name}
                                     </p>
@@ -212,12 +226,7 @@ const IndustriesSection = () => {
                         ))}
                     </motion.div>
 
-                    {/* Scroll hint */}
-                    <div className="absolute bottom-6 left-5 sm:left-10 lg:left-16">
-                        <p className="text-[10px] sm:text-xs text-gray-400 font-medium tracking-widest uppercase">
-                            ↓ Scroll to explore
-                        </p>
-                    </div>
+
                 </div>
             </div>
         </section>

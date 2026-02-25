@@ -23,8 +23,8 @@ export default {
         '4.5xl': ['2.75rem', { lineHeight: '3rem' }],
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        display: ["Playfair Display", "Georgia", "serif"],
+        sans: ["Bricolage Grotesque", "Inter", "system-ui", "sans-serif"],
+        display: ["Bricolage Grotesque", "Playfair Display", "Georgia", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -64,11 +64,6 @@ export default {
           DEFAULT: "hsl(var(--navy))",
           dark: "hsl(var(--navy-dark))",
           light: "hsl(var(--navy-light))",
-        },
-        gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
-          dark: "hsl(var(--gold-dark))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

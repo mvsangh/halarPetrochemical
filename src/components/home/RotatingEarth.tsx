@@ -56,8 +56,8 @@ export default function RotatingEarth() {
     const draw = () => {
       ctx.clearRect(0, 0, width, height)
 
-      // 🤍 White background
-      ctx.fillStyle = "#ffffff"
+      // Use theme background color or transparent
+      ctx.fillStyle = "transparent"
       ctx.fillRect(0, 0, width, height)
 
       // 🫧 Smoke
@@ -66,18 +66,18 @@ export default function RotatingEarth() {
       // 🌐 Earth base
       ctx.beginPath()
       ctx.arc(width / 2, height / 2, projection.scale(), 0, Math.PI * 2)
-      ctx.fillStyle = "#f9fafb"
+      ctx.fillStyle = "rgba(131, 180, 179, 0.1)" // #83B4B3 with alpha
       ctx.fill()
-      ctx.strokeStyle = "#000000"
+      ctx.strokeStyle = "rgba(9, 115, 146, 0.3)" // #097392 with alpha
       ctx.lineWidth = 1.2
       ctx.stroke()
 
       if (!land) return
 
-      // 🗺️ World map outline (BLACK)
+      // 🗺️ World map outline (Primary Color)
       ctx.beginPath()
       land.features.forEach((f: any) => path(f))
-      ctx.strokeStyle = "#000000"
+      ctx.strokeStyle = "rgba(9, 115, 146, 0.8)" // #097392
       ctx.lineWidth = 0.6
       ctx.stroke()
     }

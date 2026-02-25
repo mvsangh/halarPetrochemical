@@ -53,14 +53,14 @@ const Products = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl pt-12"
           >
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-8 mb-6 uppercase tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-8 uppercase tracking-tight leading-[0.9]">
               {categoryFilter ? (
                 <div className="flex flex-wrap gap-x-4">
-                  <SplitText text={categoryFilter} /> <span className="text-red-600"><SplitText text="Products" /></span>
+                  <SplitText text={categoryFilter} /> <span className="text-primary"><SplitText text="Products" /></span>
                 </div>
               ) : (
                 <div className="flex flex-wrap gap-x-4">
-                  <SplitText text="Industrial" /> <span className="text-red-600"><SplitText text="Portfolio" /></span>
+                  <SplitText text="Industrial" /> <span className="text-primary"><SplitText text="Portfolio" /></span>
                 </div>
               )}
             </h1>
@@ -72,7 +72,7 @@ const Products = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-background">
         <div className="container-custom">
           {/* Category Filter */}
           <div className="mb-20 overflow-x-auto pb-4 scrollbar-hide">
@@ -80,8 +80,8 @@ const Products = () => {
               <Link
                 to="/products"
                 className={`px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap ${!categoryFilter
-                  ? 'bg-red-600 text-white shadow-xl shadow-red-600/20'
-                  : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-primary'
+                  ? 'bg-primary text-primary-foreground shadow-xl shadow-primary/20'
+                  : 'bg-secondary/10 text-foreground/50 hover:bg-secondary/20 hover:text-primary'
                   }`}
               >
                 All Catalog
@@ -91,8 +91,8 @@ const Products = () => {
                   key={category}
                   to={`/products?category=${encodeURIComponent(category)}`}
                   className={`px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap ${categoryFilter === category
-                    ? 'bg-red-600 text-white shadow-xl shadow-red-600/20'
-                    : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-primary'
+                    ? 'bg-primary text-primary-foreground shadow-xl shadow-primary/20'
+                    : 'bg-secondary/10 text-foreground/50 hover:bg-secondary/20 hover:text-primary'
                     }`}
                 >
                   {category}
@@ -103,7 +103,7 @@ const Products = () => {
 
           <ScrollReveal>
             <div className="mb-16">
-              <div className="w-12 h-[2px] bg-red-600 mb-6" />
+              <div className="w-12 h-[2px] bg-primary mb-6" />
               <h2 className="text-3xl md:text-5xl font-black text-primary uppercase tracking-tight">
                 {categoryFilter ? `Active Selection: ${categoryFilter}` : 'Complete Material Portfolio'}
               </h2>
@@ -132,11 +132,11 @@ const Products = () => {
                   <div key={category} className="relative">
                     <ScrollReveal>
                       <div className="flex items-center gap-6 mb-12">
-                        <div className="h-[1px] w-12 bg-red-600" />
+                        <div className="h-[1px] w-12 bg-primary" />
                         <h3 className="text-2xl md:text-4xl font-black text-primary uppercase tracking-tight">
                           {category}
                         </h3>
-                        <div className="flex-grow h-[1px] bg-gray-100 ml-4 hidden md:block" />
+                        <div className="flex-grow h-[1px] bg-secondary/10 ml-4 hidden md:block" />
                       </div>
                     </ScrollReveal>
 
@@ -161,8 +161,8 @@ const Products = () => {
 
           {filteredProducts.length === 0 && (
             <div className="text-center py-24">
-              <p className="text-xl font-bold text-gray-400 uppercase tracking-widest mb-8">No matching materials found</p>
-              <Link to="/products" className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-full font-black uppercase tracking-widest text-xs">
+              <p className="text-xl font-bold text-foreground/40 uppercase tracking-widest mb-8">No matching materials found</p>
+              <Link to="/products" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-full font-black uppercase tracking-widest text-xs">
                 Reset Selection
               </Link>
             </div>
@@ -173,17 +173,17 @@ const Products = () => {
 
       {/* CTA Section */}
       <section className="py-24 bg-primary relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-red-600 rounded-full -mr-48 -mt-48 opacity-10" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full -mr-48 -mt-48 opacity-10" />
         <div className="container-custom relative z-10">
           <ScrollReveal>
             <div className="max-w-4xl">
               <h2 className="text-4xl md:text-6xl font-black text-white mb-8 uppercase tracking-tight">
-                Require Custom <span className="text-red-600">Formulations?</span>
+                Require Custom <span className="text-accent">Formulations?</span>
               </h2>
               <p className="text-white/60 text-xl mb-12 max-w-2xl leading-relaxed">
                 Our technical laboratory specialized in developing tailored chemical solutions based on your industrial parameters.
               </p>
-              <Link to="/contact" className="inline-flex items-center gap-4 bg-red-600 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm shadow-2xl transition-transform hover:scale-105">
+              <Link to="/contact" className="inline-flex items-center gap-4 bg-background text-foreground px-10 py-5 rounded-full font-black uppercase tracking-widest text-sm shadow-2xl transition-transform hover:scale-105">
                 Consult With Experts
                 <ArrowRight className="w-5 h-5" />
               </Link>

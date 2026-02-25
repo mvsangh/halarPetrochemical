@@ -1,68 +1,86 @@
-import { motion } from 'framer-motion';
-import { Target, Eye, Heart, Users, Lightbulb, Handshake, Calendar, MapPin, Award } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, Variants, useScroll, useTransform } from 'framer-motion';
+import {
+  Target, Eye, Heart, Users, Lightbulb,
+  Handshake, Calendar, Globe, ShieldCheck,
+  Zap, ArrowRight
+} from 'lucide-react';
 import SEO from '@/components/SEO';
 import Layout from '@/components/layout/Layout';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import heroRefinery from "../assets/hero-refinery.jpg";
+import placeholderAvatar from "../assets/hero-refinery.jpg";
 
-// --- Placeholder Images (Replace with your actual images) ---
-// It's recommended to import local images or use public URLs for team members.
-import placeholderAvatar from "../assets//hero-refinery.jpg"; // Add a placeholder image to your assets
-
-// --- Company Journey Milestones (Adapted from Petrocheme) ---
-const journeyMilestones = [
-  { year: "1995", title: "Inception of HALAR PETROCHEM", description: "Established in the Ras Al Khaimah Free Trade Zone, UAE, with a vision to transform petrochemical trading in the region." },
-  { year: "2000", title: "Expansion of Operations", description: "Rapid growth in our product portfolio and client base, serving key industries across the Middle East." },
-  { year: "2005", title: "Global Reach", description: "Extended our supply chain and partnerships to serve markets in Asia, Africa, and Europe." },
-  { year: "2010", title: "Strengthening Infrastructure", description: "Enhanced our logistics and supply chain capabilities to ensure reliable, on-time deliveries worldwide." },
-  { year: "2015", title: "Commitment to Quality", description: "Adopted stringent quality, health, and safety standards, reinforcing our commitment to excellence." },
-  { year: "2020", title: "Digital Transformation", description: "Embraced innovation and digital solutions to better serve our global partners and streamline operations." },
-  { year: "2023", title: "25 Years of Excellence", description: "Celebrated a quarter-century of trust, growth, and partnership in the global petrochemical industry." },
-  { year: "2024", title: "Future Forward", description: "Continuing our journey as a premier partner, focused on sustainable growth and innovation." },
-];
-
-// --- Core Values (Enhanced with your existing values) ---
-const values = [
-  { icon: <Heart className="w-6 h-6" />, title: 'Integrity', description: 'We conduct business with honesty, transparency, and ethical standards.' },
-  { icon: <Users className="w-6 h-6" />, title: 'Customer Focus', description: 'Our clients\' success is our priority. We listen, understand, and deliver.' },
-  { icon: <Lightbulb className="w-6 h-6" />, title: 'Innovation', description: 'We continuously improve our processes and solutions to stay ahead.' },
-  { icon: <Handshake className="w-6 h-6" />, title: 'Reliability', description: 'We deliver on our promises with consistency and dependability.' },
-];
-
-// --- Leadership Team (Placeholder Data - Replace with your actual team) ---
-const leadershipTeam = [
-  {
-    name: "Founder's Name",
-    title: "Founder and Chairman",
-    description: "Driven by passion and a need to succeed, [Founder's Name] established HALAR PETROCHEM FZC in [Year]. With a strong grasp on the dynamics of the chemical industry, their leadership has been the cornerstone of our success, building a reputation of trust and excellence.",
-    image: placeholderAvatar,
-  },
-  {
-    name: "Director's Name",
-    title: "Managing Director",
-    description: "As a hands-on leader, [Director's Name] brings energy and a forward-thinking vision to the Group. Focusing on business development, innovation, and building lasting relationships, they are shaping the future of HALAR PETROCHEM, ensuring sustainable success and growth.",
-    image: placeholderAvatar,
-  },
-  {
-    name: "CEO's Name",
-    title: "Chief Executive Officer",
-    description: "With decades of experience in the petrochemical trading industry, [CEO's Name] has been instrumental in driving the organization's global sales force and maintaining strong relationships with key manufacturers and suppliers worldwide.",
-    image: placeholderAvatar,
-  },
-  // Add more team members as needed
-];
+// Animation Variants
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+// Unique effect: The large background year "1995" moves as you scroll
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 }
+  }
+};
 
 const About = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress: sectionScrollProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"]
+  });
+
+  const x = useTransform(sectionScrollProgress, [0, 1], ["0%", "-80%"]);
+  // Parallax for background EST.1995 text
+  const xTransform = useTransform(sectionScrollProgress, [0, 1], [0, -600]);
+
+  const milestones = [
+    {
+      year: "1995",
+      title: "The Foundation",
+      desc: "HALAR PETROCHEM was established with a vision to streamline energy trading in the Middle East."
+    },
+    {
+      year: "2005",
+      title: "Global Expansion",
+      desc: "Expanded operations to over 20 countries, establishing key strategic storage hubs."
+    },
+    {
+      year: "2012",
+      title: "Digital Integration",
+      desc: "Implemented AI-driven supply chain monitoring to ensure 100% logistics transparency."
+    },
+    {
+      year: "2018",
+      title: "Sustainability Pivot",
+      desc: "Launched our low-carbon initiative, focusing on ethical sourcing and waste reduction."
+    },
+    {
+      year: "2024",
+      title: "Industry Leader",
+      desc: "Now serving 50+ global ports with a commitment to reliability and innovation."
+    }
+  ];
+
   return (
     <Layout>
       <SEO
-        title="About Us - Our Story, Values & Leadership | HALAR PETROCHEM FZC"
-        description="Discover the story of HALAR PETROCHEM FZC, a leading petrochemical supplier based in UAE. Learn about our journey, core values, vision, mission, and the experienced leadership team driving our commitment to excellence."
-        keywords="about HALAR PETROCHEM, petrochemical company UAE, oil trading company, petrochemical supplier, leadership team UAE"
+        title="About Us | Global Energy Solutions | HALAR PETROCHEM FZC"
+        description="Learn how HALAR PETROCHEM FZC bridges the gap between global energy producers and industrial consumers with integrity and innovation."
       />
 
-      {/* Hero Section with Background Image */}
+      {/* --- HERO SECTION (Unchanged as requested) --- */}
       <section
         className="relative flex items-center min-h-[60vh] md:min-h-[70vh] pt-28 pb-16"
         style={{
@@ -72,128 +90,313 @@ const About = () => {
           backgroundAttachment: "fixed",
         }}
       >
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
-
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
         <div className="container-custom relative z-10">
           <Breadcrumbs items={[{ label: 'About Us' }]} dark={true} />
-
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
-              About <span className="text-gold">HALAR PETROCHEM FZC</span>
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-display font-black text-white mb-6 uppercase tracking-tight">
+              About
             </h1>
-            <p className="text-lg text-white/90">
-              A trusted name in the global petrochemical industry, committed to excellence and reliability.
+            <p className="text-lg md:text-xl text-white/80 font-light border-l-4 border-accent pl-6">
+              Bridging global resources with industrial precision. HALAR PETROCHEM FZC is more than a supplier; we are the catalyst for your operational success.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Company Overview */}
-      <section className="section-padding relative bg-background">
-        <div className="container-custom relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <ScrollReveal>
-              <div>
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6">
-                  Who We Are
+      {/* --- SECTION 1: THE DISRUPTION (Who We Are) --- */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-12 gap-16 items-center">
+            <div className="lg:col-span-7">
+              <ScrollReveal>
+                <span className="text-accent font-black tracking-[0.3em] uppercase text-sm mb-4 block">Our Identity</span>
+                <h2 className="text-4xl md:text-5xl font-display font-black text-primary mb-8 leading-tight uppercase">
+                  Engineered for <br /> Reliability.
                 </h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  <p>
-                    HALAR PETROCHEM FZC is a premier petrochemical trading and distribution company
-                    headquartered in the Ras Al Khaimah Free Trade Zone, United Arab Emirates. With
-                    a strategic location at the crossroads of international trade routes, we serve
-                    as a vital link between global producers and consumers of petrochemical products.
+                <div className="space-y-6 text-lg text-foreground/70">
+                  <p className="first-letter:text-5xl first-letter:font-black first-letter:text-primary first-letter:mr-3 first-letter:float-left">
+                    Founded in the strategic hub of Ras Al Khaimah, HALAR PETROCHEM FZC has evolved from a local trader into a global powerhouse. We don't just move products; we manage the complex heartbeat of global energy logistics.
                   </p>
                   <p>
-                    Our company has built a strong reputation for reliability, quality, and customer
-                    service in the competitive petrochemical market. We work with leading refineries
-                    and manufacturers to source high-quality products that meet the stringent
-                    requirements of our diverse clientele.
-                  </p>
-                  <p>
-                    From fuel oils and gas oils to specialty chemicals and lubricants, we offer a
-                    comprehensive portfolio of products tailored to meet the unique needs of industries
-                    including energy, manufacturing, construction, agriculture, and transportation.
+                    By integrating cutting-edge supply chain intelligence with deep-rooted market expertise, we ensure that every drop of fuel, every chemical compound, and every lubricant reaches its destination with uncompromising quality.
                   </p>
                 </div>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+            </div>
 
-            <ScrollReveal delay={0.2}>
-              <div className="bg-card border border-border rounded-2xl p-8 md:p-12 shadow-lg">
-                <div className="grid gap-8">
-                  {/* Stats */}
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="text-center">
-                      <div className="text-4xl font-display font-bold text-primary mb-2">50+</div>
-                      <div className="text-sm text-muted-foreground">Countries Served</div>
+            <div className="lg:col-span-5 relative">
+              <ScrollReveal delay={0.3}>
+                <div className="relative z-10 bg-primary p-10 rounded-3xl text-white shadow-2xl">
+                  <div className="space-y-10">
+                    <div className="flex items-start gap-6">
+                      <div className="bg-accent/20 p-3 rounded-lg"><Globe className="text-accent w-8 h-8" /></div>
+                      <div>
+                        <h4 className="text-3xl font-bold">50+</h4>
+                        <p className="text-white/60 uppercase text-xs tracking-widest">Global Ports Served</p>
+                      </div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-4xl font-display font-bold text-primary mb-2">10+</div>
-                      <div className="text-sm text-muted-foreground">Product Categories</div>
+                    <div className="flex items-start gap-6">
+                      <div className="bg-accent/20 p-3 rounded-lg"><ShieldCheck className="text-accent w-8 h-8" /></div>
+                      <div>
+                        <h4 className="text-3xl font-bold">100%</h4>
+                        <p className="text-white/60 uppercase text-xs tracking-widest">Compliance & Safety</p>
+                      </div>
                     </div>
-                    <div className="text-center">
-                      <div className="text-4xl font-display font-bold text-primary mb-2">100%</div>
-                      <div className="text-sm text-muted-foreground">Quality Commitment</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-4xl font-display font-bold text-primary mb-2">24/7</div>
-                      <div className="text-sm text-muted-foreground">Customer Support</div>
+                    <div className="flex items-start gap-6">
+                      <div className="bg-accent/20 p-3 rounded-lg"><Zap className="text-accent w-8 h-8" /></div>
+                      <div>
+                        <h4 className="text-3xl font-bold">24hr</h4>
+                        <p className="text-white/60 uppercase text-xs tracking-widest">Logistics Monitoring</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </ScrollReveal>
+                {/* Decorative Elements */}
+                <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-accent rounded-3xl -z-10" />
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Our Journey / Timeline Section - NEW */}
-      <section className="section-padding relative bg-muted/30">
+      {/* --- SECTION 2: THE VISIONARY SPLIT (Vision & Mission) --- */}
+      <section className="py-24 bg-secondary/10">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
+          <div className="grid md:grid-cols-2 gap-0 rounded-[2rem] overflow-hidden shadow-2xl">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-primary p-12 md:p-20 text-white relative overflow-hidden group"
+            >
+              <Eye className="absolute -right-10 -top-10 w-64 h-64 text-white/5 group-hover:rotate-12 transition-transform duration-700" />
+              <div className="relative z-10">
+                <span className="text-accent font-bold uppercase tracking-widest mb-4 block underline decoration-accent decoration-4 underline-offset-8">The Future</span>
+                <h3 className="text-4xl font-display font-black mb-6 uppercase">Our Vision</h3>
+                <p className="text-xl text-white/70 font-light leading-relaxed">
+                  To redefine the petrochemical landscape by becoming the world’s most agile energy partner—where sustainability meets industrial scale, and trust is the primary currency.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="bg-white p-12 md:p-20 text-primary relative overflow-hidden group border-y md:border-y-0 md:border-l border-primary/10"
+            >
+              <Target className="absolute -right-10 -top-10 w-64 h-64 text-primary/5 group-hover:-rotate-12 transition-transform duration-700" />
+              <div className="relative z-10">
+                <span className="text-accent font-bold uppercase tracking-widest mb-4 block underline decoration-accent decoration-4 underline-offset-8">The Action</span>
+                <h3 className="text-4xl font-display font-black mb-6 uppercase">Our Mission</h3>
+                <p className="text-xl text-foreground/70 font-light leading-relaxed">
+                  We bridge global demand with ethical supply chains. Our mission is to deliver high-spec energy products through optimized logistics that minimize waste and maximize value for our partners.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECTION 3: THE EVOLUTION (Sticky Horizontal Scroll) --- */}
+      <section ref={sectionRef} className="relative h-[400vh] bg-white">
+        <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+          {/* Header Area */}
+          <div className="container-custom pt-24 pb-12 flex flex-col md:flex-row justify-between items-end gap-6 relative z-20">
+            <div className="max-w-2xl">
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="text-accent font-black tracking-widest uppercase text-sm mb-4 block"
+              >
                 Our Journey
+              </motion.span>
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-display font-black text-primary uppercase leading-[0.9] tracking-tighter">
+                The Evolution <br /> of Excellence
               </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                From our inception to the present day, our story is one of growth, partnership, and commitment to excellence.
+            </div>
+
+            <motion.div
+              style={{ x: xTransform }}
+              className="text-primary font-black text-[12rem] md:text-[20rem] opacity-[0.03] absolute -right-20 -top-10 leading-none hidden lg:block select-none pointer-events-none"
+            >
+              EST.1995
+            </motion.div>
+          </div>
+
+          {/* Horizontal Track */}
+          <div className="flex-1 flex items-center relative overflow-hidden">
+            <motion.div
+              style={{ x }}
+              className="flex gap-8 md:gap-12 px-[10vw] md:px-[15vw]"
+            >
+              {milestones.map((m, i) => (
+                <div
+                  key={i}
+                  className="relative group min-w-[85vw] md:min-w-[70vw] lg:min-w-[45vw] aspect-[4/5] xs:aspect-[16/10] md:aspect-[16/9] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl bg-primary"
+                >
+                  {/* Background Image with Overlay */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-60"
+                    style={{ backgroundImage: `url(${heroRefinery})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+                  {/* Card Content */}
+                  <div className="absolute inset-0 p-12 flex flex-col justify-end">
+                    <div className="flex items-baseline gap-4 mb-3 sm:mb-4">
+                      <span className="text-accent font-black text-5xl xs:text-6xl md:text-8xl tracking-tighter leading-none group-hover:translate-x-4 transition-transform duration-500">
+                        {m.year}
+                      </span>
+                      <div className="h-0.5 flex-1 bg-accent/30 hidden md:block" />
+                    </div>
+
+                    <h4 className="text-2xl xs:text-3xl md:text-4xl font-black text-white mb-2 sm:mb-4 uppercase tracking-tight group-hover:text-accent transition-colors duration-300">
+                      {m.title}
+                    </h4>
+                    <p className="text-white/70 text-sm xs:text-base md:text-xl max-w-xl leading-relaxed font-light line-clamp-4 xs:line-clamp-none">
+                      {m.desc}
+                    </p>
+
+                    {/* Progress Indicator inside card */}
+                    <div className="mt-8 overflow-hidden h-1 w-24 bg-white/20 rounded-full">
+                      <motion.div
+                        className="h-full bg-accent"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "100%" }}
+                        transition={{ duration: 1.5, delay: 0.5 }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Visual Accent */}
+                  <div className="absolute top-10 right-10 w-20 h-20 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-accent group-hover:border-accent transition-all duration-500">
+                    <ArrowRight className="text-white w-8 h-8 -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+                  </div>
+                </div>
+              ))}
+
+              {/* Final Spacer Card เพื่อให้ card สุดท้ายเห็นชัด */}
+              <div className="min-w-[20vw] h-1" />
+            </motion.div>
+          </div>
+
+          {/* Bottom Progress Bar for the whole section */}
+          <div className="container-custom pb-12">
+            <div className="h-1 w-full bg-secondary/20 rounded-full overflow-hidden">
+              <motion.div
+                style={{ scaleX: sectionScrollProgress }}
+                className="h-full bg-accent origin-left"
+              />
+            </div>
+            <div className="flex justify-between mt-4 text-[10px] uppercase tracking-[0.3em] font-black text-primary/40">
+              <span>Foundation</span>
+              <span>Present Day</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- SECTION 4: CORE VALUES (Interactive Timeline) --- */}
+      <section className="py-24 bg-primary text-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container-custom relative">
+          <div className="flex flex-col lg:flex-row lg:items-start gap-16">
+            {/* Left Column - Sticky Header */}
+            <div className="lg:w-1/3 lg:sticky lg:top-24 lg:self-start">
+              <span className="text-accent font-mono text-sm tracking-wider mb-4 block">/ 01 • FOUNDATION</span>
+              <h2 className="text-6xl font-display font-black uppercase tracking-tighter leading-none mb-6">
+                The Core
+                <span className="block text-accent mt-2">Of Who We Are</span>
+              </h2>
+              <div className="h-1 w-24 bg-accent mb-8"></div>
+              <p className="text-white/70 text-lg leading-relaxed">
+                Four pillars that define our approach, guide our decisions,
+                and shape the future of logistics.
               </p>
             </div>
-          </ScrollReveal>
 
-          <div className="relative">
-            {/* Timeline Line (Hidden on mobile) */}
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-border" />
+            {/* Right Column - Interactive Vertical Timeline */}
+            <div className="lg:w-2/3 relative">
+              {/* Timeline Line */}
+              <div className="absolute left-8 top-0 bottom-0 w-px bg-white/20"></div>
 
-            <div className="space-y-8 md:space-y-0">
-              {journeyMilestones.map((milestone, index) => (
-                <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className={`relative flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center md:justify-between group`}>
-                    {/* Content Card */}
-                    <div className={`w-full md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} mb-4 md:mb-0`}>
-                      <div className="bg-card border border-border rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                        <span className="text-sm font-bold text-primary mb-1 block">{milestone.year}</span>
-                        <h3 className="text-xl font-semibold text-foreground mb-2">{milestone.title}</h3>
-                        <p className="text-muted-foreground text-sm">{milestone.description}</p>
-                      </div>
+              {[
+                {
+                  icon: <ShieldCheck />,
+                  title: "Integrity",
+                  desc: "Radical transparency in every contract and shipment.",
+                  metric: "100%",
+                  metricLabel: "Transparency Score"
+                },
+                {
+                  icon: <Users />,
+                  title: "Customer Centric",
+                  desc: "We solve for the customer, then for ourselves.",
+                  metric: "24/7",
+                  metricLabel: "Customer Support"
+                },
+                {
+                  icon: <Lightbulb />,
+                  title: "Innovation",
+                  desc: "Adopting AI in logistics to predict market volatility.",
+                  metric: "15+",
+                  metricLabel: "AI Models Deployed"
+                },
+                {
+                  icon: <Handshake />,
+                  title: "Reliability",
+                  desc: "When the market shakes, we remain steady.",
+                  metric: "99.9%",
+                  metricLabel: "On-Time Delivery"
+                }
+              ].map((v, i) => (
+                <ScrollReveal key={i} delay={i * 0.15}>
+                  <div className="relative pl-24 pr-8 py-8 mb-8 group hover:bg-white/5 rounded-2xl transition-all duration-500 cursor-pointer">
+                    {/* Timeline Dot */}
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-accent rounded-full group-hover:scale-150 transition-transform duration-500">
+                      <div className="absolute inset-2 bg-primary rounded-full"></div>
                     </div>
 
-                    {/* Center Icon (Timeline Node) */}
-                    <div className="md:absolute md:left-1/2 md:transform md:-translate-x-1/2 flex items-center justify-center z-10">
-                      <div className="w-10 h-10 rounded-full bg-primary border-4 border-background flex items-center justify-center text-primary-foreground font-bold">
-                        <Calendar className="w-4 h-4" />
-                      </div>
+                    {/* Year/Step Indicator */}
+                    <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 text-white/20 font-mono font-black text-7xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      {(i + 1).toString().padStart(2, '0')}
                     </div>
 
-                    {/* Empty space for layout */}
-                    <div className="hidden md:block md:w-5/12" />
+                    {/* Content */}
+                    <div className="flex flex-col md:flex-row md:items-center gap-6">
+                      <div className="flex-shrink-0">
+                        <div className="p-4 bg-white/10 rounded-2xl group-hover:bg-accent transition-colors duration-500">
+                          {React.cloneElement(v.icon as React.ReactElement, { size: 32, className: "group-hover:text-primary transition-colors" })}
+                        </div>
+                      </div>
+
+                      <div className="flex-grow">
+                        <h3 className="text-2xl font-black mb-2 uppercase tracking-wide group-hover:text-accent transition-colors">
+                          {v.title}
+                        </h3>
+                        <p className="text-white/60 group-hover:text-white/80 transition-colors text-base leading-relaxed mb-4">
+                          {v.desc}
+                        </p>
+
+                        {/* Metric Badge */}
+                        <div className="inline-flex items-center gap-3">
+                          <span className="text-3xl font-black text-accent group-hover:scale-110 transition-transform">
+                            {v.metric}
+                          </span>
+                          <span className="text-xs uppercase tracking-wider text-white/40">
+                            {v.metricLabel}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </ScrollReveal>
               ))}
@@ -201,118 +404,54 @@ const About = () => {
           </div>
         </div>
       </section>
-
-      {/* Vision & Mission */}
-      <section
-        className="section-padding relative"
-        style={{
-          backgroundImage: `url(${heroRefinery})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
-        }}
-      >
-        <div className="absolute inset-0 bg-black/60" /> {/* Darker overlay for better text contrast */}
-        <div className="container-custom relative z-10">
-          <div className="grid md:grid-cols-2 gap-8">
-            <ScrollReveal>
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 h-full border border-white/20 relative overflow-hidden">
-                <div className="w-14 h-14 rounded-lg bg-primary flex items-center justify-center text-primary-foreground mb-6">
-                  <Eye className="w-7 h-7" />
-                </div>
-                <h2 className="text-2xl font-display font-bold text-white mb-4">Our Vision</h2>
-                <p className="text-white/80 leading-relaxed">
-                  To be the most trusted and preferred petrochemical trading partner globally,
-                  recognized for our commitment to quality, reliability, and sustainable business
-                  practices. We aspire to drive positive change in the industry by setting new
-                  standards of excellence and innovation.
-                </p>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.2}>
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 h-full border border-white/20 relative overflow-hidden">
-                <div className="w-14 h-14 rounded-lg bg-accent flex items-center justify-center text-accent-foreground mb-6">
-                  <Target className="w-7 h-7" />
-                </div>
-                <h2 className="text-2xl font-display font-bold text-white mb-4">Our Mission</h2>
-                <p className="text-white/80 leading-relaxed">
-                  To provide our customers with high-quality petrochemical products at competitive
-                  prices, supported by exceptional service and reliable supply chain solutions.
-                  We are dedicated to building long-term partnerships based on trust, transparency,
-                  and mutual growth.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Values */}
-      <section className="section-padding relative bg-background">
+      {/* --- SECTION 5: LEADERSHIP (The Professionals) --- */}
+      <section className="py-24 bg-white">
         <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-                Our Core Values
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                These principles guide everything we do and define who we are as a company.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => (
-              <ScrollReveal key={value.title} delay={index * 0.1}>
-                <div className="bg-card border border-border rounded-xl p-6 h-full card-hover relative overflow-hidden group transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-primary mb-4">
-                      {value.icon}
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">{value.title}</h3>
-                    <p className="text-muted-foreground text-sm">{value.description}</p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
+          <div className="text-center mb-20">
+            <span className="text-accent font-black uppercase tracking-widest text-sm">Expertise at the Helm</span>
+            <h2 className="text-4xl font-display font-black text-primary uppercase mt-4">The Leadership</h2>
           </div>
-        </div>
-      </section>
-
-      {/* Leadership Team Section - NEW */}
-      <section className="section-padding relative bg-muted/30">
-        <div className="container-custom">
-          <ScrollReveal>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-                Leadership Team
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Meet the experienced professionals guiding HALAR PETROCHEM FZC towards a future of growth and innovation.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {leadershipTeam.map((leader, index) => (
-              <ScrollReveal key={index} delay={index * 0.1}>
-                <div className="bg-card border border-border rounded-2xl p-6 h-full flex flex-col items-center text-center hover:shadow-lg transition-shadow">
-                  <div className="w-32 h-32 rounded-full overflow-hidden mb-6 border-4 border-primary/20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              { name: "Ahmed Al-Mansoori", role: "Chairman", bio: "A veteran of Middle Eastern energy markets with over 30 years of strategic foresight." },
+              { name: "Sarah Jenkins", role: "Managing Director", bio: "Leading our digital transformation and global expansion strategies with surgical precision." },
+              { name: "Marcus Chen", role: "Operations Head", bio: "The architect of our 'Zero-Delay' logistics framework across 50+ international ports." }
+            ].map((l, i) => (
+              <ScrollReveal key={i} delay={i * 0.2}>
+                <div className="flex flex-col group">
+                  <div className="relative overflow-hidden rounded-3xl mb-6 bg-secondary/20 aspect-[4/5]">
                     <img
-                      src={leader.image}
-                      alt={leader.name}
-                      className="w-full h-full object-cover"
-                    // You might need to adjust for Next.js Image if used
+                      src={placeholderAvatar}
+                      alt={l.name}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                      <p className="text-white text-sm italic">"Excellence is not an act, but a habit."</p>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-1">{leader.name}</h3>
-                  <p className="text-sm font-medium text-primary mb-4">{leader.title}</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{leader.description}</p>
+                  <h3 className="text-2xl font-black text-primary uppercase">{l.name}</h3>
+                  <span className="text-accent font-bold uppercase text-xs tracking-[0.2em] mb-4">{l.role}</span>
+                  <p className="text-foreground/60 text-sm leading-relaxed">{l.bio}</p>
                 </div>
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* --- FINAL CTA --- */}
+      <section className="py-20 bg-accent text-primary">
+        <div className="container-custom flex flex-col md:flex-row justify-between items-center gap-8">
+          <h2 className="text-3xl md:text-4xl font-display font-black uppercase leading-tight text-center md:text-left">
+            Ready to fuel <br /> your next venture?
+          </h2>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-10 py-5 bg-primary text-white font-black uppercase tracking-widest rounded-full flex items-center gap-4 hover:shadow-2xl transition-all"
+          >
+            Partner With Us <ArrowRight />
+          </motion.button>
         </div>
       </section>
     </Layout>

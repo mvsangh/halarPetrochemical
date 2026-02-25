@@ -39,8 +39,8 @@ const OilProducts = () => {
                         transition={{ duration: 0.6 }}
                         className="max-w-4xl pt-12"
                     >
-                        <h1 className="text-5xl md:text-7xl font-black text-white mb-8 uppercase tracking-tight">
-                            <SplitText text="Oil" /> <span className="text-red-600"><SplitText text="Portfolio" /></span>
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-8 uppercase tracking-tight leading-[0.9]">
+                            <SplitText text="Oil" /> <span className="text-primary"><SplitText text="Portfolio" /></span>
                         </h1>
                         <p className="text-xl text-white/80 leading-relaxed max-w-2xl">
                             Discover our range of high-performance fuel and industrial oils designed for reliability and efficiency.
@@ -49,15 +49,15 @@ const OilProducts = () => {
                 </div>
             </section>
 
-            <section className="py-24 bg-white">
+            <section className="py-24 bg-background">
                 <div className="container-custom">
                     <ScrollReveal>
                         <div className="flex items-center gap-6 mb-12">
-                            <div className="h-[1px] w-12 bg-red-600" />
+                            <div className="h-[1px] w-12 bg-primary" />
                             <h2 className="text-2xl md:text-4xl font-black text-primary uppercase tracking-tight">
                                 Petrochemical Oils
                             </h2>
-                            <div className="flex-grow h-[1px] bg-gray-100 ml-4 hidden md:block" />
+                            <div className="flex-grow h-[1px] bg-secondary/10 ml-4 hidden md:block" />
                         </div>
                     </ScrollReveal>
 

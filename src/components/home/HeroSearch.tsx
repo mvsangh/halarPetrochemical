@@ -48,9 +48,9 @@ const HeroSearch = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="w-full max-w-5xl mx-auto -mt-12 sm:-mt-20 relative z-20 px-4"
         >
-            <div className="bg-white rounded-2xl shadow-2xl p-4 sm:p-8 flex flex-col md:flex-row gap-4 items-end border border-gray-100">
+            <div className="bg-background rounded-2xl shadow-2xl p-4 sm:p-8 flex flex-col md:flex-row gap-4 items-end border border-secondary/20">
                 <div className="flex-1 w-full space-y-2">
-                    <label className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest pl-1">
+                    <label className="text-[10px] sm:text-xs font-bold text-foreground/50 uppercase tracking-widest pl-1">
                         Industry Name
                     </label>
                     <select
@@ -59,15 +59,15 @@ const HeroSearch = () => {
                             setSelectedIndustry(e.target.value);
                             setSelectedProduct(""); // Reset product when industry changes
                         }}
-                        className="w-full bg-gray-50 border-none rounded-xl h-12 px-4 text-gray-700 text-sm focus:ring-2 focus:ring-accent/50 transition-all appearance-none cursor-pointer"
+                        className="w-full bg-secondary/10 border-none rounded-xl h-12 px-4 text-foreground text-sm focus:ring-2 focus:ring-accent/50 transition-all appearance-none cursor-pointer"
                         style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='hsl(var(--primary))'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
                             backgroundRepeat: 'no-repeat',
                             backgroundPosition: 'right 1rem center',
                             backgroundSize: '1.25rem'
                         }}
                     >
-                        <option value="">All Industries</option>
+                        <option value="">Select Industry</option>
                         {industriesList.map(industry => (
                             <option key={industry} value={industry}>{industry}</option>
                         ))}
@@ -75,22 +75,25 @@ const HeroSearch = () => {
                 </div>
 
                 <div className="flex-1 w-full space-y-2">
-                    <label className="text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest pl-1">
+                    <label className="text-[10px] sm:text-xs font-bold text-foreground/50 uppercase tracking-widest pl-1">
                         Product Name
                     </label>
                     <select
                         value={selectedProduct}
                         onChange={(e) => setSelectedProduct(e.target.value)}
-                        className="w-full bg-gray-50 border-none rounded-xl h-12 px-4 text-gray-700 text-sm focus:ring-2 focus:ring-accent/50 transition-all appearance-none cursor-pointer"
+                        disabled={!selectedIndustry} // Disable product dropdown if no industry selected
+                        className="w-full bg-secondary/10 border-none rounded-xl h-12 px-4 text-foreground text-sm focus:ring-2 focus:ring-accent/50 transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                         style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='hsl(var(--primary))'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
                             backgroundRepeat: 'no-repeat',
                             backgroundPosition: 'right 1rem center',
                             backgroundSize: '1.25rem'
                         }}
                     >
-                        <option value="">Select Product</option>
-                        {filteredProducts.map(product => (
+                        <option value="">
+                            {selectedIndustry ? "Select Product" : "Select industry first"}
+                        </option>
+                        {selectedIndustry && filteredProducts.map(product => (
                             <option key={product.name} value={product.name}>{product.name}</option>
                         ))}
                     </select>
@@ -98,11 +101,11 @@ const HeroSearch = () => {
 
                 <button
                     onClick={handleSearch}
-                    disabled={!selectedProduct && !selectedIndustry}
-                    className="w-full md:w-auto bg-accent hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed text-white px-10 h-12 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-accent/20"
+                    disabled={!selectedProduct} // Only require product selection
+                    className="w-full md:w-auto bg-accent hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed text-accent-foreground px-10 h-12 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-accent/20"
                 >
                     <Search className="w-4 h-4" />
-                    Search
+                    Get Quote
                 </button>
             </div>
         </motion.div>

@@ -58,7 +58,7 @@ interface ConnectionPoint {
 
 export default function WorldMap({
     connections = defaultConnections,
-    lineColor = '#3b82f6'
+    lineColor = '#D55534'
 }: WorldMapProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const animationRef = useRef<number>(0);
@@ -572,34 +572,34 @@ export default function WorldMap({
     const { fontSize } = getDimensions();
 
     return (
-        <section className="py-8 md:py-12 lg:py-20 bg-[#f7f7f7] overflow-hidden">
+        <section className="py-8 md:py-12 lg:py-20 bg-background overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12 md:mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 text-amber-500 font-bold mb-4"
+                        className="inline-flex items-center gap-2 text-accent font-bold mb-4"
                     >
-                        <div className="w-8 h-[1px] bg-amber-500/30" />
+                        <div className="w-8 h-[1px] bg-accent/30" />
                         <span className="text-[10px] sm:text-xs tracking-[0.3em] uppercase">Global Network Map</span>
-                        <div className="w-8 h-[1px] bg-amber-500/30" />
+                        <div className="w-8 h-[1px] bg-accent/30" />
                     </motion.div>
 
                     <motion.h2
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight"
+                        className="text-3xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 tracking-tight"
                     >
-                        Worldwide <span className="text-amber-500">Connections</span>
+                        Worldwide <span className="text-accent">Connections</span>
                     </motion.h2>
 
                     <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-slate-500 text-sm md:text-lg max-w-3xl mx-auto font-medium leading-relaxed"
+                        className="text-foreground/70 text-sm md:text-lg max-w-3xl mx-auto font-medium leading-relaxed"
                     >
                         Interactive visualization of our global supply chain network connecting
                         major markets and distribution hubs worldwide.
@@ -624,11 +624,11 @@ export default function WorldMap({
                             className={`absolute ${windowSize.width < 768
                                 ? 'inset-x-4 top-0 mx-auto'
                                 : 'top-10 right-10'
-                                } bg-white border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-2xl p-5 max-w-xs z-10`}
+                                } bg-background border border-secondary/20 shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-2xl p-5 max-w-xs z-10`}
                         >
-                            <div className="flex items-center gap-3 mb-4 border-b border-slate-50 pb-3">
-                                <div className="w-2.5 h-2.5 bg-amber-500 rounded-full animate-pulse" />
-                                <h3 className="text-slate-900 font-black text-sm uppercase tracking-wider">
+                            <div className="flex items-center gap-3 mb-4 border-b border-secondary/10 pb-3">
+                                <div className="w-2.5 h-2.5 bg-accent rounded-full animate-pulse" />
+                                <h3 className="text-foreground font-black text-sm uppercase tracking-wider">
                                     {hoveredPoint}
                                 </h3>
                             </div>
@@ -637,10 +637,10 @@ export default function WorldMap({
                                     .filter(conn => conn.start.label === hoveredPoint || conn.end.label === hoveredPoint)
                                     .map((conn, idx) => (
                                         <div key={idx} className="flex flex-col gap-0.5">
-                                            <span className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">
+                                            <span className="text-[9px] font-bold text-foreground/40 uppercase tracking-tighter">
                                                 {conn.start.label === hoveredPoint ? 'Outbound' : 'Inbound'}
                                             </span>
-                                            <span className="text-[11px] font-bold text-slate-700">
+                                            <span className="text-[11px] font-bold text-foreground/80">
                                                 {conn.start.label === hoveredPoint ? conn.end.label : conn.start.label}
                                             </span>
                                         </div>
@@ -653,9 +653,9 @@ export default function WorldMap({
                 {/* Stats Cards - Gradient Removed, Solid Professional Theme */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {[
-                        { label: 'Active Routes', value: `${connections.length * 2}+`, sub: 'Direct global links', color: 'text-amber-500' },
-                        { label: 'Countries Covered', value: countries.length, sub: 'Global footprint', color: 'text-slate-900' },
-                        { label: 'Max Connections', value: Math.max(...connectionPoints.map(p => p.connections), 0), sub: 'Major hub capacity', color: 'text-slate-900' }
+                        { label: 'Active Routes', value: `${connections.length * 2}+`, sub: 'Direct global links', color: 'text-accent' },
+                        { label: 'Countries Covered', value: countries.length, sub: 'Global footprint', color: 'text-foreground' },
+                        { label: 'Max Connections', value: Math.max(...connectionPoints.map(p => p.connections), 0), sub: 'Major hub capacity', color: 'text-foreground' }
                     ].map((stat, i) => (
                         <motion.div
                             key={i}
@@ -663,18 +663,16 @@ export default function WorldMap({
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-amber-100 transition-all duration-500 group relative"
+                            className="bg-background border border-secondary/20 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-accent/20 transition-all duration-500 group relative"
                         >
-                            {/* Clean hover indicator bar */}
-                            <div className="absolute top-0 left-0 w-1 h-full bg-amber-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-l-2xl" />
-
+                            <div className="absolute top-0 left-0 w-1 h-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity rounded-l-2xl" />
                             <div className={`text-4xl md:text-5xl font-black ${stat.color} mb-3 tracking-tighter`}>
                                 {stat.value}
                             </div>
-                            <div className="text-xs font-black text-slate-900 uppercase tracking-[0.15em] mb-1">
+                            <div className="text-xs font-black text-foreground uppercase tracking-[0.15em] mb-1">
                                 {stat.label}
                             </div>
-                            <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-tight">
+                            <div className="text-[10px] text-foreground/40 font-semibold uppercase tracking-tight">
                                 {stat.sub}
                             </div>
                         </motion.div>
