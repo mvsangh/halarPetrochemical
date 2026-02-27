@@ -17,7 +17,7 @@ const SEO = ({
   ogType = 'website',
   keywords,
 }: SEOProps) => {
-  const siteName = 'HALAR PETROCHEM FZC';
+  const siteName = 'VANTARA ENERGY';
   const fullTitle = `${title} | ${siteName}`;
 
   return (
@@ -26,14 +26,14 @@ const SEO = ({
       <meta name="description" content={description} />
       {keywords && <meta name="keywords" content={keywords} />}
       {canonical && <link rel="canonical" href={canonical} />}
-      
+
       {/* Open Graph */}
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={siteName} />
       {ogImage && <meta property="og:image" content={ogImage} />}
-      
+
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />

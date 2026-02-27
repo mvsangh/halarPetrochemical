@@ -143,14 +143,9 @@ const Navbar = () => {
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                       />
                                       <div className="absolute bottom-6 left-6 z-20">
-                                        <div className="flex items-center gap-3 mb-2">
-                                          <div className="p-2 bg-primary/20 backdrop-blur-md rounded-lg text-white">
-                                            {child.icon}
-                                          </div>
-                                          <h4 className="text-2xl font-bold text-white tracking-tight">
-                                            {child.name}
-                                          </h4>
-                                        </div>
+                                        <h4 className="text-2xl font-bold text-white tracking-tight">
+                                          {child.name}
+                                        </h4>
                                         <div className="flex items-center gap-2 text-white/90 font-medium text-sm group-hover:text-white transition-colors">
                                           View Portfolio
                                           <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-2" />

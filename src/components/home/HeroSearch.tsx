@@ -80,7 +80,16 @@ const HeroSearch = () => {
                     </label>
                     <select
                         value={selectedProduct}
-                        onChange={(e) => setSelectedProduct(e.target.value)}
+                        onChange={(e) => {
+                            const productName = e.target.value;
+                            setSelectedProduct(productName);
+                            if (productName) {
+                                const product = products.find(p => p.name === productName);
+                                if (product) {
+                                    navigate(product.href);
+                                }
+                            }
+                        }}
                         disabled={!selectedIndustry} // Disable product dropdown if no industry selected
                         className="w-full bg-secondary/10 border-none rounded-xl h-12 px-4 text-foreground text-sm focus:ring-2 focus:ring-accent/50 transition-all appearance-none cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                         style={{
@@ -105,7 +114,7 @@ const HeroSearch = () => {
                     className="w-full md:w-auto bg-accent hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed text-accent-foreground px-10 h-12 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-accent/20"
                 >
                     <Search className="w-4 h-4" />
-                    Get Quote
+                    Explore Product
                 </button>
             </div>
         </motion.div>

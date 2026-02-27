@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* HALAR PETROCHEM FZC Design System */
+/* HALAR PETROCHEM FZC Design System - Humanly Designed Edition */
 
 @layer base {
   :root {
@@ -51,10 +51,16 @@
     --brand-cream: 42 100% 90%;
     --brand-grey: 0 0% 22%;
 
+    /* Typography Tones */
+    --font-serif: 'Playfair Display', serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Bricolage Grotesque', sans-serif;
+
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(194 88% 30%) 0%, hsl(194 88% 20%) 100%);
     --gradient-accent: linear-gradient(135deg, hsl(12 67% 52%) 0%, hsl(12 67% 42%) 100%);
     --gradient-hero: linear-gradient(180deg, hsl(194 88% 30%) 0%, hsl(194 88% 20%) 100%);
+    --gradient-grain: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
 
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 hsl(194 88% 10% / 0.05);
@@ -98,7 +104,7 @@
 @layer base {
   * {
     @apply border-border;
-    font-family: 'Bricolage Grotesque', sans-serif !important;
+    font-family: var(--font-display) !important;
   }
 
   html {

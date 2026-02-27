@@ -13,9 +13,9 @@ const NotFound = () => {
 
   return (
     <Layout>
-      <SEO 
-        title="Page Not Found" 
-        description="The page you are looking for does not exist. Return to HALAR PETROCHEM FZC homepage."
+      <SEO
+        title="Page Not Found"
+        description="The page you are looking for does not exist. Return to VANTARA ENERGY homepage."
       />
       <div className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center px-4">
@@ -29,8 +29,8 @@ const NotFound = () => {
               <Home className="w-4 h-4" />
               Go to Homepage
             </Link>
-            <button 
-              onClick={() => window.history.back()} 
+            <button
+              onClick={() => window.history.back()}
               className="btn-outline flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />

@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
-import { Menu, X, ChevronDown, ArrowRight, Droplets, Fuel, Globe, Zap } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Droplets, Fuel, Globe, Zap, Search } from 'lucide-react';
+import InlineSearch from '@/components/common/InlineSearch';
 import logo from '@/assets/logo.png';
-import fuelOilImg from '@/assets/products/fuel-oil.png';
-import naphthaImg from '@/assets/products/naphtha.png';
+import fuelOilImg from '@/assets/products/oils-bg.png';
+import naphthaImg from '@/assets/products/chemicals-bg.png';
 import { cn } from '@/lib/utils';
 
 const navigation = [
@@ -39,6 +40,8 @@ const ModernNavbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+    const [isSearchExpanded, setIsSearchExpanded] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const location = useLocation();
 
@@ -60,6 +63,7 @@ const ModernNavbar = () => {
     useEffect(() => {
         setIsOpen(false);
         setActiveDropdown(null);
+        setMobileDropdown(null);
     }, [location.pathname]);
 
     // Lock body scroll when mobile menu is open
@@ -92,12 +96,9 @@ const ModernNavbar = () => {
                 )}>
 
                     {/* Logo Section */}
-                    <Link to="/" className="flex items-center gap-3 group z-10 py-1">
+                    <Link to="/" className="flex items-center gap-3 group z-10 py-1 shrink-0">
                         <img src={logo} alt="Logo" className="h-10 md:h-12 w-auto transition-transform group-hover:scale-105" />
-                        <div className="hidden sm:block">
-                            <p className="text-sm font-black tracking-widest uppercase leading-none text-primary">Halar</p>
-                            <p className="text-[10px] font-bold tracking-widest text-accent uppercase italic">Petrochem</p>
-                        </div>
+
                     </Link>
 
                     {/* Desktop Menu */}
@@ -162,20 +163,14 @@ const ModernNavbar = () => {
                                                     to={child.href}
                                                     className="group/product flex flex-col items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl transition-all duration-300 hover:bg-secondary/10 border border-transparent hover:border-secondary/20"
                                                 >
-                                                    {/* Properly Sized Image Container - cinematic 16:8 ratio */}
-                                                    <div className="w-full aspect-[16/8] rounded-xl overflow-hidden bg-secondary/5 border border-secondary/20 relative shadow-sm">
+                                                    {/* Properly Sized Image Container - cinematic 16:9 ratio */}
+                                                    <div className="w-full aspect-video rounded-xl overflow-hidden bg-secondary/5 border border-secondary/20 relative shadow-sm">
                                                         <img
                                                             src={child.image}
                                                             alt={child.name}
-                                                            className="w-full h-full object-cover group-hover/product:scale-105 transition-transform duration-700 ease-in-out"
+                                                            className="w-full h-full object-cover group-hover/product:scale-105 transition-transform duration-700 ease-in-out bg-transparent"
                                                         />
-                                                        <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60" />
-
-                                                        <div className="absolute bottom-3 left-3">
-                                                            <div className="p-1.5 sm:p-2 bg-background/95 backdrop-blur-md rounded-lg shadow-lg text-accent">
-                                                                {child.icon}
-                                                            </div>
-                                                        </div>
+                                                        <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60 pointer-events-none" />
                                                     </div>
 
                                                     <div className="space-y-1 sm:space-y-1.5 px-0.5 w-full">
@@ -197,21 +192,17 @@ const ModernNavbar = () => {
                                         <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-secondary/20 flex items-center justify-between">
                                             <div className="flex gap-4 sm:gap-8">
                                                 <div className="flex items-center gap-2 sm:gap-2.5">
-                                                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
-                                                        <Globe size={14} />
-                                                    </div>
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                                                     <span className="text-[9px] sm:text-[10px] font-black text-foreground uppercase tracking-widest leading-none">Global Logistics</span>
                                                 </div>
                                                 <div className="flex items-center gap-2 sm:gap-2.5">
-                                                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
-                                                        <Zap size={14} />
-                                                    </div>
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                                                     <span className="text-[9px] sm:text-[10px] font-black text-foreground uppercase tracking-widest leading-none">ISO 9001 Certified</span>
                                                 </div>
                                             </div>
                                             <div className="hidden md:flex flex-col items-end opacity-20">
                                                 <span className="text-[10px] font-black text-primary uppercase tracking-[0.5em] select-none">
-                                                    HALAR
+                                                    VANTARA
                                                 </span>
                                             </div>
                                         </div>
@@ -222,19 +213,21 @@ const ModernNavbar = () => {
                     </AnimatePresence>
 
                     {/* CTA Section */}
-                    <div className="flex items-center gap-4 z-10">
-                        <Link to="/contact" className={cn(
-                            "hidden md:flex px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 shadow-lg",
-                            "bg-primary text-primary-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-accent/20 active:scale-95"
-                        )}>
-                            Get a Quote
-                        </Link>
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="lg:hidden p-2 text-primary bg-secondary/10 hover:bg-secondary/20 rounded-xl transition-colors"
-                        >
-                            {isOpen ? <X size={20} /> : <Menu size={20} />}
-                        </button>
+                    <div className="flex items-center gap-2 sm:gap-4 z-10">
+                        <InlineSearch onExpandChange={setIsSearchExpanded} />
+
+                        {!isSearchExpanded && (
+                            <motion.button
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.2 }}
+                                onClick={() => setIsOpen(!isOpen)}
+                                className="lg:hidden p-2 text-primary bg-secondary/10 hover:bg-secondary/20 rounded-xl transition-colors shrink-0"
+                            >
+                                {isOpen ? <X size={20} /> : <Menu size={20} />}
+                            </motion.button>
+                        )}
                     </div>
                 </nav>
             </div>
@@ -261,48 +254,74 @@ const ModernNavbar = () => {
                                 </button>
                             </div>
 
-                            <div className="flex flex-col gap-6 sm:gap-8">
+                            <div className="flex flex-col gap-4 sm:gap-6">
                                 {navigation.map((item, idx) => (
                                     <motion.div
                                         key={item.name}
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: idx * 0.1 + 0.2 }}
+                                        className="relative"
                                     >
-                                        <Link
-                                            to={item.href}
-                                            className="text-4xl sm:text-5xl font-black text-primary hover:text-accent transition-colors uppercase tracking-tight"
-                                            onClick={() => setIsOpen(false)}
-                                        >
-                                            {item.name}
-                                        </Link>
-                                        {item.children && (
-                                            <div className="mt-4 sm:mt-6 ml-4 flex flex-col gap-4 sm:gap-5 border-l-2 sm:border-l-3 border-accent/20 pl-6 sm:pl-8">
-                                                {item.children.map((child) => (
-                                                    <Link
-                                                        key={child.name}
-                                                        to={child.href}
-                                                        className="group flex items-center gap-3 text-lg sm:text-xl font-bold text-foreground/50 hover:text-accent transition-colors"
-                                                        onClick={() => setIsOpen(false)}
-                                                    >
-                                                        <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                        {child.name}
-                                                    </Link>
-                                                ))}
-                                            </div>
-                                        )}
+                                        <div className="flex items-center justify-between">
+                                            <Link
+                                                to={item.href}
+                                                className="text-3xl sm:text-4xl font-black text-primary hover:text-accent transition-colors uppercase tracking-tight"
+                                                onClick={() => setIsOpen(false)}
+                                            >
+                                                {item.name}
+                                            </Link>
+                                            {item.children && (
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        setMobileDropdown(mobileDropdown === item.name ? null : item.name);
+                                                    }}
+                                                    className="p-4 text-primary bg-secondary/5 rounded-xl transition-all"
+                                                >
+                                                    <ChevronDown size={24} className={cn("transition-transform duration-300", mobileDropdown === item.name && "rotate-180")} />
+                                                </button>
+                                            )}
+                                        </div>
+
+                                        <AnimatePresence>
+                                            {item.children && mobileDropdown === item.name && (
+                                                <motion.div
+                                                    initial={{ height: 0, opacity: 0 }}
+                                                    animate={{ height: "auto", opacity: 1 }}
+                                                    exit={{ height: 0, opacity: 0 }}
+                                                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                                                    className="overflow-hidden"
+                                                >
+                                                    <div className="mt-4 ml-4 flex flex-col gap-4 border-l-2 border-accent/20 pl-6">
+                                                        {item.children.map((child) => (
+                                                            <Link
+                                                                key={child.name}
+                                                                to={child.href}
+                                                                className="group flex items-center gap-3 text-lg font-bold text-foreground/50 hover:text-accent transition-colors"
+                                                                onClick={() => setIsOpen(false)}
+                                                            >
+                                                                <span className="w-1.5 h-1.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                                {child.name}
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
                                     </motion.div>
                                 ))}
                             </div>
 
+                            {/* Mobile Branding Watermark */}
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 pointer-events-none opacity-[0.03] select-none z-[-1]">
+                                <span className="text-[12rem] font-black uppercase tracking-tighter leading-none whitespace-nowrap">
+                                    EST . 1995
+                                </span>
+                            </div>
+
                             <div className="mt-12 sm:mt-auto pt-8 pb-6 border-t border-secondary/20">
-                                <Link
-                                    to="/contact"
-                                    className="w-full bg-primary text-primary-foreground py-5 sm:py-6 rounded-[1.5rem] sm:rounded-[2rem] flex items-center justify-center font-black uppercase tracking-widest text-xs sm:text-sm shadow-xl shadow-primary/10 active:scale-95 transition-transform"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    Get Professional Quote
-                                </Link>
+                                <InlineSearch isMobile />
                             </div>
                         </div>
                     </motion.div>

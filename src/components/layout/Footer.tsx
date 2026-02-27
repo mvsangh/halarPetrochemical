@@ -28,7 +28,7 @@ const Footer = () => {
             <Link to="/" className="inline-block">
               <img
                 src={logo}
-                alt="HALAR PETROCHEM FZC"
+                alt="VANTARA ENERGY"
                 className="h-14 w-auto brightness-0 invert"
               />
             </Link>
@@ -85,11 +85,11 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:info@halarpetrochem.com"
+                  href="mailto:info@vantaraenergy.com"
                   className="flex items-center gap-3 text-primary-foreground/80 hover:text-accent transition-colors"
                 >
                   <Mail className="w-5 h-5 text-accent flex-shrink-0" />
-                  info@halarpetrochem.com
+                  info@vantaraenergy.com
                 </a>
               </li>
               <li>
@@ -120,7 +120,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-primary-foreground/60 text-sm">
-              © {currentYear} HALAR PETROCHEM FZC. All rights reserved.
+              © {currentYear} VANTARA ENERGY. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <Link to="/about" className="text-primary-foreground/60 hover:text-accent transition-colors">

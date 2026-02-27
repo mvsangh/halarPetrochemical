@@ -34,7 +34,7 @@ const contactInfo = [
   {
     icon: <Mail className="w-6 h-6" />,
     title: 'Email',
-    details: ['info@halarpetrochem.com', 'sales@halarpetrochem.com'],
+    details: ['info@vantaraenergy.com', 'sales@vantaraenergy.com'],
   },
   {
     icon: <Phone className="w-6 h-6" />,
@@ -83,8 +83,8 @@ const Contact = () => {
     <Layout>
       <SEO
         title="Contact Us"
-        description="Contact HALAR PETROCHEM FZC for inquiries about our petrochemical products. Get in touch for pricing, specifications, and partnership opportunities. Based in UAE Free Trade Zone."
-        keywords="contact HALAR PETROCHEM, petrochemical supplier contact, UAE oil trading, petrochemical inquiry"
+        description="Contact VANTARA ENERGY for inquiries about our petrochemical products. Get in touch for pricing, specifications, and partnership opportunities. Based in UAE Free Trade Zone."
+        keywords="contact VANTARA ENERGY, petrochemical supplier contact, UAE oil trading, petrochemical inquiry"
       />
 
 
@@ -286,7 +286,7 @@ const Contact = () => {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="HALAR PETROCHEM FZC Location"
+          title="VANTARA ENERGY Location"
         />
       </section>
     </Layout>

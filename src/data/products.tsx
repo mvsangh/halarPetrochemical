@@ -56,6 +56,17 @@ import SodiumCyanide from "@/assets/products/categories/SodiumCyanide.png"
 import HydrogenPeroxide from "@/assets/products/categories/HydrogenPeroxide.png"
 import TDI from "@/assets/products/categories/TDI.jpg"
 import IsopropylAlcohol from "@/assets/products/categories/IsopropylAlcohol.png"
+import FerricChloride from "@/assets/products/categories/FerricChloride.png"
+import CalciumHypochlorite from "@/assets/products/categories/CalciumHypochlorite.png"
+import SodiumBenzoate from "@/assets/products/categories/SodiumBenzoate.png"
+import PotassiumSorbate from "@/assets/products/categories/PotassiumSorbate.png"
+import StearicAcid from "@/assets/products/categories/StearicAcid.png"
+import ActivatedCarbon from "@/assets/products/categories/ActivatedCarbon.png"
+import HydrochloricAcid from "@/assets/products/categories/HydrochloricAcid.png"
+import SulphuricAcid from "@/assets/products/categories/SulphuricAcid.png"
+import SodiumSilicate from "@/assets/products/categories/SodiumSilicate.png"
+import SodiumNitrate from "@/assets/products/categories/SodiumNitrate.png"
+import SodiumSulphate from "@/assets/products/categories/SodiumSulphate.png"
 // Specific Product Images (Existing)
 import fuelOilImg from "@/assets/products/categories/Fule.jpg";
 import gasOilImg from "@/assets/products/categories/gasoli.jpg";
@@ -1516,39 +1527,6 @@ export const products: Product[] = [
         industries: ['Gold & Silver Mining', 'Metallurgy', 'Electroplating', 'Chemical Manufacturing'],
         handling: 'EXTREMELY TOXIC AND FATAL IF INGESTED, INHALED, OR ABSORBED THROUGH SKIN. Handle only in controlled industrial environments by trained personnel. Use full PPE including chemical-resistant gloves, protective clothing, and respiratory protection. Store in dry, secure, well-ventilated areas away from acids and moisture. Emergency response procedures and cyanide antidote kits must be readily available.'
     },
-    {
-        name: 'Activated Carbon',
-        description: 'High-surface-area porous carbon specifically engineered for gold recovery, water purification, and industrial adsorption applications.',
-        href: '/products/activated-carbon',
-        backgroundImage: miningImg,
-        icon: <Box className="w-6 h-6" />,
-        slug: 'activated-carbon',
-        category: 'Mining Industry Chemicals',
-        fullDescription: 'Activated Carbon is a highly porous form of carbon produced from coconut shell, coal, or wood and processed to develop an extensive internal pore structure. It provides exceptional adsorption capacity due to its large surface area (typically 900–1200 m²/g). In the mining industry, it is widely used in Carbon-in-Pulp (CIP), Carbon-in-Leach (CIL), and Carbon-in-Column (CIC) processes for efficient gold recovery. It is also used in water and air purification systems to remove organic compounds, chlorine, and contaminants.',
-        uses: [
-            'Gold recovery in CIP, CIL, and CIC processes',
-            'Drinking water and wastewater treatment',
-            'Air and gas purification systems',
-            'Decolorization and purification in chemical processing',
-            'Food and beverage purification applications'
-        ],
-        features: [
-            'High surface area (900–1200 m²/g)',
-            'Excellent gold adsorption efficiency',
-            'High hardness and low attrition loss',
-            'Controlled particle size distribution',
-            'Thermally regenerable for multiple reuse cycles'
-        ],
-        specifications: {
-            purity: 'Fixed carbon typically ≥ 85%',
-            packaging: '25 kg HDPE bags, 500 kg / 1000 kg jumbo bags',
-            casNumber: '7440-44-0',
-            formula: 'C'
-        },
-        certifications: ['ISO 9001 Manufacturing', 'NSF/ANSI 61 (Water Treatment Grade)'],
-        industries: ['Gold Mining', 'Water & Wastewater Treatment', 'Air & Gas Purification', 'Food & Beverage Processing'],
-        handling: 'Avoid dust generation and inhalation. Use local exhaust ventilation where necessary. Store in a dry, well-ventilated area away from moisture and strong oxidizing agents. Spent carbon may contain adsorbed hazardous materials and should be handled according to environmental regulations.'
-    },
 
     // Textile
     {
@@ -1617,6 +1595,172 @@ export const products: Product[] = [
         industries: ['Textile Dyeing & Processing', 'Pulp & Paper', 'Chemical Manufacturing', 'Mineral Processing'],
         handling: 'Store in tightly sealed containers in a cool, dry, and well-ventilated area. Protect from moisture, air, and heat sources. Avoid contact with acids and oxidizing agents. Use protective gloves and eye protection during handling.'
     },
+    {
+        name: 'Ferric Chloride',
+        description: 'Powerful inorganic coagulant used in water treatment and etching applications.',
+        href: '/products/ferric-chloride',
+        backgroundImage: FerricChloride,
+        icon: <Waves className="w-6 h-6" />,
+        slug: 'ferric-chloride',
+        category: 'Water Treatment Chemicals',
+        fullDescription: 'Ferric Chloride is a highly effective primary coagulant used in municipal and industrial water treatment. It is particularly efficient at removing heavy metals, phosphorus, and suspended solids.',
+        uses: ['Sewage treatment', 'Industrial effluent treatment', 'Etching of copper in PCB manufacturing', 'Drinking water purification'],
+        features: ['Excellent heavy metal removal', 'Effective at wide pH ranges', 'High-purity liquid/anhydrous forms'],
+        specifications: { purity: '40% solution / 98% anhydrous', casNumber: '7705-08-0', formula: 'FeCl3' },
+        industries: ['Water Treatment', 'Electronics', 'Chemical Manufacturing'],
+        handling: 'Highly corrosive and acidic. Store in plastic or rubber-lined containers. Use full acid-resistant PPE.'
+    },
+    {
+        name: 'Calcium Hypochlorite',
+        description: 'Potent disinfecting agent for water treatment and sanitation.',
+        href: '/products/calcium-hypochlorite',
+        backgroundImage: CalciumHypochlorite,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'calcium-hypochlorite',
+        category: 'Water Treatment Chemicals',
+        fullDescription: 'Calcium Hypochlorite is a widely used bleaching and disinfecting agent. It is a key chemical for swimming pool treatment and municipal water disinfection.',
+        uses: ['Pool water sanitation', 'Industrial bleaching', 'Drinking water disinfection'],
+        features: ['High chlorine content', 'Stable in solid form', 'Fast-acting sanitizer'],
+        specifications: { purity: '65-70% available chlorine', casNumber: '7778-54-3', formula: 'Ca(ClO)2' },
+        industries: ['Water Treatment', 'Sanitation', 'Textiles'],
+        handling: 'Strong oxidizer. Store away from organic materials and acids. May cause fire on contact with other chemicals.'
+    },
+    {
+        name: 'Sodium Benzoate',
+        description: 'Premium food-grade preservative for beverages and acidic foods.',
+        href: '/products/sodium-benzoate',
+        backgroundImage: SodiumBenzoate,
+        icon: <Utensils className="w-6 h-6" />,
+        slug: 'sodium-benzoate',
+        category: 'Food Industry Chemicals',
+        fullDescription: 'Sodium Benzoate is a common food preservative that inhibits the growth of potentially harmful bacteria, mold, and other microbes in food, particularly in acidic environments.',
+        uses: ['Carbonated drinks', 'Fruit juices', 'Salad dressings', 'Condiments'],
+        features: ['Effective antimicrobial agent', 'High water solubility', 'Safe for human consumption (GRAS)'],
+        specifications: { purity: '≥ 99%', casNumber: '532-32-1', formula: 'C7H5NaO2' },
+        industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
+        handling: 'Store in a cool, dry place. Keep containers tightly closed.'
+    },
+    {
+        name: 'Potassium Sorbate',
+        description: 'Versatile food-grade mold and yeast inhibitor.',
+        href: '/products/potassium-sorbate',
+        backgroundImage: PotassiumSorbate,
+        icon: <Utensils className="w-6 h-6" />,
+        slug: 'potassium-sorbate',
+        category: 'Food Industry Chemicals',
+        fullDescription: 'Potassium Sorbate is a white salt used as a food preservative to prevent the growth of molds and yeasts in many foods, such as cheese, wine, yogurt, and dried meats.',
+        uses: ['Bakery products', 'Dairy products', 'Wine making', 'Personal care products'],
+        features: ['Wide spectrum activity', 'Does not affect flavor or aroma', 'High stability'],
+        specifications: { purity: '≥ 99%', casNumber: '24634-61-5', formula: 'C6H7KO2' },
+        industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
+        handling: 'Hygroscopic. Protect from moisture and light.'
+    },
+    {
+        name: 'Stearic Acid',
+        description: 'Fundamental fatty acid for cosmetics, soaps, and industrial lubricants.',
+        href: '/products/stearic-acid',
+        backgroundImage: StearicAcid,
+        icon: <FlaskConical className="w-6 h-6" />,
+        slug: 'stearic-acid',
+        category: 'Cosmetics & Personal Care Chemicals',
+        fullDescription: 'Stearic Acid is a saturated fatty acid used to thicken and stabilize cosmetic formulations and as a primary raw material in soap making and industrial rubber processing.',
+        uses: ['Soap and detergent manufacturing', 'Cosmetic thickening agent', 'Rubber lubricant', 'Candle making'],
+        features: ['Excellent emulsification', 'Pearlizing agent in shampoos', 'Triple pressed grades available'],
+        specifications: { purity: '99%', casNumber: '57-11-4', formula: 'C18H36O2' },
+        industries: ['Cosmetics', 'Personal Care', 'Rubber', 'Chemical Manufacturing'],
+        handling: 'Store in a cool, dry area. Avoid inhalation of dust.'
+    },
+    {
+        name: 'Activated Carbon',
+        description: 'High-surface-area porous carbon specifically engineered for gold recovery and water purification.',
+        href: '/products/activated-carbon',
+        backgroundImage: ActivatedCarbon,
+        icon: <Box className="w-6 h-6" />,
+        slug: 'activated-carbon',
+        category: 'Mining Industry Chemicals',
+        fullDescription: 'Activated Carbon is a highly porous form of carbon produced from coconut shell, coal, or wood. In the mining industry, it is widely used for efficient gold recovery in CIP/CIL processes.',
+        uses: ['Gold recovery', 'Water purification', 'Air filtration'],
+        features: ['High surface area', 'Excellent adsorption', 'Low attrition loss'],
+        specifications: { purity: '≥ 85% fixed carbon', casNumber: '7440-44-0', formula: 'C' },
+        industries: ['Mining', 'Water Treatment', 'Environmental'],
+        handling: 'Avoid dust generation. Store in a dry, well-ventilated area.'
+    },
+    {
+        name: 'Hydrochloric Acid',
+        description: 'Versatile strong mineral acid used in mining, metal pickling, and chemical synthesis.',
+        href: '/products/hydrochloric-acid',
+        backgroundImage: HydrochloricAcid,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'hydrochloric-acid',
+        category: 'Mining Industry Chemicals',
+        fullDescription: 'Hydrochloric Acid (HCl) is a highly corrosive mineral acid with many industrial uses. It is used in mining for ore processing and in various chemical manufacturing reactions.',
+        uses: ['Metal pickling', 'Mining ore treatment', 'pH adjustment', 'Oil well acidizing'],
+        features: ['Strong acidity', 'Highly reactive', 'Clear/yellowish liquid'],
+        specifications: { purity: '30-37% concentration', casNumber: '7647-01-0', formula: 'HCl' },
+        industries: ['Mining', 'Metallurgy', 'Chemical Manufacturing'],
+        handling: 'EXTREMELY CORROSIVE. Fumes cause respiratory damage. Use full acid-proof PPE and specialized ventilation.'
+    },
+    {
+        name: 'Sulphuric Acid',
+        description: 'Critical industrial chemical for mineral processing, fertilizer production, and chemical synthesis.',
+        href: '/products/sulphuric-acid',
+        backgroundImage: SulphuricAcid,
+        icon: <Flame className="w-6 h-6" />,
+        slug: 'sulphuric-acid',
+        category: 'Mining Industry Chemicals',
+        fullDescription: 'Sulphuric Acid (H2SO4) is one of the most widely used chemicals globally. In mining, it is essential for the leaching of ores and the production of various sulfate chemicals.',
+        uses: ['Mineral leaching', 'Fertilizer production', 'Batteries', 'Chemical synthesis'],
+        features: ['Powerful dehydrating agent', 'Highly corrosive', 'Viscous liquid'],
+        specifications: { purity: '98% concentration', casNumber: '7664-93-9', formula: 'H2SO4' },
+        industries: ['Mining', 'Agriculture', 'Industrial Chemicals'],
+        handling: 'EXTREMELY CORROSIVE. Reacts violently with water. Handle with extreme caution using full contact PPE.'
+    },
+    {
+        name: 'Sodium Silicate',
+        description: 'Versatile "liquid glass" used as a binder, detergent builder, and mining flotation aid.',
+        href: '/products/sodium-silicate',
+        backgroundImage: SodiumSilicate,
+        icon: <Layers className="w-6 h-6" />,
+        slug: 'sodium-silicate',
+        category: 'Detergent & Chemical Raw Materials',
+        fullDescription: 'Sodium Silicate is used as a binder in cements, a builder in detergents, and a corrosion inhibitor in water treatment. It also acts as a dispersant in mining flotation.',
+        uses: ['Detergent building', 'Adhesives', 'Mining flotation', 'Water treatment'],
+        features: ['Strong binding properties', 'Adjustable silica/alkali ratio', 'Liquid or solid forms'],
+        specifications: { purity: 'Available as Neutral or Alkaline grades', casNumber: '1344-09-8', formula: 'Na2SiO3' },
+        industries: ['Detergents', 'Mining', 'Construction', 'Water Treatment'],
+        handling: 'Keep containers tightly closed. Highly alkaline; protect skin and eyes.'
+    },
+    {
+        name: 'Sodium Nitrate',
+        description: 'Oxidizing agent for glass, explosives, and industrial chemical formulations.',
+        href: '/products/sodium-nitrate',
+        backgroundImage: SodiumNitrate,
+        icon: <Box className="w-6 h-6" />,
+        slug: 'sodium-nitrate',
+        category: 'Detergent & Chemical Raw Materials',
+        fullDescription: 'Sodium Nitrate (NaNO3) is a white solid that is highly soluble in water. It is a powerful oxidizer used in several industrial processes, including glass making and as a chemical intermediate.',
+        uses: ['Glass manufacturing', 'Pyrotechnics', 'Enamel glazes', 'Industrial chemistry'],
+        features: ['Powerful oxidizer', 'High purity crystalline form', 'Fast-acting reagent'],
+        specifications: { purity: '≥ 99%', casNumber: '7631-99-4', formula: 'NaNO3' },
+        industries: ['Glass', 'Chemical Manufacturing', 'Industrial Processing'],
+        handling: 'Strong oxidizer. Store away from flammable materials and reducing agents.'
+    },
+    {
+        name: 'Sodium Sulphate',
+        description: 'Essential filler for detergents and processing aid for glass and textiles.',
+        href: '/products/sodium-sulphate',
+        backgroundImage: SodiumSulphate,
+        icon: <Layers className="w-6 h-6" />,
+        slug: 'sodium-sulphate',
+        category: 'Detergent & Chemical Raw Materials',
+        fullDescription: 'Sodium Sulphate (anhydrous) is used primarily as a filler in powdered household detergents and as a fining agent in the glass industry to remove air bubbles.',
+        uses: ['Powdered detergents', 'Glass manufacturing', 'Textile dyeing', 'Paper pulping'],
+        features: ['Inert filler', 'High purity anhydrous form', 'Free-flowing white powder'],
+        specifications: { purity: '≥ 99%', casNumber: '7757-82-6', formula: 'Na2SO4' },
+        industries: ['Detergents', 'Glass', 'Textiles', 'Paper'],
+        handling: 'Hygroscopic. Store in a dry area. Avoid dust generation.'
+    }
+    ,
 
     // Foam Industry
     {

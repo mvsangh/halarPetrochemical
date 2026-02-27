@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Box } from 'lucide-react';
 import SplitText from '@/components/ui/SplitText';
 
 interface ProductCardProps {
@@ -16,66 +16,65 @@ interface ProductCardProps {
 const ProductCard = ({ name, description, href, icon, index, backgroundImage, category }: ProductCardProps) => {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.8, delay: index * 0.05 }}
+      className="group h-full"
     >
       <Link
         to={href}
-        className="group block h-full bg-background border border-secondary/20 rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-500 flex flex-col"
+        className="relative h-full flex flex-col bg-white border-2 border-primary/5 hover:border-primary/20 transition-all duration-700 overflow-hidden"
       >
-        {/* Image Section - Top */}
-        <div className="relative aspect-[16/10] overflow-hidden bg-secondary/5">
+
+
+        {/* Image Container */}
+        <div className="relative aspect-[16/11] shrink-0 overflow-hidden bg-primary/5">
           {backgroundImage && (
             <img
               src={backgroundImage}
               alt={name}
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-105"
             />
           )}
-          {/* Subtle Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
 
-          {/* Icon - Overlaid on Image */}
-          <div className="absolute top-4 left-4">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-background/90 backdrop-blur-sm flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 shadow-sm">
-              {icon}
-            </div>
-          </div>
+          {/* Subtle Industrial Overlay */}
+          <div className="absolute inset-0 bg-primary/20 mix-blend-multiply opacity-0 group-hover:opacity-40 transition-opacity duration-700" />
+
         </div>
 
-        {/* Content Section - Bottom */}
-        <div className="p-8 flex flex-col flex-1 relative">
-          {/* Red line animation above content */}
-          <div className="absolute top-0 left-8 right-8 h-[2px] bg-primary/20 overflow-hidden">
-            <motion.div
-              className="absolute inset-0 bg-primary origin-left"
-              initial={{ scaleX: 0 }}
-              whileHover={{ scaleX: 1 }}
-              transition={{ duration: 0.5 }}
-            />
+        {/* Content Section */}
+        <div className="p-8 pb-10 flex-1 flex flex-col relative">
+          <div className="space-y-4 mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-px bg-accent" />
+              <span className="text-[10px] font-black uppercase tracking-[0.3em] text-accent">
+                {category || "INDUSTRIAL SOLUTION"}
+              </span>
+            </div>
+
+            <h3 className="text-3xl font-black text-primary leading-none uppercase tracking-tighter">
+              {name}
+            </h3>
           </div>
 
-          {category && (
-            <span className="inline-block px-3 py-1 mb-4 text-primary border border-primary/20 text-[10px] font-black uppercase tracking-[0.2em] rounded-full w-fit">
-              {category}
-            </span>
-          )}
-
-          <h3 className="text-xl font-black text-primary mb-3 group-hover:text-accent transition-colors uppercase tracking-tight">
-            <SplitText text={name} className="flex" />
-          </h3>
-
-          <p className="text-foreground/70 text-sm leading-relaxed flex-1 mb-6">
+          <p className="text-primary/60 text-sm font-light leading-relaxed line-clamp-2">
             {description}
           </p>
 
-          <div className="flex items-center gap-3 text-xs font-black uppercase tracking-[0.2em] text-primary group-hover:text-accent transition-colors">
-            Explore Specifications
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+          <div className="pt-8 mt-auto flex items-center justify-between">
+            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary/30 group-hover:text-primary transition-colors">
+              <span>Spec Sheets</span>
+              <ArrowRight className="w-3 h-3 group-hover:translate-x-2 transition-transform" />
+            </div>
+
+            {/* Corner Decorative Accent */}
+            <div className="w-4 h-4 border-r-2 border-b-2 border-primary/5 group-hover:border-accent transition-colors" />
           </div>
         </div>
+
+        {/* Industrial Border Reveal on Hover */}
+        <div className="absolute inset-0 border-2 border-accent scale-[1.02] opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 pointer-events-none" />
       </Link>
     </motion.article>
   );

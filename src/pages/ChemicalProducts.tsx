@@ -7,6 +7,7 @@ import ProductCard from '@/components/home/ProductCard';
 import SplitText from '@/components/ui/SplitText';
 import heroRefinery from "../assets/hero-refinery.jpg";
 import { products } from '@/data/products';
+import { ArrowRight, Beaker, Layers, ShieldCheck } from 'lucide-react';
 
 const ChemicalProducts = () => {
     const chemicalProducts = products.filter(p => p.category !== 'Petrochemicals');
@@ -26,66 +27,83 @@ const ChemicalProducts = () => {
     return (
         <Layout>
             <SEO
-                title="Chemical Products - HALAR PETROCHEM"
+                title="Chemical Products - VANTARA ENERGY"
                 description="Industrial-grade solvents, detergent raw materials, food chemicals, and specialty industrial compounds."
                 keywords="solvents, water treatment chemicals, food chemicals, industrial raw materials, UAE chemicals"
             />
 
-            <section
-                className="relative flex items-center min-h-[60vh] md:min-h-[70vh] pt-28 pb-16 overflow-hidden"
-                style={{
-                    backgroundImage: `url(${heroRefinery})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundAttachment: "fixed",
-                }}
-            >
-                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+            {/* --- CINEMATIC HERO --- */}
+            <section className="relative min-h-[80vh] flex items-center pt-20 overflow-hidden bg-[#050c0e]">
+                {/* Background Image with Mesh Gradient */}
+                <div className="absolute inset-0 z-0">
+                    <div
+                        className="absolute inset-0 bg-cover bg-center opacity-40"
+                        style={{ backgroundImage: `url(${heroRefinery})` }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#050c0e] via-[#050c0e]/80 to-transparent" />
+                    <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#050c0e] to-transparent" />
+                </div>
+
+                {/* Decorative Grid Overlay */}
+                <div className="absolute inset-0 z-0 opacity-[0.05]" style={{ backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
                 <div className="container-custom relative z-10">
-                    <Breadcrumbs items={[{ label: 'Products', href: '/products' }, { label: 'Chemicals' }]} dark={true} />
+                    <Breadcrumbs items={[{ label: 'Portfolio', href: '/products' }, { label: 'Chemical Solutions' }]} dark={true} />
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="max-w-4xl pt-12"
-                    >
-                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-8 uppercase tracking-tight leading-[0.9]">
-                            <SplitText text="Chemical" /> <span className="text-primary"><SplitText text="Portfolio" /></span>
-                        </h1>
-                        <p className="text-xl text-white/80 leading-relaxed max-w-2xl">
-                            Explore our comprehensive range of high-purity chemical solutions categorized by industry application.
-                        </p>
-                    </motion.div>
+                    <div className="grid lg:grid-cols-2 gap-20 items-center mt-12">
+                        <div className="space-y-10">
+
+                            <motion.h1
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.1 }}
+                                className="text-6xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.8] mb-8 max-w-[12ch]"
+                            >
+                                Chemical <br /> <span className="text-accent underline decoration-white/10 underline-offset-[16px]">Landscape.</span>
+                            </motion.h1>
+
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="text-xl text-white/60 leading-relaxed max-w-xl font-light"
+                            >
+                                From high-purity solvents to specialized detergent raw materials, our chemical portfolio is engineered for industrial scalability and uncompromising quality.
+                            </motion.p>
+                        </div>
+
+                    </div>
                 </div>
             </section>
 
-            <section className="py-24 bg-background">
+            {/* --- PRODUCT GRID --- */}
+            <section className="py-32 bg-white text-primary">
                 <div className="container-custom">
                     {categories.map((category, catIndex) => (
-                        <div key={category} className={catIndex > 0 ? "mt-32" : ""}>
+                        <div key={category} className={catIndex > 0 ? "mt-48" : ""}>
                             <ScrollReveal>
-                                <div className="flex items-center gap-6 mb-12">
-                                    <div className="h-[1px] w-12 bg-primary" />
-                                    <h2 className="text-2xl md:text-4xl font-black text-primary uppercase tracking-tight">
-                                        {category}
-                                    </h2>
-                                    <div className="flex-grow h-[1px] bg-secondary/10 ml-4 hidden md:block" />
+                                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+                                    <div className="space-y-4">
+                                        <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9]">
+                                            {category}
+                                        </h2>
+                                    </div>
                                 </div>
                             </ScrollReveal>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-primary/5">
                                 {groupedProducts[category].map((product, index) => (
-                                    <ProductCard
-                                        key={product.name}
-                                        name={product.name}
-                                        description={product.description}
-                                        href={product.href}
-                                        icon={product.icon}
-                                        index={index}
-                                        backgroundImage={product.backgroundImage}
-                                    />
+                                    <div key={product.name} className="border-r last:border-r-0 border-b border-primary/5">
+                                        <ProductCard
+                                            name={product.name}
+                                            description={product.description}
+                                            href={product.href}
+                                            icon={product.icon}
+                                            index={index}
+                                            backgroundImage={product.backgroundImage}
+                                            category={category}
+                                        />
+                                    </div>
                                 ))}
                             </div>
                         </div>

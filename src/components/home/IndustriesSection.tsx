@@ -1,17 +1,10 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { motion, useScroll, AnimatePresence } from "framer-motion";
+import { useNavigate, Link } from "react-router-dom";
+import { ArrowRight, X } from "lucide-react";
+import ScrollReveal from '@/components/ui/ScrollReveal';
 
 // Local asset imports
-import imgSolvents from "@/assets/products/categories/solvents.png";
-import imgMining from "@/assets/products/categories/mining.png";
-import imgWater from "@/assets/products/categories/water_treatment.png";
-import imgRawMaterials from "@/assets/products/categories/raw_materials.png";
-import imgCosmetics from "@/assets/products/categories/cosmetics.png";
-import imgTextile from "@/assets/products/categories/textile.png";
-import imgPrintingInk from "@/assets/products/categories/printing_ink.png";
-import imgFoam from "@/assets/products/categories/foam_industry.png";
-import imgPaint from "@/assets/products/categories/paint_coatings.png";
 import videoPetrochemicals from "@/assets/products/generated/pertollium.mp4";
 import videoFood from "@/assets/products/generated/foodindustry.mp4";
 import solventsvideo from "@/assets/products/generated/Solvents.mp4";
@@ -23,210 +16,300 @@ import printingink from "@/assets/products/generated/printingink.mp4"
 import foamvideo from "@/assets/products/generated/formind.mp4"
 import paintcaminacal from "@/assets/products/generated/paintcoating.mp4"
 import rowchical from "@/assets/products/generated/chemicalraw.mp4"
+import { products } from "@/data/products";
+
 const slides = [
     {
         name: "Petrochemicals",
-        video: videoPetrochemicals, // 👈 video instead of image
+        video: videoPetrochemicals,
+        description: "Premium-grade hydrocarbon products for energy, marine, and industrial manufacturing.",
+        specs: ["High Calorific Value", "ISO 8217 Compliant", "Reduced Emissions"],
+        metric: "Energy Grade"
     },
-    { name: "Food Industry Chemicals", video: videoFood },
-    { name: "Solvents", video: solventsvideo },
-    { name: "Mining Industry Chemicals", video: miningchem },
-    { name: "Water Treatment Chemicals", video: waterchem },
-    { name: "Detergent & Chemical Raw Materials", video: rowchical },
-    { name: "Cosmetics & Personal Care Chemicals", video: beautifyvideo },
-    { name: "Textile Industry Chemicals", video: texttali },
-    { name: "Printing Ink Chemicals", video: printingink },
-    { name: "Foam Industry Chemicals", video: foamvideo },
-    { name: "Paint & Coatings Chemicals", video: paintcaminacal },
+    {
+        name: "Solvents",
+        video: solventsvideo,
+        description: "High-purity industrial solvents for coatings, cleaning, and chemical synthesis.",
+        specs: ["Clear & Volatile", "Custom Blends", "ACS/USP Grades"],
+        metric: "Tech Grade"
+    },
+    {
+        name: "Detergent & Chemical Raw Materials",
+        video: rowchical,
+        description: "Essential surfactants and alkaline agents for household and industrial cleaning formulations.",
+        specs: ["High Active Matter", "Biodegradable", "Pure Alkalis"],
+        metric: "Base Chem"
+    },
+    {
+        name: "Water Treatment Chemicals",
+        video: waterchem,
+        description: "Industrial-scale purification and coagulation agents for municipal and industrial water systems.",
+        specs: ["Fast Coagulation", "High Purity", "NSF/ANSI 60"],
+        metric: "Fluid Tech"
+    },
+    {
+        name: "Food Industry Chemicals",
+        video: videoFood,
+        description: "Food-grade preservatives, acidulants, and stabilizers ensuring safety and quality.",
+        specs: ["USP/FCC Grade", "Kosher/Halal", "Elite Purity"],
+        metric: "Human Grade"
+    },
+    {
+        name: "Cosmetics & Personal Care Chemicals",
+        video: beautifyvideo,
+        description: "Sophisticated humectants and active ingredients for high-end skincare and personal care.",
+        specs: ["Derm-Compatible", "Hygroscopic", "USP/EP Grade"],
+        metric: "Fine Chem"
+    },
+    {
+        name: "Paint & Coatings Chemicals",
+        video: paintcaminacal,
+        description: "High-performance pigments, binders, and solvents for automotive and industrial finishes.",
+        specs: ["UV Resistant", "High Opacity", "Optimized Flow"],
+        metric: "Surface Tech"
+    },
+    {
+        name: "Mining Industry Chemicals",
+        video: miningchem,
+        description: "Advanced reagents and adsorption agents for efficient mineral extraction and metallurgy.",
+        specs: ["Gold Extraction", "High Hardness", "ICMC Compliant"],
+        metric: "Deep Tech"
+    },
+    {
+        name: "Textile Industry Chemicals",
+        video: texttali,
+        description: "Engineered bleaching and reducing agents for global fiber and fabric production.",
+        specs: ["Color Stable", "Fiber Safe", "Environmentally Friendly"],
+        metric: "Fiber Tech"
+    },
+    {
+        name: "Foam Industry Chemicals",
+        video: foamvideo,
+        description: "Precise diisocyanate and polyol systems for advanced upholstery and insulation foams.",
+        specs: ["Polyol Reactive", "Density Control", "Thermal Insulation"],
+        metric: "Polymer Tech"
+    },
+    {
+        name: "Printing Ink Chemicals",
+        video: printingink,
+        description: "Specific resins and fast-evaporating solvents optimized for high-speed printing systems.",
+        specs: ["Pigment Carrier", "Rapid Solvent Release", "High Gloss"],
+        metric: "Press Ops"
+    },
 ];
 
-const CARD_GAP = 20;
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet";
 
-/** Compute responsive card width + height based on viewport */
-function getCardDimensions(vw: number) {
-    if (vw < 640) {
-        // Mobile: show 1 card + peek at next (~80vw wide)
-        return { w: Math.round(vw * 0.8), h: Math.min(Math.round(vw * 1.1), 400) };
-    }
-    if (vw < 1024) {
-        // Tablet: ~42vw so ~2 cards visible
-        return { w: Math.round(vw * 0.42), h: 460 };
-    }
-    // Desktop: fixed 400–450px
-    return { w: 420, h: 520 };
-}
+import { forwardRef } from "react";
+
+const IndustryItem = forwardRef<HTMLDivElement, any>(
+    ({ item, isHovered, onMouseEnter, onMouseLeave, onClick, className, ...props }, ref) => (
+        <div
+            ref={ref}
+            className={`group cursor-pointer py-6 sm:py-8 relative flex flex-col justify-start ${className || ''}`}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+            onClick={(e) => {
+                if (onClick) onClick(e);
+                if (props.onClick) props.onClick(e);
+            }}
+            {...props}
+        >
+            {/* Top line container - using relative to position the animated line and arrow together */}
+            <div className="absolute top-0 left-0 right-0 flex items-center -translate-y-1/2">
+                <motion.div
+                    initial={false}
+                    animate={{
+                        width: isHovered ? "calc(100% - 32px)" : "100%",
+                    }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="h-[2px] bg-primary/20 group-hover:bg-accent transition-colors duration-300"
+                />
+                <motion.div
+                    initial={false}
+                    animate={{
+                        opacity: isHovered ? 1 : 0,
+                        x: isHovered ? 0 : -10
+                    }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute right-0 text-accent flex items-center justify-center"
+                >
+                    <ArrowRight size={20} className="stroke-[3px]" />
+                </motion.div>
+            </div>
+
+            <h3 className="text-xs sm:text-sm font-bold uppercase tracking-[0.15em] leading-[1.3] flex flex-wrap gap-x-[0.4em] gap-y-1 pr-4">
+                {item.name.split(' ').map((word, wIdx) => (
+                    <span key={wIdx} className="flex overflow-hidden relative">
+                        {word.split('').map((char, cIdx) => (
+                            <span key={cIdx} className="relative inline-block">
+                                <motion.span
+                                    className="inline-block text-primary/80"
+                                    initial={false}
+                                    animate={{
+                                        y: isHovered ? "-100%" : "0%",
+                                    }}
+                                    transition={{ duration: 0.5, delay: (wIdx * 5 + cIdx) * 0.02, ease: [0.22, 1, 0.36, 1] }}
+                                >
+                                    {char}
+                                </motion.span>
+                                <motion.span
+                                    className="absolute left-0 top-0 inline-block text-accent"
+                                    initial={false}
+                                    animate={{
+                                        y: isHovered ? "0%" : "100%",
+                                    }}
+                                    transition={{ duration: 0.5, delay: (wIdx * 5 + cIdx) * 0.02, ease: [0.22, 1, 0.36, 1] }}
+                                >
+                                    {char}
+                                </motion.span>
+                            </span>
+                        ))}
+                    </span>
+                ))}
+            </h3>
+        </div>
+    )
+);
+IndustryItem.displayName = "IndustryItem";
 
 const IndustriesSection = () => {
     const navigate = useNavigate();
-    const sectionRef = useRef<HTMLDivElement>(null);
-
-    // Responsive card dimensions from actual viewport
-    const [dims, setDims] = useState(() => getCardDimensions(
-        typeof window !== "undefined" ? window.innerWidth : 1280
-    ));
-
-    useEffect(() => {
-        const handle = () => setDims(getCardDimensions(window.innerWidth));
-        window.addEventListener("resize", handle);
-        return () => window.removeEventListener("resize", handle);
-    }, []);
-
-    const { w: CARD_W, h: CARD_H } = dims;
-
-    // Total scroll travel
-    const totalTravel = slides.length * (CARD_W + CARD_GAP);
-    // Keep enough so the last card is fully visible
-    const endX = -(totalTravel - CARD_W - CARD_GAP * 2);
-
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start start", "end end"],
-    });
-
-    const rawX = useTransform(scrollYProgress, [0, 1], [0, endX]);
-
-    const x = useSpring(rawX, {
-        stiffness: 55,
-        damping: 18,
-        mass: 0.4,
-        restDelta: 0.001,
-    });
-
-    const rawScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-    const scaleX = useSpring(rawScale, { stiffness: 80, damping: 25, mass: 0.3 });
-
-    const handleCardClick = (name: string) => {
-        navigate(`/products?category=${encodeURIComponent(name)}`);
-    };
-
-    // Section height: give each card enough scroll room (slightly less on mobile)
-    const sectionVh = dims.w < 640
-        ? slides.length * 45   // 45vh per card on mobile
-        : slides.length * 60;  // 60vh per card on desktop
+    const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+    const [selectedIndustry, setSelectedIndustry] = useState<typeof slides[0] | null>(null);
 
     return (
-        <section className="bg-background">
-
-            {/* ── Header ── */}
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
-                <div className="text-center max-w-3xl mx-auto">
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 text-foreground/50 font-bold mb-3 tracking-[0.2em] uppercase text-xs"
-                    >
-                        <div className="w-8 h-[2px] bg-primary" />
-                        GLOBAL IMPACT
-                    </motion.div>
-
-                    <motion.h2
-                        initial={{ opacity: 0, y: 28 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-3xl sm:text-5xl lg:text-7xl font-black text-foreground mb-5 tracking-tight"
-                    >
-                        Industries We{" "}
-                        <span className="text-primary\">Serve</span>
-                    </motion.h2>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 28 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-base sm:text-lg text-foreground/70 leading-relaxed font-medium"
-                    >
-                        Our premium petrochemical products power critical sectors worldwide,
-                        driving innovation and operational excellence.
-                    </motion.p>
-                </div>
+        <section className="bg-background py-32 relative overflow-hidden">
+            {/* Massive Watermark */}
+            <div className="absolute top-0 right-0 text-[18rem] font-black text-primary/[0.02] select-none pointer-events-none uppercase tracking-tighter leading-none translate-x-1/4 -translate-y-1/4">
+                Serve
             </div>
 
-            {/* ── Pinned horizontal scroll ── */}
-            <div
-                ref={sectionRef}
-                style={{ height: `${sectionVh}vh` }}
-                className="relative"
-            >
-                <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-
-                    {/* Progress bar */}
-                    <div className="absolute top-4 sm:top-6 left-0 right-0 px-5 sm:px-10 lg:px-16 flex items-center gap-3 z-20">
-                        <span className="text-[10px] font-black uppercase tracking-widest text-foreground/30 hidden sm:block">
-                            START
-                        </span>
-                        <div className="flex-1 h-[2px] bg-secondary/20 rounded-full overflow-hidden">
-                            <motion.div
-                                className="h-full bg-primary rounded-full"
-                                style={{ scaleX, transformOrigin: "left" }}
-                            />
-                        </div>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-foreground/30 hidden sm:block">
-                            END
-                        </span>
-                        <span className="text-[10px] font-medium text-foreground/50 sm:hidden">
-                            SCROLL ↓
-                        </span>
+            <div className="container-custom relative z-10">
+                <ScrollReveal>
+                    <div className="mb-24">
+                        <span className="text-accent font-mono text-xs tracking-[0.5em] uppercase block mb-4">Vertical Landscapes</span>
+                        <h2 className="text-5xl md:text-7xl font-black text-primary leading-[0.95] uppercase tracking-tighter max-w-2xl">
+                            Industries We <br />
+                            <span className="font-serif italic capitalize text-foreground/80">Empower.</span>
+                        </h2>
                     </div>
+                </ScrollReveal>
 
-                    {/* Card strip */}
-                    <motion.div
-                        className="flex will-change-transform"
-                        style={{ x, gap: CARD_GAP, paddingLeft: "5vw" }}
-                    >
-                        {slides.map((slide, i) => (
-                            <motion.div
-                                key={slide.name}
-                                className="flex-shrink-0 relative overflow-hidden rounded-2xl cursor-pointer group/card"
-                                style={{ width: CARD_W, height: CARD_H }}
-                                onClick={() => handleCardClick(slide.name)}
-                                whileHover={{ scale: 1.025 }}
-                                whileTap={{ scale: 0.97 }}
-                                transition={{ type: "spring", stiffness: 280, damping: 22 }}
-                            >
-                                <video
-                                    src={slide.video}
-                                    autoPlay
-                                    muted
-                                    loop
-                                    playsInline
-                                    preload="metadata"
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110"
-                                />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-0">
+                    {slides.map((item, idx) => (
+                        <ScrollReveal key={idx} delay={idx * 0.05}>
+                            <Sheet>
+                                <SheetTrigger asChild>
+                                    <IndustryItem
+                                        item={item}
+                                        isHovered={hoveredIdx === idx}
+                                        onMouseEnter={() => setHoveredIdx(idx)}
+                                        onMouseLeave={() => setHoveredIdx(null)}
+                                        onClick={() => setSelectedIndustry(item)}
+                                    />
+                                </SheetTrigger>
+                                <SheetContent className="sm:max-w-xl w-full bg-background border-l border-primary/10 p-0 overflow-hidden">
+                                    <div className="h-full flex flex-col">
+                                        {/* Cinematic Header / Video */}
+                                        <div className="relative h-1/3 w-full bg-black overflow-hidden">
+                                            <video
+                                                src={item.video}
+                                                autoPlay
+                                                muted
+                                                loop
+                                                playsInline
+                                                className="w-full h-full object-cover opacity-60"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                                            <div className="absolute bottom-8 left-8 right-8">
+                                                <span className="text-accent font-serif italic text-xl mb-2 block">{item.metric}</span>
+                                                <h2 className="text-4xl font-black text-white uppercase tracking-tighter leading-none">{item.name}</h2>
+                                            </div>
+                                        </div>
 
+                                        <div className="flex-1 p-8 sm:p-12 space-y-12 overflow-y-auto">
+                                            <div className="space-y-6">
+                                                <p className="text-xl text-foreground font-light leading-relaxed">
+                                                    {item.description}
+                                                </p>
+                                                <div className="h-px w-20 bg-accent" />
+                                            </div>
 
-                                {/* Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                                <div className="space-y-6">
+                                                    <h4 className="font-black text-primary tracking-widest text-xs uppercase">Technical Dossier</h4>
+                                                    <div className="grid gap-4">
+                                                        {item.specs.map((spec, sidx) => (
+                                                            <div key={sidx} className="flex items-center gap-4 group/spec">
+                                                                <div className="w-1.5 h-1.5 rounded-full bg-accent group-hover/spec:scale-150 transition-transform" />
+                                                                <span className="text-foreground/70 group-hover:text-primary transition-colors text-lg">{spec}</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
 
-                                {/* Number badge */}
-                                <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-                                    <span className="text-white/40 text-xs font-black tracking-widest">
-                                        {String(i + 1).padStart(2, "0")}
-                                    </span>
-                                </div>
+                                                <div className="space-y-6">
+                                                    <h4 className="font-black text-primary tracking-widest text-xs uppercase">Featured Portfolio</h4>
+                                                    <div className="grid gap-4">
+                                                        {products
+                                                            .filter(p =>
+                                                                p.industries?.some(ind => {
+                                                                    const industryMap: Record<string, string[]> = {
+                                                                        "Petrochemicals": ["Petrochemical", "Fuel", "Oil", "Gas", "Naphtha", "Base Oil", "Rubber Process", "Spirit", "Marine"],
+                                                                        "Solvents": ["Solvent", "Glycol", "Acetate", "Ketone", "Toluene", "Xylene", "Acetone", "TDI"],
+                                                                        "Detergent & Chemical Raw Materials": ["Detergent", "LABSA", "SLES", "Soda", "Sulphate", "Nitrate", "Silicate", "Titanium Dioxide"],
+                                                                        "Water Treatment Chemicals": ["Water", "Treatment", "Sulphate", "Chloride", "PAC", "Hypochlorite"],
+                                                                        "Food Industry Chemicals": ["Food", "Citric", "Acetic", "Benzoate", "Sorbate", "Carbonate", "Glycerine"],
+                                                                        "Cosmetics & Personal Care Chemicals": ["Cosmetic", "Personal Care", "Glycerine", "Propylene", "Stearic"],
+                                                                        "Paint & Coatings Chemicals": ["Paint", "Coating", "Titanium Dioxide", "Carbonate", "Zinc", "Acetate", "Xylene", "MEK", "Naphtha"],
+                                                                        "Mining Industry Chemicals": ["Mining", "Cyanide", "Carbon", "Hydrochloric", "Sulphuric", "Silicate"],
+                                                                        "Textile Industry Chemicals": ["Textile", "Peroxide", "Hydrosulphite", "Soda Ash", "Acetic"],
+                                                                        "Foam Industry Chemicals": ["Foam", "TDI", "MDI", "Polyether", "Silicone"],
+                                                                        "Printing Ink Chemicals": ["Printing", "Ink", "IPA", "Acetate", "MEK", "Toluene", "Nitrocellulose", "Resin", "Pigment", "Glycol"]
+                                                                    };
+                                                                    return industryMap[item.name]?.some(keyword => ind.toLowerCase().includes(keyword.toLowerCase())) || ind.toLowerCase().includes(item.name.toLowerCase());
+                                                                })
+                                                            )
+                                                            .slice(0, 3)
+                                                            .map((prod, pidx) => (
+                                                                <Link
+                                                                    key={pidx}
+                                                                    to={prod.href}
+                                                                    className="group/prod flex items-center gap-4 p-2 rounded-xl hover:bg-secondary/10 transition-colors"
+                                                                >
+                                                                    <div className="w-16 h-16 rounded-lg overflow-hidden bg-secondary/5 border border-primary/5 flex-shrink-0">
+                                                                        <img src={prod.backgroundImage} alt={prod.name} className="w-full h-full object-cover group-hover/prod:scale-110 transition-transform duration-500" />
+                                                                    </div>
+                                                                    <div className="flex-1 min-w-0">
+                                                                        <h5 className="font-bold text-[11px] sm:text-xs text-primary uppercase leading-tight line-clamp-2 whitespace-normal break-all">{prod.name}</h5>
+                                                                        <div className="flex items-center gap-1 text-[10px] text-accent font-bold uppercase tracking-wider opacity-0 group-hover/prod:opacity-100 transition-opacity">
+                                                                            View Specs <ArrowRight className="w-2 h-2" />
+                                                                        </div>
+                                                                    </div>
+                                                                </Link>
+                                                            ))}
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                {/* Hover arrow */}
-                                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-primary flex items-center justify-center
-                                    opacity-0 group-hover/card:opacity-100 -translate-y-1 group-hover/card:translate-y-0
-                                    transition-all duration-300 shadow-xl z-10">
-                                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </div>
-
-                                {/* Red label bar */}
-                                <div className="absolute bottom-0 inset-x-0 bg-primary py-3 sm:py-4 px-4 sm:px-5">
-                                    <p className="text-xs sm:text-sm font-black text-white uppercase tracking-wider sm:tracking-widest leading-snug line-clamp-1">
-                                        {slide.name}
-                                    </p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-
-
+                                            <div className="pt-12">
+                                                <button
+                                                    onClick={() => {
+                                                        navigate(`/products?category=${encodeURIComponent(item.name)}`);
+                                                    }}
+                                                    className="w-full py-6 bg-primary text-white font-black uppercase tracking-[0.3em] text-[10px] rounded-full hover:bg-accent transition-colors duration-500 shadow-2xl flex items-center justify-center gap-4 group"
+                                                >
+                                                    Explore Complete Portfolio
+                                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </SheetContent>
+                            </Sheet>
+                        </ScrollReveal>
+                    ))}
                 </div>
             </div>
         </section>
