@@ -85,19 +85,19 @@ const ModernNavbar = () => {
         <header className={cn(
             "fixed top-0 left-0 right-0 z-[100] transition-all duration-300",
             !isVisible && "-translate-y-full opacity-0",
-            isScrolled ? "py-1" : "py-3"
+            isScrolled ? "py-0.5" : "py-2"
         )}>
             {/* Scroll Progress Bar */}
             <motion.div className="absolute top-0 left-0 right-0 h-[2px] bg-accent origin-left z-[110]" style={{ scaleX }} />
 
             <div className="max-w-7xl mx-auto px-4">
                 <nav className={cn(
-                    "relative flex items-center justify-between px-6 py-2 rounded-2xl transition-all duration-300 bg-background shadow-xl border border-secondary/20"
+                    "relative flex items-center justify-between px-6  rounded-2xl transition-all duration-300 bg-background shadow-xl border border-secondary/20"
                 )}>
 
                     {/* Logo Section */}
                     <Link to="/" className="flex items-center gap-3 group z-10 py-1 shrink-0">
-                        <img src={logo} alt="Logo" className="h-10 md:h-12 w-auto transition-transform group-hover:scale-105" />
+                        <img src={logo} alt="Logo" className="h-16 md:h-20 w-auto transition-transform group-hover:scale-110 drop-shadow-sm" />
 
                     </Link>
 
@@ -125,7 +125,7 @@ const ModernNavbar = () => {
                                         if (item.children) setActiveDropdown(item.name);
                                     }}
                                     className={cn(
-                                        "px-4 py-3 text-xs md:text-[13px] font-bold uppercase tracking-widest flex items-center gap-1.5 transition-all duration-200",
+                                        "px-4 py-2 text-xs md:text-[13px] font-bold uppercase tracking-widest flex items-center gap-1.5 transition-all duration-200",
                                         "text-foreground/80 hover:text-accent",
                                         isActive(item.href) && "text-accent"
                                     )}
@@ -245,7 +245,7 @@ const ModernNavbar = () => {
                         <div className="min-h-full flex flex-col p-6 sm:p-10 pt-24 sm:pt-32">
                             {/* Mobile Header Branding & Close Button */}
                             <div className="absolute top-6 sm:top-8 left-6 sm:left-10 right-6 sm:right-10 flex items-center justify-between">
-                                <img src={logo} alt="Logo" className="h-8 sm:h-10 w-auto" />
+                                <img src={logo} alt="Logo" className="h-14 sm:h-18 w-auto" />
                                 <button
                                     onClick={() => setIsOpen(false)}
                                     className="p-2 sm:p-3 bg-secondary/10 hover:bg-secondary/20 rounded-full text-primary transition-all active:scale-90"

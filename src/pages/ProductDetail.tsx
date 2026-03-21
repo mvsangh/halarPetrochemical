@@ -34,12 +34,29 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import SplitText from "@/components/ui/SplitText";
 import { products } from "@/data/products";
+import { 
+  chemicalCatalog, 
+  chemicalCatalogPart2, 
+  chemicalCatalogPart3, 
+  chemicalCatalogPart4 
+} from "../../msds/msds";
+
+const fullChemicalCatalog = [
+  ...chemicalCatalog,
+  ...chemicalCatalogPart2,
+  ...chemicalCatalogPart3,
+  ...chemicalCatalogPart4,
+];
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>();
 
   const product = products.find((p) => p.slug === slug);
   if (!product) return <Navigate to="/products" replace />;
+
+  const chemicalProduct = fullChemicalCatalog.find(
+    (c) => c.id === (product.chemicalId || product.slug)
+  );
 
   const currentIndex = products.findIndex((p) => p.slug === slug);
   const prevProduct = currentIndex > 0 ? products[currentIndex - 1] : null;
@@ -52,9 +69,9 @@ const ProductDetail = () => {
 
   // Helper function for technical metrics
   const technicalMetrics = [
-    { label: "Purity Index", value: product.specifications?.purity || "99.9%" },
-    { label: "Compliance", value: "ISO 9001" },
-    { label: "Batch ID", value: `#${Math.floor(Math.random() * 9000) + 1000}` },
+    { label: "Purity Index", value: chemicalProduct?.details?.purity || product.specifications?.purity || "99.9%" },
+    { label: "Density", value: chemicalProduct?.details?.density || product.specifications?.density || "Standard" },
+    { label: "Batch ID", value: chemicalProduct?.identifiers?.batchNumber || `#${Math.floor(Math.random() * 9000) + 1000}` },
   ];
 
   return (
@@ -149,11 +166,175 @@ const ProductDetail = () => {
                     <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Product Infrastructure</h2>
                     <div className="flex-grow h-px bg-primary/10" />
                   </div>
-                  <p className="text-xl text-primary/70 leading-relaxed font-light first-letter:text-6xl first-letter:font-black first-letter:text-primary first-letter:mr-3 first-letter:float-left">
-                    {product.fullDescription}
+                  <p className="text-xl text-primary/70 leading-relaxed font-light first-letter:text-6xl first-letter:font-black first-letter:text-primary first-letter:mr-3 first-letter:float-left mb-6">
+                    {chemicalProduct?.details?.introduction || product.fullDescription}
                   </p>
+
+                  {/* Physicochemical Properties Grid */}
+                  {chemicalProduct?.details && Object.keys(chemicalProduct.details).filter(k => k !== 'introduction').length > 0 && (
+                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-6 mt-6 border-t border-primary/10">
+                        {chemicalProduct.details.appearance && (
+                           <div className="space-y-1">
+                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Appearance</div>
+                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.appearance}</div>
+                           </div>
+                        )}
+                        {chemicalProduct.details.odor && (
+                           <div className="space-y-1">
+                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Odor</div>
+                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.odor}</div>
+                           </div>
+                        )}
+                        {chemicalProduct.details.meltingPoint && (
+                           <div className="space-y-1">
+                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Melting Point</div>
+                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.meltingPoint}</div>
+                           </div>
+                        )}
+                        {chemicalProduct.details.boilingPoint && (
+                           <div className="space-y-1">
+                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Boiling Point</div>
+                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.boilingPoint}</div>
+                           </div>
+                        )}
+                        {chemicalProduct.details.solubility && (
+                           <div className="space-y-1">
+                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Solubility</div>
+                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.solubility}</div>
+                           </div>
+                        )}
+                        {chemicalProduct.details.density && (
+                           <div className="space-y-1">
+                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Density</div>
+                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.density}</div>
+                           </div>
+                        )}
+                        {chemicalProduct.details.steamPressure && (
+                           <div className="space-y-1">
+                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Steam Pressure</div>
+                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.steamPressure}</div>
+                           </div>
+                        )}
+                        {chemicalProduct.details.relativeMolecularMass && (
+                           <div className="space-y-1">
+                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Relative Molecular Mass</div>
+                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.relativeMolecularMass}</div>
+                           </div>
+                        )}
+                     </div>
+                  )}
                 </div>
               </ScrollReveal>
+
+              {/* 01.5. Technical Specifications */}
+              {chemicalProduct?.specifications && chemicalProduct.specifications.length > 0 && (
+                <ScrollReveal>
+                  <div className="space-y-12">
+                    <div className="flex items-center gap-6">
+                      <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Technical Specifications</h2>
+                    </div>
+                    <div className="overflow-x-auto bg-[#f8f9fa] border border-primary/10 rounded-2xl md:rounded-3xl p-3 md:p-6 -mx-4 md:mx-0">
+                      <table className="w-full text-left border-collapse min-w-[320px]">
+                        <thead>
+                          <tr className="border-b border-primary/10">
+                            <th className="py-3 px-3 md:py-4 md:px-6 text-[10px] md:text-sm font-black uppercase tracking-widest text-primary/50">Parameter</th>
+                            <th className="py-3 px-3 md:py-4 md:px-6 text-[10px] md:text-sm font-black uppercase tracking-widest text-primary/50">Specification</th>
+                            <th className="py-3 px-3 md:py-4 md:px-6 text-[10px] md:text-sm font-black uppercase tracking-widest text-primary/50">Result</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {chemicalProduct.specifications.map((spec, i) => (
+                            <tr key={i} className="border-b border-primary/5 hover:bg-white transition-colors">
+                              <td className="py-3 px-3 md:py-4 md:px-6 text-xs md:text-base font-bold text-primary align-top leading-tight break-words">{spec.parameter}</td>
+                              <td className="py-3 px-3 md:py-4 md:px-6 text-xs md:text-base text-primary/70 align-top leading-tight break-words">{spec.requirement}</td>
+                              <td className="py-3 px-3 md:py-4 md:px-6 text-xs md:text-base text-primary/70 align-top leading-tight break-words">{spec.result} {spec.uom || ""}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              )}
+
+              {/* 01.7. Safety & Handling Data */}
+              {chemicalProduct?.safetyInfo && Object.keys(chemicalProduct.safetyInfo).length > 0 && (
+                <ScrollReveal>
+                  <div className="space-y-8 p-10 bg-red-50/50 border border-red-100 rounded-[2rem]">
+                    <div className="flex items-center gap-4 text-red-600 mb-6">
+                      <AlertTriangle className="w-8 h-8" />
+                      <h2 className="text-3xl font-black uppercase tracking-tighter">Safety & Handling</h2>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8 text-sm">
+                      {chemicalProduct.safetyInfo.hazards && chemicalProduct.safetyInfo.hazards.length > 0 && (
+                        <div className="space-y-3">
+                          <h4 className="font-black uppercase tracking-widest text-red-800 text-[10px]">Hazards Identification</h4>
+                          <ul className="list-disc pl-4 text-red-900/80 space-y-1">
+                            {chemicalProduct.safetyInfo.hazards.map((hazard, i) => (
+                              <li key={i}>{hazard}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      
+                      {chemicalProduct.safetyInfo.firstAid && Object.keys(chemicalProduct.safetyInfo.firstAid).length > 0 && (
+                        <div className="space-y-3">
+                          <h4 className="font-black uppercase tracking-widest text-red-800 text-[10px]">First Aid Measures</h4>
+                          <div className="space-y-2 text-red-900/80">
+                            {Object.entries(chemicalProduct.safetyInfo.firstAid).map(([key, val], i) => (
+                              <div key={i}><span className="font-bold capitalize">{key}:</span> {val}</div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {chemicalProduct.safetyInfo.symptoms && Object.keys(chemicalProduct.safetyInfo.symptoms).length > 0 && (
+                        <div className="space-y-3">
+                          <h4 className="font-black uppercase tracking-widest text-red-800 text-[10px]">Symptoms</h4>
+                          <div className="space-y-2 text-red-900/80">
+                            {Object.entries(chemicalProduct.safetyInfo.symptoms).map(([key, val], i) => (
+                              <div key={i}><span className="font-bold capitalize">{key}:</span> {val}</div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {chemicalProduct.safetyInfo.preventiveMeasures && Object.keys(chemicalProduct.safetyInfo.preventiveMeasures).length > 0 && (
+                        <div className="space-y-3 md:col-span-2">
+                          <h4 className="font-black uppercase tracking-widest text-red-800 text-[10px]">Preventive Measures</h4>
+                          <div className="space-y-2 text-red-900/80">
+                            {Object.entries(chemicalProduct.safetyInfo.preventiveMeasures).map(([key, val], i) => (
+                              <div key={i}><span className="font-bold capitalize">{key}:</span> {val}</div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {chemicalProduct.safetyInfo.fireExtinguisher && (
+                         <div className="space-y-1 md:col-span-2">
+                           <h4 className="font-black uppercase tracking-widest text-red-800 text-[10px]">Fire Extinguisher</h4>
+                           <p className="text-red-900/80">{chemicalProduct.safetyInfo.fireExtinguisher}</p>
+                         </div>
+                      )}
+
+                      {chemicalProduct.safetyInfo.spillage && (
+                         <div className="space-y-1 md:col-span-2">
+                           <h4 className="font-black uppercase tracking-widest text-red-800 text-[10px]">Spillage Guidelines</h4>
+                           <p className="text-red-900/80">{chemicalProduct.safetyInfo.spillage}</p>
+                         </div>
+                      )}
+
+                      {chemicalProduct.safetyInfo.storageInfo && (
+                         <div className="space-y-1 md:col-span-2">
+                           <h4 className="font-black uppercase tracking-widest text-red-800 text-[10px]">Storage Notes</h4>
+                           <p className="text-red-900/80">{chemicalProduct.safetyInfo.storageInfo}</p>
+                         </div>
+                      )}
+                    </div>
+                  </div>
+                </ScrollReveal>
+              )}
 
               {/* 02. Features Grid */}
               {product.features && (
@@ -184,10 +365,10 @@ const ProductDetail = () => {
                     <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Sector Integration</h2>
                   </div>
                   <div className="grid md:grid-cols-2 gap-4">
-                    {product.uses.map((use, i) => (
+                    {(chemicalProduct?.applications?.length ? chemicalProduct.applications : product.uses).map((use, i) => (
                       <div key={i} className="flex items-center gap-6 p-8 bg-[#f8f9fa] rounded-2xl border border-primary/5 group hover:border-accent transition-colors">
                         <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                        <span className="text-lg font-bold text-primary uppercase tracking-tight">{use}</span>
+                        <span className="text-lg font-bold text-primary tracking-tight leading-snug">{use}</span>
                       </div>
                     ))}
                   </div>
@@ -234,30 +415,151 @@ const ProductDetail = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-8">
-                    {product.specifications?.casNumber && (
+                  <div className="space-y-5">
+                    {/* Identifiers */}
+                    {(chemicalProduct?.identifiers?.casNumber || product.specifications?.casNumber) && (
                       <div className="space-y-1">
                         <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">CAS Registry</span>
-                        <div className="text-2xl font-black text-primary tracking-tighter">{product.specifications.casNumber}</div>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct?.identifiers?.casNumber || product.specifications?.casNumber}</div>
                       </div>
                     )}
-                    {product.specifications?.formula && (
+                    {(chemicalProduct?.identifiers?.chemicalFormula || product.specifications?.formula) && (
                       <div className="space-y-1">
                         <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Molecular Struct.</span>
-                        <div className="text-2xl font-black text-primary tracking-tighter">{product.specifications.formula}</div>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct?.identifiers?.chemicalFormula || product.specifications?.formula}</div>
                       </div>
                     )}
-                    <div className="space-y-1">
+                    {chemicalProduct?.identifiers?.molecularWeight && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Molecular Weight</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.molecularWeight}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.identifiers?.ecNumber && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">EC Number</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.ecNumber}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.identifiers?.productCode && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Product Code</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.productCode}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.identifiers?.batchNumber && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Batch Number</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.batchNumber}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.identifiers?.mdlNumber && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">MDL Number</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.mdlNumber}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.identifiers?.hsnCode && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">HSN Code</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.hsnCode}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.identifiers?.inciName && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">INCI Name</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.inciName}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.identifiers?.beilsteinRegistryNo && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Beilstein No.</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.beilsteinRegistryNo}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.identifiers?.dangerousGoodsNumber && (
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">DG Number</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.dangerousGoodsNumber}</div>
+                      </div>
+                    )}
+                    
+                    {/* Metadata */}
+                    {chemicalProduct?.origin && (
+                      <div className="space-y-1 border-t border-primary/10 pt-4">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Origin</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.origin}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.brandNames && chemicalProduct.brandNames.length > 0 && (
+                      <div className="space-y-1 border-t border-primary/10 pt-4">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Brand/Manufacturer</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.brandNames.join(', ')}</div>
+                      </div>
+                    )}
+                    {chemicalProduct?.packaging && chemicalProduct.packaging.length > 0 && (
+                      <div className="space-y-1 border-t border-primary/10 pt-4">
+                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Packaging Available</span>
+                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.packaging.join(', ')}</div>
+                      </div>
+                    )}
+                    
+                    {/* Dates */}
+                    {chemicalProduct?.dates && Object.keys(chemicalProduct.dates).length > 0 && (
+                      <div className="space-y-3 border-t border-primary/10 pt-4">
+                         {chemicalProduct.dates.mfgDate && (
+                            <div className="flex justify-between items-center text-sm">
+                               <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Mfg Date</span>
+                               <span className="font-bold text-primary">{chemicalProduct.dates.mfgDate}</span>
+                            </div>
+                         )}
+                         {chemicalProduct.dates.expDate && (
+                            <div className="flex justify-between items-center text-sm">
+                               <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Exp/Shelf Life</span>
+                               <span className="font-bold text-primary">{chemicalProduct.dates.expDate}</span>
+                            </div>
+                         )}
+                         {chemicalProduct.dates.retestDate && (
+                            <div className="flex justify-between items-center text-sm">
+                               <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Retest Date</span>
+                               <span className="font-bold text-primary">{chemicalProduct.dates.retestDate}</span>
+                            </div>
+                         )}
+                         {chemicalProduct.dates.samplingDate && (
+                            <div className="flex justify-between items-center text-sm">
+                               <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Sampling Date</span>
+                               <span className="font-bold text-primary">{chemicalProduct.dates.samplingDate}</span>
+                            </div>
+                         )}
+                      </div>
+                    )}
+
+                    <div className="space-y-1 border-t border-primary/10 pt-4">
                       <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Logistics Lead</span>
-                      <div className="text-2xl font-black text-primary tracking-tighter uppercase">{product.category}</div>
+                      <div className="text-lg font-black text-primary tracking-tighter uppercase">{product.category}</div>
                     </div>
                   </div>
 
-                  <div className="pt-8 border-t border-primary/10">
-                    <div className="flex items-center gap-4 p-5 bg-primary rounded-2xl text-white">
-                      <span className="text-[10px] font-black uppercase tracking-widest">Global Purity Certified</span>
+                  {product.msdsPdfKey ? (
+                    <div className="pt-8 border-t border-primary/10">
+                      <a 
+                        href={`/msds/${product.msdsPdfKey}`}
+                        download
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center justify-between p-5 bg-accent hover:bg-accent/90 rounded-2xl text-white transition-colors shadow-lg shadow-accent/20 cursor-pointer"
+                      >
+                        <span className="text-[12px] font-black uppercase tracking-widest">Download MSDS / COA</span>
+                        <FileText className="w-5 h-5" />
+                      </a>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="pt-8 border-t border-primary/10">
+                      <div className="flex items-center gap-4 p-5 bg-primary rounded-2xl text-white">
+                        <span className="text-[10px] font-black uppercase tracking-widest">Global Purity Certified</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Procurement CTA */}

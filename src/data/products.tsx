@@ -105,6 +105,8 @@ export interface Product {
     certifications?: string[];
     industries?: string[];
     handling?: string;
+    chemicalId?: string;
+    msdsPdfKey?: string;
 }
 
 export const products: Product[] = [
@@ -514,6 +516,8 @@ export const products: Product[] = [
         icon: <Beaker className="w-6 h-6" />,
         slug: 'butyl-glycol',
         category: 'Solvents',
+        chemicalId: 'butyl-glycol',
+        msdsPdfKey: 'BULK-BUTYL-GLYCOL MSDS & TDS.pdf',
 
         fullDescription:
             'Butyl Glycol, also known as Ethylene Glycol Monobutyl Ether (EGBE), is a clear, colorless liquid glycol ether with a mild odor, high boiling point, and excellent solvency characteristics. It is widely used as a solvent and coupling agent in water-based and solvent-based formulations. Due to its ability to dissolve both hydrophilic and hydrophobic substances, EGBE is an essential component in surface coatings, industrial and household cleaners, inks, and textile processing chemicals.',
@@ -563,6 +567,8 @@ export const products: Product[] = [
         icon: <FlaskConical className="w-6 h-6" />,
         slug: 'ethyl-acetate',
         category: 'Solvents',
+        chemicalId: 'ethyl-acetate-msds',
+        msdsPdfKey: 'Ethyle Acetate MSDS & TDS.pdf',
 
         fullDescription:
             'Ethyl acetate is a colorless, volatile organic ester with a characteristic mild fruity odor. It is produced through the esterification of ethanol and acetic acid and is extensively used as a fast-evaporating solvent across multiple industries. Due to its excellent solvency for resins, polymers, and oils, ethyl acetate is a preferred solvent in coatings, inks, adhesives, and pharmaceutical processes. It is also widely accepted in food and flavor applications when supplied in food-grade quality.',
@@ -613,6 +619,8 @@ export const products: Product[] = [
         icon: <Droplets className="w-6 h-6" />,
         slug: 'butyl-acetate',
         category: 'Solvents',
+        chemicalId: 'butyl-acetate',
+        msdsPdfKey: 'Butyl Acetate MSDS & TDS.pdf',
 
         fullDescription:
             'Butyl acetate is a clear, colorless ester solvent with a characteristic mild fruity odor, produced by the esterification of n-butanol and acetic acid. It is extensively used in solvent-based coatings due to its balanced evaporation rate, strong solvency for resins, and excellent flow and leveling properties. These characteristics make it a preferred solvent in automotive, wood, and industrial coatings, as well as printing inks and specialty finishes.',
@@ -662,6 +670,8 @@ export const products: Product[] = [
         icon: <Zap className="w-6 h-6" />,
         slug: 'mek',
         category: 'Solvents',
+        chemicalId: 'mek',
+        msdsPdfKey: 'BULK-METHYL-ETHYL-KETONE MEK MSDS & TDS.pdf',
 
         fullDescription:
             'Methyl Ethyl Ketone (MEK), also known as 2-butanone, is a colorless, volatile ketone solvent characterized by its strong solvency power and rapid evaporation rate. It is extensively used in the formulation of surface coatings, adhesives, and printing inks, particularly for dissolving gums, resins, cellulose acetate, and nitrocellulose systems. MEK is also employed as a process solvent and chemical intermediate in various industrial manufacturing operations.',
@@ -711,6 +721,8 @@ export const products: Product[] = [
         icon: <Wind className="w-6 h-6" />,
         slug: 'toluene',
         category: 'Solvents',
+        chemicalId: 'toluene',
+        msdsPdfKey: 'Toluene MSDS & TDS.pdf',
 
         fullDescription:
             'Toluene is a colorless, volatile aromatic hydrocarbon derived from petroleum refining and catalytic reforming processes. It is insoluble in water and has a characteristic aromatic odor commonly associated with paint thinners. Due to its strong solvency and chemical stability, toluene is extensively used as a solvent in paints, coatings, adhesives, and printing inks. It also serves as an important chemical feedstock in the production of benzene derivatives, explosives, and various specialty chemicals.',
@@ -761,6 +773,8 @@ export const products: Product[] = [
         icon: <Box className="w-6 h-6" />,
         slug: 'xylene',
         category: 'Solvents',
+        chemicalId: 'mix-xylene',
+        msdsPdfKey: 'Mix Xylene MSDS & TDS.pdf',
 
         fullDescription:
             'Xylene is a colorless, flammable aromatic hydrocarbon consisting of a mixture of ortho-, meta-, and para-xylene isomers. It is produced mainly from petroleum refining and catalytic reforming processes. Xylene is extensively used as an industrial solvent due to its strong dissolving power for resins, inks, rubber compounds, and adhesives.',
@@ -821,6 +835,8 @@ export const products: Product[] = [
         icon: <Pipette className="w-6 h-6" />,
         slug: 'acetone',
         category: 'Solvents',
+        chemicalId: 'acetone',
+        msdsPdfKey: 'Acetone MSDS.pdf',
 
         fullDescription:
             'Acetone (propanone) is a colorless, volatile, and highly flammable organic solvent and the simplest ketone. It is completely miscible with water and most organic solvents. Due to its strong solvency, rapid evaporation, and low residue, acetone is extensively used in chemical synthesis, pharmaceutical processing, surface cleaning, and cosmetics manufacturing.',
@@ -937,6 +953,8 @@ export const products: Product[] = [
         icon: <Droplets className="w-6 h-6" />,
         slug: 'labsa',
         category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'labsa-96',
+        msdsPdfKey: 'Labsa COA.pdf',
 
         fullDescription:
             'LABSA 96% (Linear Alkyl Benzene Sulphonic Acid) is a high-activity anionic surfactant extensively used in the manufacture of household and industrial detergents. It offers excellent detergency, high foaming capacity, and effective soil removal. Due to its cost efficiency and biodegradability, LABSA remains the backbone raw material for detergent and cleaning product formulations worldwide.',
@@ -986,6 +1004,8 @@ export const products: Product[] = [
         icon: <Beaker className="w-6 h-6" />,
         slug: 'sles',
         category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'sles-70',
+        msdsPdfKey: 'SLES-COA zhechem.pdf',
 
         fullDescription:
             'SLES 70% (Sodium Lauryl Ether Sulfate) is an anionic surfactant supplied as a high-active viscous paste. It provides excellent foaming, detergency, and wetting performance while remaining relatively mild to skin when properly formulated. SLES 70% is a core ingredient in shampoos, liquid soaps, body washes, and household cleaning products.',
@@ -1036,6 +1056,8 @@ export const products: Product[] = [
         icon: <Box className="w-6 h-6" />,
         slug: 'caustic-soda',
         category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'caustic-soda-flakes',
+        msdsPdfKey: 'Caustic Soda Flakes COA.pdf',
 
         fullDescription:
             'Caustic Soda Flakes (Sodium Hydroxide) are a strong inorganic alkali produced by the electrolysis of sodium chloride brine. Supplied in solid white flakes, it is highly soluble in water and releases heat during dissolution. It is a critical raw material in soap and detergent manufacturing, pulp and paper processing, textiles, water treatment, and various chemical reactions.',
@@ -1086,6 +1108,8 @@ export const products: Product[] = [
         icon: <Layers className="w-6 h-6" />,
         slug: 'soda-ash-light',
         category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'soda-ash-light',
+        msdsPdfKey: 'Specification   Soda Ash Light .pdf',
 
         fullDescription:
             'Soda Ash Light (Sodium Carbonate) is a white, odorless, free-flowing powder with lower bulk density than dense soda ash. It is produced via the Solvay process and is widely used as an alkaline agent in glass manufacturing, detergent formulation, paper processing, and water treatment. Its light density makes it especially suitable for detergent blending and chemical reactions requiring fast dissolution.',
@@ -1138,6 +1162,8 @@ export const products: Product[] = [
         icon: <Waves className="w-6 h-6" />,
         slug: 'aluminum-sulphate',
         category: 'Water Treatment Chemicals',
+        chemicalId: 'aluminium-sulphate',
+        msdsPdfKey: 'ALUMINIUM-SULPHATE- COA.pdf',
 
         fullDescription:
             'Aluminum Sulphate is an inorganic salt commonly used as a primary coagulant in drinking water purification and wastewater treatment. It reacts with alkalinity in water to form aluminum hydroxide flocs, which effectively trap suspended solids, organic matter, and turbidity. It is supplied in solid (lumps or powder) and liquid forms for municipal and industrial applications.',
@@ -1240,6 +1266,8 @@ export const products: Product[] = [
         icon: <Grape className="w-6 h-6" />,
         slug: 'citric-acid',
         category: 'Food Industry Chemicals',
+        chemicalId: 'citric-acid-monohydrate',
+        msdsPdfKey: 'CITRIC ACID MONOHYDRATE  COA.pdf',
 
         fullDescription:
             'Citric Acid is a naturally occurring weak organic acid produced commercially by fermentation of carbohydrates using Aspergillus niger. It is widely used in the food and beverage industry as an acidulant, preservative, flavor enhancer, and chelating agent. It is also used extensively in pharmaceuticals, cosmetics, and cleaning formulations. Available in anhydrous and monohydrate forms to suit different processing requirements.',
@@ -1292,6 +1320,8 @@ export const products: Product[] = [
         icon: <Droplets className="w-6 h-6" />,
         slug: 'acetic-acid',
         category: 'Food Industry Chemicals',
+        chemicalId: 'acetic-acid',
+        msdsPdfKey: 'Acetic Acid MSDS.pdf',
 
         fullDescription:
             'Acetic Acid is a clear, colorless organic acid with a pungent odor and is the principal component of vinegar. Commercially, it is produced via methanol carbonylation or fermentation routes. It is supplied in food-grade, pharmaceutical-grade, and technical-grade forms and is widely used as an acidity regulator, preservative, chemical intermediate, and processing aid in multiple industries.',
@@ -1344,6 +1374,8 @@ export const products: Product[] = [
         icon: <Droplets className="w-6 h-6" />,
         slug: 'glycerine',
         category: 'Cosmetics & Personal Care Chemicals',
+        chemicalId: 'glycerine',
+        msdsPdfKey: 'GLYCERINE MSDS & TDS.pdf',
 
         fullDescription:
             'Glycerine (also known as glycerol) is a clear, colorless, odorless, and viscous liquid with excellent hygroscopic and humectant properties. Our USP Grade Glycerine complies with United States Pharmacopeia standards and is manufactured under strict quality controls to ensure consistent purity and performance. It is widely used in cosmetic, pharmaceutical, food, and personal care applications for moisture retention, texture enhancement, and product stability.',
@@ -1399,6 +1431,8 @@ export const products: Product[] = [
         icon: <Beaker className="w-6 h-6" />,
         slug: 'propylene-glycol',
         category: 'Cosmetics & Personal Care Chemicals',
+        chemicalId: 'propylene-glycol-usp',
+        msdsPdfKey: 'PROPLYENE-GLYCOL-USP MSDS & TDS.pdf',
         fullDescription: 'Propylene Glycol (PG) is a colorless, odorless, hygroscopic liquid widely used as a humectant, solvent, and formulation stabilizer. It effectively retains moisture, enhances product texture, and improves the solubility of active ingredients in cosmetic and personal care products. It is also extensively used in pharmaceutical syrups, food processing, and industrial applications due to its low toxicity and excellent compatibility profile.',
         uses: [
             'Humectant for moisture retention',
@@ -1434,6 +1468,8 @@ export const products: Product[] = [
         icon: <Paintbrush className="w-6 h-6" />,
         slug: 'titanium-dioxide',
         category: 'Paint & Coatings Chemicals',
+        chemicalId: 'titanium-dioxide-ar',
+        msdsPdfKey: 'Titanium Dioxide.pdf',
         fullDescription: 'Titanium Dioxide (TiO2) is a naturally occurring oxide of titanium and the most important white inorganic pigment used globally. It provides exceptional opacity, high refractive index, superior brightness, and excellent UV resistance. Rutile grade TiO2 is primarily used in paints, coatings, and plastics due to its superior durability and weather resistance, while anatase grade is used in paper, inks, and specialty applications. It enhances hiding power, improves color retention, and increases product lifespan.',
         uses: [
             'Architectural and industrial paints',
@@ -1468,6 +1504,8 @@ export const products: Product[] = [
         icon: <Box className="w-6 h-6" />,
         slug: 'zinc-oxide',
         category: 'Paint & Coatings Chemicals',
+        chemicalId: 'zinc-oxide-usp',
+        msdsPdfKey: 'Zinc Oxide, USP.pdf',
         fullDescription: 'Zinc Oxide (ZnO) is an inorganic compound appearing as a fine white powder, insoluble in water but soluble in acids and alkalis. It is widely used for its excellent UV absorption, antimicrobial properties, and corrosion resistance. In coatings, it improves mildew resistance and durability. In the rubber industry, it acts as a key activator in the vulcanization process. Cosmetic and pharmaceutical grades are used in sunscreens, ointments, and skin protectants due to their skin-soothing and protective properties.',
         uses: [
             'Anti-corrosive pigment in paints and primers',
@@ -1503,6 +1541,8 @@ export const products: Product[] = [
         icon: <Hammer className="w-6 h-6" />,
         slug: 'sodium-cyanide',
         category: 'Mining Industry Chemicals',
+        chemicalId: 'sodium-cyanide',
+        msdsPdfKey: 'Sodium cyanide COA.pdf',
         fullDescription: 'Sodium Cyanide (NaCN) is a white, water-soluble, highly toxic inorganic compound extensively used in the mining industry for the extraction of gold and silver via the cyanidation process. It forms stable complexes with precious metals, enabling efficient recovery from ore. It is supplied in solid briquettes, powder form, or aqueous solution, manufactured under strict quality and safety standards. Due to its extreme toxicity, production, transport, storage, and use are subject to rigorous international safety regulations.',
         uses: [
             'Gold extraction by heap leaching and tank leaching',
@@ -1537,6 +1577,8 @@ export const products: Product[] = [
         icon: <Droplets className="w-6 h-6" />,
         slug: 'hydrogen-peroxide',
         category: 'Textile Industry Chemicals',
+        chemicalId: 'hydrogen-peroxide-35',
+        msdsPdfKey: 'HYDROGEN PEROXIDE COA.pdf',
         fullDescription: 'Hydrogen Peroxide (H2O2) is a clear, colorless liquid with strong oxidizing properties. In the textile industry, it is extensively used for cotton and blended fabric bleaching due to its ability to remove natural pigments without causing significant fiber damage when properly stabilized. It decomposes into water and oxygen, making it an environmentally preferred bleaching agent. It is also widely used in pulp and paper bleaching, wastewater treatment, chemical synthesis, and surface disinfection.',
         uses: [
             'Cotton and blended fabric bleaching',
@@ -1603,6 +1645,8 @@ export const products: Product[] = [
         icon: <Waves className="w-6 h-6" />,
         slug: 'ferric-chloride',
         category: 'Water Treatment Chemicals',
+        chemicalId: 'ferric-chloride-anhydrous',
+        msdsPdfKey: 'Ferric Chloride COA.pdf',
         fullDescription: 'Ferric Chloride is a highly effective primary coagulant used in municipal and industrial water treatment. It is particularly efficient at removing heavy metals, phosphorus, and suspended solids.',
         uses: ['Sewage treatment', 'Industrial effluent treatment', 'Etching of copper in PCB manufacturing', 'Drinking water purification'],
         features: ['Excellent heavy metal removal', 'Effective at wide pH ranges', 'High-purity liquid/anhydrous forms'],
@@ -1618,6 +1662,8 @@ export const products: Product[] = [
         icon: <Droplets className="w-6 h-6" />,
         slug: 'calcium-hypochlorite',
         category: 'Water Treatment Chemicals',
+        chemicalId: 'calcium-hypochlorite-lr',
+        msdsPdfKey: 'CALCIUM HYPOCHLORITE COA.pdf',
         fullDescription: 'Calcium Hypochlorite is a widely used bleaching and disinfecting agent. It is a key chemical for swimming pool treatment and municipal water disinfection.',
         uses: ['Pool water sanitation', 'Industrial bleaching', 'Drinking water disinfection'],
         features: ['High chlorine content', 'Stable in solid form', 'Fast-acting sanitizer'],
@@ -1633,6 +1679,8 @@ export const products: Product[] = [
         icon: <Utensils className="w-6 h-6" />,
         slug: 'sodium-benzoate',
         category: 'Food Industry Chemicals',
+        chemicalId: 'sodium-benzoate',
+        msdsPdfKey: 'Sodium Benzoate COA.pdf',
         fullDescription: 'Sodium Benzoate is a common food preservative that inhibits the growth of potentially harmful bacteria, mold, and other microbes in food, particularly in acidic environments.',
         uses: ['Carbonated drinks', 'Fruit juices', 'Salad dressings', 'Condiments'],
         features: ['Effective antimicrobial agent', 'High water solubility', 'Safe for human consumption (GRAS)'],
@@ -1648,6 +1696,8 @@ export const products: Product[] = [
         icon: <Utensils className="w-6 h-6" />,
         slug: 'potassium-sorbate',
         category: 'Food Industry Chemicals',
+        chemicalId: 'potassium-sorbate',
+        msdsPdfKey: 'Potassium Sorbate COA.pdf',
         fullDescription: 'Potassium Sorbate is a white salt used as a food preservative to prevent the growth of molds and yeasts in many foods, such as cheese, wine, yogurt, and dried meats.',
         uses: ['Bakery products', 'Dairy products', 'Wine making', 'Personal care products'],
         features: ['Wide spectrum activity', 'Does not affect flavor or aroma', 'High stability'],
@@ -1663,6 +1713,8 @@ export const products: Product[] = [
         icon: <FlaskConical className="w-6 h-6" />,
         slug: 'stearic-acid',
         category: 'Cosmetics & Personal Care Chemicals',
+        chemicalId: 'stearic-acid',
+        msdsPdfKey: 'Stearic Acid COA.pdf',
         fullDescription: 'Stearic Acid is a saturated fatty acid used to thicken and stabilize cosmetic formulations and as a primary raw material in soap making and industrial rubber processing.',
         uses: ['Soap and detergent manufacturing', 'Cosmetic thickening agent', 'Rubber lubricant', 'Candle making'],
         features: ['Excellent emulsification', 'Pearlizing agent in shampoos', 'Triple pressed grades available'],
@@ -1693,6 +1745,8 @@ export const products: Product[] = [
         icon: <Droplets className="w-6 h-6" />,
         slug: 'hydrochloric-acid',
         category: 'Mining Industry Chemicals',
+        chemicalId: 'hydrochloric-acid-ar',
+        msdsPdfKey: 'HYDROCHLORIC ACID COA.pdf',
         fullDescription: 'Hydrochloric Acid (HCl) is a highly corrosive mineral acid with many industrial uses. It is used in mining for ore processing and in various chemical manufacturing reactions.',
         uses: ['Metal pickling', 'Mining ore treatment', 'pH adjustment', 'Oil well acidizing'],
         features: ['Strong acidity', 'Highly reactive', 'Clear/yellowish liquid'],
@@ -1708,6 +1762,8 @@ export const products: Product[] = [
         icon: <Flame className="w-6 h-6" />,
         slug: 'sulphuric-acid',
         category: 'Mining Industry Chemicals',
+        chemicalId: 'sulphuric-acid-ar',
+        msdsPdfKey: 'SULPHURIC ACID  COA.pdf',
         fullDescription: 'Sulphuric Acid (H2SO4) is one of the most widely used chemicals globally. In mining, it is essential for the leaching of ores and the production of various sulfate chemicals.',
         uses: ['Mineral leaching', 'Fertilizer production', 'Batteries', 'Chemical synthesis'],
         features: ['Powerful dehydrating agent', 'Highly corrosive', 'Viscous liquid'],
@@ -1723,6 +1779,8 @@ export const products: Product[] = [
         icon: <Layers className="w-6 h-6" />,
         slug: 'sodium-silicate',
         category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'sodium-silicate-cullets',
+        msdsPdfKey: 'Soidum Silicate COA.pdf',
         fullDescription: 'Sodium Silicate is used as a binder in cements, a builder in detergents, and a corrosion inhibitor in water treatment. It also acts as a dispersant in mining flotation.',
         uses: ['Detergent building', 'Adhesives', 'Mining flotation', 'Water treatment'],
         features: ['Strong binding properties', 'Adjustable silica/alkali ratio', 'Liquid or solid forms'],
@@ -1738,6 +1796,8 @@ export const products: Product[] = [
         icon: <Box className="w-6 h-6" />,
         slug: 'sodium-nitrate',
         category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'sodium-nitrate-coated',
+        msdsPdfKey: 'Sodium Nitrate coated grade.pdf',
         fullDescription: 'Sodium Nitrate (NaNO3) is a white solid that is highly soluble in water. It is a powerful oxidizer used in several industrial processes, including glass making and as a chemical intermediate.',
         uses: ['Glass manufacturing', 'Pyrotechnics', 'Enamel glazes', 'Industrial chemistry'],
         features: ['Powerful oxidizer', 'High purity crystalline form', 'Fast-acting reagent'],
@@ -1753,6 +1813,8 @@ export const products: Product[] = [
         icon: <Layers className="w-6 h-6" />,
         slug: 'sodium-sulphate',
         category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'sodium-sulphate-anhydrous',
+        msdsPdfKey: 'Sodium Sulphate Anhydrous.pdf',
         fullDescription: 'Sodium Sulphate (anhydrous) is used primarily as a filler in powdered household detergents and as a fining agent in the glass industry to remove air bubbles.',
         uses: ['Powdered detergents', 'Glass manufacturing', 'Textile dyeing', 'Paper pulping'],
         features: ['Inert filler', 'High purity anhydrous form', 'Free-flowing white powder'],
@@ -1771,6 +1833,8 @@ export const products: Product[] = [
         icon: <Microwave className="w-6 h-6" />,
         slug: 'tdi',
         category: 'Foam Industry Chemicals',
+        chemicalId: 'toluene-diisocyanate',
+        msdsPdfKey: 'TOLUENE-DIISOCYANATE MSDS & TDS.pdf',
         fullDescription: 'Toluene Diisocyanate (TDI) is an aromatic diisocyanate mainly supplied as an 80/20 mixture of the 2,4-TDI and 2,6-TDI isomers. It is a key raw material in the manufacture of flexible polyurethane foams used in furniture, mattresses, automotive seating, and cushioning products. TDI reacts with polyols to form polyurethane polymers, providing elasticity, resilience, and durability to finished foam products. Due to its high reactivity and volatility, it must be handled under strictly controlled industrial conditions.',
         uses: [
             'Flexible polyurethane foam production',
@@ -1804,6 +1868,8 @@ export const products: Product[] = [
         icon: <Box className="w-6 h-6" />,
         slug: 'mdi',
         category: 'Foam Industry Chemicals',
+        chemicalId: 'mdi-polymeric',
+        msdsPdfKey: 'Methylene Diphenyl Diisocyanate (MDI) COA.pdf',
         fullDescription: 'Methylene Diphenyl Diisocyanate (MDI) is an aromatic diisocyanate available in pure (4,4’-MDI) and polymeric (pMDI) forms. It is widely used in the production of rigid polyurethane foams for thermal insulation in construction, refrigeration, and cold storage applications. MDI provides excellent mechanical strength, dimensional stability, and superior thermal insulation performance. Compared to TDI, MDI has lower vapor pressure, making it less volatile but still requiring strict industrial safety controls.',
         uses: [
             'Rigid polyurethane insulation panels',
@@ -1839,6 +1905,8 @@ export const products: Product[] = [
         icon: <Printer className="w-6 h-6" />,
         slug: 'ipa',
         category: 'Printing Ink Chemicals',
+        chemicalId: 'isopropyl-alcohol',
+        msdsPdfKey: 'ISOPROPYL-ALCOHOL MSDS & TDS.pdf',
         fullDescription: 'Isopropyl Alcohol (IPA), also known as 2-Propanol, is a clear, colorless, highly flammable liquid with a characteristic odor. It is widely used as a solvent due to its excellent solvency power and rapid evaporation rate. In the printing industry, IPA is commonly used in offset printing dampening solutions to control ink-water balance, improve wetting, and enhance drying performance. It is also extensively used for precision cleaning in electronics, pharmaceuticals, and industrial maintenance applications.',
         uses: [
             'Offset printing dampening solution solvent',
@@ -1872,6 +1940,8 @@ export const products: Product[] = [
         icon: <Layers className="w-6 h-6" />,
         slug: 'nitrocellulose',
         category: 'Printing Ink Chemicals',
+        chemicalId: 'nitrocellulose-cotton',
+        msdsPdfKey: 'Nitrocellulose Cotton COA.pdf',
         fullDescription: 'Nitrocellulose (Cellulose Nitrate) is a nitrated derivative of cellulose produced by treating cellulose with nitric acid. It is supplied in alcohol-wet or water-wet form to reduce flammability risk. Nitrocellulose is widely used as a primary resin in flexographic and gravure printing inks due to its excellent film-forming properties, rapid solvent release, strong pigment adhesion, and good gloss characteristics. It is also used in wood finishes, automotive refinishing coatings, and specialty lacquers.',
         uses: [
             'Flexographic printing inks',

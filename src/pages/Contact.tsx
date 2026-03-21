@@ -29,7 +29,7 @@ const contactInfo = [
   {
     icon: <MapPin className="w-6 h-6" />,
     title: 'Address',
-    details: ['Ras Al Khaimah Free Trade Zone', 'United Arab Emirates'],
+    details: ['1520,Burjuman Business Tower,Business Mall'],
   },
   {
     icon: <Mail className="w-6 h-6" />,
@@ -39,7 +39,7 @@ const contactInfo = [
   {
     icon: <Phone className="w-6 h-6" />,
     title: 'Phone',
-    details: ['+971 00 000 0000', '+971 00 000 0000'],
+    details: ['+971 551623344', '+971 523881698'],
   },
   {
     icon: <Clock className="w-6 h-6" />,
