@@ -581,7 +581,7 @@ const ProductDetail = () => {
 
                 {/* Quick Related Portfolio Links */}
                 <div className="p-10 space-y-8">
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/30">Segment Portfolio</h4>
+                  <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/30">Category Portfolio</h4>
                   <div className="space-y-6">
                     {relatedProducts.map((p) => (
                       <Link key={p.slug} to={p.href} className="group flex items-center justify-between">

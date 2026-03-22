@@ -110,7 +110,7 @@ const Contact = () => {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+            <h1 className="text-3xl xs:text-4xl md:text-5xl font-display font-bold text-white mb-6">
               Contact
             </h1>
             <p className="text-lg text-white/90">

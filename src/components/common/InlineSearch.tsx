@@ -57,7 +57,7 @@ const InlineSearch = ({ isMobile = false, onExpandChange }: { isMobile?: boolean
                     <motion.div
                         key="input"
                         initial={{ width: 44, opacity: 0 }}
-                        animate={{ width: isMobile ? "100%" : 280, opacity: 1 }}
+                        animate={isExpanded ? { width: isMobile ? "100%" : (window.innerWidth < 640 ? "calc(100vw - 4rem)" : 320), opacity: 1 } : { width: 44, opacity: 0 }}
                         exit={{ width: 44, opacity: 0 }}
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                         className={cn(
@@ -96,7 +96,7 @@ const InlineSearch = ({ isMobile = false, onExpandChange }: { isMobile?: boolean
                         )}
                     >
                         <Search size={18} />
-                        {!isMobile && <span className="text-[10px] font-black uppercase tracking-widest pr-2">Search</span>}
+                        {!isMobile && <span className="text-[10px] font-black uppercase tracking-widest pr-2 hidden sm:inline">Search</span>}
                     </motion.button>
                 )}
             </AnimatePresence>
@@ -109,11 +109,12 @@ const InlineSearch = ({ isMobile = false, onExpandChange }: { isMobile?: boolean
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 15 }}
                         className={cn(
-                            "absolute top-full mt-3 bg-background rounded-[2rem] shadow-[0_30px_80px_-15px_rgba(0,0,0,0.2)] border border-secondary/20 overflow-hidden z-[110]",
-                            isMobile ? "left-0 right-0" : "right-0 w-[400px]"
+                            "bg-background/95 backdrop-blur-md rounded-[2rem] shadow-[0_30px_80px_-15px_rgba(0,0,0,0.2)] border border-secondary/20 overflow-hidden z-[110]",
+                            // Mobile: fixed positioning to center on screen and avoid cutting
+                            "fixed inset-x-4 top-24 sm:absolute sm:inset-auto sm:top-full sm:right-0 sm:mt-3 sm:w-[500px]"
                         )}
                     >
-                        <div className="p-3">
+                        <div className="p-2 sm:p-3 overflow-y-auto max-h-[60vh] scrollbar-hide">
                             {results.length > 0 ? (
                                 <div className="space-y-1">
                                     {results.map((product) => (
@@ -124,14 +125,14 @@ const InlineSearch = ({ isMobile = false, onExpandChange }: { isMobile?: boolean
                                                 setIsExpanded(false);
                                                 setQuery("");
                                             }}
-                                            className="flex items-center gap-4 p-4 rounded-2xl hover:bg-secondary/10 transition-all group border border-transparent hover:border-secondary/20"
+                                            className="flex items-center gap-4 px-5 py-4 rounded-3xl hover:bg-secondary/10 transition-all group border border-transparent hover:border-secondary/20"
                                         >
-                                            <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center text-accent shrink-0">
-                                                {product.category === "Oil" ? <Fuel size={18} /> : <Droplets size={18} />}
+                                            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-secondary/10 flex items-center justify-center text-accent shrink-0">
+                                                {product.category === "Oil" ? <Fuel size={16} /> : <Droplets size={16} />}
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-[11px] font-black uppercase tracking-tight text-primary truncate leading-none mb-1">{product.name}</p>
-                                                <p className="text-[9px] font-bold text-primary/40 uppercase tracking-[0.2em]">{product.category} Portfolio</p>
+                                                <p className="text-[12px] sm:text-[14px] font-black uppercase tracking-tight text-primary truncate leading-none mb-1.5">{product.name}</p>
+                                                <p className="text-[9px] sm:text-[10px] font-bold text-primary/40 uppercase tracking-[0.2em]">{product.category} Portfolio</p>
                                             </div>
                                             <ArrowRight size={14} className="text-accent opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
                                         </Link>
@@ -148,17 +149,17 @@ const InlineSearch = ({ isMobile = false, onExpandChange }: { isMobile?: boolean
                         </div>
 
                         {results.length > 0 && (
-                            <div className="bg-secondary/5 p-4 border-t border-secondary/10 text-center">
+                            <div className="bg-secondary/5 p-4 sm:p-5 border-t border-secondary/10 text-center">
                                 <Link
                                     to="/products"
-                                    className="text-[9px] font-black uppercase tracking-[0.2em] text-accent hover:text-primary transition-colors inline-flex items-center gap-2"
+                                    className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-accent hover:text-primary transition-colors inline-flex items-center gap-2 group/all"
                                     onClick={() => {
                                         setIsExpanded(false);
                                         setQuery("");
                                     }}
                                 >
                                     Browse Complete Catalog
-                                    <ArrowRight size={10} />
+                                    <ArrowRight size={12} className="group-hover/all:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
                         )}

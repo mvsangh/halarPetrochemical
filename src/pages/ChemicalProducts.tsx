@@ -57,9 +57,9 @@ const ChemicalProducts = () => {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
-                                className="text-6xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.8] mb-8 max-w-[12ch]"
+                                className="text-4xl xs:text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.8] mb-8"
                             >
-                                Chemical <br /> <span className="text-accent underline decoration-white/10 underline-offset-[16px]">Landscape.</span>
+                                Chemical <br /> <span className="text-accent underline decoration-white/10 underline-offset-[12px] sm:underline-offset-[16px]">Landscape.</span>
                             </motion.h1>
 
                             <motion.p

@@ -106,7 +106,7 @@ const Index = () => {
                 <div className="h-[1px] w-12 bg-accent/50" />
               </motion.div>
 
-              <h1 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter uppercase text-white mix-blend-lighten">
+              <h1 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tighter uppercase text-white mix-blend-lighten break-words">
                 <span className="block overflow-hidden">
                   <motion.span
                     initial={{ y: "100%" }}

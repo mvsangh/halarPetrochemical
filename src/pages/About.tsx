@@ -113,7 +113,7 @@ const About = () => {
                 since 1995
               </motion.div>
 
-              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-white leading-[0.85] tracking-tighter uppercase">
+              <h1 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-white leading-[0.85] tracking-tighter uppercase">
                 <span className="block italic font-serif text-accent/80 tracking-normal mb-[-0.1em] ml-[-0.05em]">Our</span>
                 <span className="block">Journey</span>
               </h1>

@@ -64,9 +64,9 @@ const Products = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-6xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.8] mb-8 max-w-[12ch]"
+                className="text-4xl xs:text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.8] mb-8"
               >
-                Material <br /> <span className="text-accent underline decoration-white/10 underline-offset-[16px]">Catalog.</span>
+                Material <br /> <span className="text-accent underline decoration-white/10 underline-offset-[12px] sm:underline-offset-[16px]">Catalog.</span>
               </motion.h1>
 
               <motion.p
@@ -150,8 +150,8 @@ const Products = () => {
           <ScrollReveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 text-center md:text-left">
               <div className="space-y-4">
-                <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9]">
-                  {categoryFilter ? `Segment: ${categoryFilter}` : 'Master Portfolio'}
+                <h2 className="text-3xl xs:text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9]">
+                  {categoryFilter ? categoryFilter : 'Master Portfolio'}
                 </h2>
               </div>
             </div>
