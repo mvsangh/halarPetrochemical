@@ -33,8 +33,8 @@ const Products = () => {
     <Layout>
       <SEO
         title={title + " - VANTARA ENERGY"}
-        description="Explore VANTARA ENERGY's comprehensive range of petrochemical products including fuel oil, gas oil, naphtha, white spirit, glycols, and more."
-        keywords="petrochemical products, fuel oil, gas oil, naphtha, white spirit, glycols, lubricant oil, UAE petrochemicals"
+        description="Explore VANTARA ENERGY's comprehensive range of petrochemical products including fuel oil, gas oil, base oil, naphtha, and white spirit."
+        keywords="petrochemical products, fuel oil, gas oil, base oil, naphtha, white spirit, UAE petrochemicals"
       />
 
       {/* --- CINEMATIC PORTFOLIO HERO --- */}

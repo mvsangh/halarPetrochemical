@@ -48,7 +48,7 @@ const About = () => {
 
   const milestones = [
     {
-      year: "1995",
+      year: "2018",
       title: "The Foundation",
       desc: "VANTARA ENERGY was established with a vision to streamline energy trading in the Middle East."
     },
@@ -110,7 +110,7 @@ const About = () => {
                 transition={{ delay: 0.5, duration: 1 }}
                 className="absolute -top-10 sm:-top-12 -left-4 sm:-left-12 text-accent font-serif italic text-2xl sm:text-4xl opacity-20"
               >
-                since 1995
+                since 2018
               </motion.div>
 
               <h1 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-white leading-[0.85] tracking-tighter uppercase">

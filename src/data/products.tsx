@@ -19,7 +19,8 @@ import {
     Hammer,
     Scissors,
     Microwave,
-    Printer
+    Printer,
+    ShieldCheck
 } from 'lucide-react';
 
 // Category Images
@@ -75,8 +76,8 @@ import naphthaImg from "@/assets/products/categories/naphtha.jpg";
 import whiteSpiritImg from "@/assets/products/white-spirit.png";
 import glycolsImg from "@/assets/products/glycols.png";
 
-import lubricantOilImg from "@/assets/products/lubricant-oil.png";
-import paraffinOilImg from "@/assets/products/Paraffin Oil.png";
+// import lubricantOilImg from "@/assets/products/lubricant-oil.png";
+// import paraffinOilImg from "@/assets/products/Paraffin Oil.png";
 
 export interface Product {
     name: string;
@@ -206,6 +207,54 @@ export const products: Product[] = [
         handling:
             'Store in approved, properly grounded containers away from heat and ignition sources. Avoid inhalation of vapors and prolonged skin contact. Ensure adequate ventilation during handling and transfer. Use appropriate personal protective equipment including gloves and safety eyewear.'
     },
+    {
+        name: 'Base Oil',
+        description: 'Refined mineral base oils used as the primary raw material for automotive, industrial, and marine lubricant formulations.',
+        href: '/products/base-oil',
+        backgroundImage: baseoilImg,
+        icon: <Cylinder className="w-6 h-6" />,
+        slug: 'base-oil',
+        category: 'Petrochemicals',
+
+        fullDescription:
+            'Base oil is the fundamental component used in the formulation of lubricants, greases, and specialty industrial fluids. Produced through solvent refining, hydrocracking, or severe hydroprocessing, base oils determine the performance characteristics of finished lubricants. Our product range includes Group I, Group II, and Group III base oils, available in multiple viscosity grades, designed to meet the requirements of automotive engines, industrial machinery, marine equipment, and metalworking applications.',
+
+        uses: [
+            'Manufacturing of automotive engine oils and transmission fluids',
+            'Production of industrial and automotive greases',
+            'Formulation of hydraulic oils, gear oils, and compressor oils',
+            'Metalworking fluids, cutting oils, and process lubricants'
+        ],
+
+        features: [
+            'High oxidation and thermal stability for extended service life',
+            'High viscosity index ensuring stable performance across temperature ranges',
+            'Low volatility to minimize oil consumption and evaporation losses',
+            'Good demulsibility for effective water separation in industrial systems'
+        ],
+
+        specifications: {
+            purity: '99.5% minimum base oil content',
+            packaging: 'Bulk tanker supply, flexitanks, sealed steel drums',
+            casNumber: '64742-54-7'
+        },
+
+        certifications: [
+            'API Base Oil Group Classification (Group I, II, III)',
+            'ISO 6743 Lubricant Classification',
+            'DIN 51517 Industrial Gear Oil Standard'
+        ],
+
+        industries: [
+            'Automotive & Commercial Vehicles',
+            'Industrial Manufacturing & Machinery',
+            'Marine & Offshore Operations',
+            'Aviation & Specialty Lubricants'
+        ],
+
+        handling:
+            'Store in clean, dry, and dedicated tanks or containers to prevent contamination. Avoid contact with water, dust, and foreign materials. Maintain recommended storage temperatures and ensure proper filtration during transfer and blending operations.'
+    },
 
     {
         name: 'Hydrocarbon Oil',
@@ -305,83 +354,29 @@ export const products: Product[] = [
     }
     ,
     {
-        name: 'Base Oil',
-        description: 'Refined mineral base oils used as the primary raw material for automotive, industrial, and marine lubricant formulations.',
-        href: '/products/base-oil',
-        backgroundImage: baseoilImg,
-        icon: <Cylinder className="w-6 h-6" />,
-        slug: 'base-oil',
+        name: 'White Oil',
+        description: 'Highly refined mineral oil for pharmaceutical and cosmetic use.',
+        href: '/products/white-oil',
+        backgroundImage: whiteoilimge,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'white-oil',
         category: 'Petrochemicals',
-
-        fullDescription:
-            'Base oil is the fundamental component used in the formulation of lubricants, greases, and specialty industrial fluids. Produced through solvent refining, hydrocracking, or severe hydroprocessing, base oils determine the performance characteristics of finished lubricants. Our product range includes Group I, Group II, and Group III base oils, available in multiple viscosity grades, designed to meet the requirements of automotive engines, industrial machinery, marine equipment, and metalworking applications.',
-
-        uses: [
-            'Manufacturing of automotive engine oils and transmission fluids',
-            'Production of industrial and automotive greases',
-            'Formulation of hydraulic oils, gear oils, and compressor oils',
-            'Metalworking fluids, cutting oils, and process lubricants'
-        ],
-
+        fullDescription: 'White oils are highly refined mineral oils that are extremely pure, stable, colorless, odorless, and chemically inert. Our pharmaceutical and technical grade white oils meet the most stringent purity requirements.',
+        uses: ['Pharmaceuticals', 'Cosmetics', 'Food processing', 'Plastics lubrication'],
         features: [
-            'High oxidation and thermal stability for extended service life',
-            'High viscosity index ensuring stable performance across temperature ranges',
-            'Low volatility to minimize oil consumption and evaporation losses',
-            'Good demulsibility for effective water separation in industrial systems'
-        ],
-
-        specifications: {
-            purity: '99.5% minimum base oil content',
-            packaging: 'Bulk tanker supply, flexitanks, sealed steel drums',
-            casNumber: '64742-54-7'
-        },
-
-        certifications: [
-            'API Base Oil Group Classification (Group I, II, III)',
-            'ISO 6743 Lubricant Classification',
-            'DIN 51517 Industrial Gear Oil Standard'
-        ],
-
-        industries: [
-            'Automotive & Commercial Vehicles',
-            'Industrial Manufacturing & Machinery',
-            'Marine & Offshore Operations',
-            'Aviation & Specialty Lubricants'
-        ],
-
-        handling:
-            'Store in clean, dry, and dedicated tanks or containers to prevent contamination. Avoid contact with water, dust, and foreign materials. Maintain recommended storage temperatures and ensure proper filtration during transfer and blending operations.'
-    },
-
-    {
-        name: 'Rubber Process Oil',
-        description: 'Specialized hydrocarbon oils designed to improve the processing and physical properties of rubber compounds.',
-        href: '/products/rubber-process-oil',
-        backgroundImage: rubberOilImg,
-        icon: <Factory className="w-6 h-6" />,
-        slug: 'rubber-process-oil',
-        category: 'Petrochemicals',
-        fullDescription: 'Our Rubber Process Oils (RPO) serve as essential plasticizers. They facilitate the incorporation of fillers, improve flow during extrusion, and enhance the elasticity of the final vulcanizate. Available in high-aromatic (TDAE), naphthenic, and paraffinic grades.',
-        uses: [
-            'High-performance Tire Treads',
-            'EPDM Rubber Profiles',
-            'Molded Industrial Parts',
-            'Conveyor Belting & Hoses'
-        ],
-        features: [
-            'High Solvency & Elastomer Compatibility',
-            'Low Volatility for High-Temp Processing',
-            'Optimized Viscosity-Gravity Constant (VGC)',
-            'Superior Thermal and UV Stability'
+            'Food grade available (USP/NF)',
+            'Completely odorless and tasteless',
+            'Excellent oxidation stability',
+            'FDA compliant grades'
         ],
         specifications: {
-            purity: 'Compliant with PCA < 3% (EU Standards)',
-            packaging: 'Flexitanks, ISO Tanks, 200L Steel Drums',
-            casNumber: '64742-52-5 / 64742-04-7',
+            purity: '99.9% min',
+            packaging: 'Bulk, IBCs, Drums',
+            casNumber: '8042-47-5'
         },
-        certifications: ['ISO 9001:2015', 'ASTM D2226', 'REACH Compliant', 'EU 1907/2006'],
-        industries: ['Automotive', 'Construction', 'Aerospace', 'Consumer Goods'],
-        handling: 'Store in a cool, dry place. Avoid heat and open flames. Use oil-resistant gloves for handling.'
+        certifications: ['USP', 'NF', 'EP', 'JP', 'FDA 21 CFR 172.878'],
+        industries: ['Pharmaceutical', 'Cosmetics', 'Food & Beverage', 'Medical Devices'],
+        handling: 'Store in clean, dry conditions. Protect from extreme temperatures. Use food-grade handling equipment for food applications.'
     },
     {
         name: 'White Spirit',
@@ -433,29 +428,34 @@ export const products: Product[] = [
     }
     ,
     {
-        name: 'White Oil',
-        description: 'Highly refined mineral oil for pharmaceutical and cosmetic use.',
-        href: '/products/white-oil',
-        backgroundImage: whiteoilimge,
-        icon: <Droplets className="w-6 h-6" />,
-        slug: 'white-oil',
+        name: 'Rubber Process Oil',
+        description: 'Specialized hydrocarbon oils designed to improve the processing and physical properties of rubber compounds.',
+        href: '/products/rubber-process-oil',
+        backgroundImage: rubberOilImg,
+        icon: <Factory className="w-6 h-6" />,
+        slug: 'rubber-process-oil',
         category: 'Petrochemicals',
-        fullDescription: 'White oils are highly refined mineral oils that are extremely pure, stable, colorless, odorless, and chemically inert. Our pharmaceutical and technical grade white oils meet the most stringent purity requirements.',
-        uses: ['Pharmaceuticals', 'Cosmetics', 'Food processing', 'Plastics lubrication'],
+        fullDescription: 'Our Rubber Process Oils (RPO) serve as essential plasticizers. They facilitate the incorporation of fillers, improve flow during extrusion, and enhance the elasticity of the final vulcanizate. Available in high-aromatic (TDAE), naphthenic, and paraffinic grades.',
+        uses: [
+            'High-performance Tire Treads',
+            'EPDM Rubber Profiles',
+            'Molded Industrial Parts',
+            'Conveyor Belting & Hoses'
+        ],
         features: [
-            'Food grade available (USP/NF)',
-            'Completely odorless and tasteless',
-            'Excellent oxidation stability',
-            'FDA compliant grades'
+            'High Solvency & Elastomer Compatibility',
+            'Low Volatility for High-Temp Processing',
+            'Optimized Viscosity-Gravity Constant (VGC)',
+            'Superior Thermal and UV Stability'
         ],
         specifications: {
-            purity: '99.9% min',
-            packaging: 'Bulk, IBCs, Drums',
-            casNumber: '8042-47-5'
+            purity: 'Compliant with PCA < 3% (EU Standards)',
+            packaging: 'Flexitanks, ISO Tanks, 200L Steel Drums',
+            casNumber: '64742-52-5 / 64742-04-7',
         },
-        certifications: ['USP', 'NF', 'EP', 'JP', 'FDA 21 CFR 172.878'],
-        industries: ['Pharmaceutical', 'Cosmetics', 'Food & Beverage', 'Medical Devices'],
-        handling: 'Store in clean, dry conditions. Protect from extreme temperatures. Use food-grade handling equipment for food applications.'
+        certifications: ['ISO 9001:2015', 'ASTM D2226', 'REACH Compliant', 'EU 1907/2006'],
+        industries: ['Automotive', 'Construction', 'Aerospace', 'Consumer Goods'],
+        handling: 'Store in a cool, dry place. Avoid heat and open flames. Use oil-resistant gloves for handling.'
     },
     {
         name: 'Distillate Marine Oil',
@@ -509,262 +509,55 @@ export const products: Product[] = [
 
     // Solvents
     {
-        name: 'Butyl Glycol (EGBE)',
-        description: 'High-purity glycol ether solvent used in coatings, industrial cleaners, inks, and specialty chemical formulations.',
-        href: '/products/butyl-glycol',
-        backgroundImage: solventsImg,
+        name: 'Glycols',
+        description: 'High-purity glycols used in antifreeze, polyester manufacturing, and industrial heat-transfer applications.',
+        href: '/products/glycols',
+        backgroundImage: glycolsImg,
         icon: <Beaker className="w-6 h-6" />,
-        slug: 'butyl-glycol',
+        slug: 'glycols',
         category: 'Solvents',
-        chemicalId: 'butyl-glycol',
-        msdsPdfKey: 'BULK-BUTYL-GLYCOL MSDS & TDS.pdf',
 
         fullDescription:
-            'Butyl Glycol, also known as Ethylene Glycol Monobutyl Ether (EGBE), is a clear, colorless liquid glycol ether with a mild odor, high boiling point, and excellent solvency characteristics. It is widely used as a solvent and coupling agent in water-based and solvent-based formulations. Due to its ability to dissolve both hydrophilic and hydrophobic substances, EGBE is an essential component in surface coatings, industrial and household cleaners, inks, and textile processing chemicals.',
+            'Glycols such as Monoethylene Glycol (MEG) and Diethylene Glycol (DEG) are widely used industrial chemicals known for their excellent thermal stability, hygroscopic nature, and low freezing points. These glycols are essential raw materials in antifreeze formulations, polyester fiber and resin production, heat transfer fluids, and industrial humectants.',
 
         uses: [
-            'Solvent and coalescing agent in water-based and solvent-based surface coatings',
-            'Formulation of industrial, institutional, and household cleaning products',
-            'Solvent for printing inks, dyes, and pigments',
-            'Textile dyeing, finishing, and processing applications'
+            'Antifreeze and engine coolants',
+            'Polyester fiber and PET resin manufacturing',
+            'Heat transfer fluids',
+            'Industrial humectants and dehydrating agents'
         ],
 
         features: [
-            'Excellent coupling ability between water and organic components',
-            'Slow and controlled evaporation rate for smooth film formation',
-            'Good miscibility with water and most organic solvents',
-            'Readily biodegradable under standard environmental conditions'
+            'High purity industrial-grade glycols',
+            'Excellent heat transfer efficiency',
+            'Low freezing point characteristics',
+            'Consistent quality for polymer applications'
         ],
 
         specifications: {
-            purity: '99.5% minimum assay',
-            packaging: 'Bulk supply, IBCs, sealed steel drums',
-            casNumber: '111-76-2',
-            formula: 'C6H14O2'
+            purity: '99.9% min (MEG), 99.5% min (DEG)',
+            packaging: 'Bulk, ISO Tanks, IBCs, Drums',
+            casNumber: '107-21-1 (MEG), 111-46-6 (DEG)',
+            formula: 'C2H6O2 (MEG), C4H10O3 (DEG)'
         },
 
         certifications: [
-            'Technical Grade Industrial Solvent',
-            'REACH Registered Substance'
-        ],
-
-        industries: [
-            'Paints & Coatings Manufacturing',
-            'Industrial & Institutional Cleaning Products',
-            'Textiles & Dye Processing',
-            'Printing Inks & Pigment Formulations'
-        ],
-
-        handling:
-            'Handle with adequate ventilation and avoid inhalation of vapors. Prevent prolonged or repeated skin contact by using appropriate protective gloves. Store in tightly closed containers in a cool, well-ventilated area away from incompatible materials.'
-    }
-    ,
-    {
-        name: 'Ethyl Acetate',
-        description: 'High-purity ester solvent widely used in coatings, printing inks, adhesives, pharmaceuticals, and food-related applications.',
-        href: '/products/ethyl-acetate',
-        backgroundImage: Ethylacetate,
-        icon: <FlaskConical className="w-6 h-6" />,
-        slug: 'ethyl-acetate',
-        category: 'Solvents',
-        chemicalId: 'ethyl-acetate-msds',
-        msdsPdfKey: 'Ethyle Acetate MSDS & TDS.pdf',
-
-        fullDescription:
-            'Ethyl acetate is a colorless, volatile organic ester with a characteristic mild fruity odor. It is produced through the esterification of ethanol and acetic acid and is extensively used as a fast-evaporating solvent across multiple industries. Due to its excellent solvency for resins, polymers, and oils, ethyl acetate is a preferred solvent in coatings, inks, adhesives, and pharmaceutical processes. It is also widely accepted in food and flavor applications when supplied in food-grade quality.',
-
-        uses: [
-            'Primary solvent in surface coatings, lacquers, and varnishes',
-            'Manufacturing of printing inks and packaging inks',
-            'Solvent for adhesive formulations and laminating systems',
-            'Extraction and purification processes in pharmaceutical and food industries'
-        ],
-
-        features: [
-            'Fast evaporation rate enabling quick drying and high productivity',
-            'Excellent solvency for a wide range of resins and polymers',
-            'Relatively low toxicity compared to many hydrocarbon solvents',
-            'Readily biodegradable under normal environmental conditions'
-        ],
-
-        specifications: {
-            purity: '99.8% minimum assay',
-            packaging: 'Bulk supply, IBCs, sealed steel drums',
-            casNumber: '141-78-6',
-            formula: 'C4H8O2'
-        },
-
-        certifications: [
-            'Food Grade Quality',
-            'Technical Grade Industrial Solvent',
-            'USP / NF Pharmaceutical Compliance'
-        ],
-
-        industries: [
-            'Printing Inks & Packaging',
-            'Pharmaceutical Manufacturing',
-            'Food & Flavor Industry',
-            'Paints, Coatings & Adhesives'
-        ],
-
-        handling:
-            'Highly flammable liquid. Keep away from heat, sparks, and open flames. Use grounded and explosion-proof equipment during transfer. Ensure adequate ventilation and avoid prolonged inhalation of vapors.'
-    }
-    ,
-    {
-        name: 'Butyl Acetate',
-        description: 'Medium-evaporating ester solvent widely used in lacquers, enamels, printing inks, and high-performance coating systems.',
-        href: '/products/butyl-acetate',
-        backgroundImage: ButylAcetate,
-        icon: <Droplets className="w-6 h-6" />,
-        slug: 'butyl-acetate',
-        category: 'Solvents',
-        chemicalId: 'butyl-acetate',
-        msdsPdfKey: 'Butyl Acetate MSDS & TDS.pdf',
-
-        fullDescription:
-            'Butyl acetate is a clear, colorless ester solvent with a characteristic mild fruity odor, produced by the esterification of n-butanol and acetic acid. It is extensively used in solvent-based coatings due to its balanced evaporation rate, strong solvency for resins, and excellent flow and leveling properties. These characteristics make it a preferred solvent in automotive, wood, and industrial coatings, as well as printing inks and specialty finishes.',
-
-        uses: [
-            'Solvent in lacquers, enamels, and industrial coating formulations',
-            'Dissolution and processing of resins and polymers',
-            'Surface finishing applications in leather and synthetic materials',
-            'Printing inks and specialty film and coating applications'
-        ],
-
-        features: [
-            'Controlled evaporation rate providing smooth film formation and leveling',
-            'Excellent flow promotion and gloss development in coatings',
-            'Good blush resistance in high-humidity application conditions',
-            'High dilution ratio allowing efficient resin solubilization'
-        ],
-
-        specifications: {
-            purity: '99.5% minimum assay',
-            packaging: 'Bulk supply, IBCs, sealed steel drums',
-            casNumber: '123-86-4',
-            formula: 'C6H12O2'
-        },
-
-        certifications: [
-            'ASTM D3130 Solvent Specification',
-            'Technical Grade Industrial Solvent'
-        ],
-
-        industries: [
-            'Automotive & Industrial Coatings',
-            'Wood Finishes & Furniture',
-            'Printing Inks & Packaging',
-            'Leather & Synthetic Materials'
-        ],
-
-        handling:
-            'Flammable liquid. Store in a cool, well-ventilated area away from ignition sources. Use spark-proof and grounded equipment during handling and transfer. Avoid prolonged inhalation of vapors and direct skin contact.'
-    }
-    ,
-    {
-        name: 'Methyl Ethyl Ketone (MEK)',
-        description: 'High-purity ketone solvent widely used for resins, adhesives, coatings, and industrial chemical processes.',
-        href: '/products/mek',
-        backgroundImage: MethylEthylKetone,
-        icon: <Zap className="w-6 h-6" />,
-        slug: 'mek',
-        category: 'Solvents',
-        chemicalId: 'mek',
-        msdsPdfKey: 'BULK-METHYL-ETHYL-KETONE MEK MSDS & TDS.pdf',
-
-        fullDescription:
-            'Methyl Ethyl Ketone (MEK), also known as 2-butanone, is a colorless, volatile ketone solvent characterized by its strong solvency power and rapid evaporation rate. It is extensively used in the formulation of surface coatings, adhesives, and printing inks, particularly for dissolving gums, resins, cellulose acetate, and nitrocellulose systems. MEK is also employed as a process solvent and chemical intermediate in various industrial manufacturing operations.',
-
-        uses: [
-            'Solvent for surface coatings, lacquers, and industrial paints',
-            'Formulation of solvent-based adhesives and sealants',
-            'Manufacturing of printing inks and packaging inks',
-            'Process solvent and intermediate in chemical manufacturing'
-        ],
-
-        features: [
-            'Fast evaporation rate enabling quick drying and high throughput',
-            'Strong solvency for a wide range of resins and polymers',
-            'Low boiling point supporting efficient solvent recovery',
-            'Excellent compatibility with nitrocellulose and acrylic resin systems'
-        ],
-
-        specifications: {
-            purity: '99.7% minimum assay',
-            packaging: 'Bulk supply, IBCs, sealed steel drums',
-            casNumber: '78-93-3',
-            formula: 'C4H8O'
-        },
-
-        certifications: [
-            'Technical Grade Industrial Solvent',
-            'ASTM D740 Specification Compliance'
-        ],
-
-        industries: [
-            'Adhesives & Sealants',
-            'Paints & Industrial Coatings',
-            'Printing Inks & Packaging',
-            'Chemical Processing & Manufacturing'
-        ],
-
-        handling:
-            'Extremely flammable liquid. Enforce strict no-smoking policies and eliminate all ignition sources. Ground and bond all containers during transfer operations. Use explosion-proof electrical equipment and ensure adequate ventilation to prevent vapor accumulation.'
-    }
-    ,
-    {
-        name: 'Toluene',
-        description: 'High-purity aromatic hydrocarbon solvent and chemical feedstock used in coatings, adhesives, and petrochemical processing.',
-        href: '/products/toluene',
-        backgroundImage: Toluene,
-        icon: <Wind className="w-6 h-6" />,
-        slug: 'toluene',
-        category: 'Solvents',
-        chemicalId: 'toluene',
-        msdsPdfKey: 'Toluene MSDS & TDS.pdf',
-
-        fullDescription:
-            'Toluene is a colorless, volatile aromatic hydrocarbon derived from petroleum refining and catalytic reforming processes. It is insoluble in water and has a characteristic aromatic odor commonly associated with paint thinners. Due to its strong solvency and chemical stability, toluene is extensively used as a solvent in paints, coatings, adhesives, and printing inks. It also serves as an important chemical feedstock in the production of benzene derivatives, explosives, and various specialty chemicals.',
-
-        uses: [
-            'Solvent in paints, coatings, and industrial finishing systems',
-            'Chemical feedstock for synthesis of benzene derivatives and intermediates',
-            'Component in adhesive, rubber, and sealant formulations',
-            'Octane-enhancing blending component in gasoline formulations'
-        ],
-
-        features: [
-            'High solvency power for resins, rubbers, and polymers',
-            'Fast evaporation rate suitable for quick-drying applications',
-            'Excellent dissolving capacity across a wide range of materials',
-            'Good chemical and storage stability under normal conditions'
-        ],
-
-        specifications: {
-            purity: '99.5% minimum assay',
-            packaging: 'Bulk supply, ISO tanks, sealed steel drums',
-            casNumber: '108-88-3',
-            formula: 'C7H8'
-        },
-
-        certifications: [
-            'Nitration Grade',
             'Industrial Grade',
-            'ASTM D841 Aromatic Hydrocarbon Specification'
+            'Fiber Grade',
+            'Antifreeze Grade'
         ],
 
         industries: [
-            'Paints & Coatings Manufacturing',
-            'Pharmaceutical & Fine Chemicals',
-            'Adhesives & Rubber Processing',
-            'Petrochemical & Refining Industry'
+            'Automotive',
+            'Textiles',
+            'Packaging (PET)',
+            'HVAC',
+            'Chemical Manufacturing'
         ],
 
         handling:
-            'Highly flammable liquid. Handle with strict safety protocols. Avoid inhalation of vapors and prolonged skin contact. Use only in well-ventilated areas and ensure containers are properly grounded during storage and transfer operations.'
-    }
-    ,
+            'Hygroscopic material. Store in tightly sealed containers to prevent moisture absorption. Avoid prolonged skin contact and inhalation of vapors or mists. Use in well-ventilated areas and follow standard industrial safety procedures.'
+    },
     {
         name: 'Xylene',
         description: 'A widely used aromatic hydrocarbon solvent for industrial and laboratory applications.',
@@ -825,8 +618,147 @@ export const products: Product[] = [
 
         handling:
             'Highly flammable liquid. Vapors may form explosive mixtures with air. Avoid inhalation and skin contact. Use only in well-ventilated areas. Wear appropriate PPE including gloves, goggles, and respirators if required. Store away from heat, sparks, and open flames.'
-    }
-    ,
+    },
+
+    {
+        name: 'Butyl Acetate',
+        description: 'Medium-evaporating ester solvent widely used in lacquers, enamels, printing inks, and high-performance coating systems.',
+        href: '/products/butyl-acetate',
+        backgroundImage: ButylAcetate,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'butyl-acetate',
+        category: 'Solvents',
+        chemicalId: 'butyl-acetate',
+        msdsPdfKey: 'Butyl Acetate MSDS & TDS.pdf',
+
+        fullDescription:
+            'Butyl acetate is a clear, colorless ester solvent with a characteristic mild fruity odor, produced by the esterification of n-butanol and acetic acid. It is extensively used in solvent-based coatings due to its balanced evaporation rate, strong solvency for resins, and excellent flow and leveling properties. These characteristics make it a preferred solvent in automotive, wood, and industrial coatings, as well as printing inks and specialty finishes.',
+
+        uses: [
+            'Solvent in lacquers, enamels, and industrial coating formulations',
+            'Dissolution and processing of resins and polymers',
+            'Surface finishing applications in leather and synthetic materials',
+            'Printing inks and specialty film and coating applications'
+        ],
+
+        features: [
+            'Controlled evaporation rate providing smooth film formation and leveling',
+            'Excellent flow promotion and gloss development in coatings',
+            'Good blush resistance in high-humidity application conditions',
+            'High dilution ratio allowing efficient resin solubilization'
+        ],
+
+        specifications: {
+            purity: '99.5% minimum assay',
+            packaging: 'Bulk supply, IBCs, sealed steel drums',
+            casNumber: '123-86-4',
+            formula: 'C6H12O2'
+        },
+
+        certifications: [
+            'ASTM D3130 Solvent Specification',
+            'Technical Grade Industrial Solvent'
+        ],
+
+        industries: [
+            'Automotive & Industrial Coatings',
+            'Wood Finishes & Furniture',
+            'Printing Inks & Packaging',
+            'Leather & Synthetic Materials'
+        ],
+
+        handling:
+            'Flammable liquid. Store in a cool, well-ventilated area away from ignition sources. Use spark-proof and grounded equipment during handling and transfer. Avoid prolonged inhalation of vapors and direct skin contact.'
+    },
+
+    {
+        name: 'TDI (Toluene Diisocyanate)',
+        description: 'Aromatic diisocyanate primarily used in the production of flexible polyurethane foams for furniture, bedding, and automotive applications.',
+        href: '/products/tdi',
+        backgroundImage: TDI,
+        icon: <Microwave className="w-6 h-6" />,
+        slug: 'tdi',
+        category: 'Solvents',
+        chemicalId: 'toluene-diisocyanate',
+        msdsPdfKey: 'TOLUENE-DIISOCYANATE MSDS & TDS.pdf',
+        fullDescription: 'Toluene Diisocyanate (TDI) is an aromatic diisocyanate mainly supplied as an 80/20 mixture of the 2,4-TDI and 2,6-TDI isomers. It is a key raw material in the manufacture of flexible polyurethane foams used in furniture, mattresses, automotive seating, and cushioning products. TDI reacts with polyols to form polyurethane polymers, providing elasticity, resilience, and durability to finished foam products. Due to its high reactivity and volatility, it must be handled under strictly controlled industrial conditions.',
+        uses: [
+            'Flexible polyurethane foam production',
+            'Furniture cushions and mattresses',
+            'Automotive seating and interior components',
+            'Carpet underlay and packaging foam',
+            'Adhesives, sealants, and elastomers (limited applications)'
+        ],
+        features: [
+            'Typical 80/20 isomer ratio (2,4-/2,6-TDI)',
+            'High purity ≥ 99.5%',
+            'Low hydrolyzable chlorine content',
+            'High reactivity with polyols',
+            'Consistent quality for foam density control'
+        ],
+        specifications: {
+            purity: '≥ 99.5%',
+            packaging: 'Steel drums (~250 kg), IBCs, bulk ISO tankers',
+            casNumber: '584-84-9',
+            formula: 'C9H6N2O2'
+        },
+        certifications: ['ISO 9001 Manufacturing', 'REACH Registered'],
+        industries: ['Flexible Foam Manufacturing', 'Furniture & Bedding', 'Automotive Interiors', 'Adhesives & Sealants'],
+        handling: 'Moisture sensitive and toxic by inhalation. Store in dry conditions under nitrogen blanket at controlled temperature (typically 15–25°C). Use full PPE including respirators, chemical-resistant gloves, and protective clothing. Ensure proper ventilation and emergency safety equipment availability.'
+    },
+
+    {
+        name: 'Toluene',
+        description: 'High-purity aromatic hydrocarbon solvent and chemical feedstock used in coatings, adhesives, and petrochemical processing.',
+        href: '/products/toluene',
+        backgroundImage: Toluene,
+        icon: <Wind className="w-6 h-6" />,
+        slug: 'toluene',
+        category: 'Solvents',
+        chemicalId: 'toluene',
+        msdsPdfKey: 'Toluene MSDS & TDS.pdf',
+
+        fullDescription:
+            'Toluene is a colorless, volatile aromatic hydrocarbon derived from petroleum refining and catalytic reforming processes. It is insoluble in water and has a characteristic aromatic odor commonly associated with paint thinners. Due to its strong solvency and chemical stability, toluene is extensively used as a solvent in paints, coatings, adhesives, and printing inks. It also serves as an important chemical feedstock in the production of benzene derivatives, explosives, and various specialty chemicals.',
+
+        uses: [
+            'Solvent in paints, coatings, and industrial finishing systems',
+            'Chemical feedstock for synthesis of benzene derivatives and intermediates',
+            'Component in adhesive, rubber, and sealant formulations',
+            'Octane-enhancing blending component in gasoline formulations'
+        ],
+
+        features: [
+            'High solvency power for resins, rubbers, and polymers',
+            'Fast evaporation rate suitable for quick-drying applications',
+            'Excellent dissolving capacity across a wide range of materials',
+            'Good chemical and storage stability under normal conditions'
+        ],
+
+        specifications: {
+            purity: '99.5% minimum assay',
+            packaging: 'Bulk supply, ISO tanks, sealed steel drums',
+            casNumber: '108-88-3',
+            formula: 'C7H8'
+        },
+
+        certifications: [
+            'Nitration Grade',
+            'Industrial Grade',
+            'ASTM D841 Aromatic Hydrocarbon Specification'
+        ],
+
+        industries: [
+            'Paints & Coatings Manufacturing',
+            'Pharmaceutical & Fine Chemicals',
+            'Adhesives & Rubber Processing',
+            'Petrochemical & Refining Industry'
+        ],
+
+        handling:
+            'Highly flammable liquid. Handle with strict safety protocols. Avoid inhalation of vapors and prolonged skin contact. Use only in well-ventilated areas and ensure containers are properly grounded during storage and transfer operations.'
+    },
+
     {
         name: 'Acetone',
         description: 'High-purity ketone solvent widely used for cleaning, extraction, and chemical manufacturing.',
@@ -890,57 +822,160 @@ export const products: Product[] = [
 
         handling:
             'Extremely flammable liquid and vapor. Keep away from heat, sparks, and open flames. Use only in well-ventilated areas. Avoid inhalation of vapors and prolonged skin contact. Ground and bond containers during transfer. Store in tightly closed containers in a cool, dry place.'
-    }
-    ,
+    },
+
     {
-        name: 'Glycols',
-        description: 'High-purity glycols used in antifreeze, polyester manufacturing, and industrial heat-transfer applications.',
-        href: '/products/glycols',
-        backgroundImage: glycolsImg,
-        icon: <Beaker className="w-6 h-6" />,
-        slug: 'glycols',
+        name: 'Ethyl Acetate',
+        description: 'High-purity ester solvent widely used in coatings, printing inks, adhesives, pharmaceuticals, and food-related applications.',
+        href: '/products/ethyl-acetate',
+        backgroundImage: Ethylacetate,
+        icon: <FlaskConical className="w-6 h-6" />,
+        slug: 'ethyl-acetate',
         category: 'Solvents',
+        chemicalId: 'ethyl-acetate-msds',
+        msdsPdfKey: 'Ethyle Acetate MSDS & TDS.pdf',
 
         fullDescription:
-            'Glycols such as Monoethylene Glycol (MEG) and Diethylene Glycol (DEG) are widely used industrial chemicals known for their excellent thermal stability, hygroscopic nature, and low freezing points. These glycols are essential raw materials in antifreeze formulations, polyester fiber and resin production, heat transfer fluids, and industrial humectants.',
+            'Ethyl acetate is a colorless, volatile organic ester with a characteristic mild fruity odor. It is produced through the esterification of ethanol and acetic acid and is extensively used as a fast-evaporating solvent across multiple industries. Due to its excellent solvency for resins, polymers, and oils, ethyl acetate is a preferred solvent in coatings, inks, adhesives, and pharmaceutical processes. It is also widely accepted in food and flavor applications when supplied in food-grade quality.',
 
         uses: [
-            'Antifreeze and engine coolants',
-            'Polyester fiber and PET resin manufacturing',
-            'Heat transfer fluids',
-            'Industrial humectants and dehydrating agents'
+            'Primary solvent in surface coatings, lacquers, and varnishes',
+            'Manufacturing of printing inks and packaging inks',
+            'Solvent for adhesive formulations and laminating systems',
+            'Extraction and purification processes in pharmaceutical and food industries'
         ],
 
         features: [
-            'High purity industrial-grade glycols',
-            'Excellent heat transfer efficiency',
-            'Low freezing point characteristics',
-            'Consistent quality for polymer applications'
+            'Fast evaporation rate enabling quick drying and high productivity',
+            'Excellent solvency for a wide range of resins and polymers',
+            'Relatively low toxicity compared to many hydrocarbon solvents',
+            'Readily biodegradable under normal environmental conditions'
         ],
 
         specifications: {
-            purity: '99.9% min (MEG), 99.5% min (DEG)',
-            packaging: 'Bulk, ISO Tanks, IBCs, Drums',
-            casNumber: '107-21-1 (MEG), 111-46-6 (DEG)',
-            formula: 'C2H6O2 (MEG), C4H10O3 (DEG)'
+            purity: '99.8% minimum assay',
+            packaging: 'Bulk supply, IBCs, sealed steel drums',
+            casNumber: '141-78-6',
+            formula: 'C4H8O2'
         },
 
         certifications: [
-            'Industrial Grade',
-            'Fiber Grade',
-            'Antifreeze Grade'
+            'Food Grade Quality',
+            'Technical Grade Industrial Solvent',
+            'USP / NF Pharmaceutical Compliance'
         ],
 
         industries: [
-            'Automotive',
-            'Textiles',
-            'Packaging (PET)',
-            'HVAC',
-            'Chemical Manufacturing'
+            'Printing Inks & Packaging',
+            'Pharmaceutical Manufacturing',
+            'Food & Flavor Industry',
+            'Paints, Coatings & Adhesives'
         ],
 
         handling:
-            'Hygroscopic material. Store in tightly sealed containers to prevent moisture absorption. Avoid prolonged skin contact and inhalation of vapors or mists. Use in well-ventilated areas and follow standard industrial safety procedures.'
+            'Highly flammable liquid. Keep away from heat, sparks, and open flames. Use grounded and explosion-proof equipment during transfer. Ensure adequate ventilation and avoid prolonged inhalation of vapors.'
+    },
+
+    {
+        name: 'Butyl Glycol (EGBE)',
+        description: 'High-purity glycol ether solvent used in coatings, industrial cleaners, inks, and specialty chemical formulations.',
+        href: '/products/butyl-glycol',
+        backgroundImage: solventsImg,
+        icon: <Beaker className="w-6 h-6" />,
+        slug: 'butyl-glycol',
+        category: 'Solvents',
+        chemicalId: 'butyl-glycol',
+        msdsPdfKey: 'BULK-BUTYL-GLYCOL MSDS & TDS.pdf',
+
+        fullDescription:
+            'Butyl Glycol, also known as Ethylene Glycol Monobutyl Ether (EGBE), is a clear, colorless liquid glycol ether with a mild odor, high boiling point, and excellent solvency characteristics. It is widely used as a solvent and coupling agent in water-based and solvent-based formulations. Due to its ability to dissolve both hydrophilic and hydrophobic substances, EGBE is an essential component in surface coatings, industrial and household cleaners, inks, and textile processing chemicals.',
+
+        uses: [
+            'Solvent and coalescing agent in water-based and solvent-based surface coatings',
+            'Formulation of industrial, institutional, and household cleaning products',
+            'Solvent for printing inks, dyes, and pigments',
+            'Textile dyeing, finishing, and processing applications'
+        ],
+
+        features: [
+            'Excellent coupling ability between water and organic components',
+            'Slow and controlled evaporation rate for smooth film formation',
+            'Good miscibility with water and most organic solvents',
+            'Readily biodegradable under standard environmental conditions'
+        ],
+
+        specifications: {
+            purity: '99.5% minimum assay',
+            packaging: 'Bulk supply, IBCs, sealed steel drums',
+            casNumber: '111-76-2',
+            formula: 'C6H14O2'
+        },
+
+        certifications: [
+            'Technical Grade Industrial Solvent',
+            'REACH Registered Substance'
+        ],
+
+        industries: [
+            'Paints & Coatings Manufacturing',
+            'Industrial & Institutional Cleaning Products',
+            'Textiles & Dye Processing',
+            'Printing Inks & Pigment Formulations'
+        ],
+
+        handling:
+            'Handle with adequate ventilation and avoid inhalation of vapors. Prevent prolonged or repeated skin contact by using appropriate protective gloves. Store in tightly closed containers in a cool, well-ventilated area away from incompatible materials.'
+    },
+
+    {
+        name: 'Methyl Ethyl Ketone (MEK)',
+        description: 'High-purity ketone solvent widely used for resins, adhesives, coatings, and industrial chemical processes.',
+        href: '/products/mek',
+        backgroundImage: MethylEthylKetone,
+        icon: <Zap className="w-6 h-6" />,
+        slug: 'mek',
+        category: 'Solvents',
+        chemicalId: 'mek',
+        msdsPdfKey: 'BULK-METHYL-ETHYL-KETONE MEK MSDS & TDS.pdf',
+
+        fullDescription:
+            'Methyl Ethyl Ketone (MEK), also known as 2-butanone, is a colorless, volatile ketone solvent characterized by its strong solvency power and rapid evaporation rate. It is extensively used in the formulation of surface coatings, adhesives, and printing inks, particularly for dissolving gums, resins, cellulose acetate, and nitrocellulose systems. MEK is also employed as a process solvent and chemical intermediate in various industrial manufacturing operations.',
+
+        uses: [
+            'Solvent for surface coatings, lacquers, and industrial paints',
+            'Formulation of solvent-based adhesives and sealants',
+            'Manufacturing of printing inks and packaging inks',
+            'Process solvent and intermediate in chemical manufacturing'
+        ],
+
+        features: [
+            'Fast evaporation rate enabling quick drying and high throughput',
+            'Strong solvency for a wide range of resins and polymers',
+            'Low boiling point supporting efficient solvent recovery',
+            'Excellent compatibility with nitrocellulose and acrylic resin systems'
+        ],
+
+        specifications: {
+            purity: '99.7% minimum assay',
+            packaging: 'Bulk supply, IBCs, sealed steel drums',
+            casNumber: '78-93-3',
+            formula: 'C4H8O'
+        },
+
+        certifications: [
+            'Technical Grade Industrial Solvent',
+            'ASTM D740 Specification Compliance'
+        ],
+
+        industries: [
+            'Adhesives & Sealants',
+            'Paints & Industrial Coatings',
+            'Printing Inks & Packaging',
+            'Chemical Processing & Manufacturing'
+        ],
+
+        handling:
+            'Extremely flammable liquid. Enforce strict no-smoking policies and eliminate all ignition sources. Ground and bond all containers during transfer operations. Use explosion-proof electrical equipment and ensure adequate ventilation to prevent vapor accumulation.'
     }
     ,
 
@@ -994,8 +1029,8 @@ export const products: Product[] = [
 
         handling:
             'Corrosive acidic material. Handle with chemical-resistant gloves, goggles, and protective clothing. Store in acid-resistant containers away from moisture and incompatible materials. Avoid direct contact with skin and eyes.'
-    }
-    ,
+    },
+
     {
         name: 'SLES 70%',
         description: 'Sodium Lauryl Ether Sulfate widely used as a primary surfactant in personal care and cleaning formulations.',
@@ -1046,8 +1081,151 @@ export const products: Product[] = [
 
         handling:
             'Store in tightly sealed containers away from direct sunlight. Avoid freezing or overheating. Use appropriate PPE when handling concentrated material to prevent irritation.'
-    }
-    ,
+    },
+
+    {
+        name: 'Soda Ash Light',
+        description: 'Light-density sodium carbonate used in glass, detergents, and chemical processing.',
+        href: '/products/soda-ash-light',
+        backgroundImage: sodaashlight,
+        icon: <Layers className="w-6 h-6" />,
+        slug: 'soda-ash-light',
+        category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'soda-ash-light',
+        msdsPdfKey: 'Specification   Soda Ash Light .pdf',
+
+        fullDescription:
+            'Soda Ash Light (Sodium Carbonate) is a white, odorless, free-flowing powder with lower bulk density than dense soda ash. It is produced via the Solvay process and is widely used as an alkaline agent in glass manufacturing, detergent formulation, paper processing, and water treatment. Its light density makes it especially suitable for detergent blending and chemical reactions requiring fast dissolution.',
+
+        uses: [
+            'Glass manufacturing',
+            'Detergent and soap production',
+            'Paper and pulp processing',
+            'Water softening and pH adjustment'
+        ],
+
+        features: [
+            'High chemical purity',
+            'Low iron content suitable for clear glass',
+            'Good solubility in water',
+            'Uniform particle size'
+        ],
+
+        specifications: {
+            purity: '99.2% min',
+            packaging: '25 kg bags, Jumbo bags, Bulk',
+            casNumber: '497-19-8',
+            formula: 'Na2CO3'
+        },
+
+        certifications: [
+            'ISO 9001',
+            'Technical Grade',
+            'Glass Grade'
+        ],
+
+        industries: [
+            'Glass Manufacturing',
+            'Detergents & Soaps',
+            'Water Treatment',
+            'Metallurgy'
+        ],
+
+        handling:
+            'Store in a cool, dry place away from moisture. Avoid dust generation during handling. Use appropriate PPE such as gloves and dust masks. Hygroscopic material—keep containers tightly closed.'
+    },
+
+    {
+        name: 'Sodium Nitrate',
+        description: 'Oxidizing agent for glass, explosives, and industrial chemical formulations.',
+        href: '/products/sodium-nitrate',
+        backgroundImage: SodiumNitrate,
+        icon: <Box className="w-6 h-6" />,
+        slug: 'sodium-nitrate',
+        category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'sodium-nitrate-coated',
+        msdsPdfKey: 'Sodium Nitrate coated grade.pdf',
+        fullDescription: 'Sodium Nitrate (NaNO3) is a white solid that is highly soluble in water. It is a powerful oxidizer used in several industrial processes, including glass making and as a chemical intermediate.',
+        uses: ['Glass manufacturing', 'Pyrotechnics', 'Enamel glazes', 'Industrial chemistry'],
+        features: ['Powerful oxidizer', 'High purity crystalline form', 'Fast-acting reagent'],
+        specifications: { purity: '≥ 99%', casNumber: '7631-99-4', formula: 'NaNO3' },
+        industries: ['Glass', 'Chemical Manufacturing', 'Industrial Processing'],
+        handling: 'Strong oxidizer. Store away from flammable materials and reducing agents.'
+    },
+
+    {
+        name: 'Titanium Dioxide',
+        description: 'High-performance white pigment (TiO2) widely used for opacity, brightness, and UV resistance in paints, coatings, plastics, and specialty applications.',
+        href: '/products/titanium-dioxide',
+        backgroundImage: TitaniumDioxide,
+        icon: <Paintbrush className="w-6 h-6" />,
+        slug: 'titanium-dioxide',
+        category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'titanium-dioxide-ar',
+        msdsPdfKey: 'Titanium Dioxide.pdf',
+        fullDescription: 'Titanium Dioxide (TiO2) is a naturally occurring oxide of titanium and the most important white inorganic pigment used globally. It provides exceptional opacity, high refractive index, superior brightness, and excellent UV resistance. Rutile grade TiO2 is primarily used in paints, coatings, and plastics due to its superior durability and weather resistance, while anatase grade is used in paper, inks, and specialty applications. It enhances hiding power, improves color retention, and increases product lifespan.',
+        uses: [
+            'Architectural and industrial paints',
+            'Powder and protective coatings',
+            'Masterbatches and plastic compounding',
+            'Paper coating and filling',
+            'Printing inks',
+            'Cosmetic and personal care formulations (select grades)'
+        ],
+        features: [
+            'High refractive index for superior hiding power',
+            'Excellent brightness and whiteness',
+            'Outstanding UV resistance and weather durability',
+            'Available in Rutile and Anatase grades',
+            'High dispersibility in various media'
+        ],
+        specifications: {
+            purity: '≥ 94% TiO2 content',
+            packaging: '25 kg multi-layer paper bags, Jumbo bags',
+            casNumber: '13463-67-7',
+            formula: 'TiO2'
+        },
+        certifications: ['ISO 9001 Manufacturing', 'REACH Registered', 'ASTM D476 Classification'],
+        industries: ['Paints & Coatings', 'Plastics & Polymers', 'Printing Inks', 'Paper & Packaging'],
+        handling: 'Store in a dry, covered warehouse away from direct exposure to moisture. Ensure proper ventilation to control dust levels during handling. Use personal protective equipment including dust masks and gloves to prevent inhalation and skin contact.'
+    },
+
+    {
+        name: 'Sodium Silicate',
+        description: 'Versatile "liquid glass" used as a binder, detergent builder, and mining flotation aid.',
+        href: '/products/sodium-silicate',
+        backgroundImage: SodiumSilicate,
+        icon: <Layers className="w-6 h-6" />,
+        slug: 'sodium-silicate',
+        category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'sodium-silicate-cullets',
+        msdsPdfKey: 'Soidum Silicate COA.pdf',
+        fullDescription: 'Sodium Silicate is used as a binder in cements, a builder in detergents, and a corrosion inhibitor in water treatment. It also acts as a dispersant in mining flotation.',
+        uses: ['Detergent building', 'Adhesives', 'Mining flotation', 'Water treatment'],
+        features: ['Strong binding properties', 'Adjustable silica/alkali ratio', 'Liquid or solid forms'],
+        specifications: { purity: 'Available as Neutral or Alkaline grades', casNumber: '1344-09-8', formula: 'Na2SiO3' },
+        industries: ['Detergents', 'Mining', 'Construction', 'Water Treatment'],
+        handling: 'Keep containers tightly closed. Highly alkaline; protect skin and eyes.'
+    },
+
+    {
+        name: 'Sodium Sulphate (Anhydrous)',
+        description: 'Essential filler for detergents and processing aid for glass and textiles.',
+        href: '/products/sodium-sulphate',
+        backgroundImage: SodiumSulphate,
+        icon: <Layers className="w-6 h-6" />,
+        slug: 'sodium-sulphate',
+        category: 'Detergent & Chemical Raw Materials',
+        chemicalId: 'sodium-sulphate-anhydrous',
+        msdsPdfKey: 'Sodium Sulphate Anhydrous.pdf',
+        fullDescription: 'Sodium Sulphate (anhydrous) is used primarily as a filler in powdered household detergents and as a fining agent in the glass industry to remove air bubbles.',
+        uses: ['Powdered detergents', 'Glass manufacturing', 'Textile dyeing', 'Paper pulping'],
+        features: ['Inert filler', 'High purity anhydrous form', 'Free-flowing white powder'],
+        specifications: { purity: '≥ 99%', casNumber: '7757-82-6', formula: 'Na2SO4' },
+        industries: ['Detergents', 'Glass', 'Textiles', 'Paper'],
+        handling: 'Hygroscopic. Store in a dry area. Avoid dust generation.'
+    },
+
     {
         name: 'Caustic Soda Flakes',
         description: 'Highly corrosive alkali used widely in soap, paper, textile, and chemical industries.',
@@ -1100,58 +1278,6 @@ export const products: Product[] = [
             'Extremely corrosive material. Use chemical-resistant gloves, goggles, and protective clothing. Store in airtight containers in a dry area away from moisture and acids. In case of skin or eye contact, rinse immediately with plenty of water and seek medical attention.'
     }
     ,
-    {
-        name: 'Soda Ash Light',
-        description: 'Light-density sodium carbonate used in glass, detergents, and chemical processing.',
-        href: '/products/soda-ash-light',
-        backgroundImage: sodaashlight,
-        icon: <Layers className="w-6 h-6" />,
-        slug: 'soda-ash-light',
-        category: 'Detergent & Chemical Raw Materials',
-        chemicalId: 'soda-ash-light',
-        msdsPdfKey: 'Specification   Soda Ash Light .pdf',
-
-        fullDescription:
-            'Soda Ash Light (Sodium Carbonate) is a white, odorless, free-flowing powder with lower bulk density than dense soda ash. It is produced via the Solvay process and is widely used as an alkaline agent in glass manufacturing, detergent formulation, paper processing, and water treatment. Its light density makes it especially suitable for detergent blending and chemical reactions requiring fast dissolution.',
-
-        uses: [
-            'Glass manufacturing',
-            'Detergent and soap production',
-            'Paper and pulp processing',
-            'Water softening and pH adjustment'
-        ],
-
-        features: [
-            'High chemical purity',
-            'Low iron content suitable for clear glass',
-            'Good solubility in water',
-            'Uniform particle size'
-        ],
-
-        specifications: {
-            purity: '99.2% min',
-            packaging: '25 kg bags, Jumbo bags, Bulk',
-            casNumber: '497-19-8',
-            formula: 'Na2CO3'
-        },
-
-        certifications: [
-            'ISO 9001',
-            'Technical Grade',
-            'Glass Grade'
-        ],
-
-        industries: [
-            'Glass Manufacturing',
-            'Detergents & Soaps',
-            'Water Treatment',
-            'Metallurgy'
-        ],
-
-        handling:
-            'Store in a cool, dry place away from moisture. Avoid dust generation during handling. Use appropriate PPE such as gloves and dust masks. Hygroscopic material—keep containers tightly closed.'
-    }
-    ,
 
     // Water Treatment Chemicals
     {
@@ -1164,479 +1290,14 @@ export const products: Product[] = [
         category: 'Water Treatment Chemicals',
         chemicalId: 'aluminium-sulphate',
         msdsPdfKey: 'ALUMINIUM-SULPHATE- COA.pdf',
-
-        fullDescription:
-            'Aluminum Sulphate is an inorganic salt commonly used as a primary coagulant in drinking water purification and wastewater treatment. It reacts with alkalinity in water to form aluminum hydroxide flocs, which effectively trap suspended solids, organic matter, and turbidity. It is supplied in solid (lumps or powder) and liquid forms for municipal and industrial applications.',
-
-        uses: [
-            'Drinking water treatment',
-            'Wastewater and effluent treatment',
-            'Paper sizing and paper manufacturing',
-            'pH control and clarification processes'
-        ],
-
-        features: [
-            'Fast and efficient coagulation',
-            'Effective turbidity and color removal',
-            'Reliable performance in neutral pH range',
-            'Economical and widely accepted treatment chemical'
-        ],
-
-        specifications: {
-            purity: '17% Al2O3 min',
-            packaging: 'Bulk, IBCs, 25 kg bags',
-            casNumber: '10043-01-3',
-            formula: 'Al2(SO4)3'
-        },
-
-        certifications: [
-            'NSF/ANSI 60',
-            'Drinking Water Grade',
-            'Technical Grade'
-        ],
-
-        industries: [
-            'Municipal Water Treatment',
-            'Wastewater Treatment',
-            'Paper & Pulp Industry',
-            'Industrial Water Processing'
-        ],
-
-        handling:
-            'Store in a dry, well-ventilated area away from alkaline substances. Avoid contact with skin and eyes. Use appropriate PPE such as gloves, goggles, and protective clothing. In case of spillage, contain and clean using approved procedures.'
-    }
-    ,
-    {
-        name: 'PAC (Polyaluminium Chloride)',
-        description: 'High-efficiency inorganic coagulant for municipal and industrial water treatment.',
-        href: '/products/pac',
-        backgroundImage: waterTreatmentImg,
-        icon: <FlaskConical className="w-6 h-6" />,
-        slug: 'pac',
-        category: 'Water Treatment Chemicals',
-
-        fullDescription:
-            'Polyaluminium Chloride (PAC) is a pre-hydrolyzed aluminum-based coagulant widely used in drinking water, wastewater, and industrial effluent treatment. Due to its polymeric structure and high charge density, PAC provides faster floc formation, improved turbidity removal, and stable performance even in cold water and low-alkalinity conditions compared to conventional alum.',
-
-        uses: [
-            'Drinking water clarification',
-            'Municipal and industrial wastewater treatment',
-            'Industrial water recycling systems',
-            'Paper and pulp processing'
-        ],
-
-        features: [
-            'High basicity and polymerized structure',
-            'Effective at low and high turbidity levels',
-            'Lower dosage compared to alum',
-            'Reduced sludge generation'
-        ],
-
-        specifications: {
-            purity: '28–30% Al2O3',
-            packaging: 'Bulk, IBCs, Drums',
-            casNumber: '1327-41-9',
-            formula: '[Al2(OH)nCl6−n]m'
-        },
-
-        certifications: [
-            'NSF/ANSI 60',
-            'EN 883',
-            'Drinking Water Grade'
-        ],
-
-        industries: [
-            'Municipal Water Treatment',
-            'Wastewater Treatment',
-            'Industrial Processing',
-            'Paper Industry'
-        ],
-
-        handling:
-            'Store in corrosion-resistant containers in a cool, dry place. Avoid contact with skin and eyes. Use appropriate PPE including gloves, goggles, and protective clothing. Prevent mixing with strong alkalis.'
-    }
-    ,
-
-    // Food Industry Chemicals
-    {
-        name: 'Citric Acid',
-        description: 'Food-grade organic acid used for acidity regulation, preservation, and flavor enhancement.',
-        href: '/products/citric-acid',
-        backgroundImage: CitricAcid,
-        icon: <Grape className="w-6 h-6" />,
-        slug: 'citric-acid',
-        category: 'Food Industry Chemicals',
-        chemicalId: 'citric-acid-monohydrate',
-        msdsPdfKey: 'CITRIC ACID MONOHYDRATE  COA.pdf',
-
-        fullDescription:
-            'Citric Acid is a naturally occurring weak organic acid produced commercially by fermentation of carbohydrates using Aspergillus niger. It is widely used in the food and beverage industry as an acidulant, preservative, flavor enhancer, and chelating agent. It is also used extensively in pharmaceuticals, cosmetics, and cleaning formulations. Available in anhydrous and monohydrate forms to suit different processing requirements.',
-
-        uses: [
-            'Food preservative and acidulant',
-            'Flavor enhancement in beverages and confectionery',
-            'Food stabilizer and pH regulator',
-            'Chelating agent in food and pharmaceutical formulations'
-        ],
-
-        features: [
-            'High food-grade purity',
-            'Excellent buffering and chelating properties',
-            'Natural fermentation-derived product',
-            'Available in anhydrous and monohydrate grades'
-        ],
-
-        specifications: {
-            purity: '99.5% min',
-            packaging: '25 kg bags, 1000 kg jumbo bags',
-            casNumber: '77-92-9',
-            formula: 'C6H8O7'
-        },
-
-        certifications: [
-            'Food Grade',
-            'USP',
-            'FCC',
-            'Kosher',
-            'Halal'
-        ],
-
-        industries: [
-            'Food & Beverage',
-            'Pharmaceuticals',
-            'Cosmetics',
-            'Cleaning Products'
-        ],
-
-        handling:
-            'Store in a cool, dry place away from moisture. Use clean, food-grade handling equipment. Avoid contamination. Ensure containers are tightly sealed to maintain product quality.'
-    }
-    ,
-    {
-        name: 'Acetic Acid',
-        description: 'High-purity organic acid used in food, pharmaceutical, and industrial applications.',
-        href: '/products/acetic-acid',
-        backgroundImage: foodIndustryImg,
-        icon: <Droplets className="w-6 h-6" />,
-        slug: 'acetic-acid',
-        category: 'Food Industry Chemicals',
-        chemicalId: 'acetic-acid',
-        msdsPdfKey: 'Acetic Acid MSDS.pdf',
-
-        fullDescription:
-            'Acetic Acid is a clear, colorless organic acid with a pungent odor and is the principal component of vinegar. Commercially, it is produced via methanol carbonylation or fermentation routes. It is supplied in food-grade, pharmaceutical-grade, and technical-grade forms and is widely used as an acidity regulator, preservative, chemical intermediate, and processing aid in multiple industries.',
-
-        uses: [
-            'Vinegar and food acidulant production',
-            'Acidity regulation and preservation',
-            'Chemical synthesis and intermediates',
-            'Textile processing and dyeing'
-        ],
-
-        features: [
-            'High purity food and pharma grades available',
-            'Available in multiple concentrations including glacial',
-            'Clear, colorless liquid with consistent quality',
-            'Excellent chemical reactivity'
-        ],
-
-        specifications: {
-            purity: '99.8% min for glacial',
-            packaging: 'Bulk, IBCs, Drums',
-            casNumber: '64-19-7',
-            formula: 'CH3COOH'
-        },
-
-        certifications: [
-            'Food Grade',
-            'Technical Grade',
-            'Pharma Grade'
-        ],
-
-        industries: [
-            'Food Industry',
-            'Chemical Manufacturing',
-            'Textiles',
-            'Pharmaceuticals'
-        ],
-
-        handling:
-            'Corrosive material—use acid-resistant gloves, goggles, and protective clothing. Store in dedicated corrosion-resistant containers in a well-ventilated area. Emergency showers and eyewash stations should be available.'
-    }
-    ,
-
-    // Cosmetics & Personal Care
-    {
-        name: 'Glycerine (USP Grade)',
-        description: 'High-purity USP grade glycerine suitable for cosmetic, pharmaceutical, and personal care formulations.',
-        href: '/products/glycerine',
-        backgroundImage: Glycerine,
-        icon: <Droplets className="w-6 h-6" />,
-        slug: 'glycerine',
-        category: 'Cosmetics & Personal Care Chemicals',
-        chemicalId: 'glycerine',
-        msdsPdfKey: 'GLYCERINE MSDS & TDS.pdf',
-
-        fullDescription:
-            'Glycerine (also known as glycerol) is a clear, colorless, odorless, and viscous liquid with excellent hygroscopic and humectant properties. Our USP Grade Glycerine complies with United States Pharmacopeia standards and is manufactured under strict quality controls to ensure consistent purity and performance. It is widely used in cosmetic, pharmaceutical, food, and personal care applications for moisture retention, texture enhancement, and product stability.',
-
-        uses: [
-            'Skin and hair moisturizers',
-            'Soaps and liquid cleansers',
-            'Creams and lotions',
-            'Oral care products such as toothpaste and mouthwash',
-            'Pharmaceutical syrups and topical formulations'
-        ],
-
-        features: [
-            'USP-compliant pharmaceutical grade',
-            'High purity and clarity',
-            'Excellent moisturizing and humectant properties',
-            'Non-toxic and non-irritating',
-            'Suitable for cosmetic and food contact applications'
-        ],
-
-        specifications: {
-            purity: '≥ 99.7%',
-            packaging: 'HDPE drums, IBC totes, bulk supply',
-            casNumber: '56-81-5',
-            formula: 'C3H8O3'
-        },
-
-        certifications: [
-            'USP',
-            'EP',
-            'JP',
-            'Kosher',
-            'Halal',
-            'Non-GMO'
-        ],
-
-        industries: [
-            'Cosmetics & Personal Care',
-            'Pharmaceuticals',
-            'Food & Beverages',
-            'Oral Care'
-        ],
-
-        handling:
-            'Store in tightly closed containers in a cool, dry, and well-ventilated area. Glycerine is hygroscopic and readily absorbs moisture from the air. Use clean, dedicated equipment to prevent contamination, especially for cosmetic and pharmaceutical applications.'
-    }
-    ,
-    {
-        name: 'Propylene Glycol',
-        description: 'High-purity propylene glycol used as a humectant, solvent, and carrier in cosmetic, pharmaceutical, food, and industrial formulations.',
-        href: '/products/propylene-glycol',
-        backgroundImage: cosmeticsImg,
-        icon: <Beaker className="w-6 h-6" />,
-        slug: 'propylene-glycol',
-        category: 'Cosmetics & Personal Care Chemicals',
-        chemicalId: 'propylene-glycol-usp',
-        msdsPdfKey: 'PROPLYENE-GLYCOL-USP MSDS & TDS.pdf',
-        fullDescription: 'Propylene Glycol (PG) is a colorless, odorless, hygroscopic liquid widely used as a humectant, solvent, and formulation stabilizer. It effectively retains moisture, enhances product texture, and improves the solubility of active ingredients in cosmetic and personal care products. It is also extensively used in pharmaceutical syrups, food processing, and industrial applications due to its low toxicity and excellent compatibility profile.',
-        uses: [
-            'Humectant for moisture retention',
-            'Solvent for active ingredients and fragrances',
-            'Carrier in pharmaceutical syrups and injectables',
-            'Food additive (E1520)',
-            'Antifreeze and coolant base (industrial grade)'
-        ],
-        features: [
-            'Available in USP, EP, and Food Grade',
-            'Excellent hygroscopic and solvent properties',
-            'Chemically stable and low volatility',
-            'Low toxicity and skin-compatible',
-            'Miscible with water, alcohol, and many organic solvents'
-        ],
-        specifications: {
-            purity: '99.5% – 99.9%',
-            packaging: '215 kg HDPE Drums, 1000 kg IBC Totes, Bulk Tanker',
-            casNumber: '57-55-6',
-            formula: 'C3H8O2'
-        },
-        certifications: ['USP', 'EP', 'FCC', 'Kosher', 'Halal'],
-        industries: ['Cosmetics & Personal Care', 'Pharmaceuticals', 'Food & Beverage', 'Industrial Manufacturing'],
-        handling: 'Store in tightly closed containers in a cool, dry, and well-ventilated area. Avoid contamination with moisture or foreign materials. Use appropriate PPE during handling. Keep away from strong oxidizing agents.'
+        fullDescription: 'Aluminum Sulphate is an inorganic salt commonly used as a primary coagulant in drinking water purification and wastewater treatment. It reacts with alkalinity in water to form aluminum hydroxide flocs, which effectively trap suspended solids, organic matter, and turbidity. It is supplied in solid (lumps or powder) and liquid forms for municipal and industrial applications.',
+        uses: ['Drinking water treatment', 'Wastewater and effluent treatment', 'Paper sizing and manufacturing', 'pH control'],
+        features: ['Fast and efficient coagulation', 'Effective turbidity removal', 'Reliable in neutral pH', 'Economical'],
+        specifications: { purity: '17% Al2O3 min', packaging: '25 kg bags, Bulk', casNumber: '10043-01-3', formula: 'Al2(SO4)3' },
+        industries: ['Municipal Water Treatment', 'Wastewater Treatment', 'Paper & Pulp'],
+        handling: 'Store in a dry area. Avoid contact with skin and eyes. Use appropriate PPE.'
     },
 
-    // Paint & Coatings
-    {
-        name: 'Titanium Dioxide',
-        description: 'High-performance white pigment (TiO2) widely used for opacity, brightness, and UV resistance in paints, coatings, plastics, and specialty applications.',
-        href: '/products/titanium-dioxide',
-        backgroundImage: TitaniumDioxide,
-        icon: <Paintbrush className="w-6 h-6" />,
-        slug: 'titanium-dioxide',
-        category: 'Paint & Coatings Chemicals',
-        chemicalId: 'titanium-dioxide-ar',
-        msdsPdfKey: 'Titanium Dioxide.pdf',
-        fullDescription: 'Titanium Dioxide (TiO2) is a naturally occurring oxide of titanium and the most important white inorganic pigment used globally. It provides exceptional opacity, high refractive index, superior brightness, and excellent UV resistance. Rutile grade TiO2 is primarily used in paints, coatings, and plastics due to its superior durability and weather resistance, while anatase grade is used in paper, inks, and specialty applications. It enhances hiding power, improves color retention, and increases product lifespan.',
-        uses: [
-            'Architectural and industrial paints',
-            'Powder and protective coatings',
-            'Masterbatches and plastic compounding',
-            'Paper coating and filling',
-            'Printing inks',
-            'Cosmetic and personal care formulations (select grades)'
-        ],
-        features: [
-            'High refractive index for superior hiding power',
-            'Excellent brightness and whiteness',
-            'Outstanding UV resistance and weather durability',
-            'Available in Rutile and Anatase grades',
-            'Surface-treated grades for enhanced dispersion'
-        ],
-        specifications: {
-            purity: '≥ 94% TiO2 (Rutile grade typically 94–96%, Anatase up to 98%)',
-            packaging: '25 kg multi-wall paper bags, 500 kg / 1000 kg jumbo bags',
-            casNumber: '13463-67-7',
-            formula: 'TiO2'
-        },
-        certifications: ['ISO 591-1 (Rutile/Anatase classification)', 'ASTM D476', 'REACH Registered'],
-        industries: ['Paints & Coatings', 'Plastics & Polymers', 'Paper & Pulp', 'Printing Inks', 'Cosmetics (Approved Grades)'],
-        handling: 'Avoid dust formation during handling. Use local exhaust ventilation in enclosed areas. Wear suitable respiratory protection if exposure limits are exceeded. Store in a dry area away from moisture and contamination.'
-    },
-    {
-        name: 'Zinc Oxide',
-        description: 'High-purity inorganic white pigment offering UV protection, corrosion resistance, and antimicrobial performance for coatings, rubber, cosmetics, and pharmaceutical applications.',
-        href: '/products/zinc-oxide',
-        backgroundImage: paintCoatingsImg,
-        icon: <Box className="w-6 h-6" />,
-        slug: 'zinc-oxide',
-        category: 'Paint & Coatings Chemicals',
-        chemicalId: 'zinc-oxide-usp',
-        msdsPdfKey: 'Zinc Oxide, USP.pdf',
-        fullDescription: 'Zinc Oxide (ZnO) is an inorganic compound appearing as a fine white powder, insoluble in water but soluble in acids and alkalis. It is widely used for its excellent UV absorption, antimicrobial properties, and corrosion resistance. In coatings, it improves mildew resistance and durability. In the rubber industry, it acts as a key activator in the vulcanization process. Cosmetic and pharmaceutical grades are used in sunscreens, ointments, and skin protectants due to their skin-soothing and protective properties.',
-        uses: [
-            'Anti-corrosive pigment in paints and primers',
-            'UV absorber in sunscreens and coatings',
-            'Activator in rubber vulcanization',
-            'Skin protectant in ointments and creams',
-            'Ceramic glazes and glass manufacturing'
-        ],
-        features: [
-            'Available in Technical, Rubber, and Pharma/Cosmetic grades',
-            'Excellent UV absorption capability',
-            'Natural antimicrobial and antifungal properties',
-            'High thermal stability',
-            'Good dispersion characteristics in formulations'
-        ],
-        specifications: {
-            purity: '99.0% – 99.9% (depending on grade)',
-            packaging: '25 kg HDPE or paper bags, 500 kg / 1000 kg jumbo bags',
-            casNumber: '1314-13-2',
-            formula: 'ZnO'
-        },
-        certifications: ['USP (Pharmaceutical Grade)', 'FCC (Food Grade)', 'REACH Registered'],
-        industries: ['Paints & Coatings', 'Rubber & Tyre Manufacturing', 'Cosmetics & Personal Care', 'Pharmaceuticals', 'Ceramics & Glass'],
-        handling: 'Avoid formation and inhalation of dust. Use appropriate ventilation and respiratory protection where necessary. Store in tightly sealed containers in a cool, dry area away from moisture and strong acids.'
-    },
-
-    // Mining
-    {
-        name: 'Sodium Cyanide',
-        description: 'Highly toxic inorganic compound primarily used in gold and silver extraction through cyanidation processes in the mining industry.',
-        href: '/products/sodium-cyanide',
-        backgroundImage: SodiumCyanide,
-        icon: <Hammer className="w-6 h-6" />,
-        slug: 'sodium-cyanide',
-        category: 'Mining Industry Chemicals',
-        chemicalId: 'sodium-cyanide',
-        msdsPdfKey: 'Sodium cyanide COA.pdf',
-        fullDescription: 'Sodium Cyanide (NaCN) is a white, water-soluble, highly toxic inorganic compound extensively used in the mining industry for the extraction of gold and silver via the cyanidation process. It forms stable complexes with precious metals, enabling efficient recovery from ore. It is supplied in solid briquettes, powder form, or aqueous solution, manufactured under strict quality and safety standards. Due to its extreme toxicity, production, transport, storage, and use are subject to rigorous international safety regulations.',
-        uses: [
-            'Gold extraction by heap leaching and tank leaching',
-            'Silver recovery processes',
-            'Electroplating and metal finishing',
-            'Chemical intermediate in specialty synthesis'
-        ],
-        features: [
-            'High purity mining grade material',
-            'Rapid dissolution in water',
-            'Efficient metal complexing capability',
-            'Available in solid briquettes and liquid solution',
-            'Manufactured under strict quality and safety controls'
-        ],
-        specifications: {
-            purity: '≥ 98% (solid briquettes), typically 30% solution for liquid grade',
-            packaging: 'Steel drums, wooden boxes with polyethylene liners, ISO tank containers (solution)',
-            casNumber: '143-33-9',
-            formula: 'NaCN'
-        },
-        certifications: ['ISO 9001 Manufacturing', 'ICMC Compliant (International Cyanide Management Code)'],
-        industries: ['Gold & Silver Mining', 'Metallurgy', 'Electroplating', 'Chemical Manufacturing'],
-        handling: 'EXTREMELY TOXIC AND FATAL IF INGESTED, INHALED, OR ABSORBED THROUGH SKIN. Handle only in controlled industrial environments by trained personnel. Use full PPE including chemical-resistant gloves, protective clothing, and respiratory protection. Store in dry, secure, well-ventilated areas away from acids and moisture. Emergency response procedures and cyanide antidote kits must be readily available.'
-    },
-
-    // Textile
-    {
-        name: 'Hydrogen Peroxide',
-        description: 'Strong oxidizing agent widely used for textile bleaching, pulp processing, water treatment, and disinfection applications.',
-        href: '/products/hydrogen-peroxide',
-        backgroundImage: HydrogenPeroxide,
-        icon: <Droplets className="w-6 h-6" />,
-        slug: 'hydrogen-peroxide',
-        category: 'Textile Industry Chemicals',
-        chemicalId: 'hydrogen-peroxide-35',
-        msdsPdfKey: 'HYDROGEN PEROXIDE COA.pdf',
-        fullDescription: 'Hydrogen Peroxide (H2O2) is a clear, colorless liquid with strong oxidizing properties. In the textile industry, it is extensively used for cotton and blended fabric bleaching due to its ability to remove natural pigments without causing significant fiber damage when properly stabilized. It decomposes into water and oxygen, making it an environmentally preferred bleaching agent. It is also widely used in pulp and paper bleaching, wastewater treatment, chemical synthesis, and surface disinfection.',
-        uses: [
-            'Cotton and blended fabric bleaching',
-            'Pulp and paper bleaching',
-            'Industrial and municipal water treatment',
-            'Surface disinfection and sterilization',
-            'Chemical oxidation processes'
-        ],
-        features: [
-            'Available in stabilized industrial grades',
-            'Common concentrations: 35%, 50%, and higher on request',
-            'Decomposes into water and oxygen (environmentally compatible)',
-            'Strong oxidizing efficiency',
-            'Low residue after bleaching process'
-        ],
-        specifications: {
-            purity: '35%, 50% w/w aqueous solutions (industrial grades)',
-            packaging: 'HDPE drums, IBC totes, ISO tankers (bulk)',
-            casNumber: '7722-84-1',
-            formula: 'H2O2'
-        },
-        certifications: ['ISO 9001 Manufacturing', 'Food Grade (Codex/FCC where applicable)', 'Electronic Grade (High Purity)'],
-        industries: ['Textiles', 'Pulp & Paper', 'Water & Wastewater Treatment', 'Electronics Manufacturing', 'Chemical Processing'],
-        handling: 'Store in vented, approved containers away from heat, direct sunlight, and contaminants. Keep away from organic materials, metals, and reducing agents. Causes severe burns—use full PPE including gloves, goggles, and protective clothing. Ensure proper ventilation during handling.'
-    },
-    {
-        name: 'Sodium Hydrosulphite',
-        description: 'Powerful reducing agent used primarily in textile vat dyeing, bleaching, and industrial decolorization processes.',
-        href: '/products/sodium-hydrosulphite',
-        backgroundImage: textileImg,
-        icon: <Beaker className="w-6 h-6" />,
-        slug: 'sodium-hydrosulphite',
-        category: 'Textile Industry Chemicals',
-        fullDescription: 'Sodium Hydrosulphite (Sodium Dithionite, Na2S2O4) is a white to off-white crystalline powder with strong reducing properties. It is widely used in the textile industry for vat dyeing, indigo dye reduction, and bleaching processes. It is also used in paper pulp bleaching and as a reducing agent in chemical synthesis. The product is sensitive to air and moisture and decomposes upon exposure to heat and humidity, requiring controlled storage conditions.',
-        uses: [
-            'Vat and sulfur dye reduction in textile dyeing',
-            'Indigo dyeing processes',
-            'Pulp and paper bleaching',
-            'Chemical reduction reactions',
-            'Decolorization in specialty chemical processing'
-        ],
-        features: [
-            'High reducing strength',
-            'Fast dissolution and reaction rate',
-            'Available in textile and industrial grades',
-            'Low residue formation when properly applied',
-            'Consistent particle size for controlled performance'
-        ],
-        specifications: {
-            purity: '≥ 88% (standard industrial grade), higher grades up to 90%+ available',
-            packaging: '50 kg steel drums with polyethylene liner',
-            casNumber: '7775-14-6',
-            formula: 'Na2S2O4'
-        },
-        certifications: ['ISO 9001 Manufacturing', 'Textile Grade', 'REACH Registered (where applicable)'],
-        industries: ['Textile Dyeing & Processing', 'Pulp & Paper', 'Chemical Manufacturing', 'Mineral Processing'],
-        handling: 'Store in tightly sealed containers in a cool, dry, and well-ventilated area. Protect from moisture, air, and heat sources. Avoid contact with acids and oxidizing agents. Use protective gloves and eye protection during handling.'
-    },
     {
         name: 'Ferric Chloride',
         description: 'Powerful inorganic coagulant used in water treatment and etching applications.',
@@ -1654,6 +1315,41 @@ export const products: Product[] = [
         industries: ['Water Treatment', 'Electronics', 'Chemical Manufacturing'],
         handling: 'Highly corrosive and acidic. Store in plastic or rubber-lined containers. Use full acid-resistant PPE.'
     },
+
+    {
+        name: 'Sodium Hypochlorite',
+        description: 'Powerful liquid disinfectant and bleaching agent used in water treatment, sanitation, and industrial cleaning.',
+        href: '/products/sodium-hypochlorite',
+        backgroundImage: waterTreatmentImg,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'sodium-hypochlorite',
+        category: 'Water Treatment Chemicals',
+        chemicalId: 'sodium-hypochlorite',
+        msdsPdfKey: 'SODIUM HYPOCHLORITE COA.pdf',
+        fullDescription: 'Sodium Hypochlorite (NaOCl) is a greenish-yellow liquid commonly known as liquid bleach. It is a powerful oxidizing agent widely used for water disinfection, municipal water treatment, swimming pool sanitation, and industrial bleaching processes. It effectively eliminates bacteria, viruses, and algae, ensuring safe and clean water supplies.',
+        uses: [
+            'Municipal water disinfection',
+            'Swimming pool treatment',
+            'Industrial bleaching',
+            'Wastewater treatment',
+            'Household and industrial sanitation'
+        ],
+        features: [
+            'Effective broad-spectrum disinfectant',
+            'Easy to dose liquid form',
+            'Rapid action against pathogens',
+            'High stability in solution'
+        ],
+        specifications: {
+            purity: '10-15% available chlorine',
+            packaging: 'HDPE drums, IBCs, Bulk',
+            casNumber: '7681-52-9',
+            formula: 'NaOCl'
+        },
+        industries: ['Water Treatment', 'Sanitation', 'Textiles', 'Pulp & Paper'],
+        handling: 'Corrosive; causes skin and eye burns. Store in a cool, dark place away from acids and organic materials. Use appropriate PPE (gloves, goggles, apron). Handle with care to avoid chlorine gas release if mixed with acids.'
+    },
+
     {
         name: 'Calcium Hypochlorite',
         description: 'Potent disinfecting agent for water treatment and sanitation.',
@@ -1671,6 +1367,42 @@ export const products: Product[] = [
         industries: ['Water Treatment', 'Sanitation', 'Textiles'],
         handling: 'Strong oxidizer. Store away from organic materials and acids. May cause fire on contact with other chemicals.'
     },
+
+    {
+        name: 'PAC (Polyaluminium Chloride)',
+        description: 'High-efficiency inorganic coagulant for municipal and industrial water treatment.',
+        href: '/products/pac',
+        backgroundImage: waterTreatmentImg,
+        icon: <FlaskConical className="w-6 h-6" />,
+        slug: 'pac',
+        category: 'Water Treatment Chemicals',
+        fullDescription: 'Polyaluminium Chloride (PAC) is a pre-hydrolyzed aluminum-based coagulant widely used in drinking water, wastewater, and industrial effluent treatment. Due to its polymeric structure and high charge density, PAC provides faster floc formation, improved turbidity removal, and stable performance even in cold water and low-alkalinity conditions compared to conventional alum.',
+        uses: ['Drinking water clarification', 'Municipal and industrial wastewater treatment', 'Industrial water recycling systems', 'Paper and pulp processing'],
+        features: ['High basicity and polymerized structure', 'Effective at low and high turbidity levels', 'Lower dosage compared to alum', 'Reduced sludge generation'],
+        specifications: { purity: '28–30% Al2O3', packaging: 'Bulk, IBCs, Drums', casNumber: '1327-41-9', formula: '[Al2(OH)nCl6−n]m' },
+        industries: ['Municipal Water Treatment', 'Wastewater Treatment', 'Industrial Processing', 'Paper Industry'],
+        handling: 'Store in corrosion-resistant containers in a cool, dry place. Avoid contact with skin and eyes. Use appropriate PPE.'
+    },
+
+    // Food Industry Chemicals
+    {
+        name: 'Glycerine (USP Grade)',
+        description: 'High-purity USP grade glycerine suitable for food, pharmaceutical, and personal care formulations.',
+        href: '/products/glycerine',
+        backgroundImage: Glycerine,
+        icon: <Utensils className="w-6 h-6" />,
+        slug: 'glycerine',
+        category: 'Food Industry Chemicals',
+        chemicalId: 'glycerine',
+        msdsPdfKey: 'GLYCERINE MSDS & TDS.pdf',
+        fullDescription: 'Glycerine (also known as glycerol) is a clear, colorless, odorless, and viscous liquid with excellent hygroscopic and humectant properties. Our USP Grade Glycerine complies with United States Pharmacopeia standards and is widely used in food, pharmaceutical, and personal care applications for moisture retention, texture enhancement, and product stability.',
+        uses: ['Food additive and humectant', 'Cosmetic and personal care products', 'Pharmaceutical formulations', 'Oral care products'],
+        features: ['USP-compliant pharmaceutical grade', 'High purity and clarity', 'Excellent moisturizing properties', 'Safe for food contact'],
+        specifications: { purity: '≥ 99.7%', packaging: 'Drums, IBCs, Bulk', casNumber: '56-81-5', formula: 'C3H8O3' },
+        industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
+        handling: 'Store in tightly closed containers in a cool, dry place. Glycerine is hygroscopic.'
+    },
+
     {
         name: 'Sodium Benzoate',
         description: 'Premium food-grade preservative for beverages and acidic foods.',
@@ -1688,6 +1420,7 @@ export const products: Product[] = [
         industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
         handling: 'Store in a cool, dry place. Keep containers tightly closed.'
     },
+
     {
         name: 'Potassium Sorbate',
         description: 'Versatile food-grade mold and yeast inhibitor.',
@@ -1705,6 +1438,114 @@ export const products: Product[] = [
         industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
         handling: 'Hygroscopic. Protect from moisture and light.'
     },
+
+    {
+        name: 'Acetic Acid',
+        description: 'High-purity organic acid used in food, pharmaceutical, and industrial applications.',
+        href: '/products/acetic-acid',
+        backgroundImage: foodIndustryImg,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'acetic-acid',
+        category: 'Food Industry Chemicals',
+        chemicalId: 'acetic-acid',
+        msdsPdfKey: 'Acetic Acid MSDS.pdf',
+        fullDescription: 'Acetic Acid is a clear, colorless organic acid with a pungent odor and is the principal component of vinegar. It is supplied in food-grade, pharmaceutical-grade, and technical-grade forms.',
+        uses: ['Vinegar production', 'Food acidulant', 'Acidity regulation', 'Chemical synthesis'],
+        features: ['High purity food and pharma grades', 'Glacial and diluted concentrations', 'Consistent quality'],
+        specifications: { purity: '99.8% min (Glacial)', casNumber: '64-19-7', formula: 'CH3COOH' },
+        industries: ['Food Industry', 'Chemical Manufacturing', 'Pharmaceuticals'],
+        handling: 'Highly corrosive. Store in dedicated containers in a well-ventilated area.'
+    },
+
+    {
+        name: 'Citric Acid (Monohydrate & Anhydrous)',
+        description: 'Food-grade organic acid used for acidity regulation, preservation, and flavor enhancement.',
+        href: '/products/citric-acid',
+        backgroundImage: CitricAcid,
+        icon: <Grape className="w-6 h-6" />,
+        slug: 'citric-acid',
+        category: 'Food Industry Chemicals',
+        chemicalId: 'citric-acid-monohydrate',
+        msdsPdfKey: 'CITRIC ACID MONOHYDRATE  COA.pdf',
+        fullDescription: 'Citric Acid is a naturally occurring weak organic acid used in the food and beverage industry as an acidulant, preservative, and flavor enhancer. Available in anhydrous and monohydrate forms.',
+        uses: ['Food preservative and acidulant', 'Flavor enhancement', 'pH regulation', 'Chelating agent'],
+        features: ['High food-grade purity', 'Natural fermentation-derived', 'Anhydrous and monohydrate grades'],
+        specifications: { purity: '99.5% min', casNumber: '77-92-9', formula: 'C6H8O7' },
+        industries: ['Food & Beverage', 'Pharmaceuticals', 'Cosmetics'],
+        handling: 'Store in a cool, dry place. Avoid contamination.'
+    },
+
+    {
+        name: 'Calcium Carbonate (Food Grade)',
+        description: 'High-purity food-grade calcium supplement and acid regulator.',
+        href: '/products/calcium-carbonate',
+        backgroundImage: foodIndustryImg,
+        icon: <Box className="w-6 h-6" />,
+        slug: 'calcium-carbonate',
+        category: 'Food Industry Chemicals',
+        chemicalId: 'calcium-carbonate-food-grade',
+        msdsPdfKey: 'Calcium Carbonate COA.pdf',
+        fullDescription: 'Calcium Carbonate (CaCO3) is a white, odorless powder widely used in the food industry as a calcium supplement, firming agent, and acidity regulator. Our food-grade Calcium Carbonate ensures high purity and compliance with strict food safety standards.',
+        uses: ['Food fortification (Calcium supplement)', 'Acidity regulation in beverages', 'Firming agent in canned products', 'Bakery and confectionery additive'],
+        features: ['High elemental calcium content', 'Fine particle size for better dispersion', 'Strict food-grade purity compliance', 'Odorless and tasteless'],
+        specifications: { purity: '≥ 98%', casNumber: '471-34-1', formula: 'CaCO3' },
+        industries: ['Food & Beverage', 'Pharmaceuticals', 'Dietary Supplements'],
+        handling: 'Store in a cool, dry area. Avoid dust generation. Keep containers tightly closed.'
+    },
+
+    // Cosmetics & Personal Care Chemicals
+    {
+        name: 'Glycerine (USP Grade)',
+        description: 'High-purity USP grade glycerine suitable for food, pharmaceutical, and personal care formulations.',
+        href: '/products/glycerine',
+        backgroundImage: Glycerine,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'glycerine',
+        category: 'Cosmetics & Personal Care Chemicals',
+        chemicalId: 'glycerine-cosmetic',
+        msdsPdfKey: 'GLYCERINE MSDS & TDS.pdf',
+        fullDescription: 'Glycerine (also known as glycerol) is a clear, colorless, odorless, and viscous liquid with excellent hygroscopic and humectant properties. It is widely used in cosmetic and personal care applications for moisture retention, texture enhancement, and product stability.',
+        uses: ['Skin and hair moisturizers', 'Soaps and liquid cleansers', 'Creams and lotions', 'Oral care products'],
+        features: ['USP-compliant pharmaceutical grade', 'High purity and clarity', 'Excellent moisturizing properties', 'Non-toxic and non-irritating'],
+        specifications: { purity: '≥ 99.7%', packaging: 'Drums, IBCs, Bulk', casNumber: '56-81-5', formula: 'C3H8O3' },
+        industries: ['Cosmetics & Personal Care', 'Pharmaceuticals', 'Oral Care'],
+        handling: 'Store in tightly closed containers in a cool, dry place. Glycerine is hygroscopic.'
+    },
+
+    {
+        name: 'Propylene Glycol',
+        description: 'High-purity propylene glycol used as a humectant, solvent, and carrier in cosmetic, pharmaceutical, food, and industrial formulations.',
+        href: '/products/propylene-glycol',
+        backgroundImage: cosmeticsImg,
+        icon: <Beaker className="w-6 h-6" />,
+        slug: 'propylene-glycol',
+        category: 'Cosmetics & Personal Care Chemicals',
+        chemicalId: 'propylene-glycol-usp',
+        msdsPdfKey: 'PROPLYENE-GLYCOL-USP MSDS & TDS.pdf',
+        fullDescription: 'Propylene Glycol (PG) is a colorless, odorless, hygroscopic liquid widely used as a humectant, solvent, and formulation stabilizer. It effectively retains moisture, enhances product texture, and improves the solubility of active ingredients in cosmetic and personal care products.',
+        uses: [
+            'Humectant for moisture retention',
+            'Solvent for active ingredients and fragrances',
+            'Carrier in pharmaceutical syrups',
+            'Food additive (E1520)'
+        ],
+        features: [
+            'Available in USP, EP, and Food Grade',
+            'Excellent hygroscopic and solvent properties',
+            'Chemically stable and low volatility',
+            'Low toxicity and skin-compatible'
+        ],
+        specifications: {
+            purity: '99.5% – 99.9%',
+            packaging: 'Drums, IBCs, Bulk',
+            casNumber: '57-55-6',
+            formula: 'C3H8O2'
+        },
+        certifications: ['USP', 'EP', 'FCC', 'Kosher', 'Halal'],
+        industries: ['Cosmetics & Personal Care', 'Pharmaceuticals', 'Food & Beverage'],
+        handling: 'Store in tightly closed containers in a cool, dry place. Avoid contamination with moisture.'
+    },
+
     {
         name: 'Stearic Acid',
         description: 'Fundamental fatty acid for cosmetics, soaps, and industrial lubricants.',
@@ -1722,6 +1563,153 @@ export const products: Product[] = [
         industries: ['Cosmetics', 'Personal Care', 'Rubber', 'Chemical Manufacturing'],
         handling: 'Store in a cool, dry area. Avoid inhalation of dust.'
     },
+
+    // Paint & Coatings
+    {
+        name: 'Titanium Dioxide',
+        description: 'High-performance white pigment (TiO2) widely used for opacity, brightness, and UV resistance in paints and coatings.',
+        href: '/products/titanium-dioxide',
+        backgroundImage: TitaniumDioxide,
+        icon: <Paintbrush className="w-6 h-6" />,
+        slug: 'titanium-dioxide-paint',
+        category: 'Paint & Coatings Chemicals',
+        chemicalId: 'titanium-dioxide-paint',
+        msdsPdfKey: 'Titanium Dioxide.pdf',
+        fullDescription: 'Titanium Dioxide (TiO2) is its naturally occurring oxide and is globaly the most important white inorganic pigment. It provides exceptional opacity, high refractive index, and superior brightness, enhancing hiding power and weather resistance in architectural and industrial coatings.',
+        uses: ['Architectural and industrial paints', 'Powder and protective coatings', 'Masterbatches and plastic compounding', 'Printing inks'],
+        features: ['High refractive index for superior hiding power', 'Excellent brightness and whiteness', 'Outstanding UV resistance and durability', 'High dispersibility'],
+        specifications: { purity: '≥ 94% TiO2 content', packaging: '25 kg bags, Jumbo bags', casNumber: '13463-67-7', formula: 'TiO2' },
+        industries: ['Paints & Coatings', 'Printing Inks', 'Paper & Packaging'],
+        handling: 'Store in a dry, covered area. Avoid dust generation. Use personal protective equipment.'
+    },
+
+    {
+        name: 'Calcium Carbonate',
+        description: 'High-purity calcium carbonate used as a functional filler and extender in paints and coatings.',
+        href: '/products/calcium-carbonate-industrial',
+        backgroundImage: paintCoatingsImg,
+        icon: <Box className="w-6 h-6" />,
+        slug: 'calcium-carbonate-industrial',
+        category: 'Paint & Coatings Chemicals',
+        chemicalId: 'calcium-carbonate-industrial',
+        msdsPdfKey: 'Calcium Carbonate COA.pdf',
+        fullDescription: 'Calcium Carbonate (CaCO3) is a white, odorless powder used as a cost-effective filler and extender in paints and coatings. It improves gloss control, opacity, and rheology of the final product.',
+        uses: ['Decorative and industrial paints', 'Architectural coatings', 'Plastics and masterbatches', 'Adhesives and sealants'],
+        features: ['Excellent whiteness and brightness', 'Controlled particle size distribution', 'High calcium content', 'Improved rheological properties'],
+        specifications: { purity: '≥ 98%', casNumber: '471-34-1', formula: 'CaCO3' },
+        industries: ['Paints & Coatings', 'Construction', 'Plastics'],
+        handling: 'Store in a cool, dry area. Avoid dust formation during handling.'
+    },
+
+    {
+        name: 'Zinc Oxide',
+        description: 'High-purity inorganic white pigment offering UV protection and corrosion resistance for coatings.',
+        href: '/products/zinc-oxide',
+        backgroundImage: paintCoatingsImg,
+        icon: <ShieldCheck className="w-6 h-6" />,
+        slug: 'zinc-oxide',
+        category: 'Paint & Coatings Chemicals',
+        chemicalId: 'zinc-oxide-paint',
+        msdsPdfKey: 'Zinc Oxide, USP.pdf',
+        fullDescription: 'Zinc Oxide (ZnO) is an inorganic compound appearing as a fine white powder. In coatings, it improves mildew resistance and durability, and provides excellent UV absorption and corrosion protection.',
+        uses: ['Anti-corrosive paints and primers', 'UV absorbent coatings', 'Ceramic glazes', 'Industrial protective coatings'],
+        features: ['Excellent UV absorption and protection', 'Anti-corrosive properties', 'Natural antimicrobial performance', 'High thermal stability'],
+        specifications: { purity: '99.0% – 99.9%', packaging: '25 kg bags, Jumbo bags', casNumber: '1314-13-2', formula: 'ZnO' },
+        industries: ['Paints & Coatings', 'Rubber Manufacturing', 'Ceramics & Glass'],
+        handling: 'Avoid dust formation and inhalation. Store in tightly sealed containers in a cool, dry area.'
+    },
+
+    {
+        name: 'Methyl Ethyl Ketone (MEK)',
+        description: 'Fast-evaporating ketone solvent with strong solvency for coatings resins and lacquers.',
+        href: '/products/mek',
+        backgroundImage: MethylEthylKetone,
+        icon: <Zap className="w-6 h-6" />,
+        slug: 'mek-paint',
+        category: 'Paint & Coatings Chemicals',
+        chemicalId: 'mek-paint',
+        msdsPdfKey: 'BULK-METHYL-ETHYL-KETONE MEK MSDS & TDS.pdf',
+        fullDescription: 'Methyl Ethyl Ketone (MEK), also known as 2-butanone, is a colorless, volatile solvent with strong solvency power and rapid evaporation rate. It is extensively used in formulating surface coatings, lacquers, and nitrocellulose systems.',
+        uses: ['Solvent for industrial paints and lacquers', 'Resin solubilization in coatings', 'Adhesive formulations', 'Cleaning agent for paint equipment'],
+        features: ['Fast evaporation rate', 'Very strong solvency', 'Low boiling point', 'Consistent high purity'],
+        specifications: { purity: '99.7% min', packaging: 'Drums, IBCs, Bulk', casNumber: '78-93-3', formula: 'C4H8O' },
+        industries: ['Paints & Coatings', 'Adhesives & Sealants', 'Chemical Processing'],
+        handling: 'Extremely flammable liquid. Ground/bond during transfer. Eliminate all ignition sources.'
+    },
+
+    {
+        name: 'Butyl Acetate',
+        description: 'Medium-evaporating ester solvent widely used in lacquers, enamels, and high-performance coating systems.',
+        href: '/products/butyl-acetate',
+        backgroundImage: ButylAcetate,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'butyl-acetate-paint',
+        category: 'Paint & Coatings Chemicals',
+        chemicalId: 'butyl-acetate-paint',
+        msdsPdfKey: 'Butyl Acetate MSDS & TDS.pdf',
+        fullDescription: 'Butyl Acetate is a clear, colorless ester solvent with a balanced evaporation rate and strong solvency for resins. It is preferred in automotive and industrial coatings for its excellent flow and leveling properties.',
+        uses: ['Industrial coating formulations', 'Lacquers and enamels', 'Surface finishing applications', 'Resin processing'],
+        features: ['Controlled evaporation rate', 'Excellent flow and leveling', 'Good blush resistance', 'High dilution ratio'],
+        specifications: { purity: '99.5% min', packaging: 'Drums, IBCs, Bulk', casNumber: '123-86-4', formula: 'C6H12O2' },
+        industries: ['Automotive Coatings', 'Industrial Coatings', 'Wood Finishes'],
+        handling: 'Flammable liquid. Store away from heat and ignition sources. Use grounded equipment.'
+    },
+
+    {
+        name: 'Xylene',
+        description: 'Aromatic hydrocarbon solvent essential for industrial paints, coatings, and resin dissolving.',
+        href: '/products/xylene',
+        backgroundImage: Xylene,
+        icon: <Box className="w-6 h-6" />,
+        slug: 'xylene-paint',
+        category: 'Paint & Coatings Chemicals',
+        chemicalId: 'mix-xylene-paint',
+        msdsPdfKey: 'Mix Xylene MSDS & TDS.pdf',
+        fullDescription: 'Xylene is a colorless, flammable aromatic hydrocarbon solvent with strong dissolving power for resins and polymers. It is a critical component in many industrial and protective coating systems.',
+        uses: ['Solvent for architectural and industrial paints', 'Printing and packaging inks', 'Rubber processing', 'Degreasing agent for surfaces'],
+        features: ['Strong solvency for resins and polymers', 'Moderate evaporation rate', 'Chemically stable aromatic structure', 'Versatile industrial solvent'],
+        specifications: { purity: '99.0% min', packaging: 'Drums, IBCs, Bulk', casNumber: '1330-20-7', formula: 'C8H10' },
+        industries: ['Paints & Coatings', 'Printing & Packaging', 'Petrochemical Manufacturing'],
+        handling: 'Highly flammable liquid. Handle only in well-ventilated areas with appropriate PPE.'
+    },
+
+    {
+        name: 'Solvent Naphtha',
+        description: 'High-boiling aromatic hydrocarbon solvent used as a diluent and solvent in industrial coatings.',
+        href: '/products/solvent-naphtha',
+        backgroundImage: naphthaImg,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'solvent-naphtha',
+        category: 'Paint & Coatings Chemicals',
+        chemicalId: 'solvent-naphtha',
+        msdsPdfKey: 'Naphtha COA.pdf',
+        fullDescription: 'Solvent Naphtha is a range of high-boiling petroleum distillates with high aromatic content. It is widely used in the paint industry for its excellent solvency and controlled evaporation, making it ideal for high-solids coatings and industrial finishes.',
+        uses: ['Solvent for industrial and protective coatings', 'Varnishes and enamels', 'Agricultural chemicals solvent', 'Fuel and oil blending'],
+        features: ['Excellent solvency power', 'High boiling range and flash point', 'Consistent aromatic composition', 'Good diluent properties'],
+        specifications: { purity: 'High aromatic content', packaging: 'Drums, IBCs, Bulk', casNumber: '64742-95-6 / 8030-30-6', formula: 'Mixture' },
+        industries: ['Paints & Coatings', 'Petrochemicals', 'Industrial Manufacturing'],
+        handling: 'Flammable liquid. Handle in accordance with industrial petroleum standards. Avoid prolonged skin contact.'
+    },
+
+    // Mining
+    {
+        name: 'Sodium Cyanide',
+        description: 'Highly toxic inorganic compound primarily used in gold and silver extraction through cyanidation processes in the mining industry.',
+        href: '/products/sodium-cyanide',
+        backgroundImage: SodiumCyanide,
+        icon: <Hammer className="w-6 h-6" />,
+        slug: 'sodium-cyanide',
+        category: 'Mining Industry Chemicals',
+        chemicalId: 'sodium-cyanide',
+        msdsPdfKey: 'Sodium cyanide COA.pdf',
+        fullDescription: 'Sodium Cyanide (NaCN) is a white, water-soluble, highly toxic inorganic compound widely used for the efficient extraction of gold and silver from ore through cyanidation process.',
+        uses: ['Gold and silver ore extraction', 'Electroplating and metal finishing', 'Chemical intermediate in specialty synthesis'],
+        features: ['High purity mining grade material', 'Rapid dissolution in water', 'Efficient metal complexing', 'Manufactured under strict safety controls'],
+        specifications: { purity: '≥ 98%', casNumber: '143-33-9', formula: 'NaCN' },
+        industries: ['Mining', 'Metallurgy', 'Electroplating'],
+        handling: 'EXTREMELY TOXIC AND FATAL. Use full PPE. Handle only in controlled environments by trained personnel. Emergency kits must be available.'
+    },
+
     {
         name: 'Activated Carbon',
         description: 'High-surface-area porous carbon specifically engineered for gold recovery and water purification.',
@@ -1730,240 +1718,334 @@ export const products: Product[] = [
         icon: <Box className="w-6 h-6" />,
         slug: 'activated-carbon',
         category: 'Mining Industry Chemicals',
-        fullDescription: 'Activated Carbon is a highly porous form of carbon produced from coconut shell, coal, or wood. In the mining industry, it is widely used for efficient gold recovery in CIP/CIL processes.',
-        uses: ['Gold recovery', 'Water purification', 'Air filtration'],
-        features: ['High surface area', 'Excellent adsorption', 'Low attrition loss'],
-        specifications: { purity: '≥ 85% fixed carbon', casNumber: '7440-44-0', formula: 'C' },
-        industries: ['Mining', 'Water Treatment', 'Environmental'],
-        handling: 'Avoid dust generation. Store in a dry, well-ventilated area.'
+        chemicalId: 'activated-carbon',
+        msdsPdfKey: 'Activated Carbon COA.pdf',
+        fullDescription: 'Activated Carbon is a highly porous form of carbon produced from coconut shell, coal, or wood. In the mining industry, it is widely used for efficient gold recovery in Carbon-in-Pulp (CIP) and Carbon-in-Leach (CIL) processes.',
+        uses: ['Gold recovery in CIP/CIL processes', 'Water purification and filtration', 'Air filtration and solvent recovery'],
+        features: ['High surface area and iodine number', 'Excellent gold adsorption kinetics', 'Low attrition loss and high hardness'],
+        specifications: { purity: 'High activity grades available', casNumber: '7440-44-0', formula: 'C' },
+        industries: ['Mining & Metallurgy', 'Water Treatment', 'Environmental Solutions'],
+        handling: 'Avoid dust generation and inhalation. Wear appropriate respiratory protection in confined spaces.'
     },
+
     {
         name: 'Hydrochloric Acid',
-        description: 'Versatile strong mineral acid used in mining, metal pickling, and chemical synthesis.',
+        description: 'Versatile strong mineral acid used in mining ore processing, metal pickling, and chemical synthesis.',
         href: '/products/hydrochloric-acid',
         backgroundImage: HydrochloricAcid,
         icon: <Droplets className="w-6 h-6" />,
         slug: 'hydrochloric-acid',
         category: 'Mining Industry Chemicals',
-        chemicalId: 'hydrochloric-acid-ar',
+        chemicalId: 'hydrochloric-acid-mining',
         msdsPdfKey: 'HYDROCHLORIC ACID COA.pdf',
-        fullDescription: 'Hydrochloric Acid (HCl) is a highly corrosive mineral acid with many industrial uses. It is used in mining for ore processing and in various chemical manufacturing reactions.',
-        uses: ['Metal pickling', 'Mining ore treatment', 'pH adjustment', 'Oil well acidizing'],
-        features: ['Strong acidity', 'Highly reactive', 'Clear/yellowish liquid'],
+        fullDescription: 'Hydrochloric Acid (HCl) is a highly corrosive mineral acid essential for ore processing in the mining industry, acidizing of wells, and metal pickling.',
+        uses: ['Mining and mineral extraction', 'Metal pickling and industrial cleaning', 'pH adjustment in industrial processes', 'Oil well acidizing'],
+        features: ['Strong industrial acidity', 'Highly reactive mineral acid', 'Versatile reagent across industries'],
         specifications: { purity: '30-37% concentration', casNumber: '7647-01-0', formula: 'HCl' },
-        industries: ['Mining', 'Metallurgy', 'Chemical Manufacturing'],
-        handling: 'EXTREMELY CORROSIVE. Fumes cause respiratory damage. Use full acid-proof PPE and specialized ventilation.'
+        industries: ['Mining & Metallurgy', 'Energy & Petrochemicals', 'Chemical Manufacturing'],
+        handling: 'EXTREMELY CORROSIVE. Fumes cause respiratory damage. Use specialized contact PPE and acid-proof storage.'
     },
+
+    {
+        name: 'Sodium Silicate',
+        description: 'Industrial-grade sodium silicate used in detergent formulations, mining flotation, and adhesive manufacturing.',
+        href: '/products/sodium-silicate',
+        backgroundImage: SodiumSilicate,
+        icon: <FlaskConical className="w-6 h-6" />,
+        slug: 'sodium-silicate-mining',
+        category: 'Mining Industry Chemicals',
+        chemicalId: 'sodium-silicate-mining',
+        msdsPdfKey: 'SODIUM SILICATE COA.pdf',
+        fullDescription: 'Sodium Silicate, commonly known as liquid glass, is widely used in the mining industry for mineral flotation and ore concentration, as well as in detergents and adhesives.',
+        uses: ['Mineral flotation and ore concentration', 'Detergent binder and stabilizer', 'Adhesives and cement formulations', 'Foundation stabilization'],
+        features: ['Excellent binding and dispersing properties', 'Adjustable SiO2 to Na2O ratio', 'Superior adhesive strength', 'Water glass versatility'],
+        specifications: { purity: 'Multiple grades available', casNumber: '1344-09-8', formula: 'Na2SiO3' },
+        industries: ['Mining & Mineral Processing', 'Detergents & Soaps', 'Construction'],
+        handling: 'Store in suitable containers. Highly alkaline—avoid skin and eye contact. Wipe spills promptly to avoid slipping Hazards.'
+    },
+
     {
         name: 'Sulphuric Acid',
-        description: 'Critical industrial chemical for mineral processing, fertilizer production, and chemical synthesis.',
+        description: 'Critical industrial acid for mineral leaching, fertilizer production, and chemical synthesis.',
         href: '/products/sulphuric-acid',
         backgroundImage: SulphuricAcid,
         icon: <Flame className="w-6 h-6" />,
         slug: 'sulphuric-acid',
         category: 'Mining Industry Chemicals',
-        chemicalId: 'sulphuric-acid-ar',
+        chemicalId: 'sulphuric-acid-mining',
         msdsPdfKey: 'SULPHURIC ACID  COA.pdf',
-        fullDescription: 'Sulphuric Acid (H2SO4) is one of the most widely used chemicals globally. In mining, it is essential for the leaching of ores and the production of various sulfate chemicals.',
-        uses: ['Mineral leaching', 'Fertilizer production', 'Batteries', 'Chemical synthesis'],
-        features: ['Powerful dehydrating agent', 'Highly corrosive', 'Viscous liquid'],
+        fullDescription: 'Sulphuric Acid (H2SO4) is a highly corrosive mineral acid. In mining, it is primarily used for leaching ores (such as copper and zinc) and producing sulfate chemicals.',
+        uses: ['Mineral leaching (Copper, Zinc, Uranium)', 'Fertilizer production (Phosphates)', 'Industrial cleaning and pH control', 'Chemical synthesis intermediate'],
+        features: ['Highly corrosive and reactive', 'Powerful dehydrating agent', 'High industrial concentration (98%)'],
         specifications: { purity: '98% concentration', casNumber: '7664-93-9', formula: 'H2SO4' },
-        industries: ['Mining', 'Agriculture', 'Industrial Chemicals'],
-        handling: 'EXTREMELY CORROSIVE. Reacts violently with water. Handle with extreme caution using full contact PPE.'
+        industries: ['Mining & Metallurgy', 'Agriculture', 'Industrial Chemicals'],
+        handling: 'EXTREMELY CORROSIVE. Reacts violently with water. Use full specialized chemical contact PPE.'
     },
-    {
-        name: 'Sodium Silicate',
-        description: 'Versatile "liquid glass" used as a binder, detergent builder, and mining flotation aid.',
-        href: '/products/sodium-silicate',
-        backgroundImage: SodiumSilicate,
-        icon: <Layers className="w-6 h-6" />,
-        slug: 'sodium-silicate',
-        category: 'Detergent & Chemical Raw Materials',
-        chemicalId: 'sodium-silicate-cullets',
-        msdsPdfKey: 'Soidum Silicate COA.pdf',
-        fullDescription: 'Sodium Silicate is used as a binder in cements, a builder in detergents, and a corrosion inhibitor in water treatment. It also acts as a dispersant in mining flotation.',
-        uses: ['Detergent building', 'Adhesives', 'Mining flotation', 'Water treatment'],
-        features: ['Strong binding properties', 'Adjustable silica/alkali ratio', 'Liquid or solid forms'],
-        specifications: { purity: 'Available as Neutral or Alkaline grades', casNumber: '1344-09-8', formula: 'Na2SiO3' },
-        industries: ['Detergents', 'Mining', 'Construction', 'Water Treatment'],
-        handling: 'Keep containers tightly closed. Highly alkaline; protect skin and eyes.'
-    },
-    {
-        name: 'Sodium Nitrate',
-        description: 'Oxidizing agent for glass, explosives, and industrial chemical formulations.',
-        href: '/products/sodium-nitrate',
-        backgroundImage: SodiumNitrate,
-        icon: <Box className="w-6 h-6" />,
-        slug: 'sodium-nitrate',
-        category: 'Detergent & Chemical Raw Materials',
-        chemicalId: 'sodium-nitrate-coated',
-        msdsPdfKey: 'Sodium Nitrate coated grade.pdf',
-        fullDescription: 'Sodium Nitrate (NaNO3) is a white solid that is highly soluble in water. It is a powerful oxidizer used in several industrial processes, including glass making and as a chemical intermediate.',
-        uses: ['Glass manufacturing', 'Pyrotechnics', 'Enamel glazes', 'Industrial chemistry'],
-        features: ['Powerful oxidizer', 'High purity crystalline form', 'Fast-acting reagent'],
-        specifications: { purity: '≥ 99%', casNumber: '7631-99-4', formula: 'NaNO3' },
-        industries: ['Glass', 'Chemical Manufacturing', 'Industrial Processing'],
-        handling: 'Strong oxidizer. Store away from flammable materials and reducing agents.'
-    },
-    {
-        name: 'Sodium Sulphate',
-        description: 'Essential filler for detergents and processing aid for glass and textiles.',
-        href: '/products/sodium-sulphate',
-        backgroundImage: SodiumSulphate,
-        icon: <Layers className="w-6 h-6" />,
-        slug: 'sodium-sulphate',
-        category: 'Detergent & Chemical Raw Materials',
-        chemicalId: 'sodium-sulphate-anhydrous',
-        msdsPdfKey: 'Sodium Sulphate Anhydrous.pdf',
-        fullDescription: 'Sodium Sulphate (anhydrous) is used primarily as a filler in powdered household detergents and as a fining agent in the glass industry to remove air bubbles.',
-        uses: ['Powdered detergents', 'Glass manufacturing', 'Textile dyeing', 'Paper pulping'],
-        features: ['Inert filler', 'High purity anhydrous form', 'Free-flowing white powder'],
-        specifications: { purity: '≥ 99%', casNumber: '7757-82-6', formula: 'Na2SO4' },
-        industries: ['Detergents', 'Glass', 'Textiles', 'Paper'],
-        handling: 'Hygroscopic. Store in a dry area. Avoid dust generation.'
-    }
-    ,
 
-    // Foam Industry
+    // Textile
+    {
+        name: 'Hydrogen Peroxide',
+        description: 'Strong oxidizing agent widely used for textile bleaching, pulp processing, and industrial disinfection.',
+        href: '/products/hydrogen-peroxide',
+        backgroundImage: HydrogenPeroxide,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'hydrogen-peroxide-textile',
+        category: 'Textile Industry Chemicals',
+        chemicalId: 'hydrogen-peroxide-35',
+        msdsPdfKey: 'HYDROGEN PEROXIDE COA.pdf',
+        fullDescription: 'Hydrogen Peroxide (H2O2) is a clear, colorless liquid with strong oxidizing properties. In the textile industry, it is extensively used for fabric bleaching due to its ability to remove pigments without fiber damage. It decomposes into water and oxygen, making it an environmentally preferred agent.',
+        uses: ['Fabric and cotton bleaching', 'Pulp and paper bleaching', 'Water treatment', 'Surface disinfection'],
+        features: ['High oxidizing efficiency', 'Stabilized industrial grades (35%, 50%)', 'Environmentally compatible decomposition', 'Low residue formation'],
+        specifications: { purity: '35%, 50% w/w solutions', packaging: 'Drums, IBCs, Bulk', casNumber: '7722-84-1', formula: 'H2O2' },
+        industries: ['Textiles', 'Pulp & Paper', 'Water Treatment'],
+        handling: 'Store in vented containers. Keep away from organics and heat. Use full chemical PPE.'
+    },
+
+    {
+        name: 'Sodium Hydrosulphite',
+        description: 'Powerful reducing agent used primarily in textile vat dyeing, indigo reduction, and industrial bleaching.',
+        href: '/products/sodium-hydrosulphite',
+        backgroundImage: textileImg,
+        icon: <Beaker className="w-6 h-6" />,
+        slug: 'sodium-hydrosulphite',
+        category: 'Textile Industry Chemicals',
+        chemicalId: 'sodium-hydrosulphite-ar',
+        msdsPdfKey: 'Sodium Hydrosulphite COA.pdf',
+        fullDescription: 'Sodium Hydrosulphite (Sodium Dithionite) is a crystalline powder with strong reducing capacity. It is critical for vat and indigo dyeing in the textile industry and for bleaching operations in pulp and paper.',
+        uses: ['Vat and indigo dye reduction', 'Fabric bleaching and stripping', 'Pulp and paper bleaching', 'Chemical synthesis reducing agent'],
+        features: ['High reducing strength', 'Fast dissolution and reaction', 'Consistent particle size', 'Textile and industrial grades available'],
+        specifications: { purity: '≥ 88%', packaging: '50 kg steel drums', casNumber: '7775-14-6', formula: 'Na2S2O4' },
+        industries: ['Textile Dyeing & Processing', 'Pulp & Paper'],
+        handling: 'Store in a cool, dry area. Protect from moisture and air. Highly reactive with air/water when exposed.'
+    },
+
+    {
+        name: 'Acetic Acid',
+        description: 'Industrial-grade organic acid used for pH control in textile dyeing, neutralization, and chemical synthesis.',
+        href: '/products/acetic-acid',
+        backgroundImage: CitricAcid,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'acetic-acid-textile',
+        category: 'Textile Industry Chemicals',
+        chemicalId: 'acetic-acid-textile',
+        msdsPdfKey: 'GLACIAL ACETIC ACID COA.pdf',
+        fullDescription: 'Acetic Acid (CH3COOH) is an organic acid used in the textile industry for pH adjustment in dye baths, neutralization after alkaline treatments, and as a feedstock for various textile auxiliaries.',
+        uses: ['pH control in dye baths', 'Neutralization of alkaline fabrics', 'Feedstock for textile chemicals', 'Descaling and industrial cleaning'],
+        features: ['Clear, pungent liquid', 'Easily miscible with water', 'Effective acidifying agent', 'Available in Glacial and Diluted grades'],
+        specifications: { purity: 'Glacial (99.8%) or Technical grades', packaging: 'Drums, IBCs, Bulk', casNumber: '64-19-7', formula: 'CH3COOH' },
+        industries: ['Textiles & Apparel', 'Chemical Manufacturing', 'Leather Processing'],
+        handling: 'Corrosive liquid. Handle with care. Use in well-ventilated areas. Store above 17°C to prevent freezing (Glacial).'
+    },
+
+    {
+        name: 'Soda Ash',
+        description: 'Sodium Carbonate used as a pH regulator and reactive dye fixative in textile processing.',
+        href: '/products/soda-ash',
+        backgroundImage: sodaashlight,
+        icon: <Layers className="w-6 h-6" />,
+        slug: 'soda-ash-textile',
+        category: 'Textile Industry Chemicals',
+        chemicalId: 'soda-ash-textile',
+        msdsPdfKey: 'Specification   Soda Ash Light .pdf',
+        fullDescription: 'Soda Ash (Sodium Carbonate) is an essential alkaline agent in the textile industry, primarily used for setting reactive dyes on cotton and other cellulose fibers by adjusting the pH of the dye bath.',
+        uses: ['Reactive dye fixation on fabrics', 'pH adjustment and water softening', 'Scouring and cleaning of fabrics', 'Synthetic fiber manufacturing'],
+        features: ['Uniform particle size', 'Excellent solubility in water', 'High chemical purity', 'Available in Light and Dense grades'],
+        specifications: { purity: '99.2% min', packaging: '25 kg bags, Jumbo bags', casNumber: '497-19-8', formula: 'Na2CO3' },
+        industries: ['Textile Processing', 'Detergent & Soap', 'Glass Manufacturing'],
+        handling: 'Store in a cool, dry place. Avoid dust generation. Keep containers tightly closed.'
+    },
+    {
+        name: 'Polyether Polyols',
+        description: 'High-performance polyether polyols used as a core component in the production of flexible and rigid polyurethane foams.',
+        href: '/products/polyether-polyols',
+        backgroundImage: foamIndustryImg,
+        icon: <Droplets className="w-6 h-6" />,
+        slug: 'polyether-polyols',
+        category: 'Foam Industry Chemicals',
+        chemicalId: 'polyether-polyols',
+        fullDescription: 'Polyether Polyols are key reactive components used in combination with isocyanates (TDI or MDI) to manufacture a wide range of polyurethane (PU) products. They provide excellent flexibility, resilience, and structural stability to foams used in furniture, bedding, automotive, and insulation applications.',
+        uses: ['Flexible slabstock foam for mattresses and furniture', 'Molded foam for automotive seating', 'Rigid foam for thermal insulation', 'CASE (Coatings, Adhesives, Sealants, Elastomers) applications'],
+        features: ['Excellent reactivity with isocyanates', 'High resilience and load-bearing properties', 'Consistent viscosity and molecular weight', 'Low vapor pressure for safer handling'],
+        specifications: { purity: 'High-purity industrial grade', packaging: 'Drums, IBCs, Bulk', casNumber: '9003-11-6 / 25322-69-4', formula: 'Polymeric' },
+        industries: ['Furniture & Bedding', 'Automotive', 'Construction & Insulation'],
+        handling: 'Store in a cool, dry place. Product is hygroscopic; ensure containers are tightly sealed to prevent moisture absorption.'
+    },
+
+    {
+        name: 'Silicone Surfactants',
+        description: 'Advanced silicone-based surfactants engineered for cell stabilization and structure control in polyurethane foam manufacturing.',
+        href: '/products/silicone-surfactants',
+        backgroundImage: foamIndustryImg,
+        icon: <Zap className="w-6 h-6" />,
+        slug: 'silicone-surfactants',
+        category: 'Foam Industry Chemicals',
+        chemicalId: 'silicone-surfactants',
+        fullDescription: 'Silicone Surfactants are essential additives in PU foam production, designed to stabilize the cell structure during the blowing process, control cell size distribution, and improve the overall airflow and mechanical properties of the final foam.',
+        uses: ['Cell stabilization in flexible slabstock foam', 'Cell regulation in rigid insulation foam', 'Production of high-resilience (HR) foams', 'Specialty microcellular polyurethane systems'],
+        features: ['Superior emulsification of foam components', 'Excellent cell-opening and stabilization characteristics', 'Enhances foam uniformity and feel', 'Effective at low dosage levels'],
+        specifications: { purity: 'Formulated specialty chemical', packaging: 'Drums, IBCs', casNumber: 'Trade Secret / Polymeric', formula: 'Silicone-Polyether Copolymer' },
+        industries: ['PU Foam Manufacturing', 'Specialty Chemicals', 'Polymer Processing'],
+        handling: 'Store in original containers away from extreme temperatures. Follow standard industrial safety protocols for handling additives.'
+    },
+
     {
         name: 'TDI (Toluene Diisocyanate)',
-        description: 'Aromatic diisocyanate primarily used in the production of flexible polyurethane foams for furniture, bedding, and automotive applications.',
+        description: 'Aromatic diisocyanate primarily used in the production of flexible polyurethane foams for furniture and automotive seating.',
         href: '/products/tdi',
         backgroundImage: TDI,
         icon: <Microwave className="w-6 h-6" />,
-        slug: 'tdi',
+        slug: 'tdi-foam',
         category: 'Foam Industry Chemicals',
-        chemicalId: 'toluene-diisocyanate',
+        chemicalId: 'tdi-foam',
         msdsPdfKey: 'TOLUENE-DIISOCYANATE MSDS & TDS.pdf',
-        fullDescription: 'Toluene Diisocyanate (TDI) is an aromatic diisocyanate mainly supplied as an 80/20 mixture of the 2,4-TDI and 2,6-TDI isomers. It is a key raw material in the manufacture of flexible polyurethane foams used in furniture, mattresses, automotive seating, and cushioning products. TDI reacts with polyols to form polyurethane polymers, providing elasticity, resilience, and durability to finished foam products. Due to its high reactivity and volatility, it must be handled under strictly controlled industrial conditions.',
-        uses: [
-            'Flexible polyurethane foam production',
-            'Furniture cushions and mattresses',
-            'Automotive seating and interior components',
-            'Carpet underlay and packaging foam',
-            'Adhesives, sealants, and elastomers (limited applications)'
-        ],
-        features: [
-            'Typical 80/20 isomer ratio (2,4-/2,6-TDI)',
-            'High purity ≥ 99.5%',
-            'Low hydrolyzable chlorine content',
-            'High reactivity with polyols',
-            'Consistent quality for foam density control'
-        ],
-        specifications: {
-            purity: '≥ 99.5%',
-            packaging: 'Steel drums (~250 kg), IBCs, bulk ISO tankers',
-            casNumber: '584-84-9',
-            formula: 'C9H6N2O2'
-        },
-        certifications: ['ISO 9001 Manufacturing', 'REACH Registered'],
-        industries: ['Flexible Foam Manufacturing', 'Furniture & Bedding', 'Automotive Interiors', 'Adhesives & Sealants'],
-        handling: 'Moisture sensitive and toxic by inhalation. Store in dry conditions under nitrogen blanket at controlled temperature (typically 15–25°C). Use full PPE including respirators, chemical-resistant gloves, and protective clothing. Ensure proper ventilation and emergency safety equipment availability.'
+        fullDescription: 'Toluene Diisocyanate (TDI) is an aromatic diisocyanate supplied as an 80/20 mixture of isomers. It is a critical raw material for flexible PU foams, reacting with polyols to provide the elasticity and durability required for high-quality cushioning.',
+        uses: ['Flexible polyurethane foam manufacturing', 'Mattresses and furniture cushioning', 'Automotive interior components', 'Carpet underlays and sponges'],
+        features: ['High reactivity for efficient foam production', 'Consistency in density and cell structure control', 'Established industry standard for flexible foam'],
+        specifications: { purity: '≥ 99.5%', packaging: 'Steel drums (~250 kg)', casNumber: '584-84-9', formula: 'C9H6N2O2' },
+        industries: ['Flexible Foam Industry', 'Furniture & Bedding', 'Automotive'],
+        handling: 'Toxic and moisture-sensitive. Handle with full chemical PPE in well-ventilated areas. Store under nitrogen blanket.'
     },
+
     {
         name: 'MDI (Methylene Diphenyl Diisocyanate)',
-        description: 'Aromatic diisocyanate used in the production of rigid polyurethane foams, insulation materials, and structural polyurethane systems.',
+        description: 'Versatile isocyanate used in rigid foam insulation, structural PU components, and specialty foam systems.',
         href: '/products/mdi',
         backgroundImage: foamIndustryImg,
         icon: <Box className="w-6 h-6" />,
-        slug: 'mdi',
+        slug: 'mdi-foam',
         category: 'Foam Industry Chemicals',
-        chemicalId: 'mdi-polymeric',
+        chemicalId: 'mdi-foam',
         msdsPdfKey: 'Methylene Diphenyl Diisocyanate (MDI) COA.pdf',
-        fullDescription: 'Methylene Diphenyl Diisocyanate (MDI) is an aromatic diisocyanate available in pure (4,4’-MDI) and polymeric (pMDI) forms. It is widely used in the production of rigid polyurethane foams for thermal insulation in construction, refrigeration, and cold storage applications. MDI provides excellent mechanical strength, dimensional stability, and superior thermal insulation performance. Compared to TDI, MDI has lower vapor pressure, making it less volatile but still requiring strict industrial safety controls.',
-        uses: [
-            'Rigid polyurethane insulation panels',
-            'Refrigerator and cold storage insulation',
-            'Spray polyurethane foam systems',
-            'Automotive structural components',
-            'Binders for wood composites (OSB, MDF)'
-        ],
-        features: [
-            'Available in pure (4,4’-MDI) and polymeric grades',
-            'Low vapor pressure compared to TDI',
-            'High functionality for rigid foam systems',
-            'Excellent thermal insulation performance',
-            'Strong mechanical strength in cured products'
-        ],
-        specifications: {
-            purity: 'Varies by grade (Pure MDI ≥ 99%; Polymeric MDI functionality 2.7–3.0)',
-            packaging: 'Steel drums (~250 kg), IBCs, bulk tankers',
-            casNumber: '101-68-8',
-            formula: 'C15H10N2O2'
-        },
-        certifications: ['ISO 9001 Manufacturing', 'REACH Registered'],
-        industries: ['Construction & Insulation', 'Refrigeration Industry', 'Automotive Manufacturing', 'Wood Composite Production'],
-        handling: 'Moisture sensitive and hazardous by inhalation and skin contact. Store in sealed containers under dry nitrogen atmosphere at recommended temperatures (typically 15–30°C). Use full PPE and ensure adequate ventilation. Avoid exposure to moisture to prevent pressure buildup.'
+        fullDescription: 'Methylene Diphenyl Diisocyanate (MDI) is used to produce rigid polyurethane and polyisocyanurate (PIR) foams for superior thermal insulation. It offers higher functionality and lower volatility than TDI, making it ideal for structural and insulation applications.',
+        uses: ['Rigid foam for thermal insulation panels', 'Refrigerator and appliance insulation', 'Construction insulation systems', 'Structural polyurethane elastomers'],
+        features: ['Low vapor pressure and volatility', 'Excellent thermal insulation performance', 'Strong mechanical strength and adhesion'],
+        specifications: { purity: 'Available in Polymeric and Pure grades', packaging: 'Drums, IBCs, Bulk', casNumber: '101-68-8', formula: 'C15H10N2O2' },
+        industries: ['Construction & Insulation', 'Refrigeration', 'Automotive'],
+        handling: 'Moisture sensitive. Store in dry conditions. Use appropriate PPE to prevent inhalation and skin contact.'
     },
 
-    // Printing Ink
     {
-        name: 'Isopropyl Alcohol (IPA)',
-        description: 'High-purity, fast-evaporating solvent widely used in printing inks, surface cleaning, pharmaceuticals, and electronic applications.',
-        href: '/products/ipa',
-        backgroundImage: IsopropylAlcohol,
-        icon: <Printer className="w-6 h-6" />,
-        slug: 'ipa',
+        name: 'Glycol Ethers',
+        description: 'High-purity glycol ether solvents used as coupling agents and coalescents in printing inks and specialty coatings.',
+        href: '/products/butyl-glycol',
+        backgroundImage: solventsImg,
+        icon: <Beaker className="w-6 h-6" />,
+        slug: 'glycol-ethers-ink',
         category: 'Printing Ink Chemicals',
-        chemicalId: 'isopropyl-alcohol',
-        msdsPdfKey: 'ISOPROPYL-ALCOHOL MSDS & TDS.pdf',
-        fullDescription: 'Isopropyl Alcohol (IPA), also known as 2-Propanol, is a clear, colorless, highly flammable liquid with a characteristic odor. It is widely used as a solvent due to its excellent solvency power and rapid evaporation rate. In the printing industry, IPA is commonly used in offset printing dampening solutions to control ink-water balance, improve wetting, and enhance drying performance. It is also extensively used for precision cleaning in electronics, pharmaceuticals, and industrial maintenance applications.',
-        uses: [
-            'Offset printing dampening solution solvent',
-            'Flexographic and gravure ink solvent',
-            'Electronics and precision cleaning',
-            'Surface disinfectant and sanitizing agent',
-            'Pharmaceutical intermediate and solvent'
-        ],
-        features: [
-            'High purity grades up to 99.9%',
-            'Rapid evaporation rate',
-            'Excellent solvency for oils and resins',
-            'Low residue after evaporation',
-            'Miscible with water and many organic solvents'
-        ],
-        specifications: {
-            purity: '99% and 99.9% (anhydrous grades available)',
-            packaging: 'MS drums (~160 kg), IBC totes, bulk tankers',
-            casNumber: '67-63-0',
-            formula: 'C3H8O'
-        },
-        certifications: ['ACS Grade', 'USP/NF Grade', 'Technical Grade', 'Electronic Grade'],
-        industries: ['Printing & Packaging', 'Electronics Manufacturing', 'Pharmaceuticals', 'Industrial Cleaning'],
-        handling: 'Highly flammable liquid and vapor. Keep away from heat, sparks, and open flames. Use explosion-proof equipment and proper grounding during transfer. Store in tightly closed containers in a cool, well-ventilated area. Use appropriate PPE including gloves and eye protection.'
+        chemicalId: 'glycol-ethers-ink',
+        msdsPdfKey: 'BULK-BUTYL-GLYCOL MSDS & TDS.pdf',
+        fullDescription: 'Glycol Ethers, including Butyl Glycol (EGBE), are versatile solvents with a mild odor and high boiling point. In the printing industry, they serve as excellent coupling agents and slow-evaporating solvents that improve ink flow, leveling, and substrate wetting.',
+        uses: ['Solvent for printing inks and dyes', 'Coupling agent in water-based inks', 'Coalescing agent for specialty coatings', 'Cleaning solvent for printing equipment'],
+        features: ['Excellent coupling between water and organic phases', 'Slow and controlled evaporation rate', 'Superior wetting and flow promotion', 'High chemical stability'],
+        specifications: { purity: '99.5% min', packaging: 'Drums, IBCs, Bulk', casNumber: '111-76-2', formula: 'C6H14O2' },
+        industries: ['Printing & Packaging', 'Coatings', 'Industrial Cleaning'],
+        handling: 'Use in well-ventilated areas. Avoid prolonged skin contact. Store in cool, dry conditions away from oxidizers.'
     },
+
     {
         name: 'Nitrocellulose',
-        description: 'Fast-drying film-forming resin used extensively in printing inks, wood coatings, and industrial lacquers.',
+        description: 'Fast-drying film-forming resin used extensively in flexographic and gravure printing inks and industrial lacquers.',
         href: '/products/nitrocellulose',
         backgroundImage: printingInkImg,
         icon: <Layers className="w-6 h-6" />,
         slug: 'nitrocellulose',
         category: 'Printing Ink Chemicals',
-        chemicalId: 'nitrocellulose-cotton',
+        chemicalId: 'nitrocellulose-ink',
         msdsPdfKey: 'Nitrocellulose Cotton COA.pdf',
-        fullDescription: 'Nitrocellulose (Cellulose Nitrate) is a nitrated derivative of cellulose produced by treating cellulose with nitric acid. It is supplied in alcohol-wet or water-wet form to reduce flammability risk. Nitrocellulose is widely used as a primary resin in flexographic and gravure printing inks due to its excellent film-forming properties, rapid solvent release, strong pigment adhesion, and good gloss characteristics. It is also used in wood finishes, automotive refinishing coatings, and specialty lacquers.',
-        uses: [
-            'Flexographic printing inks',
-            'Gravure printing inks',
-            'Wood lacquers and furniture coatings',
-            'Automotive refinishing coatings',
-            'Leather finishes and specialty coatings'
-        ],
-        features: [
-            'Available in multiple viscosity grades',
-            'Typically supplied 25–35% alcohol wet for safety',
-            'Fast drying and excellent film formation',
-            'Good pigment wetting and dispersion',
-            'High gloss and strong adhesion properties'
-        ],
-        specifications: {
-            purity: 'Nitrogen content typically 10.7% – 12.2% (depending on grade)',
-            packaging: 'Fiber drums with polyethylene liner, cartons',
-            casNumber: '9004-70-0'
-        },
-        certifications: ['Industrial Ink Grade', 'Coating Grade', 'ISO 9001 Manufacturing'],
-        industries: ['Printing Inks', 'Wood & Furniture Coatings', 'Automotive Refinishing', 'Leather Finishing'],
-        handling: 'Highly flammable solid. Always store in alcohol-wet form (typically 25–35%) to reduce explosion risk. Keep away from heat, sparks, and oxidizing agents. Use non-sparking tools and explosion-proof ventilation systems. Follow strict flammable material handling procedures.'
+        fullDescription: 'Nitrocellulose (Cellulose Nitrate) is the primary resin for many printing ink systems. It provides exceptional film formation, rapid solvent release, and excellent adhesion to various packaging substrates like paper, foil, and films.',
+        uses: ['Flexographic printing inks', 'Gravure printing inks', 'High-gloss wood and leather finishes', 'Automotive refinishing lacquers'],
+        features: ['Available in various viscosity grades', 'Rapid solvent release for fast-line speeds', 'Excellent pigment wetting and gloss', 'Supplied alcohol-wet for safety'],
+        specifications: { purity: 'Textile/Ink grades available', packaging: 'Fiber drums', casNumber: '9004-70-0', formula: 'Polymeric' },
+        industries: ['Printing & Packaging', 'Coatings & Lacquers'],
+        handling: 'Highly flammable solid. Store alcohol-wet. Keep away from heat and ignition sources.'
+    },
+
+    {
+        name: 'Toluene',
+        description: 'Aromatic hydrocarbon solvent used as a primary solvent and chemical feedstock for printing ink formulations.',
+        href: '/products/toluene',
+        backgroundImage: Toluene,
+        icon: <Wind className="w-6 h-6" />,
+        slug: 'toluene-ink',
+        category: 'Printing Ink Chemicals',
+        chemicalId: 'toluene-ink',
+        msdsPdfKey: 'Toluene MSDS & TDS.pdf',
+        fullDescription: 'Toluene is a vital aromatic solvent for the printing industry, particularly in gravure ink formulations. It offers strong solvency for resins and a controlled evaporation rate essential for high-quality print definition.',
+        uses: ['Primary solvent in gravure printing inks', 'Ink thinner and viscosity regulator', 'Solvent for specialized resins and rubbers', 'Cleaning agent for printing presses'],
+        features: ['Fast evaporation rate', 'Strong resin solvency', 'High purity and consistent quality', 'Excellent dissolving capacity'],
+        specifications: { purity: '99.5% min', packaging: 'Drums, IBCs, Bulk', casNumber: '108-88-3', formula: 'C7H8' },
+        industries: ['Printing', 'Coatings', 'Chemical Manufacturing'],
+        handling: 'Highly flammable liquid. Ensure proper grounding/bonding. Avoid inhalation of vapors.'
+    },
+
+    {
+        name: 'Methyl Ethyl Ketone (MEK)',
+        description: 'High-boiling ketone solvent with exceptional solvency for resins used in high-performance printing inks.',
+        href: '/products/mek',
+        backgroundImage: MethylEthylKetone,
+        icon: <Zap className="w-6 h-6" />,
+        slug: 'mek-ink',
+        category: 'Printing Ink Chemicals',
+        chemicalId: 'mek-ink',
+        msdsPdfKey: 'BULK-METHYL-ETHYL-KETONE MEK MSDS & TDS.pdf',
+        fullDescription: 'Methyl Ethyl Ketone (MEK) is a powerful, fast-evaporating solvent used to dissolve resins and gums in the manufacture of printing inks, particularly those requiring rapid drying on non-porous substrates.',
+        uses: ['Solvent for printing and packaging inks', 'Dissolving cellulose and vinyl resins', 'Adhesive and coating formulations', 'Industrial press cleaning'],
+        features: ['Exceptional solvency power', 'Rapid evaporation for high-speed printing', 'Low boiling point', 'High purity industrial grade'],
+        specifications: { purity: '99.7% min', packaging: 'Drums, IBCs, Bulk', casNumber: '78-93-3', formula: 'C4H8O' },
+        industries: ['Printing & Packaging', 'Adhesives', 'Coatings'],
+        handling: 'Extremely flammable. Use explosion-proof equipment. Ground all containers during transfer.'
+    },
+
+    {
+        name: 'Ethyl Acetate',
+        description: 'Fast-evaporating ester solvent widely used in flexographic and gravure inks for its excellent solvency and mild odor.',
+        href: '/products/ethyl-acetate',
+        backgroundImage: Ethylacetate,
+        icon: <FlaskConical className="w-6 h-6" />,
+        slug: 'ethyl-acetate-ink',
+        category: 'Printing Ink Chemicals',
+        chemicalId: 'ethyl-acetate-ink',
+        msdsPdfKey: 'Ethyle Acetate MSDS & TDS.pdf',
+        fullDescription: 'Ethyl Acetate is a preferred solvent for flexible packaging inks due to its balanced performance, rapid evaporation, and lower toxicity compared to many hydrocarbon solvents.',
+        uses: ['Flexographic and gravure ink solvent', 'Solvent for laminating adhesives', 'Aluminum foil and film coatings', 'Extraction solvent'],
+        features: ['Rapid evaporation enables high productivity', 'Excellent solvency for various resins', 'Mild fruity odor', 'Readily biodegradable'],
+        specifications: { purity: '99.8% min', packaging: 'Drums, IBCs, Bulk', casNumber: '141-78-6', formula: 'C4H8O2' },
+        industries: ['Printing & Packaging', 'Food Packaging', 'Laminates'],
+        handling: 'Highly flammable. Use in well-ventilated areas with appropriate PPE.'
+    },
+
+    {
+        name: 'Resins & Pigments',
+        description: 'Comprehensive range of binding resins and high-quality organic/inorganic pigments for ink applications.',
+        href: '/products/printing-resins',
+        backgroundImage: printingInkImg,
+        icon: <Grape className="w-6 h-6" />,
+        slug: 'resins-pigments',
+        category: 'Printing Ink Chemicals',
+        chemicalId: 'resins-pigments-ink',
+        fullDescription: 'We offer a wide selection of binding resins (Polyamide, Acrylic, PU) and concentrated organic/inorganic pigments designed for CMYK and specialty printing ink systems, ensuring superior color strength and durability.',
+        uses: ['Binder resins for various ink systems', 'High-strength pigment dispersions', 'Coloring of plastic and paper packaging', 'UV-curable ink components'],
+        features: ['Excellent color development and gloss', 'Superior adhesion to varied substrates', 'Stable particle size distribution', 'Broad compatibility across solvent systems'],
+        specifications: { purity: 'Available in various grades', packaging: 'Bags, Drums', casNumber: 'Mixture', formula: 'Various' },
+        industries: ['Printing Inks', 'Packaging & Masterbatches', 'Colors & Coatings'],
+        handling: 'Store in dry conditions. Avoid contact with eyes and skin. Use appropriate dust protection for powdered pigments.'
+    },
+
+    {
+        name: 'Isopropyl Alcohol (IPA)',
+        description: 'High-purity, fast-evaporating solvent essential for fountain solutions and precision cleaning in printing.',
+        href: '/products/ipa',
+        backgroundImage: IsopropylAlcohol,
+        icon: <Printer className="w-6 h-6" />,
+        slug: 'ipa-ink',
+        category: 'Printing Ink Chemicals',
+        chemicalId: 'ipa-ink',
+        msdsPdfKey: 'ISOPROPYL-ALCOHOL MSDS & TDS.pdf',
+        fullDescription: 'Isopropyl Alcohol (IPA) is critical in offset printing as a wetting agent in fountain solutions. It helps control the ink-water balance and promotes rapid drying on high-speed presses.',
+        uses: ['Offset printing fountain solutions', 'Flexographic and gravure ink thinner', 'Precision equipment cleaning', 'Solvent for dyes and resins'],
+        features: ['High purity (99.9%)', 'Rapid evaporation rate', 'Excellent wetting properties', 'Miscible with water and organics'],
+        specifications: { purity: '99.9% (Anhydrous)', packaging: 'Drums (~160 kg), Bulk', casNumber: '67-63-0', formula: 'C3H8O' },
+        industries: ['Printing & Packaging', 'Industrial Cleaning', 'Electronics'],
+        handling: 'Highly flammable. Use explosion-proof ventilation. Ground containers during transfer.'
     }
 ];

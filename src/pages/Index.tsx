@@ -64,8 +64,8 @@ const Index = () => {
     <Layout>
       <SEO
         title="VANTARA ENERGY - Leading Petrochemical Supplier"
-        description="Global supplier of premium petrochemical products including fuel oil, gas oil, naphtha, white spirit, glycols, and lubricant oils."
-        keywords="petrochemicals, fuel oil, gas oil, naphtha, white spirit, glycols, lubricant oil, industrial chemicals"
+        description="Global supplier of premium petrochemical products including fuel oil, gas oil, base oil, naphtha, and white spirit."
+        keywords="petrochemicals, fuel oil, gas oil, base oil, naphtha, white spirit, industrial chemicals"
       />
 
       {/* Hero Section - Redesigned for Humanly Unique Look */}
@@ -192,7 +192,7 @@ const Index = () => {
       <section className="py-24 sm:py-32 lg:py-48 bg-background relative overflow-hidden">
         {/* Background Watermark */}
         <div className="absolute top-20 right-[-5%] text-[20rem] font-black text-primary/[0.03] select-none pointer-events-none hidden lg:block">
-          EST.1995
+          EST.2018
         </div>
 
         <div className="container-custom">

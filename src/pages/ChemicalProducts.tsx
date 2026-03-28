@@ -28,8 +28,8 @@ const ChemicalProducts = () => {
         <Layout>
             <SEO
                 title="Chemical Products - VANTARA ENERGY"
-                description="Industrial-grade solvents, detergent raw materials, food chemicals, and specialty industrial compounds."
-                keywords="solvents, water treatment chemicals, food chemicals, industrial raw materials, UAE chemicals"
+                description="Industrial-grade solvents (TDI, Xylene, Glycols), detergent raw materials (LABSA, SLES, Soda Ash), water treatment, food grade, paint industry, mining, textile, foam, and printing ink chemicals (IPA, Nitrocellulose, MEK)."
+                keywords="solvents, TDI, Xylene, Glycols, Acetone, Toluene, LABSA, SLES, Sodium Cyanide, Activated Carbon, Sulphuric Acid, Hydrochloric Acid, Hydrogen Peroxide, Polyether Polyols, MDI, IPA, Nitrocellulose, printing ink chemicals, industrial chemicals"
             />
 
             {/* --- CINEMATIC HERO --- */}
@@ -48,7 +48,7 @@ const ChemicalProducts = () => {
                 <div className="absolute inset-0 z-0 opacity-[0.05]" style={{ backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
 
                 <div className="container-custom relative z-10">
-                    <Breadcrumbs items={[{ label: 'Portfolio', href: '/products' }, { label: 'Chemical Solutions' }]} dark={true} />
+                    <Breadcrumbs items={[{ label: 'Portfolio', href: '/products' }, { label: 'Petrochemicals' }]} dark={true} />
 
                     <div className="grid lg:grid-cols-2 gap-20 items-center mt-12">
                         <div className="space-y-10">
@@ -59,7 +59,7 @@ const ChemicalProducts = () => {
                                 transition={{ delay: 0.1 }}
                                 className="text-4xl xs:text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.8] mb-8"
                             >
-                                Chemical <br /> <span className="text-accent underline decoration-white/10 underline-offset-[12px] sm:underline-offset-[16px]">Landscape.</span>
+                                Petrochemical <br /> <span className="text-accent underline decoration-white/10 underline-offset-[12px] sm:underline-offset-[16px]">Landscape.</span>
                             </motion.h1>
 
                             <motion.p

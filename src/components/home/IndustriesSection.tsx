@@ -20,7 +20,7 @@ import { products } from "@/data/products";
 
 const slides = [
     {
-        name: "Petrochemicals",
+        name: "Oil & Gas",
         video: videoPetrochemicals,
         description: "Premium-grade hydrocarbon products for energy, marine, and industrial manufacturing.",
         specs: ["High Calorific Value", "ISO 8217 Compliant", "Reduced Emissions"],
@@ -256,7 +256,7 @@ const IndustriesSection = () => {
                                                             .filter(p =>
                                                                 p.industries?.some(ind => {
                                                                     const industryMap: Record<string, string[]> = {
-                                                                        "Petrochemicals": ["Petrochemical", "Fuel", "Oil", "Gas", "Naphtha", "Base Oil", "Rubber Process", "Spirit", "Marine"],
+                                                                        "Oil & Gas": ["Petrochemical", "Fuel", "Oil", "Gas", "Naphtha", "Base Oil", "Rubber Process", "Spirit", "Marine"],
                                                                         "Solvents": ["Solvent", "Glycol", "Acetate", "Ketone", "Toluene", "Xylene", "Acetone", "TDI"],
                                                                         "Detergent & Chemical Raw Materials": ["Detergent", "LABSA", "SLES", "Soda", "Sulphate", "Nitrate", "Silicate", "Titanium Dioxide"],
                                                                         "Water Treatment Chemicals": ["Water", "Treatment", "Sulphate", "Chloride", "PAC", "Hypochlorite"],

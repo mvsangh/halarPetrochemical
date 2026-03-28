@@ -16,8 +16,8 @@ const OilProducts = () => {
         <Layout>
             <SEO
                 title="Oil Products - VANTARA ENERGY"
-                description="Premium fuel oils, gas oils, and lubricants for industrial and marine applications."
-                keywords="fuel oil, gas oil, lubricant oil, paraffin oil, used cooking oil"
+                description="Premium fuel oils, gas oils, and base oils for industrial and marine applications."
+                keywords="fuel oil, gas oil, base oil, naphtha, white spirit"
             />
 
             {/* --- CINEMATIC ENERGY HERO --- */}
@@ -36,7 +36,7 @@ const OilProducts = () => {
                 <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/stardust.png')` }} />
 
                 <div className="container-custom relative z-10">
-                    <Breadcrumbs items={[{ label: 'Portfolio', href: '/products' }, { label: 'Energy & Oils' }]} dark={true} />
+                    <Breadcrumbs items={[{ label: 'Portfolio', href: '/products' }, { label: 'Oil & Gas' }]} dark={true} />
 
                     <div className="grid lg:grid-cols-2 gap-20 items-center mt-12">
                         <div className="space-y-10">
@@ -47,7 +47,7 @@ const OilProducts = () => {
                                 transition={{ delay: 0.1 }}
                                 className="text-4xl xs:text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.8] mb-8"
                             >
-                                Energy <br /> <span className="text-accent underline decoration-white/10 underline-offset-[12px] sm:underline-offset-[16px]">Commodities.</span>
+                                Oil & <br /> <span className="text-accent underline decoration-white/10 underline-offset-[12px] sm:underline-offset-[16px]">Gas.</span>
                             </motion.h1>
 
                             <motion.p
@@ -71,7 +71,7 @@ const OilProducts = () => {
                         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
                             <div className="space-y-4">
                                 <h2 className="text-5xl md:text-7xl font-black text-primary uppercase tracking-tighter leading-[0.9]">
-                                    Petrochemical Oils
+                                    Oil & Gas Portfolio
                                 </h2>
                             </div>
                         </div>

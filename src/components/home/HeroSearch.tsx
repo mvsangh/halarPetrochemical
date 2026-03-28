@@ -9,22 +9,27 @@ const HeroSearch = () => {
     const [selectedIndustry, setSelectedIndustry] = useState("");
     const [selectedProduct, setSelectedProduct] = useState("");
 
-    // Get unique industries from all products
+    // Get unique industries from all products based on their categories
     const industriesList = useMemo(() => {
-        const industries = new Set<string>();
+        const categories = new Set<string>();
         products.forEach(product => {
-            product.industries?.forEach(industry => {
-                industries.add(industry);
-            });
+            if (product.category === 'Petrochemicals') {
+                categories.add('Oil & Gas');
+            } else {
+                categories.add(product.category);
+            }
         });
-        return Array.from(industries).sort();
+        return Array.from(categories).sort();
     }, []);
 
     // Get products based on selected industry or all if none selected
     const filteredProducts = useMemo(() => {
         if (!selectedIndustry) return products.sort((a, b) => a.name.localeCompare(b.name));
         return products
-            .filter(product => product.industries?.includes(selectedIndustry))
+            .filter(product => {
+                const mappedCategory = product.category === 'Petrochemicals' ? 'Oil & Gas' : product.category;
+                return mappedCategory === selectedIndustry;
+            })
             .sort((a, b) => a.name.localeCompare(b.name));
     }, [selectedIndustry]);
 

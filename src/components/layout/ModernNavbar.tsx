@@ -17,14 +17,14 @@ const navigation = [
         type: 'mega-menu',
         children: [
             {
-                name: 'Oils',
+                name: 'Oil & Gas',
                 href: '/products/Oil',
                 image: fuelOilImg,
                 icon: <Fuel className="w-5 h-5" />,
                 description: 'High-performance fuel oils, gas oils, and specialty lubricants for industrial power and marine applications.'
             },
             {
-                name: 'Chemicals',
+                name: 'Petrochemicals',
                 href: '/products/Chemical',
                 image: naphthaImg,
                 icon: <Droplets className="w-5 h-5" />,
@@ -321,7 +321,7 @@ const ModernNavbar = () => {
                             {/* Mobile Branding Watermark */}
                             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 pointer-events-none opacity-[0.03] select-none z-[-1] w-full text-center">
                                 <span className="text-[8rem] xs:text-[10rem] sm:text-[12rem] font-black uppercase tracking-tighter leading-none whitespace-nowrap overflow-hidden">
-                                    EST . 1995
+                                    EST . 2018
                                 </span>
                             </div>
 
