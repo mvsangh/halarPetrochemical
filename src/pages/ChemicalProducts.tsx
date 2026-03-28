@@ -59,7 +59,7 @@ const ChemicalProducts = () => {
                                 transition={{ delay: 0.1 }}
                                 className="text-4xl xs:text-5xl sm:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[0.8] mb-8"
                             >
-                                Petrochemical <br /> <span className="text-accent underline decoration-white/10 underline-offset-[12px] sm:underline-offset-[16px]">Landscape.</span>
+                                Petrochemicals <br /> <span className="text-accent underline decoration-white/10 underline-offset-[12px] sm:underline-offset-[16px]">Landscape.</span>
                             </motion.h1>
 
                             <motion.p

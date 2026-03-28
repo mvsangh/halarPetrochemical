@@ -76,6 +76,25 @@ import naphthaImg from "@/assets/products/categories/naphtha.jpg";
 import whiteSpiritImg from "@/assets/products/white-spirit.png";
 import glycolsImg from "@/assets/products/glycols.png";
 
+// Generated Images
+import butylGlycolGenerated from "@/assets/products/generated/butyl_glycol_egbe.png";
+import sodiumHypochloriteGenerated from "@/assets/products/generated/sodium_hypochlorite.png";
+import pacGenerated from "@/assets/products/generated/polyaluminium_chloride_pac.png";
+import aceticAcidFoodGenerated from "@/assets/products/generated/acetic_acid_food.png";
+import calciumCarbonateFoodGenerated from "@/assets/products/generated/calcium_carbonate_food.png";
+import propyleneGlycolCosmeticGenerated from "@/assets/products/generated/propylene_glycol_cosmetic.png";
+import calciumCarbonateIndustrialGenerated from "@/assets/products/generated/calcium_carbonate_industrial.png";
+import zincOxideGenerated from "@/assets/products/generated/zinc_oxide.png";
+import polyetherPolyolsGenerated from "@/assets/products/generated/polyether_polyols.png";
+import siliconeSurfactantsGenerated from "@/assets/products/generated/silicone_surfactants.png";
+import mdiFoamGenerated from "@/assets/products/generated/mdi_foam.png";
+import nitrocelluloseInkGenerated from "@/assets/products/generated/nitrocellulose_ink.png";
+import printingResinsPigmentsGenerated from "@/assets/products/generated/printing_resins_pigments.png";
+import aceticAcidTextileGenerated from "@/assets/products/generated/acetic_acid_textile.png";
+import mekPaintGenerated from "@/assets/products/generated/mek_paint.png";
+import mekInkGenerated from "@/assets/products/generated/mek_ink.png";
+import tolueneInkGenerated from "@/assets/products/generated/toluene_ink.png";
+
 // import lubricantOilImg from "@/assets/products/lubricant-oil.png";
 // import paraffinOilImg from "@/assets/products/Paraffin Oil.png";
 
@@ -880,7 +899,7 @@ export const products: Product[] = [
         name: 'Butyl Glycol (EGBE)',
         description: 'High-purity glycol ether solvent used in coatings, industrial cleaners, inks, and specialty chemical formulations.',
         href: '/products/butyl-glycol',
-        backgroundImage: solventsImg,
+        backgroundImage: butylGlycolGenerated,
         icon: <Beaker className="w-6 h-6" />,
         slug: 'butyl-glycol',
         category: 'Solvents',
@@ -1320,7 +1339,7 @@ export const products: Product[] = [
         name: 'Sodium Hypochlorite',
         description: 'Powerful liquid disinfectant and bleaching agent used in water treatment, sanitation, and industrial cleaning.',
         href: '/products/sodium-hypochlorite',
-        backgroundImage: waterTreatmentImg,
+        backgroundImage: sodiumHypochloriteGenerated,
         icon: <Droplets className="w-6 h-6" />,
         slug: 'sodium-hypochlorite',
         category: 'Water Treatment Chemicals',
@@ -1372,7 +1391,7 @@ export const products: Product[] = [
         name: 'PAC (Polyaluminium Chloride)',
         description: 'High-efficiency inorganic coagulant for municipal and industrial water treatment.',
         href: '/products/pac',
-        backgroundImage: waterTreatmentImg,
+        backgroundImage: pacGenerated,
         icon: <FlaskConical className="w-6 h-6" />,
         slug: 'pac',
         category: 'Water Treatment Chemicals',
@@ -1443,7 +1462,7 @@ export const products: Product[] = [
         name: 'Acetic Acid',
         description: 'High-purity organic acid used in food, pharmaceutical, and industrial applications.',
         href: '/products/acetic-acid',
-        backgroundImage: foodIndustryImg,
+        backgroundImage: aceticAcidFoodGenerated,
         icon: <Droplets className="w-6 h-6" />,
         slug: 'acetic-acid',
         category: 'Food Industry Chemicals',
@@ -1479,7 +1498,7 @@ export const products: Product[] = [
         name: 'Calcium Carbonate (Food Grade)',
         description: 'High-purity food-grade calcium supplement and acid regulator.',
         href: '/products/calcium-carbonate',
-        backgroundImage: foodIndustryImg,
+        backgroundImage: calciumCarbonateFoodGenerated,
         icon: <Box className="w-6 h-6" />,
         slug: 'calcium-carbonate',
         category: 'Food Industry Chemicals',
@@ -1516,7 +1535,7 @@ export const products: Product[] = [
         name: 'Propylene Glycol',
         description: 'High-purity propylene glycol used as a humectant, solvent, and carrier in cosmetic, pharmaceutical, food, and industrial formulations.',
         href: '/products/propylene-glycol',
-        backgroundImage: cosmeticsImg,
+        backgroundImage: propyleneGlycolCosmeticGenerated,
         icon: <Beaker className="w-6 h-6" />,
         slug: 'propylene-glycol',
         category: 'Cosmetics & Personal Care Chemicals',
@@ -1587,7 +1606,7 @@ export const products: Product[] = [
         name: 'Calcium Carbonate',
         description: 'High-purity calcium carbonate used as a functional filler and extender in paints and coatings.',
         href: '/products/calcium-carbonate-industrial',
-        backgroundImage: paintCoatingsImg,
+        backgroundImage: calciumCarbonateIndustrialGenerated,
         icon: <Box className="w-6 h-6" />,
         slug: 'calcium-carbonate-industrial',
         category: 'Paint & Coatings Chemicals',
@@ -1605,7 +1624,7 @@ export const products: Product[] = [
         name: 'Zinc Oxide',
         description: 'High-purity inorganic white pigment offering UV protection and corrosion resistance for coatings.',
         href: '/products/zinc-oxide',
-        backgroundImage: paintCoatingsImg,
+        backgroundImage: zincOxideGenerated,
         icon: <ShieldCheck className="w-6 h-6" />,
         slug: 'zinc-oxide',
         category: 'Paint & Coatings Chemicals',
@@ -1623,7 +1642,7 @@ export const products: Product[] = [
         name: 'Methyl Ethyl Ketone (MEK)',
         description: 'Fast-evaporating ketone solvent with strong solvency for coatings resins and lacquers.',
         href: '/products/mek',
-        backgroundImage: MethylEthylKetone,
+        backgroundImage: mekPaintGenerated,
         icon: <Zap className="w-6 h-6" />,
         slug: 'mek-paint',
         category: 'Paint & Coatings Chemicals',
@@ -1823,7 +1842,7 @@ export const products: Product[] = [
         name: 'Acetic Acid',
         description: 'Industrial-grade organic acid used for pH control in textile dyeing, neutralization, and chemical synthesis.',
         href: '/products/acetic-acid',
-        backgroundImage: CitricAcid,
+        backgroundImage: aceticAcidTextileGenerated,
         icon: <Droplets className="w-6 h-6" />,
         slug: 'acetic-acid-textile',
         category: 'Textile Industry Chemicals',
@@ -1858,7 +1877,7 @@ export const products: Product[] = [
         name: 'Polyether Polyols',
         description: 'High-performance polyether polyols used as a core component in the production of flexible and rigid polyurethane foams.',
         href: '/products/polyether-polyols',
-        backgroundImage: foamIndustryImg,
+        backgroundImage: polyetherPolyolsGenerated,
         icon: <Droplets className="w-6 h-6" />,
         slug: 'polyether-polyols',
         category: 'Foam Industry Chemicals',
@@ -1875,7 +1894,7 @@ export const products: Product[] = [
         name: 'Silicone Surfactants',
         description: 'Advanced silicone-based surfactants engineered for cell stabilization and structure control in polyurethane foam manufacturing.',
         href: '/products/silicone-surfactants',
-        backgroundImage: foamIndustryImg,
+        backgroundImage: siliconeSurfactantsGenerated,
         icon: <Zap className="w-6 h-6" />,
         slug: 'silicone-surfactants',
         category: 'Foam Industry Chemicals',
@@ -1910,7 +1929,7 @@ export const products: Product[] = [
         name: 'MDI (Methylene Diphenyl Diisocyanate)',
         description: 'Versatile isocyanate used in rigid foam insulation, structural PU components, and specialty foam systems.',
         href: '/products/mdi',
-        backgroundImage: foamIndustryImg,
+        backgroundImage: mdiFoamGenerated,
         icon: <Box className="w-6 h-6" />,
         slug: 'mdi-foam',
         category: 'Foam Industry Chemicals',
@@ -1928,7 +1947,7 @@ export const products: Product[] = [
         name: 'Glycol Ethers',
         description: 'High-purity glycol ether solvents used as coupling agents and coalescents in printing inks and specialty coatings.',
         href: '/products/butyl-glycol',
-        backgroundImage: solventsImg,
+        backgroundImage: butylGlycolGenerated,
         icon: <Beaker className="w-6 h-6" />,
         slug: 'glycol-ethers-ink',
         category: 'Printing Ink Chemicals',
@@ -1946,7 +1965,7 @@ export const products: Product[] = [
         name: 'Nitrocellulose',
         description: 'Fast-drying film-forming resin used extensively in flexographic and gravure printing inks and industrial lacquers.',
         href: '/products/nitrocellulose',
-        backgroundImage: printingInkImg,
+        backgroundImage: nitrocelluloseInkGenerated,
         icon: <Layers className="w-6 h-6" />,
         slug: 'nitrocellulose',
         category: 'Printing Ink Chemicals',
@@ -1964,7 +1983,7 @@ export const products: Product[] = [
         name: 'Toluene',
         description: 'Aromatic hydrocarbon solvent used as a primary solvent and chemical feedstock for printing ink formulations.',
         href: '/products/toluene',
-        backgroundImage: Toluene,
+        backgroundImage: tolueneInkGenerated,
         icon: <Wind className="w-6 h-6" />,
         slug: 'toluene-ink',
         category: 'Printing Ink Chemicals',
@@ -1982,7 +2001,7 @@ export const products: Product[] = [
         name: 'Methyl Ethyl Ketone (MEK)',
         description: 'High-boiling ketone solvent with exceptional solvency for resins used in high-performance printing inks.',
         href: '/products/mek',
-        backgroundImage: MethylEthylKetone,
+        backgroundImage: mekInkGenerated,
         icon: <Zap className="w-6 h-6" />,
         slug: 'mek-ink',
         category: 'Printing Ink Chemicals',
@@ -2018,7 +2037,7 @@ export const products: Product[] = [
         name: 'Resins & Pigments',
         description: 'Comprehensive range of binding resins and high-quality organic/inorganic pigments for ink applications.',
         href: '/products/printing-resins',
-        backgroundImage: printingInkImg,
+        backgroundImage: printingResinsPigmentsGenerated,
         icon: <Grape className="w-6 h-6" />,
         slug: 'resins-pigments',
         category: 'Printing Ink Chemicals',

@@ -38,8 +38,11 @@ import {
   chemicalCatalog, 
   chemicalCatalogPart2, 
   chemicalCatalogPart3, 
-  chemicalCatalogPart4 
+  chemicalCatalogPart4,
+  ChemicalProduct 
 } from "../../msds/msds";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import ProductPDF from "@/components/product/ProductPDF";
 
 const fullChemicalCatalog = [
   ...chemicalCatalog,
@@ -54,9 +57,26 @@ const ProductDetail = () => {
   const product = products.find((p) => p.slug === slug);
   if (!product) return <Navigate to="/products" replace />;
 
-  const chemicalProduct = fullChemicalCatalog.find(
+  const chemicalProductData: ChemicalProduct = fullChemicalCatalog.find(
     (c) => c.id === (product.chemicalId || product.slug)
-  );
+  ) || {
+    id: product.slug,
+    productName: product.name,
+    identifiers: {
+      casNumber: product.specifications?.casNumber,
+      chemicalFormula: product.specifications?.formula,
+    },
+    details: {
+      introduction: product.fullDescription,
+      appearance: product.specifications?.appearance,
+      purity: product.specifications?.purity,
+    },
+    specifications: [],
+    applications: product.uses || [],
+    packaging: [product.specifications?.packaging || "Standard Industrial Packaging"],
+  };
+
+  const chemicalProduct = chemicalProductData;
 
   const currentIndex = products.findIndex((p) => p.slug === slug);
   const prevProduct = currentIndex > 0 ? products[currentIndex - 1] : null;
@@ -540,26 +560,22 @@ const ProductDetail = () => {
                     </div>
                   </div>
 
-                  {product.msdsPdfKey ? (
-                    <div className="pt-8 border-t border-primary/10">
-                      <a 
-                        href={`/msds/${product.msdsPdfKey}`}
-                        download
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-between p-5 bg-accent hover:bg-accent/90 rounded-2xl text-white transition-colors shadow-lg shadow-accent/20 cursor-pointer"
-                      >
-                        <span className="text-[12px] font-black uppercase tracking-widest">Download MSDS / COA</span>
-                        <FileText className="w-5 h-5" />
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="pt-8 border-t border-primary/10">
-                      <div className="flex items-center gap-4 p-5 bg-primary rounded-2xl text-white">
-                        <span className="text-[10px] font-black uppercase tracking-widest">Global Purity Certified</span>
-                      </div>
-                    </div>
-                  )}
+                  <div className="pt-8 border-t border-primary/10">
+                    <PDFDownloadLink
+                      document={<ProductPDF product={chemicalProduct} />}
+                      fileName={`${product.name.replace(/\s+/g, '_')}_Specifications.pdf`}
+                      className="flex items-center justify-between p-5 bg-accent hover:bg-accent/90 rounded-2xl text-white transition-colors shadow-lg shadow-accent/20 cursor-pointer w-full"
+                    >
+                      {({ loading }) => (
+                        <>
+                          <span className="text-[12px] font-black uppercase tracking-widest">
+                            {loading ? "Preparing PDF..." : "Download MSDS / COA"}
+                          </span>
+                          <FileText className="w-5 h-5" />
+                        </>
+                      )}
+                    </PDFDownloadLink>
+                  </div>
                 </div>
 
                 {/* Procurement CTA */}
