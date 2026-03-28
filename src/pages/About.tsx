@@ -355,56 +355,7 @@ const About = () => {
           </div>
         </div>
       </section>
-      {/* --- SECTION 5: LEADERSHIP (Editorial Layout) --- */}
-      <section className="py-32 bg-secondary/5 relative overflow-hidden">
-        <div className="container-custom">
-          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-10 mb-16 lg:mb-24">
-            <div className="max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
-              <ScrollReveal>
-                <span className="text-accent font-serif italic text-xl sm:text-2xl mb-4 block">Architects of Change</span>
-                <h2 className="text-3xl sm:text-7xl font-black text-primary uppercase leading-[0.85] tracking-tighter">
-                  Executive <span className="text-accent">Vision</span>
-                </h2>
-              </ScrollReveal>
-            </div>
-            <ScrollReveal delay={0.2}>
-              <div className="text-right hidden lg:block">
-                <p className="text-sm font-mono text-primary/40 uppercase tracking-widest mb-2">Total Combined Expertise</p>
-                <span className="text-4xl font-black text-primary">60+ YEARS</span>
-              </div>
-            </ScrollReveal>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-16 lg:gap-24">
-            {[
-              { name: "Ahmed Al-Mansoori", role: "Chairman", bio: "A veteran of Middle Eastern energy markets with over 30 years of strategic foresight.", image: placeholderAvatar },
-              { name: "Sarah Jenkins", role: "Managing Director", bio: "Leading our digital transformation and global expansion strategies with surgical precision.", image: placeholderAvatar },
-              { name: "Marcus Chen", role: "Operations Head", bio: "The architect of our 'Zero-Delay' logistics framework across 50+ international ports.", image: placeholderAvatar }
-            ].map((leader, i) => (
-              <ScrollReveal key={i} delay={i * 0.2}>
-                <div className="group relative">
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-[2.5rem] transition-all duration-1000 shadow-xl">
-                    <img
-                      src={leader.image}
-                      alt={leader.name}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60" />
-                  </div>
-
-                  {/* Layered Content */}
-                  <div className="absolute -bottom-6 sm:-bottom-10 left-4 right-4 sm:left-8 sm:right-8 bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border border-primary/5 transform group-hover:-translate-y-4 transition-transform duration-500">
-                    <span className="text-accent font-serif italic text-xs sm:text-sm mb-1 block">{leader.role}</span>
-                    <h4 className="text-xl sm:text-2xl font-black text-primary uppercase tracking-tight">{leader.name}</h4>
-                    <p className="text-foreground/50 text-[10px] sm:text-xs mt-2 font-light leading-relaxed line-clamp-2 uppercase tracking-wide">{leader.bio}</p>
-                    <div className="h-px w-0 group-hover:w-full bg-primary/10 mt-4 transition-all duration-700" />
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* --- FINAL CINEMATIC CTA --- */}
       <section className="py-24 bg-accent relative overflow-hidden">

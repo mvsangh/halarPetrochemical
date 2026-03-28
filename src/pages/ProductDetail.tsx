@@ -89,9 +89,8 @@ const ProductDetail = () => {
 
   // Helper function for technical metrics
   const technicalMetrics = [
-    { label: "Purity Index", value: chemicalProduct?.details?.purity || product.specifications?.purity || "99.9%" },
+    { label: "Purity Index", value: chemicalProduct?.details?.purity || product.specifications?.purity || "98.5% minimum distillate fuel content" },
     { label: "Density", value: chemicalProduct?.details?.density || product.specifications?.density || "Standard" },
-    { label: "Batch ID", value: chemicalProduct?.identifiers?.batchNumber || `#${Math.floor(Math.random() * 9000) + 1000}` },
   ];
 
   return (
@@ -137,7 +136,7 @@ const ProductDetail = () => {
                 <SplitText text={product.name} />
               </h1>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1px bg-white/10 p-px rounded-2xl overflow-hidden max-w-2xl">
+              <div className="grid grid-cols-2 gap-1px bg-white/10 p-px rounded-2xl overflow-hidden max-w-2xl">
                 {technicalMetrics.map((metric, i) => (
                   <motion.div
                     key={i}
