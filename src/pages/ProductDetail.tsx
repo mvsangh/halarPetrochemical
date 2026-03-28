@@ -179,42 +179,42 @@ const ProductDetail = () => {
             {/* Main Information */}
             <div className="lg:col-span-8 space-y-32">
 
-              {/* 01. Overview - Industrial Infrastructure Theme */}
+              {/* 01. Overview - Vibrant Brand Theme */}
               <ScrollReveal>
-                <div className="relative group overflow-hidden bg-[#0a1a1f] rounded-[2rem] sm:rounded-[3rem] p-8 md:p-16 border border-white/5 shadow-2xl mx-[-1rem] sm:mx-0">
+                <div className="relative group overflow-hidden bg-primary rounded-[2rem] sm:rounded-[3rem] p-8 md:p-16 border border-white/10 shadow-2xl mx-[-1rem] sm:mx-0">
                   {/* Decorative Industrial Pattern */}
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-[100px] -mr-32 -mt-32" />
-                  <div className="absolute bottom-0 left-0 w-full h-1px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+                  <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-accent/20 rounded-full blur-[100px] -mr-32 -mt-32 opacity-30" />
+                  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
                   
                   <div className="relative z-10 space-y-10 sm:space-y-12">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                       <div className="space-y-4">
-                        <span className="text-accent font-mono text-[10px] tracking-[0.5em] uppercase block">Module // 01</span>
-                        <h2 className="text-3xl xs:text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-[1.1]">Product <br /> <span className="text-accent">Infrastructure.</span></h2>
+                        <span className="text-white/60 font-mono text-[10px] tracking-[0.5em] uppercase block font-bold">Module // 01</span>
+                        <h2 className="text-3xl xs:text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-[1.1]">Product <br /> <span className="text-accent underline decoration-white/20 underline-offset-8">Infrastructure.</span></h2>
                       </div>
                       <div className="hidden sm:block text-right">
-                        <div className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-1">Quality Grade</div>
+                        <div className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-1">Quality Grade</div>
                         <div className="text-xl font-black text-white">{chemicalProduct?.specifications?.[0]?.result || "Industrial"}</div>
                       </div>
                     </div>
 
                     <div className="relative">
-                      <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light first-letter:text-5xl md:first-letter:text-6xl first-letter:font-black first-letter:text-accent first-letter:mr-3 first-letter:float-left mb-6">
+                      <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light first-letter:text-5xl md:first-letter:text-6xl first-letter:font-black first-letter:text-accent first-letter:mr-3 first-letter:float-left mb-6">
                         {chemicalProduct?.details?.introduction || product.fullDescription}
                       </p>
                     </div>
 
                     {/* Physicochemical Properties Grid - Refined Matrix Look */}
                     {chemicalProduct?.details && Object.keys(chemicalProduct.details).filter(k => k !== 'introduction').length > 0 && (
-                       <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8 pt-10 border-t border-white/10">
+                       <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8 pt-10 border-t border-white/20">
                           {Object.entries(chemicalProduct.details).map(([key, val], idx) => {
                             if (key === 'introduction') return null;
                             const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
                             return (
                               <div key={idx} className="space-y-2 group/prop">
-                                <div className="text-[9px] font-black uppercase tracking-[0.2em] text-white/20 group-hover/prop:text-accent transition-colors">{label}</div>
+                                <div className="text-[9px] font-black uppercase tracking-[0.2em] text-white/40 group-hover/prop:text-accent transition-colors">{label}</div>
                                 <div className="text-base font-bold text-white tracking-tight leading-none">{val}</div>
-                                <div className="h-0.5 w-4 bg-white/5 group-hover/prop:w-full group-hover/prop:bg-accent transition-all duration-500" />
+                                <div className="h-0.5 w-4 bg-white/10 group-hover/prop:w-full group-hover/prop:bg-accent transition-all duration-500" />
                               </div>
                             );
                           })}
@@ -334,25 +334,25 @@ const ProductDetail = () => {
                 </ScrollReveal>
               )}
 
-              {/* 02. Features Grid - High Tech Dark Theme */}
+              {/* 02. Features Grid - Brand Primary Theme */}
               {product.features && (
                 <ScrollReveal>
-                  <div className="bg-primary rounded-[2rem] sm:rounded-[3rem] p-8 md:p-20 relative overflow-hidden mx-[-1rem] sm:mx-0">
-                    <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-accent/20 rounded-full blur-[100px] -mr-32 -mt-32 opacity-30" />
+                  <div className="bg-primary rounded-[2rem] sm:rounded-[3rem] p-8 md:p-20 relative overflow-hidden mx-[-1rem] sm:mx-0 border border-white/10 shadow-2xl">
+                    <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-accent/20 rounded-full blur-[100px] -mr-32 -mt-32 opacity-40" />
                     
                     <div className="relative z-10 space-y-12 md:space-y-16">
                       <div className="space-y-4">
-                        <span className="text-accent font-serif italic text-xl md:text-2xl block">Product Performance</span>
-                        <h2 className="text-3xl md:text-7xl font-black uppercase tracking-tighter text-white leading-[1] md:leading-[0.9]">Technical <br /> <span className="text-accent">Advantages.</span></h2>
+                        <span className="text-white/60 font-serif italic text-xl md:text-2xl block">Product Performance</span>
+                        <h2 className="text-3xl md:text-7xl font-black uppercase tracking-tighter text-white leading-[1] md:leading-[0.9]">Technical <br /> <span className="text-accent underline underline-offset-12 decoration-white/20">Advantages.</span></h2>
                       </div>
                       
-                      <div className="grid md:grid-cols-2 gap-px bg-white/5 border border-white/10">
+                      <div className="grid md:grid-cols-2 gap-px bg-white/10 border border-white/10">
                         {product.features.map((feature, i) => (
-                          <div key={i} className="bg-primary p-10 space-y-8 hover:bg-white transition-all duration-700 group">
+                          <div key={i} className="bg-primary/40 backdrop-blur-md p-10 space-y-8 hover:bg-white transition-all duration-700 group">
                             <span className="font-mono text-[10px] text-white/30 group-hover:text-primary/30 uppercase tracking-widest">ADV // 0{i + 1}</span>
                             <div className="space-y-4">
                               <h4 className="text-2xl font-black text-white group-hover:text-primary uppercase tracking-tight leading-none">{feature}</h4>
-                              <p className="text-sm text-white/40 group-hover:text-primary/60 font-light leading-relaxed">Engineered for peak industrial performance and operational reliability.</p>
+                              <p className="text-sm text-white/60 group-hover:text-primary/60 font-light leading-relaxed">Engineered for peak industrial performance and operational reliability.</p>
                             </div>
                             <div className="h-px w-0 group-hover:w-full bg-accent transition-all duration-700" />
                           </div>
