@@ -137,7 +137,7 @@ const ProductDetail = () => {
                 <SplitText text={product.name} />
               </h1>
 
-              <div className="grid sm:grid-cols-3 gap-1px bg-white/10 p-px rounded-2xl overflow-hidden max-w-2xl">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-1px bg-white/10 p-px rounded-2xl overflow-hidden max-w-2xl">
                 {technicalMetrics.map((metric, i) => (
                   <motion.div
                     key={i}
@@ -173,76 +173,54 @@ const ProductDetail = () => {
       </section>
 
       {/* --- TECHNICAL ANALYSIS SECTION --- */}
-      <section className="py-32 bg-white text-primary">
+      <section className="py-20 md:py-32 bg-white text-primary">
         <div className="container-custom">
           <div className="grid lg:grid-cols-12 gap-24">
             {/* Main Information */}
             <div className="lg:col-span-8 space-y-32">
 
-              {/* 01. Overview */}
+              {/* 01. Overview - Industrial Infrastructure Theme */}
               <ScrollReveal>
-                <div className="space-y-10">
-                  <div className="flex items-center gap-6">
-                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Product Infrastructure</h2>
-                    <div className="flex-grow h-px bg-primary/10" />
-                  </div>
-                  <p className="text-xl text-primary/70 leading-relaxed font-light first-letter:text-6xl first-letter:font-black first-letter:text-primary first-letter:mr-3 first-letter:float-left mb-6">
-                    {chemicalProduct?.details?.introduction || product.fullDescription}
-                  </p>
+                <div className="relative group overflow-hidden bg-[#0a1a1f] rounded-[2rem] sm:rounded-[3rem] p-8 md:p-16 border border-white/5 shadow-2xl mx-[-1rem] sm:mx-0">
+                  {/* Decorative Industrial Pattern */}
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-[100px] -mr-32 -mt-32" />
+                  <div className="absolute bottom-0 left-0 w-full h-1px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+                  
+                  <div className="relative z-10 space-y-10 sm:space-y-12">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                      <div className="space-y-4">
+                        <span className="text-accent font-mono text-[10px] tracking-[0.5em] uppercase block">Module // 01</span>
+                        <h2 className="text-3xl xs:text-4xl md:text-6xl font-black uppercase tracking-tighter text-white leading-[1.1]">Product <br /> <span className="text-accent">Infrastructure.</span></h2>
+                      </div>
+                      <div className="hidden sm:block text-right">
+                        <div className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-1">Quality Grade</div>
+                        <div className="text-xl font-black text-white">{chemicalProduct?.specifications?.[0]?.result || "Industrial"}</div>
+                      </div>
+                    </div>
 
-                  {/* Physicochemical Properties Grid */}
-                  {chemicalProduct?.details && Object.keys(chemicalProduct.details).filter(k => k !== 'introduction').length > 0 && (
-                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-6 mt-6 border-t border-primary/10">
-                        {chemicalProduct.details.appearance && (
-                           <div className="space-y-1">
-                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Appearance</div>
-                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.appearance}</div>
-                           </div>
-                        )}
-                        {chemicalProduct.details.odor && (
-                           <div className="space-y-1">
-                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Odor</div>
-                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.odor}</div>
-                           </div>
-                        )}
-                        {chemicalProduct.details.meltingPoint && (
-                           <div className="space-y-1">
-                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Melting Point</div>
-                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.meltingPoint}</div>
-                           </div>
-                        )}
-                        {chemicalProduct.details.boilingPoint && (
-                           <div className="space-y-1">
-                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Boiling Point</div>
-                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.boilingPoint}</div>
-                           </div>
-                        )}
-                        {chemicalProduct.details.solubility && (
-                           <div className="space-y-1">
-                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Solubility</div>
-                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.solubility}</div>
-                           </div>
-                        )}
-                        {chemicalProduct.details.density && (
-                           <div className="space-y-1">
-                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Density</div>
-                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.density}</div>
-                           </div>
-                        )}
-                        {chemicalProduct.details.steamPressure && (
-                           <div className="space-y-1">
-                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Steam Pressure</div>
-                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.steamPressure}</div>
-                           </div>
-                        )}
-                        {chemicalProduct.details.relativeMolecularMass && (
-                           <div className="space-y-1">
-                              <div className="text-[10px] font-black uppercase tracking-widest text-primary/40">Relative Molecular Mass</div>
-                              <div className="text-sm font-medium text-primary">{chemicalProduct.details.relativeMolecularMass}</div>
-                           </div>
-                        )}
-                     </div>
-                  )}
+                    <div className="relative">
+                      <p className="text-lg md:text-xl text-white/70 leading-relaxed font-light first-letter:text-5xl md:first-letter:text-6xl first-letter:font-black first-letter:text-accent first-letter:mr-3 first-letter:float-left mb-6">
+                        {chemicalProduct?.details?.introduction || product.fullDescription}
+                      </p>
+                    </div>
+
+                    {/* Physicochemical Properties Grid - Refined Matrix Look */}
+                    {chemicalProduct?.details && Object.keys(chemicalProduct.details).filter(k => k !== 'introduction').length > 0 && (
+                       <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-8 pt-10 border-t border-white/10">
+                          {Object.entries(chemicalProduct.details).map(([key, val], idx) => {
+                            if (key === 'introduction') return null;
+                            const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                            return (
+                              <div key={idx} className="space-y-2 group/prop">
+                                <div className="text-[9px] font-black uppercase tracking-[0.2em] text-white/20 group-hover/prop:text-accent transition-colors">{label}</div>
+                                <div className="text-base font-bold text-white tracking-tight leading-none">{val}</div>
+                                <div className="h-0.5 w-4 bg-white/5 group-hover/prop:w-full group-hover/prop:bg-accent transition-all duration-500" />
+                              </div>
+                            );
+                          })}
+                       </div>
+                    )}
+                  </div>
                 </div>
               </ScrollReveal>
 
@@ -356,23 +334,30 @@ const ProductDetail = () => {
                 </ScrollReveal>
               )}
 
-              {/* 02. Features Grid */}
+              {/* 02. Features Grid - High Tech Dark Theme */}
               {product.features && (
                 <ScrollReveal>
-                  <div className="space-y-12">
-                    <div className="flex items-center gap-6">
-                      <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter">Technical Advantages</h2>
-                    </div>
-                    <div className="grid md:grid-cols-2 gap-8">
-                      {product.features.map((feature, i) => (
-                        <div key={i} className="p-10 border border-primary/10 rounded-[2rem] hover:bg-[#f8f9fa] transition-all duration-500 group">
-                          <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center text-primary mb-8 group-hover:bg-accent group-hover:text-white transition-colors">
-                            <div className="w-2 h-2 rounded-full bg-accent group-hover:bg-white" />
+                  <div className="bg-primary rounded-[2rem] sm:rounded-[3rem] p-8 md:p-20 relative overflow-hidden mx-[-1rem] sm:mx-0">
+                    <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-accent/20 rounded-full blur-[100px] -mr-32 -mt-32 opacity-30" />
+                    
+                    <div className="relative z-10 space-y-12 md:space-y-16">
+                      <div className="space-y-4">
+                        <span className="text-accent font-serif italic text-xl md:text-2xl block">Product Performance</span>
+                        <h2 className="text-3xl md:text-7xl font-black uppercase tracking-tighter text-white leading-[1] md:leading-[0.9]">Technical <br /> <span className="text-accent">Advantages.</span></h2>
+                      </div>
+                      
+                      <div className="grid md:grid-cols-2 gap-px bg-white/5 border border-white/10">
+                        {product.features.map((feature, i) => (
+                          <div key={i} className="bg-primary p-10 space-y-8 hover:bg-white transition-all duration-700 group">
+                            <span className="font-mono text-[10px] text-white/30 group-hover:text-primary/30 uppercase tracking-widest">ADV // 0{i + 1}</span>
+                            <div className="space-y-4">
+                              <h4 className="text-2xl font-black text-white group-hover:text-primary uppercase tracking-tight leading-none">{feature}</h4>
+                              <p className="text-sm text-white/40 group-hover:text-primary/60 font-light leading-relaxed">Engineered for peak industrial performance and operational reliability.</p>
+                            </div>
+                            <div className="h-px w-0 group-hover:w-full bg-accent transition-all duration-700" />
                           </div>
-                          <h4 className="text-xl font-black uppercase tracking-tight mb-4">{feature}</h4>
-                          <div className="h-0.5 w-8 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </ScrollReveal>

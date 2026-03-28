@@ -83,12 +83,11 @@ const About = () => {
 
       {/* --- CINEMATIC HERO SECTION --- */}
       <section
-        className="relative flex items-center min-h-[80vh] pt-32 pb-20 overflow-hidden"
+        className="relative flex items-center min-h-[80vh] pt-32 pb-20 overflow-hidden bg-primary"
         style={{
           backgroundImage: `url(${heroRefinery})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundAttachment: "fixed",
         }}
       >
         <div className="absolute inset-0 bg-[#0a1a1f]/80 backdrop-blur-[2px]" />
@@ -96,25 +95,27 @@ const About = () => {
 
         <div className="container-custom relative z-20">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col gap-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col gap-8 sm:gap-12"
           >
-            <Breadcrumbs items={[{ label: 'About Us' }]} dark={true} />
+            <div className="pt-8 text-left">
+              <Breadcrumbs items={[{ label: 'About Us' }]} dark={true} />
+            </div>
 
-            <div className="relative">
+            <div className="relative mt-2 sm:mt-0">
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="absolute -top-10 sm:-top-12 -left-4 sm:-left-12 text-accent font-serif italic text-2xl sm:text-4xl opacity-20"
+                className="absolute -top-8 sm:-top-12 left-0 sm:-left-12 text-accent font-serif italic text-lg sm:text-4xl opacity-30"
               >
                 since 2018
               </motion.div>
 
-              <h1 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-white leading-[0.85] tracking-tighter uppercase">
-                <span className="block italic font-serif text-accent/80 tracking-normal mb-[-0.1em] ml-[-0.05em]">Our</span>
+              <h1 className="text-[2.6rem] xs:text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-white leading-[1] sm:leading-[0.85] tracking-tighter uppercase text-left">
+                <span className="block italic font-serif text-accent/80 tracking-normal mb-[-0.1em]">Our</span>
                 <span className="block">Journey</span>
               </h1>
             </div>
@@ -123,9 +124,9 @@ const About = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 1 }}
-              className="max-w-2xl border-l-2 border-accent pl-6 sm:pl-10"
+              className="max-w-2xl border-l-[3px] border-accent pl-5 sm:pl-10 text-left"
             >
-              <p className="text-xl md:text-2xl text-white/70 font-light leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl text-white/80 font-light leading-relaxed">
                 Bridging global resources with industrial precision. VANTARA ENERGY is more than a supplier; we are the catalyst for your operational success.
               </p>
             </motion.div>
@@ -134,7 +135,7 @@ const About = () => {
       </section>
 
       {/* --- SECTION 1: THE IDENTITY (Asymmetric & Layered) --- */}
-      <section className="py-32 bg-background relative">
+      <section className="py-32 bg-background relative overflow-hidden">
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row gap-24 items-center">
 
@@ -250,8 +251,8 @@ const About = () => {
       </section>
 
       {/* --- SECTION 3: THE EVOLUTION (Refined Horizontal Scroll) --- */}
-      <section ref={sectionRef} className="relative h-[400vh] bg-[#0a1a1f]">
-        <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+      <section ref={sectionRef} className="relative h-[400vh] bg-[#0a1a1f] overflow-x-clip">
+        <div className="sticky top-0 h-screen w-full flex flex-col overflow-hidden">
           {/* Header Area */}
           <div className="container-custom pt-32 pb-12 relative z-20">
             <ScrollReveal>
@@ -260,7 +261,7 @@ const About = () => {
                   <div className="w-12 h-px bg-accent" />
                   <span className="text-accent font-mono text-xs tracking-[0.5em] uppercase">Chronology</span>
                 </div>
-                <h2 className="text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-white uppercase leading-[0.85] sm:leading-[0.8] tracking-tighter">
+                <h2 className="text-4xl xs:text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-white uppercase leading-[1] sm:leading-[0.8] tracking-tighter">
                   Decades of <br />
                   <span className="text-accent outline-text text-transparent" style={{ WebkitTextStroke: '1px var(--accent)' }}>Momentum</span>
                 </h2>
@@ -355,7 +356,7 @@ const About = () => {
         </div>
       </section>
       {/* --- SECTION 5: LEADERSHIP (Editorial Layout) --- */}
-      <section className="py-32 bg-secondary/5 relative">
+      <section className="py-32 bg-secondary/5 relative overflow-hidden">
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-end gap-10 mb-16 lg:mb-24">
             <div className="max-w-2xl text-center lg:text-left mx-auto lg:mx-0">
@@ -374,7 +375,7 @@ const About = () => {
             </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-24">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 sm:gap-16 lg:gap-24">
             {[
               { name: "Ahmed Al-Mansoori", role: "Chairman", bio: "A veteran of Middle Eastern energy markets with over 30 years of strategic foresight.", image: placeholderAvatar },
               { name: "Sarah Jenkins", role: "Managing Director", bio: "Leading our digital transformation and global expansion strategies with surgical precision.", image: placeholderAvatar },
@@ -392,7 +393,7 @@ const About = () => {
                   </div>
 
                   {/* Layered Content */}
-                  <div className="absolute -bottom-10 left-4 right-4 sm:left-8 sm:right-8 bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border border-primary/5 transform group-hover:-translate-y-4 transition-transform duration-500">
+                  <div className="absolute -bottom-6 sm:-bottom-10 left-4 right-4 sm:left-8 sm:right-8 bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border border-primary/5 transform group-hover:-translate-y-4 transition-transform duration-500">
                     <span className="text-accent font-serif italic text-xs sm:text-sm mb-1 block">{leader.role}</span>
                     <h4 className="text-xl sm:text-2xl font-black text-primary uppercase tracking-tight">{leader.name}</h4>
                     <p className="text-foreground/50 text-[10px] sm:text-xs mt-2 font-light leading-relaxed line-clamp-2 uppercase tracking-wide">{leader.bio}</p>
