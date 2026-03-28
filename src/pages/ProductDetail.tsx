@@ -394,32 +394,6 @@ const ProductDetail = () => {
                   </div>
                 </div>
               </ScrollReveal>
-
-              {/* Navigation: Prev / Next */}
-              <div className="pt-32 border-t border-primary/10 flex flex-col md:flex-row justify-between gap-12">
-                {prevProduct && (
-                  <Link to={prevProduct.href} className="group">
-                    <div className="flex flex-col gap-4">
-                      <div className="flex items-center gap-2 text-accent font-black uppercase tracking-[0.2em] text-[10px]">
-                        <ArrowLeft className="w-3 h-3 group-hover:-translate-x-2 transition-transform" />
-                        Previous Product
-                      </div>
-                      <span className="text-3xl font-black uppercase tracking-tight group-hover:text-accent transition-colors">{prevProduct.name}</span>
-                    </div>
-                  </Link>
-                )}
-                {nextProduct && (
-                  <Link to={nextProduct.href} className="group md:text-right">
-                    <div className="flex flex-col gap-4 md:items-end">
-                      <div className="flex items-center gap-2 text-accent font-black uppercase tracking-[0.2em] text-[10px]">
-                        Next Product
-                        <ArrowRight className="w-3 h-3 group-hover:translate-x-2 transition-transform" />
-                      </div>
-                      <span className="text-3xl font-black uppercase tracking-tight group-hover:text-accent transition-colors">{nextProduct.name}</span>
-                    </div>
-                  </Link>
-                )}
-              </div>
             </div>
 
             {/* SIDEBAR: TECHNICAL DOSSIER */}
@@ -427,155 +401,28 @@ const ProductDetail = () => {
               <div className="sticky top-32 space-y-8">
 
                 {/* Reference Card */}
-                <div className="bg-[#f8f9fa] border-2 border-primary/5 rounded-[2.5rem] p-10 space-y-10">
-                  <div className="flex items-center justify-between">
-                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/30">Technical Dossier</h4>
+                <div className="bg-[#f8f9fa] border-2 border-primary/5 rounded-[2.5rem] p-10 space-y-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/30">Technical Assets</h4>
                     <div className="w-8 h-8 rounded-full border border-accent flex items-center justify-center">
                       <div className="w-2 h-2 bg-accent rounded-full animate-ping" />
                     </div>
                   </div>
 
-                  <div className="space-y-5">
-                    {/* Identifiers */}
-                    {(chemicalProduct?.identifiers?.casNumber || product.specifications?.casNumber) && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">CAS Registry</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct?.identifiers?.casNumber || product.specifications?.casNumber}</div>
-                      </div>
+                  <PDFDownloadLink
+                    document={<ProductPDF product={chemicalProduct} />}
+                    fileName={`${product.name.replace(/\s+/g, '_')}_Specifications.pdf`}
+                    className="flex items-center justify-between p-5 bg-accent hover:bg-accent/90 rounded-2xl text-white transition-colors shadow-lg shadow-accent/20 cursor-pointer w-full"
+                  >
+                    {({ loading }) => (
+                      <>
+                        <span className="text-[12px] font-black uppercase tracking-widest">
+                          {loading ? "Preparing PDF..." : "Download MSDS / COA"}
+                        </span>
+                        <FileText className="w-5 h-5" />
+                      </>
                     )}
-                    {(chemicalProduct?.identifiers?.chemicalFormula || product.specifications?.formula) && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Molecular Struct.</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct?.identifiers?.chemicalFormula || product.specifications?.formula}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.identifiers?.molecularWeight && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Molecular Weight</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.molecularWeight}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.identifiers?.ecNumber && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">EC Number</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.ecNumber}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.identifiers?.productCode && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Product Code</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.productCode}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.identifiers?.batchNumber && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Batch Number</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.batchNumber}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.identifiers?.mdlNumber && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">MDL Number</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.mdlNumber}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.identifiers?.hsnCode && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">HSN Code</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.hsnCode}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.identifiers?.inciName && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">INCI Name</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.inciName}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.identifiers?.beilsteinRegistryNo && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Beilstein No.</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.beilsteinRegistryNo}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.identifiers?.dangerousGoodsNumber && (
-                      <div className="space-y-1">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">DG Number</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.identifiers.dangerousGoodsNumber}</div>
-                      </div>
-                    )}
-                    
-                    {/* Metadata */}
-                    {chemicalProduct?.origin && (
-                      <div className="space-y-1 border-t border-primary/10 pt-4">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Origin</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.origin}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.brandNames && chemicalProduct.brandNames.length > 0 && (
-                      <div className="space-y-1 border-t border-primary/10 pt-4">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Brand/Manufacturer</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.brandNames.join(', ')}</div>
-                      </div>
-                    )}
-                    {chemicalProduct?.packaging && chemicalProduct.packaging.length > 0 && (
-                      <div className="space-y-1 border-t border-primary/10 pt-4">
-                        <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Packaging Available</span>
-                        <div className="text-sm font-black text-primary tracking-tighter">{chemicalProduct.packaging.join(', ')}</div>
-                      </div>
-                    )}
-                    
-                    {/* Dates */}
-                    {chemicalProduct?.dates && Object.keys(chemicalProduct.dates).length > 0 && (
-                      <div className="space-y-3 border-t border-primary/10 pt-4">
-                         {chemicalProduct.dates.mfgDate && (
-                            <div className="flex justify-between items-center text-sm">
-                               <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Mfg Date</span>
-                               <span className="font-bold text-primary">{chemicalProduct.dates.mfgDate}</span>
-                            </div>
-                         )}
-                         {chemicalProduct.dates.expDate && (
-                            <div className="flex justify-between items-center text-sm">
-                               <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Exp/Shelf Life</span>
-                               <span className="font-bold text-primary">{chemicalProduct.dates.expDate}</span>
-                            </div>
-                         )}
-                         {chemicalProduct.dates.retestDate && (
-                            <div className="flex justify-between items-center text-sm">
-                               <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Retest Date</span>
-                               <span className="font-bold text-primary">{chemicalProduct.dates.retestDate}</span>
-                            </div>
-                         )}
-                         {chemicalProduct.dates.samplingDate && (
-                            <div className="flex justify-between items-center text-sm">
-                               <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Sampling Date</span>
-                               <span className="font-bold text-primary">{chemicalProduct.dates.samplingDate}</span>
-                            </div>
-                         )}
-                      </div>
-                    )}
-
-                    <div className="space-y-1 border-t border-primary/10 pt-4">
-                      <span className="text-[10px] font-mono tracking-widest text-primary/40 uppercase">Logistics Lead</span>
-                      <div className="text-lg font-black text-primary tracking-tighter uppercase">{product.category}</div>
-                    </div>
-                  </div>
-
-                  <div className="pt-8 border-t border-primary/10">
-                    <PDFDownloadLink
-                      document={<ProductPDF product={chemicalProduct} />}
-                      fileName={`${product.name.replace(/\s+/g, '_')}_Specifications.pdf`}
-                      className="flex items-center justify-between p-5 bg-accent hover:bg-accent/90 rounded-2xl text-white transition-colors shadow-lg shadow-accent/20 cursor-pointer w-full"
-                    >
-                      {({ loading }) => (
-                        <>
-                          <span className="text-[12px] font-black uppercase tracking-widest">
-                            {loading ? "Preparing PDF..." : "Download MSDS / COA"}
-                          </span>
-                          <FileText className="w-5 h-5" />
-                        </>
-                      )}
-                    </PDFDownloadLink>
-                  </div>
+                  </PDFDownloadLink>
                 </div>
 
                 {/* Procurement CTA */}
@@ -610,6 +457,32 @@ const ProductDetail = () => {
 
               </div>
             </aside>
+
+            {/* Navigation: Prev / Next */}
+            <div className="lg:col-span-8 pt-16 lg:pt-32 border-t border-primary/10 flex flex-col md:flex-row justify-between gap-12">
+              {prevProduct && (
+                <Link to={prevProduct.href} className="group">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-2 text-accent font-black uppercase tracking-[0.2em] text-[10px]">
+                      <ArrowLeft className="w-3 h-3 group-hover:-translate-x-2 transition-transform" />
+                      Previous Product
+                    </div>
+                    <span className="text-3xl font-black uppercase tracking-tight group-hover:text-accent transition-colors">{prevProduct.name}</span>
+                  </div>
+                </Link>
+              )}
+              {nextProduct && (
+                <Link to={nextProduct.href} className="group md:text-right">
+                  <div className="flex flex-col gap-4 md:items-end">
+                    <div className="flex items-center gap-2 text-accent font-black uppercase tracking-[0.2em] text-[10px]">
+                      Next Product
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-2 transition-transform" />
+                    </div>
+                    <span className="text-3xl font-black uppercase tracking-tight group-hover:text-accent transition-colors">{nextProduct.name}</span>
+                  </div>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </section>

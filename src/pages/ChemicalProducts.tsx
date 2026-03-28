@@ -10,7 +10,10 @@ import { products } from '@/data/products';
 import { ArrowRight, Beaker, Layers, ShieldCheck } from 'lucide-react';
 
 const ChemicalProducts = () => {
-    const chemicalProducts = products.filter(p => p.category !== 'Petrochemicals');
+    const chemicalProducts = products.filter(p => 
+        p.category !== 'Petrochemicals' && 
+        p.category !== 'Food Industry Chemicals'
+    );
 
     // Group products by category
     const groupedProducts = chemicalProducts.reduce((acc, product) => {
@@ -28,7 +31,7 @@ const ChemicalProducts = () => {
         <Layout>
             <SEO
                 title="Chemical Products - VANTARA ENERGY"
-                description="Industrial-grade solvents (TDI, Xylene, Glycols), detergent raw materials (LABSA, SLES, Soda Ash), water treatment, food grade, paint industry, mining, textile, foam, and printing ink chemicals (IPA, Nitrocellulose, MEK)."
+                description="Industrial-grade solvents (TDI, Xylene, Glycols), detergent raw materials (LABSA, SLES, Soda Ash), water treatment, paint industry, mining, textile, foam, and printing ink chemicals (IPA, Nitrocellulose, MEK)."
                 keywords="solvents, TDI, Xylene, Glycols, Acetone, Toluene, LABSA, SLES, Sodium Cyanide, Activated Carbon, Sulphuric Acid, Hydrochloric Acid, Hydrogen Peroxide, Polyether Polyols, MDI, IPA, Nitrocellulose, printing ink chemicals, industrial chemicals"
             />
 

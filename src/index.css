@@ -8,21 +8,21 @@
 @layer base {
   :root {
     /* New Brand Palette */
-    --background: 42 100% 95%;
+    --background: 0 0% 100%;
     /* Lighter version of #FFF0CE for readability */
     --foreground: 0 0% 22%;
     /* #383838 */
 
-    --card: 42 100% 90%;
+    --card: 0 0% 100%;
     /* #FFF0CE */
     --card-foreground: 0 0% 22%;
 
-    --popover: 42 100% 95%;
+    --popover: 0 0% 100%;
     --popover-foreground: 0 0% 22%;
 
     /* Primary - Teal #097392 */
     --primary: 194 88% 30%;
-    --primary-foreground: 42 100% 95%;
+    --primary-foreground: 0 0% 100%;
 
     /* Secondary - Light Teal #83B4B3 */
     --secondary: 179 25% 61%;
@@ -34,7 +34,7 @@
 
     /* Accent - Orange #D55534 */
     --accent: 12 67% 52%;
-    --accent-foreground: 42 100% 95%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -48,7 +48,7 @@
     /* Custom Brand Tokens */
     --brand-teal: 194 88% 30%;
     --brand-orange: 12 67% 52%;
-    --brand-cream: 42 100% 90%;
+    --brand-cream: 0 0% 98%;
     --brand-grey: 0 0% 22%;
 
     /* Typography Tones */
@@ -69,12 +69,12 @@
     --shadow-lg: 0 10px 15px -3px hsl(194 88% 10% / 0.1), 0 4px 6px -4px hsl(194 88% 10% / 0.1);
     --shadow-xl: 0 20px 25px -5px hsl(194 88% 10% / 0.1), 0 8px 10px -6px hsl(194 88% 10% / 0.1);
 
-    --sidebar-background: 42 100% 98%;
+    --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 22%;
     --sidebar-primary: 194 88% 30%;
-    --sidebar-primary-foreground: 42 100% 95%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 12 67% 52%;
-    --sidebar-accent-foreground: 42 100% 95%;
+    --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 179 25% 80%;
     --sidebar-ring: 194 88% 30%;
   }
